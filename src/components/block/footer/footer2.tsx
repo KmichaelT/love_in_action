@@ -1,69 +1,31 @@
-const sections = [
-  {
-    title: 'Product',
-    links: [
-      { name: 'Overview', href: '#' },
-      { name: 'Pricing', href: '#' },
-      { name: 'Marketplace', href: '#' },
-      { name: 'Features', href: '#' },
-      { name: 'Integrations', href: '#' },
-      { name: 'Pricing', href: '#' },
-    ],
-  },
-  {
-    title: 'Company',
-    links: [
-      { name: 'About', href: '#' },
-      { name: 'Team', href: '#' },
-      { name: 'Blog', href: '#' },
-      { name: 'Careers', href: '#' },
-      { name: 'Contact', href: '#' },
-      { name: 'Privacy', href: '#' },
-    ],
-  },
-  {
-    title: 'Resources',
-    links: [
-      { name: 'Help', href: '#' },
-      { name: 'Sales', href: '#' },
-      { name: 'Advertise', href: '#' },
-    ],
-  },
-  {
-    title: 'Social',
-    links: [
-      { name: 'Twitter', href: '#' },
-      { name: 'Instagram', href: '#' },
-      { name: 'LinkedIn', href: '#' },
-    ],
-  },
-];
+import { Footer } from "@/payload-types";
+import { Media } from "@/components/Media";
+import { CMSLink } from "@/components/Link";
 
-const Footer2 = () => {
+
+const Footer2: React.FC<{ footer: Footer }> = ({ footer }) => {
   return (
     <section className="py-32">
       <div className="container">
         <footer>
           <div className="grid grid-cols-2 gap-8 lg:grid-cols-6">
             <div className="col-span-2 mb-8 lg:mb-0">
-              <img
-                src="https://www.shadcnblocks.com
-/images/block/logos/shadcn-ui.svg"
-                alt="logo"
+              {footer.logo && <Media
+                resource={footer.logo}
                 className="mb-4 h-7"
-              />
+              /> }
               <p className="font-bold">Components made easy.</p>
             </div>
-            {sections.map((section, sectionIdx) => (
+            {footer.navItems && footer.navItems.map((section, sectionIdx) => (
               <div key={sectionIdx}>
                 <h3 className="mb-4 font-bold">{section.title}</h3>
                 <ul className="space-y-4 text-muted-foreground">
-                  {section.links.map((link, linkIdx) => (
+                  {section?.subNavItems && section.subNavItems.map((link, linkIdx) => (
                     <li
                       key={linkIdx}
                       className="font-medium hover:text-primary"
                     >
-                      <a href={link.href}>{link.name}</a>
+                      <CMSLink {...link.link} />
                     </li>
                   ))}
                 </ul>

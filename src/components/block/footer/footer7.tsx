@@ -1,4 +1,8 @@
+import { Footer } from '@/payload-types';
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { Media } from "@/components/Media";
+import { CMSLink } from '@/components/Link';
+
 
 const sections = [
   {
@@ -30,7 +34,7 @@ const sections = [
   },
 ];
 
-const Footer7 = () => {
+const Footer7: React.FC<{ footer: Footer }> = ({ footer }) => {
   return (
     <section className="py-32">
       <div className="container">
@@ -39,11 +43,11 @@ const Footer7 = () => {
             <div className="flex w-full max-w-96 shrink flex-col items-center justify-between gap-6 lg:items-start">
               <div>
                 <span className="flex items-center justify-center gap-4 lg:justify-start">
-                  <img
-                    src="https://www.shadcnblocks.com/images/block/block-1.svg"
+                 {footer.logo && <Media
+                    resource={footer.logo}
                     alt="logo"
                     className="h-11"
-                  />
+                  />}
                   <p className="text-3xl font-semibold">Shadcnblocks</p>
                 </span>
                 <p className="mt-6 text-sm text-muted-foreground">
@@ -75,16 +79,16 @@ const Footer7 = () => {
               </ul>
             </div>
             <div className="grid grid-cols-3 gap-6 lg:gap-20">
-              {sections.map((section, sectionIdx) => (
+              {footer.navItems && footer.navItems.map((section, sectionIdx) => (
                 <div key={sectionIdx}>
                   <h3 className="mb-6 font-bold">{section.title}</h3>
                   <ul className="space-y-4 text-sm text-muted-foreground">
-                    {section.links.map((link, linkIdx) => (
+                    {section.subNavItems && section.subNavItems.map((link, linkIdx) => (
                       <li
                         key={linkIdx}
                         className="font-medium hover:text-primary"
                       >
-                        <a href={link.href}>{link.name}</a>
+                        <CMSLink {...link.link} />
                       </li>
                     ))}
                   </ul>

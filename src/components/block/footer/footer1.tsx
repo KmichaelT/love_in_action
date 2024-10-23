@@ -7,6 +7,8 @@ import {
 } from 'react-icons/fa';
 
 import { Separator } from '@/components/ui/separator';
+import { Footer } from '@/payload-types';
+import { Media } from '@/components/Media';
 
 const sections = [
   {
@@ -41,18 +43,17 @@ const sections = [
   },
 ];
 
-const Footer1 = () => {
+const Footer1: React.FC<{ footer: Footer }> = ({ footer }) => {
   return (
     <section className="py-32">
       <div className="container">
         <footer>
           <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
-            <img
-              src="https://www.shadcnblocks.com
-/images/block/logos/shadcn-ui.svg"
+            {footer.logo && <Media
+              resource={footer.logo}
               alt="logo"
               className="mb-8 mr-auto h-7 md:mb-0"
-            />
+            /> }
             <div className="flex flex-col gap-4 md:flex-row md:items-center">
               <p className="text-lg font-medium">
                 Copy the code and make it yours.
@@ -79,16 +80,16 @@ const Footer1 = () => {
           </div>
           <Separator className="my-14" />
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {sections.map((section, sectionIdx) => (
+            {footer.navItems && footer.navItems.map((section, sectionIdx) => (
               <div key={sectionIdx}>
                 <h3 className="mb-4 font-bold">{section.title}</h3>
                 <ul className="space-y-4 text-muted-foreground">
-                  {section.links.map((link, linkIdx) => (
+                  {section.subNavItems && section.subNavItems.map((link, linkIdx) => (
                     <li
                       key={linkIdx}
                       className="font-medium hover:text-primary"
                     >
-                      <a href={link.href}>{link.name}</a>
+                      { link.link.url && <a href={link.link.url}>{link.link.label}</a> }
                     </li>
                   ))}
                 </ul>

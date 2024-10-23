@@ -10,12 +10,34 @@ export const Footer: GlobalConfig = {
   },
   fields: [
     {
+      name: 'designVersion',
+      type: 'select',
+      options: ['1', '2', '3', '4', '5', '6', '7', '8'],
+    },
+        {
+      name: 'logo',
+      type: 'upload',
+      relationTo: 'media',
+    },
+    {
       name: 'navItems',
       type: 'array',
       fields: [
-        link({
-          appearances: false,
-        }),
+        {
+          name: "title",
+          type: "text",
+          required: true,
+        },
+        {
+          name: 'subNavItems',
+          type: 'array',
+          fields: [
+            link({
+              appearances: false,
+            }),
+          ],
+          maxRows: 6,
+        },
       ],
       maxRows: 6,
     },

@@ -31,7 +31,7 @@ export interface Config {
     header: Header;
     footer: Footer;
   };
-  locale: null;
+  locale: 'en' | 'de';
   user: User & {
     collection: 'users';
   };
@@ -740,18 +740,26 @@ export interface Header {
  */
 export interface Footer {
   id: number;
+  designVersion?: ('1' | '2' | '3' | '4' | '5' | '6' | '7' | '8') | null;
+  logo?: (number | null) | Media;
   navItems?:
     | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?: {
-            relationTo: 'pages';
-            value: number | Page;
-          } | null;
-          url?: string | null;
-          label: string;
-        };
+        title: string;
+        subNavItems?:
+          | {
+              link: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?: {
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null;
+                url?: string | null;
+                label: string;
+              };
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
       }[]
     | null;
