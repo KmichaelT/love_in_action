@@ -1,7 +1,7 @@
 import type { GlobalConfig } from 'payload'
 
-import { link } from '@/fields/link'
 import { revalidateHeader } from './hooks/revalidateHeader'
+import { Navbar1 } from './navbar/navbar1.config'
 
 export const Header: GlobalConfig = {
   slug: 'header',
@@ -13,33 +13,16 @@ export const Header: GlobalConfig = {
       name: 'designVersion',
       type: 'select',
       options: ['1', '3', '4'],
+      defaultValue: '1',
+      required: true,
     },
     {
       name: 'logo',
       type: 'upload',
       relationTo: 'media',
+      required: true,
     },
-    {
-      name: 'navItems',
-      type: 'array',
-      fields: [
-        link({
-          appearances: false,
-        }),
-
-        {
-          name: 'subNavItems',
-          type: 'array',
-          fields: [
-            link({
-              appearances: false,
-            }),
-          ],
-          maxRows: 6,
-        },
-      ],
-      maxRows: 6,
-    },
+    ...Navbar1,
   ],
   hooks: {
     afterChange: [revalidateHeader],

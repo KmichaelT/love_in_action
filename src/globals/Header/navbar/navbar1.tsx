@@ -1,6 +1,6 @@
 import { Book, Menu, Sunset, Trees, Zap } from 'lucide-react';
+import * as lucide from "lucide-react";
 import type { Header as HeaderType } from '@/payload-types'
-
 
 import {
   Accordion,
@@ -26,6 +26,9 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { cn } from '@/utilities/cn';
+import { Media } from '@/components/Media';
+import { CMSLink } from '@/components/Link';
+import { Icon } from '@/components/Icon';
 
 const subMenuItemsOne = [
   {
@@ -78,134 +81,83 @@ export const Navbar1: React.FC<{ header: HeaderType }> = ({ header }) => {
   return (
     <section className="py-32">
       <div className="container">
+        {/* Desktop Navigation */}
         <nav className="hidden justify-between lg:flex">
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2">
-              <img
-                src="https://www.shadcnblocks.com/images/block/block-1.svg"
-                className="w-8"
-                alt="logo"
-              />
-              <span className="text-xl font-bold">Shadcn Blocks</span>
+              <Media resource={header.logo} />
             </div>
             <div className="flex items-center">
-              <a
-                className={cn(
-                  'text-muted-foreground',
-                  navigationMenuTriggerStyle,
-                  buttonVariants({
-                    variant: 'ghost',
-                  }),
-                )}
-                href="#"
-              >
-                Home
-              </a>
+              {/* Left Link Group */}
               <NavigationMenu>
                 <NavigationMenuList>
-                  <NavigationMenuItem className="text-muted-foreground">
-                    <NavigationMenuTrigger>
-                      <span>Products</span>
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <ul className="w-80 p-3">
-                        <NavigationMenuLink>
-                          {subMenuItemsOne.map((item, idx) => (
-                            <li key={idx}>
-                              <a
-                                className={cn(
-                                  'flex select-none gap-4 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
-                                )}
-                                href="#"
-                              >
-                                {item.icon}
-                                <div>
-                                  <div className="text-sm font-semibold">
-                                    {item.title}
-                                  </div>
-                                  <p className="text-sm leading-snug text-muted-foreground">
-                                    {item.description}
-                                  </p>
-                                </div>
-                              </a>
-                            </li>
-                          ))}
-                        </NavigationMenuLink>
-                      </ul>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
-                  <NavigationMenuItem className="text-muted-foreground">
-                    <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <ul className="w-80 p-3">
-                        <NavigationMenuLink>
-                          {subMenuItemsTwo.map((item, idx) => (
-                            <li key={idx}>
-                              <a
-                                className={cn(
-                                  'flex select-none gap-4 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
-                                )}
-                                href="#"
-                              >
-                                {item.icon}
-                                <div>
-                                  <div className="text-sm font-semibold">
-                                    {item.title}
-                                  </div>
-                                  <p className="text-sm leading-snug text-muted-foreground">
-                                    {item.description}
-                                  </p>
-                                </div>
-                              </a>
-                            </li>
-                          ))}
-                        </NavigationMenuLink>
-                      </ul>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
+                  {header.items?.map((item) => {
+                    if (item.blockType === "link") {
+                      // Single Nav Link
+                      return (
+                        <CMSLink key={item.id} {...item.link}
+                          className={cn(
+                            'text-muted-foreground',
+                            navigationMenuTriggerStyle,
+                            buttonVariants({
+                              variant: 'ghost',
+                            }),
+                          )}
+                        />
+                      )
+                    } else if (item.blockType === "sub") {
+                      // Sub Nav Group
+                      return (
+                        <NavigationMenuItem key={item.id} className="text-muted-foreground">
+                          <NavigationMenuTrigger>
+                            {item.icon && <Icon className={"mr-2 h-6"} icon={item.icon} />}<span>{item.label}</span>
+                          </NavigationMenuTrigger>
+                          <NavigationMenuContent>
+                            <ul className="w-80 p-3">
+                              <NavigationMenuLink>
+                                {item.subitems.map((subitem) => (
+                                  <li key={subitem.id}>
+                                    <CMSLink
+                                      className={cn('flex select-none gap-4 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',)}
+                                      {...subitem.link}
+                                      label=""
+                                      iconBefore={undefined}
+                                      iconAfter={undefined}
+                                    >
+                                      {subitem.link.iconBefore && <Icon icon={subitem.link.iconBefore} />}
+                                      <div>
+                                        <div className="text-sm font-semibold">
+                                          {subitem.link.label}
+                                        </div>
+                                        <p className="text-sm leading-snug text-muted-foreground">
+                                          {subitem.Description}
+                                        </p>
+                                      </div>
+                                    </CMSLink>
+                                  </li>
+                                ))}
+                              </NavigationMenuLink>
+                            </ul>
+                          </NavigationMenuContent>
+                        </NavigationMenuItem>
+                      )
+                    }
+                  })}
                 </NavigationMenuList>
               </NavigationMenu>
-
-              <a
-                className={cn(
-                  'text-muted-foreground',
-                  navigationMenuTriggerStyle,
-                  buttonVariants({
-                    variant: 'ghost',
-                  }),
-                )}
-                href="#"
-              >
-                Pricing
-              </a>
-              <a
-                className={cn(
-                  'text-muted-foreground',
-                  navigationMenuTriggerStyle,
-                  buttonVariants({
-                    variant: 'ghost',
-                  }),
-                )}
-                href="#"
-              >
-                Blog
-              </a>
             </div>
           </div>
+          {/* Right Button Group */}
           <div className="flex gap-2">
-            <Button variant={'outline'}>Log in</Button>
-            <Button>Sign up</Button>
+            {header?.buttons?.map((btn) => <CMSLink key={btn.id} {...btn.link} />)}
           </div>
         </nav>
-        <div className="block lg:hidden">
+
+        {/* Mobile Navigation */}
+        <div className="block lg:hidden" >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <img
-                src="https://www.shadcnblocks.com/images/block/block-1.svg"
-                className="w-8"
-                alt="logo"
-              />
-              <span className="text-xl font-bold">Shadcn Blocks</span>
+              <Media resource={header.logo} />
             </div>
             <Sheet>
               <SheetTrigger asChild>
@@ -216,13 +168,7 @@ export const Navbar1: React.FC<{ header: HeaderType }> = ({ header }) => {
               <SheetContent className="overflow-y-auto">
                 <SheetHeader>
                   <SheetTitle>
-                    <div className="flex items-center gap-2">
-                      <img
-                        src="https://www.shadcnblocks.com/images/block/block-1.svg"
-                        className="w-8"
-                        alt="logo"
-                      />
-                      <span className="text-xl font-bold">Shadcn Blocks</span>
+                    <div className="flex items-center gap-2"><Media resource={header.logo} />
                     </div>
                   </SheetTitle>
                 </SheetHeader>

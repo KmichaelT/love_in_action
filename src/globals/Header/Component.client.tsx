@@ -1,13 +1,13 @@
 'use client'
 import { useHeaderTheme } from '@/providers/HeaderTheme'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
-import type { Header } from '@/payload-types'
+import { Navbar1 } from './navbar/navbar1'
+import { Navbar3 } from './navbar/navbar3'
+import { Navbar4 } from './navbar/navbar4'
 
-import { HeaderNavBlocks } from './Nav'
-import { Media } from '@/components/Media'
+import type { Header } from '@/payload-types'
 
 interface HeaderClientProps {
   header: Header
@@ -29,7 +29,12 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ header }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [headerTheme])
 
-  return (
-    <HeaderNavBlocks header={header} />
-  )
+  switch (header.designVersion) {
+    case '1':
+      return <Navbar1 header={header} />
+    case '3':
+      return <Navbar3 header={header} />
+    case '4':
+      return <Navbar4 header={header} />
+  }
 }
