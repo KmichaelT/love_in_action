@@ -126,7 +126,7 @@ const Footer3: React.FC<{ footer: Footer }> = ({ footer }) => {
             </div>
           </div>
           <div className="mt-24 flex flex-col flex-wrap justify-between gap-4 border-t pt-8 text-sm font-medium text-muted-foreground md:flex-row md:items-center">
-            <p>© 2024 ShadcnBlocks. All rights reserved.</p>
+            <p>{footer.copyright && `© ${new Date().getFullYear()} ${footer.copyright}`}</p>
             <ul className="flex gap-4">
               <li className="whitespace-nowrap underline hover:text-primary">
                 <a href="#">Terms and Conditions</a>

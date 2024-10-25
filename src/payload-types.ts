@@ -742,6 +742,7 @@ export interface Footer {
   id: number;
   designVersion?: ('1' | '2' | '3' | '4' | '5' | '6' | '7' | '8') | null;
   logo?: (number | null) | Media;
+  copyright?: string | null;
   navItems?:
     | {
         title: string;

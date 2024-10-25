@@ -115,7 +115,7 @@ const Footer6: React.FC<{ footer: Footer }> = ({ footer }) => {
         </div>
         <div className="flex flex-col items-baseline justify-between gap-8 border-t border-border pt-8 md:flex-row md:gap-16">
           <div className="text-xs text-muted-foreground sm:text-sm">
-            &copy; Company Name 2024
+            {footer.copyright && `© ${new Date().getFullYear()} ${footer.copyright}`}
           </div>
           <div className="flex flex-col items-start gap-4 text-xs text-muted-foreground sm:text-sm md:flex-row lg:items-center">
             <a href="#" className="hover:text-accent-foreground">

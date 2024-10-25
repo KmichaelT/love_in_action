@@ -109,7 +109,7 @@ const Footer4: React.FC<{ footer: Footer }> = ({ footer }) => {
                 <a href="#"> Privacy Policy</a>
               </li>
             </ul>
-            <p>© 2024 Shadcn. All rights reserved.</p>
+            <p>{footer.copyright && `© ${new Date().getFullYear()} ${footer.copyright}`}</p>
           </div>
         </footer>
       </div>

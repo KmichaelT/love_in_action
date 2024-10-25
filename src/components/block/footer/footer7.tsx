@@ -97,7 +97,7 @@ const Footer7: React.FC<{ footer: Footer }> = ({ footer }) => {
             </div>
           </div>
           <div className="mt-20 flex flex-col justify-between gap-4 border-t pt-8 text-center text-sm font-medium text-muted-foreground lg:flex-row lg:items-center lg:text-left">
-            <p>© 2024 Shadcnblocks. All rights reserved.</p>
+            <p>{footer.copyright && `© ${new Date().getFullYear()} ${footer.copyright}`}</p>
             <ul className="flex justify-center gap-4 lg:justify-start">
               <li className="hover:text-primary">
                 <a href="#"> Terms and Conditions</a>

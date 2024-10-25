@@ -99,7 +99,7 @@ const Footer5: React.FC<{ footer: Footer }> = ({ footer }) => {
           </div>
           <div className="mt-24 border-t pt-8">
             <p className="text-center text-sm font-medium text-muted-foreground">
-              © 2024 Shadcn. All rights reserved.
+            {footer.copyright && `© ${new Date().getFullYear()} ${footer.copyright}`}
             </p>
           </div>
         </footer>

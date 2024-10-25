@@ -14,10 +14,16 @@ export const Footer: GlobalConfig = {
       type: 'select',
       options: ['1', '2', '3', '4', '5', '6', '7', '8'],
     },
-        {
+    {
       name: 'logo',
       type: 'upload',
       relationTo: 'media',
+    },
+    {
+      name: 'copyright',
+      type: 'text',
+      label: 'Copyright',
+      defaultValue: 'Company Name. All rights reserved.',
     },
     {
       name: 'navItems',
@@ -39,7 +45,7 @@ export const Footer: GlobalConfig = {
           maxRows: 6,
         },
       ],
-      maxRows: 6,
+      maxRows: 3,
     },
   ],
   hooks: {

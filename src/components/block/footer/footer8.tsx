@@ -46,7 +46,7 @@ const Footer8: React.FC<{ footer: Footer }> = ({ footer }) => {
                     alt="logo"
                     className="h-11"
                   />}
-                  <p className="text-3xl font-semibold">Shadcnblocks</p>
+                  {/* <p className="text-3xl font-semibold">Shadcnblocks</p> */}
                 </span>
                 <p className="mt-6 text-muted-foreground">
                   A collection of 100+ responsive HTML templates for your
@@ -110,8 +110,7 @@ const Footer8: React.FC<{ footer: Footer }> = ({ footer }) => {
           </div>
           <div className="mt-20 flex flex-col justify-between gap-4 border-t pt-8 text-sm font-medium text-muted-foreground lg:flex-row lg:items-center lg:text-left">
             <p>
-              <span className="mr-1 font-bold text-primary">Shadcnblocks</span>
-              © All rights reserved.
+            {footer.copyright && `© ${new Date().getFullYear()} ${footer.copyright}`}
             </p>
             <p>Made with ❤️ by Shacnblocks</p>
           </div>

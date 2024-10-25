@@ -99,9 +99,9 @@ const Footer1: React.FC<{ footer: Footer }> = ({ footer }) => {
             </div>
           </div>
           <Separator className="my-14" />
-          <p className="text-sm text-muted-foreground">
-            © 2024 Shadcnblocks. All rights reserved.
-          </p>
+            <p className="text-sm text-muted-foreground">
+            {footer.copyright && `© ${new Date().getFullYear()} ${footer.copyright}`}
+            </p>
         </footer>
       </div>
     </section>

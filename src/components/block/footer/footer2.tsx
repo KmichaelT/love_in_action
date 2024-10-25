@@ -33,7 +33,7 @@ const Footer2: React.FC<{ footer: Footer }> = ({ footer }) => {
             ))}
           </div>
           <div className="mt-24 flex flex-col justify-between gap-4 border-t pt-8 text-sm font-medium text-muted-foreground md:flex-row md:items-center">
-            <p>© 2024 Shadcn. All rights reserved.</p>
+            <p>{footer.copyright && `© ${new Date().getFullYear()} ${footer.copyright}`}</p>
             <ul className="flex gap-4">
               <li className="underline hover:text-primary">
                 <a href="#"> Terms and Conditions</a>
