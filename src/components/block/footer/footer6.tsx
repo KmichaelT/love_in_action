@@ -23,7 +23,7 @@ const Footer6: React.FC<{ footer: Footer }> = ({ footer }) => {
               <h3 className="text-xl font-bold">Company Name</h3>
             </div>
             <p className="text-base font-medium text-muted-foreground">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            {footer.subline && footer.subline}
             </p>
           </div>
           <div className="flex flex-col items-start gap-x-20 gap-y-14 xl:flex-row">
