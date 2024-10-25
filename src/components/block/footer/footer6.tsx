@@ -5,58 +5,6 @@ import { Media } from "@/components/Media";
 import { CMSLink } from '@/components/Link';
 
 
-const sitemap = [
-  {
-    title: 'Product',
-    links: [
-      {
-        title: 'Product 1',
-        href: '#',
-      },
-      {
-        title: 'Product 2',
-        href: '#',
-      },
-      {
-        title: 'Product 3',
-        href: '#',
-      },
-      {
-        title: 'Product 4',
-        href: '#',
-      },
-      {
-        title: 'Product 5',
-        href: '#',
-      },
-      {
-        title: 'Product 6',
-        href: '#',
-      },
-    ],
-  },
-  {
-    title: 'Resources',
-    links: [
-      {
-        title: 'Blog',
-        href: '#',
-      },
-      {
-        title: 'Knowledge Base',
-        href: '#',
-      },
-      {
-        title: 'Documentation',
-        href: '#',
-      },
-      {
-        title: 'Partner Directory',
-        href: '#',
-      },
-    ],
-  },
-];
 
 const Footer6: React.FC<{ footer: Footer }> = ({ footer }) => {
   return (

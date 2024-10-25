@@ -49,8 +49,7 @@ const Footer8: React.FC<{ footer: Footer }> = ({ footer }) => {
                   {/* <p className="text-3xl font-semibold">Shadcnblocks</p> */}
                 </span>
                 <p className="mt-6 text-muted-foreground">
-                  A collection of 100+ responsive HTML templates for your
-                  startup business or side project.
+                  {footer.subline && footer.subline}
                 </p>
               </div>
               <ul className="flex items-center space-x-6">

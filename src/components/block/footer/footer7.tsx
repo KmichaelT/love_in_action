@@ -4,35 +4,6 @@ import { Media } from "@/components/Media";
 import { CMSLink } from '@/components/Link';
 
 
-const sections = [
-  {
-    title: 'Product',
-    links: [
-      { name: 'Overview', href: '#' },
-      { name: 'Pricing', href: '#' },
-      { name: 'Marketplace', href: '#' },
-      { name: 'Features', href: '#' },
-    ],
-  },
-  {
-    title: 'Company',
-    links: [
-      { name: 'About', href: '#' },
-      { name: 'Team', href: '#' },
-      { name: 'Blog', href: '#' },
-      { name: 'Careers', href: '#' },
-    ],
-  },
-  {
-    title: 'Resources',
-    links: [
-      { name: 'Help', href: '#' },
-      { name: 'Sales', href: '#' },
-      { name: 'Advertise', href: '#' },
-      { name: 'Privacy', href: '#' },
-    ],
-  },
-];
 
 const Footer7: React.FC<{ footer: Footer }> = ({ footer }) => {
   return (
