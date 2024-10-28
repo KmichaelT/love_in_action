@@ -8,7 +8,6 @@ import {
   FaRedditAlien,
   FaTwitter,
 } from 'react-icons/fa';
-import { Media } from "@/components/Media";
 import { CMSLink } from '@/components/Link';
 
 
@@ -99,7 +98,7 @@ const Footer5: React.FC<{ footer: Footer }> = ({ footer }) => {
           </div>
           <div className="mt-24 border-t pt-8">
             <p className="text-center text-sm font-medium text-muted-foreground">
-            {footer.copyright && `© ${new Date().getFullYear()} ${footer.copyright}`}
+              {footer.copyright && `© ${new Date().getFullYear()} ${footer.copyright}`}
             </p>
           </div>
         </footer>

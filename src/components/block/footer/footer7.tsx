@@ -14,7 +14,7 @@ const Footer7: React.FC<{ footer: Footer }> = ({ footer }) => {
             <div className="flex w-full max-w-96 shrink flex-col items-center justify-between gap-6 lg:items-start">
               <div>
                 <span className="flex items-center justify-center gap-4 lg:justify-start">
-                 {footer.logo && <Media
+                  {footer.logo && <Media
                     resource={footer.logo}
                     alt="logo"
                     className="h-11"
@@ -22,7 +22,7 @@ const Footer7: React.FC<{ footer: Footer }> = ({ footer }) => {
                   {/* <p className="text-3xl font-semibold">Shadcnblocks</p> */}
                 </span>
                 <p className="mt-6 text-sm text-muted-foreground">
-                {footer.subline && footer.subline}
+                  {footer.subline && footer.subline}
                 </p>
               </div>
               <ul className="flex items-center space-x-6 text-muted-foreground">

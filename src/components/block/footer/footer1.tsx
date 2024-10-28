@@ -9,6 +9,7 @@ import {
 import { Separator } from '@/components/ui/separator';
 import { Footer } from '@/payload-types';
 import { Media } from '@/components/Media';
+import { CMSLink } from '@/components/Link';
 
 
 const Footer1: React.FC<{ footer: Footer }> = ({ footer }) => {
@@ -21,7 +22,7 @@ const Footer1: React.FC<{ footer: Footer }> = ({ footer }) => {
               resource={footer.logo}
               alt="logo"
               className="mb-8 mr-auto h-7 md:mb-0"
-            /> }
+            />}
             <div className="flex flex-col gap-4 md:flex-row md:items-center">
               <p className="text-lg font-medium">
                 Copy the code and make it yours.
@@ -52,12 +53,12 @@ const Footer1: React.FC<{ footer: Footer }> = ({ footer }) => {
               <div key={sectionIdx}>
                 <h3 className="mb-4 font-bold">{section.title}</h3>
                 <ul className="space-y-4 text-muted-foreground">
-                  {section.subNavItems && section.subNavItems.map((link, linkIdx) => (
+                  {section.subNavItems && section.subNavItems.map((subitem) => (
                     <li
-                      key={linkIdx}
+                      key={subitem.id}
                       className="font-medium hover:text-primary"
                     >
-                      { link.link.url && <a href={link.link.url}>{link.link.label}</a> }
+                      <CMSLink {...subitem.link} />
                     </li>
                   ))}
                 </ul>
@@ -99,9 +100,9 @@ const Footer1: React.FC<{ footer: Footer }> = ({ footer }) => {
             </div>
           </div>
           <Separator className="my-14" />
-            <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-muted-foreground">
             {footer.copyright && `© ${new Date().getFullYear()} ${footer.copyright}`}
-            </p>
+          </p>
         </footer>
       </div>
     </section>
