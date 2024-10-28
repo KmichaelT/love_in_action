@@ -1,4 +1,4 @@
-import { Blocks, ChartPie, Filter, UsersRound } from 'lucide-react';
+import { Blocks, PieChart, Filter, UsersRound } from 'lucide-react';
 
 const Feature101 = () => {
   return (
@@ -38,7 +38,7 @@ const Feature101 = () => {
             </div>
           </div>
           <div className="flex h-80 flex-col justify-between gap-4 rounded-lg bg-muted/70 p-8">
-            <ChartPie className="mb-6 h-auto w-11" strokeWidth={1.5} />
+            <PieChart className="mb-6 h-auto w-11" strokeWidth={1.5} />
             <div>
               <h2 className="mb-1 text-2xl font-medium">Visual Analytics</h2>
               <p className="text-muted-foreground">

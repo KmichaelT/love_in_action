@@ -1,5 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs';
-import { Blocks, ChartPie, ChevronRight, Layout, Target } from 'lucide-react';
+import { Blocks, PieChart, ChevronRight, Layout, Target } from 'lucide-react';
 
 import {
   Accordion,
@@ -47,7 +47,7 @@ const features = [
     header: 'System Integration',
     excerpt:
       'Integrate your tools seamlessly for a smoother, more efficient workflow.',
-    icon: <ChartPie className="h-auto w-5" />,
+    icon: <PieChart className="h-auto w-5" />,
     title: 'Streamlined System Integration',
     description:
       'Integrate systems and tools seamlessly for smoother workflows. Learn how to improve interoperability for more efficient processes.',
