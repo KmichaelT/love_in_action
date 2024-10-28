@@ -17,10 +17,13 @@ export const Header: GlobalConfig = {
           label: "1 (left aligned)",
           value: "1"
         },
-        {
-          label: "2 (centered)",
-          value: "2"
-        },
+
+        // '3' is not implemented yet because of the complex mobile menu
+        // { 
+        //   label: "3 (centered)",
+        //   value: "3"
+        // },
+
         // '4' Version 4 is the same as version 1 with only difference of more advance sub menu. Therefore we want to migrate the advance submenu as block options into v1
       ],
       defaultValue: '1',

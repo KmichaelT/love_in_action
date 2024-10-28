@@ -10515,7 +10515,7 @@ export interface PayloadMigration {
  */
 export interface Header {
   id: number;
-  designVersion: '1' | '2';
+  designVersion: '1';
   logo: number | Media;
   items?:
     | (

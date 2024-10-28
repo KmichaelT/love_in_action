@@ -4,8 +4,8 @@ import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 import { Navbar1 } from './navbar/navbar1'
-import { Navbar3 } from './navbar/navbar3'
-import { Navbar4 } from './navbar/navbar4'
+// import { Navbar3 } from './navbar/navbar3'
+// import { Navbar4 } from './navbar/navbar4'
 
 import type { Header } from '@/payload-types'
 
@@ -32,9 +32,9 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ header }) => {
   switch (header.designVersion) {
     case '1':
       return <Navbar1 header={header} />
-    case '3':
-      return <Navbar3 header={header} />
-    case '4':
-      return <Navbar4 header={header} />
+    // case '3':
+    //   return <Navbar3 header={header} />
+    // case '4':
+    //   return <Navbar4 header={header} />
   }
 }
