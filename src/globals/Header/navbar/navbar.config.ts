@@ -3,7 +3,7 @@ import { link } from '@/fields/link'
 import { icon } from '@/components/Icon/config';
 
 
-export const Navbar1: Field[] = [
+export const navbar: Field[] = [
   {
     type: "blocks",
     name: "items",

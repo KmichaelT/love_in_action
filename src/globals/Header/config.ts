@@ -1,7 +1,7 @@
 import type { GlobalConfig } from 'payload'
 
 import { revalidateHeader } from './hooks/revalidateHeader'
-import { Navbar1 } from './navbar/navbar1.config'
+import { navbar } from './navbar/navbar.config'
 
 export const Header: GlobalConfig = {
   slug: 'header',
@@ -12,7 +12,17 @@ export const Header: GlobalConfig = {
     {
       name: 'designVersion',
       type: 'select',
-      options: ['1', '3', '4'],
+      options: [
+        {
+          label: "1 (left aligned)",
+          value: "1"
+        },
+        {
+          label: "2 (centered)",
+          value: "2"
+        },
+        // '4' Version 4 is the same as version 1 with only difference of more advance sub menu. Therefore we want to migrate the advance submenu as block options into v1
+      ],
       defaultValue: '1',
       required: true,
     },
@@ -22,7 +32,7 @@ export const Header: GlobalConfig = {
       relationTo: 'media',
       required: true,
     },
-    ...Navbar1,
+    ...navbar,
   ],
   hooks: {
     afterChange: [revalidateHeader],
