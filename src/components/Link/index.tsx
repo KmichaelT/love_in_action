@@ -4,6 +4,7 @@ import Link from 'next/link'
 import React from 'react'
 
 import type { Page, Post } from '@/payload-types'
+import { Icon, IconType } from '@/components/Icon'
 
 type CMSLinkType = {
   appearance?: 'inline' | ButtonProps['variant']
@@ -18,6 +19,8 @@ type CMSLinkType = {
   size?: ButtonProps['size'] | null
   type?: 'custom' | 'reference' | null
   url?: string | null
+  iconBefore?: IconType | null
+  iconAfter?: IconType | null
 }
 
 export const CMSLink: React.FC<CMSLinkType> = (props) => {
@@ -31,13 +34,13 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
     reference,
     size: sizeFromProps,
     url,
+    iconBefore,
+    iconAfter,
   } = props
 
   const href =
     type === 'reference' && typeof reference?.value === 'object' && reference.value.slug
-      ? `${reference?.relationTo !== 'pages' ? `/${reference?.relationTo}` : ''}/${
-          reference.value.slug
-        }`
+      ? `${reference?.relationTo !== 'pages' ? `/${reference?.relationTo}` : ''}/${reference.value.slug}`
       : url
 
   if (!href) return null
@@ -49,17 +52,21 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
   if (appearance === 'inline') {
     return (
       <Link className={cn(className)} href={href || url || ''} {...newTabProps}>
+        {iconBefore && <Icon className="mr-2 h-6" icon={iconBefore} />}
         {label && label}
         {children && children}
+        {iconAfter && <Icon className="ml-2 h-6" icon={iconAfter} />}
       </Link>
     )
   }
 
   return (
-    <Button asChild className={className} size={size} variant={appearance}>
+    <Button asChild className={className} size={size as typeof sizeFromProps} variant={appearance}>
       <Link className={cn(className)} href={href || url || ''} {...newTabProps}>
+        {iconBefore && <Icon className="mr-2 h-6" icon={iconBefore} />}
         {label && label}
         {children && children}
+        {iconAfter && <Icon className="ml-2 h-6" icon={iconAfter} />}
       </Link>
     </Button>
   )

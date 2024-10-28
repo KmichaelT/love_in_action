@@ -1,8 +1,9 @@
 import type { Field } from 'payload'
 
 import deepMerge from '@/utilities/deepMerge'
+import { icon } from '@/components/Icon/config';
 
-export type LinkAppearances = 'default' | 'outline'
+export type LinkAppearances = 'default' | 'outline' | 'inline' | "destructive" | "ghost" | "secondary"
 
 export const appearanceOptions: Record<LinkAppearances, { label: string; value: string }> = {
   default: {
@@ -13,6 +14,22 @@ export const appearanceOptions: Record<LinkAppearances, { label: string; value: 
     label: 'Outline',
     value: 'outline',
   },
+  inline: {
+    label: 'Inline',
+    value: 'inline',
+  },
+  destructive: {
+    label: 'Destructive',
+    value: 'destructive',
+  },
+  ghost: {
+    label: 'Ghost',
+    value: 'ghost',
+  },
+  secondary: {
+    label: 'Secondary',
+    value: 'secondary',
+  },  
 }
 
 type LinkType = (options?: {
@@ -61,6 +78,14 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
               width: '50%',
             },
             label: 'Open in new tab',
+          },
+          {
+            ...icon,
+            name: "iconBefore",
+          },
+          {
+            ...icon,
+            name: "iconAfter",
           },
         ],
       },
@@ -119,7 +144,7 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
   }
 
   if (appearances !== false) {
-    let appearanceOptionsToUse = [appearanceOptions.default, appearanceOptions.outline]
+    let appearanceOptionsToUse = Object.values(appearanceOptions)
 
     if (appearances) {
       appearanceOptionsToUse = appearances.map((appearance) => appearanceOptions[appearance])
