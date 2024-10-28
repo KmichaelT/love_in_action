@@ -275,45 +275,6 @@ export const seed = async ({
     contactFormID = `"${contactFormID}"`
   }
 
-  payload.logger.info(`— Seeding contact page...`)
-
-
-  payload.logger.info(`— Seeding header...`)
-
-
-  payload.logger.info(`— Seeding footer...`)
-
-  await payload.updateGlobal({
-    slug: 'footer',
-    data: {
-      navItems: [
-        {
-          link: {
-            type: 'custom',
-            label: 'Admin',
-            url: '/admin',
-          },
-        },
-        {
-          link: {
-            type: 'custom',
-            label: 'Source Code',
-            newTab: true,
-            url: 'https://github.com/payloadcms/payload/tree/beta/templates/website',
-          },
-        },
-        {
-          link: {
-            type: 'custom',
-            label: 'Payload',
-            newTab: true,
-            url: 'https://payloadcms.com/',
-          },
-        },
-      ],
-    },
-    req,
-  })
 
   payload.logger.info('Seeded database successfully!')
 }

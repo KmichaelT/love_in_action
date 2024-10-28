@@ -10,14 +10,54 @@ export const Footer: GlobalConfig = {
   },
   fields: [
     {
+      name: 'designVersion',
+      type: 'select',
+      options: ['1', '2', '3', '4', '5', '6', '7', '8'],
+    },
+    {
+      name: 'logo',
+      type: 'upload',
+      relationTo: 'media',
+    },
+    {
+      name: 'copyright',
+      type: 'text',
+      label: 'Copyright',
+      defaultValue: 'Company Name. All rights reserved.',
+    },
+    /**
+     * A subline to display under the logo. Only design options 6,7,8 have this field.
+     */
+    {
+      name: 'subline',
+      type: 'text',
+      label: 'Subline',
+      defaultValue: 'Components made easy. This cool starter template will help you get started with your next project.',
+      admin: {
+        condition: (_, siblingData) => siblingData.designVersion === '6' || siblingData.designVersion === '7' || siblingData.designVersion === '8',
+      },
+    },
+    {
       name: 'navItems',
       type: 'array',
       fields: [
-        link({
-          appearances: false,
-        }),
+        {
+          name: "title",
+          type: "text",
+          required: true,
+        },
+        {
+          name: 'subNavItems',
+          type: 'array',
+          fields: [
+            link({
+              appearances: false,
+            }),
+          ],
+          maxRows: 6,
+        },
       ],
-      maxRows: 6,
+      maxRows: 3,
     },
   ],
   hooks: {

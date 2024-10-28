@@ -5,10 +5,13 @@ import {
   FaTelegramPlane,
   FaTwitter,
 } from 'react-icons/fa';
+import { Media } from "@/components/Media";
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Footer } from '@/payload-types';
+import { CMSLink } from '@/components/Link';
 
 const sections = [
   {
@@ -43,28 +46,27 @@ const sections = [
   },
 ];
 
-const Footer3 = () => {
+const Footer3: React.FC<{ footer: Footer }> = ({ footer }) => {
   return (
     <section className="py-32">
       <div className="container">
         <footer>
-          <img
-            src="https://www.shadcnblocks.com
-/images/block/logos/shadcn-ui.svg"
+          {footer.logo && <Media
+            resource={footer.logo}
             alt="logo"
             className="h-7"
-          />
+          />}
           <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-4">
-            {sections.map((section, sectionIdx) => (
+            {footer.navItems && footer.navItems.map((section, sectionIdx) => (
               <div key={sectionIdx}>
                 <h3 className="mb-4 font-bold">{section.title}</h3>
                 <ul className="space-y-4 text-muted-foreground">
-                  {section.links.map((link, linkIdx) => (
+                  {section.subNavItems && section.subNavItems.map((link, linkIdx) => (
                     <li
                       key={linkIdx}
                       className="font-medium hover:text-primary"
                     >
-                      <a href={link.href}>{link.name}</a>
+                      <CMSLink {...link.link} />
                     </li>
                   ))}
                 </ul>
@@ -124,7 +126,7 @@ const Footer3 = () => {
             </div>
           </div>
           <div className="mt-24 flex flex-col flex-wrap justify-between gap-4 border-t pt-8 text-sm font-medium text-muted-foreground md:flex-row md:items-center">
-            <p>© 2024 ShadcnBlocks. All rights reserved.</p>
+            <p>{footer.copyright && `© ${new Date().getFullYear()} ${footer.copyright}`}</p>
             <ul className="flex gap-4">
               <li className="whitespace-nowrap underline hover:text-primary">
                 <a href="#">Terms and Conditions</a>
