@@ -54,17 +54,6 @@ export const seed = async ({
 
   payload.logger.info(`— Clearing collections and globals...`)
 
-  // clear the database
-  for (const global of globals) {
-    await payload.updateGlobal({
-      slug: global,
-      data: {
-        navItems: [],
-      },
-      req,
-    })
-  }
-
   for (const collection of collections) {
     await payload.delete({
       collection: collection,
@@ -288,41 +277,9 @@ export const seed = async ({
 
   payload.logger.info(`— Seeding contact page...`)
 
-  const contactPage = await payload.create({
-    collection: 'pages',
-    data: JSON.parse(
-      JSON.stringify(contactPageData).replace(/"\{\{CONTACT_FORM_ID\}\}"/g, String(contactFormID)),
-    ),
-    req,
-  })
 
   payload.logger.info(`— Seeding header...`)
 
-  await payload.updateGlobal({
-    slug: 'header',
-    data: {
-      navItems: [
-        {
-          link: {
-            type: 'custom',
-            label: 'Posts',
-            url: '/posts',
-          },
-        },
-        {
-          link: {
-            type: 'reference',
-            label: 'Contact',
-            reference: {
-              relationTo: 'pages',
-              value: contactPage.id,
-            },
-          },
-        },
-      ],
-    },
-    req,
-  })
 
   payload.logger.info(`— Seeding footer...`)
 

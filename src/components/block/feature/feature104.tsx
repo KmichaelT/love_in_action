@@ -1,6 +1,6 @@
 import {
-  ChartArea,
-  ChartNoAxesCombined,
+  AreaChart,
+  BarChartHorizontal,
   Layout,
   Medal,
   Monitor,
@@ -59,7 +59,7 @@ const Feature104 = () => {
             <div className="gap flex flex-col gap-3 rounded-lg border p-6">
               <div className="flex items-center gap-2.5">
                 <span className="flex size-12 items-center justify-center rounded-md bg-muted">
-                  <ChartArea className="h-auto w-6" />
+                  <AreaChart className="h-auto w-6" />
                 </span>
                 <h3 className="font-medium">Real-Time Data Insights</h3>
               </div>
@@ -91,7 +91,7 @@ const Feature104 = () => {
             <div className="gap flex flex-col gap-3 rounded-lg border p-6">
               <div className="flex items-center gap-2.5">
                 <span className="flex size-12 items-center justify-center rounded-md bg-muted">
-                  <ChartNoAxesCombined className="h-auto w-6" />
+                  <BarChartHorizontal className="h-auto w-6" />
                 </span>
                 <h3 className="font-medium">Advanced Analytics</h3>
               </div>
