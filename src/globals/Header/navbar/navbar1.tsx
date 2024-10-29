@@ -29,54 +29,6 @@ import { cn } from '@/utilities/cn';
 import { Media } from '@/components/Media';
 import { CMSLink } from '@/components/Link';
 import { Icon } from '@/components/Icon';
-import { AccordionMultipleProps } from '@radix-ui/react-accordion';
-
-const subMenuItemsOne = [
-  {
-    title: 'Blog',
-    description: 'The latest industry news, updates, and info',
-    icon: <Book className="size-5 shrink-0" />,
-  },
-  {
-    title: 'Compnay',
-    description: 'Our mission is to innovate and empower the world',
-    icon: <Trees className="size-5 shrink-0" />,
-  },
-  {
-    title: 'Careers',
-    description: 'Browse job listing and discover our workspace',
-    icon: <Sunset className="size-5 shrink-0" />,
-  },
-  {
-    title: 'Support',
-    description:
-      'Get in touch with our support team or visit our community forums',
-    icon: <Zap className="size-5 shrink-0" />,
-  },
-];
-
-const subMenuItemsTwo = [
-  {
-    title: 'Help Center',
-    description: 'Get all the answers you need right here',
-    icon: <Zap className="size-5 shrink-0" />,
-  },
-  {
-    title: 'Contact Us',
-    description: 'We are here to help you with any questions you have',
-    icon: <Sunset className="size-5 shrink-0" />,
-  },
-  {
-    title: 'Status',
-    description: 'Check the current status of our services and APIs',
-    icon: <Trees className="size-5 shrink-0" />,
-  },
-  {
-    title: 'Terms of Service',
-    description: 'Our terms and conditions for using our services',
-    icon: <Book className="size-5 shrink-0" />,
-  },
-];
 
 export const Navbar1: React.FC<{ header: HeaderType }> = ({ header }) => {
   return (
@@ -86,7 +38,7 @@ export const Navbar1: React.FC<{ header: HeaderType }> = ({ header }) => {
         <nav className="hidden justify-between lg:flex">
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2">
-              <Media resource={header.logo} />
+              <Media resource={header.logo} priority />
             </div>
             <div className="flex items-center">
               {/* Left Link Group */}

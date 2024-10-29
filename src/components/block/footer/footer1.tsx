@@ -1,6 +1,7 @@
 import {
   FaApple,
   FaDiscord,
+  FaGooglePlay,
   FaRedditAlien,
   FaTelegramPlane,
   FaTwitter,
@@ -38,11 +39,7 @@ const Footer1: React.FC<{ footer: Footer }> = ({ footer }) => {
                   href="#"
                   className="inline-flex items-center justify-center rounded-lg bg-primary p-2.5"
                 >
-                  <img
-                    src="images/icons/google-play-icon.svg"
-                    className="size-6 text-background"
-                    alt="google play"
-                  />
+                  <FaGooglePlay className="size-6 text-background" />
                 </a>
               </div>
             </div>
