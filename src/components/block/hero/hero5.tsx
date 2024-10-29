@@ -1,8 +1,9 @@
 import { Download } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
+import { Page } from '@/payload-types';
 
-const Hero5 = () => {
+export const Hero5: React.FC<Page['hero']> = ({ links, media, badge, richText }) => {
   return (
     <section className="overflow-hidden py-32">
       <div className="container">
@@ -22,8 +23,7 @@ const Hero5 = () => {
             </div>
           </div>
           <img
-            src="https://www.shadcnblocks.com
-/images/block/placeholder-aspect-video-1.svg"
+            src="https://www.shadcnblocks.com/images/block/placeholder-aspect-video-1.svg"
             alt="placeholder hero"
             className="aspect-video rounded-md object-cover"
           />
@@ -32,5 +32,3 @@ const Hero5 = () => {
     </section>
   );
 };
-
-export default Hero5;

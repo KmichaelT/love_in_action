@@ -13,8 +13,7 @@ const Feature33 = () => {
         </div>
         <div className="mx-auto max-w-screen-xl rounded-lg bg-muted pr-10 pt-10 lg:pr-32 lg:pt-28">
           <img
-            src="https://www.shadcnblocks.com
-/images/block/placeholder-dark-1.svg"
+            src="https://www.shadcnblocks.com/images/block/placeholder-dark-1.svg"
             alt="placeholder"
             className="size-full max-h-[600px] rounded-bl-lg rounded-tr-lg object-cover"
           />

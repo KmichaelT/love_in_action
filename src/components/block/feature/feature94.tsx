@@ -43,8 +43,7 @@ const Feature94 = () => {
                   className="h-auto w-16"
                 />
                 <img
-                  src="https://www.shadcnblocks.com
-/images/block/block-4.svg"
+                  src="https://www.shadcnblocks.com/images/block/block-4.svg"
                   alt="logo"
                   className="h-auto w-16"
                 />
@@ -59,14 +58,12 @@ const Feature94 = () => {
             <div className="rounded-xl border bg-muted p-6">
               <div className="mb-6 flex gap-4">
                 <img
-                  src="https://www.shadcnblocks.com
-/images/block/block-5.svg"
+                  src="https://www.shadcnblocks.com/images/block/block-5.svg"
                   alt="logo"
                   className="h-auto w-16"
                 />
                 <img
-                  src="https://www.shadcnblocks.com
-/images/block/block-6.svg"
+                  src="https://www.shadcnblocks.com/images/block/block-6.svg"
                   alt="logo"
                   className="h-auto w-16"
                 />

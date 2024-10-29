@@ -1,8 +1,9 @@
 import { ChevronRight } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
+import { Page } from '@/payload-types';
 
-const Hero6 = () => {
+export const Hero2: React.FC<Page['hero']> = ({ links, media, badge, richText }) => {
   return (
     <section className="py-32">
       <div className="container">
@@ -50,26 +51,22 @@ const Hero6 = () => {
         </div>
         <div className="mx-auto mt-12 flex max-w-7xl flex-wrap items-center justify-between gap-6">
           <img
-            src="https://www.shadcnblocks.com
-/images/block/logos/shadcn-ui.svg"
+            src="https://www.shadcnblocks.com/images/block/logos/shadcn-ui.svg"
             alt="logo"
             className="h-6 sm:h-8"
           />
           <img
-            src="https://www.shadcnblocks.com
-/images/block/logos/nextjs.svg"
+            src="https://www.shadcnblocks.com/images/block/logos/nextjs.svg"
             alt="logo"
             className="h-8 sm:h-10"
           />
           <img
-            src="https://www.shadcnblocks.com
-/images/block/logos/tailwind.svg"
+            src="https://www.shadcnblocks.com/images/block/logos/tailwind.svg"
             alt="logo"
             className="h-4 sm:h-6"
           />
           <img
-            src="https://www.shadcnblocks.com
-/images/block/logos/vercel.svg"
+            src="https://www.shadcnblocks.com/images/block/logos/vercel.svg"
             alt="logo"
             className="h-8 sm:h-10"
           />
@@ -78,5 +75,3 @@ const Hero6 = () => {
     </section>
   );
 };
-
-export default Hero6;

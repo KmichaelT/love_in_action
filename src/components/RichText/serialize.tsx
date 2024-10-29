@@ -17,21 +17,33 @@ import {
   IS_UNDERLINE,
 } from './nodeFormat'
 import type { Page } from '@/payload-types'
+import { cn } from '@/utilities/cn'
 
 export type NodeTypes =
   | DefaultNodeTypes
   | SerializedBlockNode<
-      | Extract<Page['layout'][0], { blockType: 'cta' }>
-      | Extract<Page['layout'][0], { blockType: 'mediaBlock' }>
-      | BannerBlockProps
-      | CodeBlockProps
-    >
+    | Extract<Page['layout'][0], { blockType: 'cta' }>
+    | Extract<Page['layout'][0], { blockType: 'mediaBlock' }>
+    | BannerBlockProps
+    | CodeBlockProps
+  >
+
+export type OverrideStyle = Partial<Record<
+  "h1" |
+  "h2" |
+  "h3" |
+  "h4" |
+  "h5" |
+  "h6" |
+  "p"
+  , string>>
 
 type Props = {
   nodes: NodeTypes[]
+  overrideStyle?: OverrideStyle
 }
 
-export function serializeLexical({ nodes }: Props): JSX.Element {
+export function serializeLexical({ nodes, overrideStyle }: Props): JSX.Element {
   return (
     <Fragment>
       {nodes?.map((node, index): JSX.Element | null => {
@@ -90,7 +102,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                 }
               }
             }
-            return serializeLexical({ nodes: node.children as NodeTypes[] })
+            return serializeLexical({ nodes: node.children as NodeTypes[], overrideStyle })
           }
         }
 
@@ -133,16 +145,24 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
               return <br className="col-start-2" key={index} />
             }
             case 'paragraph': {
+              let className = "col-start-2"
+              if (overrideStyle?.p) {
+                className = cn(className, overrideStyle?.p)
+              }
               return (
-                <p className="col-start-2" key={index}>
+                <p className={className} key={index}>
                   {serializedChildren}
                 </p>
               )
             }
             case 'heading': {
               const Tag = node?.tag
+              let className = "col-start-2"
+              if (overrideStyle?.[Tag]) {
+                className = cn(className, overrideStyle?.[Tag])
+              }
               return (
-                <Tag className="col-start-2" key={index}>
+                <Tag className={className} key={index}>
                   {serializedChildren}
                 </Tag>
               )

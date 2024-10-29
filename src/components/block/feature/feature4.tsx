@@ -61,8 +61,7 @@ const Feature4 = () => {
                 <CardHeader className="items-start pb-1">
                   <img
                     className="h-8"
-                    src="https://www.shadcnblocks.com
-/images/block/logos/shadcn-ui.svg"
+                    src="https://www.shadcnblocks.com/images/block/logos/shadcn-ui.svg"
                     alt=""
                   />
                 </CardHeader>

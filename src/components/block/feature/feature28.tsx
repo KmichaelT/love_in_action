@@ -10,8 +10,7 @@ const Feature28 = () => {
           <div>
             <div className="rounded-lg border bg-muted p-4 md:p-6">
               <img
-                src="https://www.shadcnblocks.com
-/images/block/placeholder-dark-1.svg"
+                src="https://www.shadcnblocks.com/images/block/placeholder-dark-1.svg"
                 alt="placeholder"
                 className="aspect-video max-h-[500px] w-full rounded-lg object-cover"
               />
@@ -33,8 +32,7 @@ const Feature28 = () => {
           <div>
             <div className="rounded-lg border bg-muted p-4 md:p-6">
               <img
-                src="https://www.shadcnblocks.com
-/images/block/placeholder-dark-1.svg"
+                src="https://www.shadcnblocks.com/images/block/placeholder-dark-1.svg"
                 alt="placeholder"
                 className="aspect-video max-h-[500px] w-full rounded-lg object-cover"
               />

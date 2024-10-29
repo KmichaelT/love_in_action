@@ -5,16 +5,14 @@ const Feature30 = () => {
         <div className="flex flex-col gap-16 md:grid md:grid-cols-3 md:gap-10">
           <div className="order-1 flex h-full items-end rounded-lg bg-muted pr-5 pt-10 md:pr-10 md:pt-20">
             <img
-              src="https://www.shadcnblocks.com
-/images/block/placeholder-dark-1.svg"
+              src="https://www.shadcnblocks.com/images/block/placeholder-dark-1.svg"
               alt="placeholder"
               className="size-full rounded-tr-lg object-cover"
             />
           </div>
           <div className="order-3 rounded-lg bg-muted pl-5 pt-10 md:order-2 md:col-span-2 md:pl-10 md:pt-20">
             <img
-              src="https://www.shadcnblocks.com
-/images/block/placeholder-dark-8.svg"
+              src="https://www.shadcnblocks.com/images/block/placeholder-dark-8.svg"
               alt="placeholder"
               className="max-h-[500px] w-full rounded-tl-lg object-cover"
             />

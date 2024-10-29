@@ -52,8 +52,7 @@ const Changelog1 = () => {
                 <li className="list-disc">Added new feature to import data</li>
               </ul>
               <img
-                src="https://www.shadcnblocks.com
-/images/block/placeholder-aspect-video-1.svg"
+                src="https://www.shadcnblocks.com/images/block/placeholder-aspect-video-1.svg"
                 alt="placeholder"
                 className="mt-10 w-full rounded-lg object-cover"
               />
@@ -78,8 +77,7 @@ const Changelog1 = () => {
               </p>
 
               <img
-                src="https://www.shadcnblocks.com
-/images/block/placeholder-aspect-video-1.svg"
+                src="https://www.shadcnblocks.com/images/block/placeholder-aspect-video-1.svg"
                 alt="placeholder"
                 className="mt-10 w-full rounded-lg object-cover"
               />

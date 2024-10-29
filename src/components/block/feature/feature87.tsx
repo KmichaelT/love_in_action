@@ -53,8 +53,7 @@ const Feature87 = () => {
           </div>
           <div className="flex aspect-square w-full items-center justify-center overflow-hidden bg-muted px-6 md:px-8 lg:col-span-2">
             <img
-              src="https://www.shadcnblocks.com
-/images/block/placeholder-dark-1.svg"
+              src="https://www.shadcnblocks.com/images/block/placeholder-dark-1.svg"
               alt="placeholder"
               className="max-h-[550px] w-full translate-x-1/4 rounded-lg object-cover"
             />

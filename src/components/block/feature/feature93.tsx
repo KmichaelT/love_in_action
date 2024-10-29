@@ -10,22 +10,19 @@ const Feature93 = () => {
           <span className="flex items-end justify-center -space-x-4">
             <Avatar className="size-16 border">
               <AvatarImage
-                src="https://www.shadcnblocks.com
-/images/block/avatar-1.webp"
+                src="https://www.shadcnblocks.com/images/block/avatar-1.webp"
                 alt="placeholder"
               />
             </Avatar>
             <Avatar className="size-24 border">
               <AvatarImage
-                src="https://www.shadcnblocks.com
-/images/block/avatar-6.webp"
+                src="https://www.shadcnblocks.com/images/block/avatar-6.webp"
                 alt="placeholder"
               />
             </Avatar>
             <Avatar className="size-16 border">
               <AvatarImage
-                src="https://www.shadcnblocks.com
-/images/block/avatar-3.webp"
+                src="https://www.shadcnblocks.com/images/block/avatar-3.webp"
                 alt="placeholder"
               />
             </Avatar>

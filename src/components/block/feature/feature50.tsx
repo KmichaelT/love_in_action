@@ -46,8 +46,7 @@ const Feature50 = () => {
               </div>
             </div>
             <img
-              src="https://www.shadcnblocks.com
-/images/block/placeholder-dark-1.svg"
+              src="https://www.shadcnblocks.com/images/block/placeholder-dark-1.svg"
               alt="placeholder"
               className="order-first aspect-video size-full max-h-96 rounded-lg border-b object-cover sm:order-last sm:aspect-auto lg:max-h-none lg:border-b-0 lg:border-l"
             />
@@ -64,8 +63,7 @@ const Feature50 = () => {
               <ChevronRight className="h-4" />
             </Button>
             <img
-              src="https://www.shadcnblocks.com
-/images/block/placeholder-dark-2.svg"
+              src="https://www.shadcnblocks.com/images/block/placeholder-dark-2.svg"
               alt="placeholder"
               className="max-h-72 w-full rounded-lg border-b object-cover"
             />
@@ -83,8 +81,7 @@ const Feature50 = () => {
             className="grid rounded-lg bg-muted sm:grid-cols-2 lg:col-span-4"
           >
             <img
-              src="https://www.shadcnblocks.com
-/images/block/placeholder-dark-3.svg"
+              src="https://www.shadcnblocks.com/images/block/placeholder-dark-3.svg"
               alt="placeholder"
               className="aspect-video size-full max-h-96 rounded-lg border-b object-cover sm:aspect-auto lg:max-h-none lg:border-b-0 lg:border-r"
             />

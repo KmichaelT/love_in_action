@@ -37,8 +37,7 @@ const Feature13 = () => {
               </div>
               <div className="md:1/3 w-2/5 shrink-0 rounded-r-lg border-l">
                 <img
-                  src="https://www.shadcnblocks.com
-/images/block/placeholder-4.svg"
+                  src="https://www.shadcnblocks.com/images/block/placeholder-4.svg"
                   alt="placeholder"
                   className="size-full object-cover"
                 />

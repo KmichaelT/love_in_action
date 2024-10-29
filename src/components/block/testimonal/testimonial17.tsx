@@ -41,8 +41,7 @@ const Testimonial17 = () => {
               <CarouselItem>
                 <div className="select-none rounded-2xl border p-8">
                   <img
-                    src="https://www.shadcnblocks.com
-/images/block/logos/shadcn-ui.svg"
+                    src="https://www.shadcnblocks.com/images/block/logos/shadcn-ui.svg"
                     alt="logo"
                     className="mb-6 h-6 lg:h-8"
                   />
@@ -53,8 +52,7 @@ const Testimonial17 = () => {
                   <div className="mb-3 flex gap-4">
                     <Avatar className="size-12 rounded-full ring-1 ring-input">
                       <AvatarImage
-                        src="https://www.shadcnblocks.com
-/images/block/avatar-1.webp"
+                        src="https://www.shadcnblocks.com/images/block/avatar-1.webp"
                         alt="avatar"
                       />
                     </Avatar>
@@ -70,8 +68,7 @@ const Testimonial17 = () => {
               <CarouselItem>
                 <div className="select-none rounded-2xl border p-8">
                   <img
-                    src="https://www.shadcnblocks.com
-/images/block/logos/nextjs.svg"
+                    src="https://www.shadcnblocks.com/images/block/logos/nextjs.svg"
                     alt="logo"
                     className="mb-6 h-8 lg:h-10"
                   />
@@ -82,8 +79,7 @@ const Testimonial17 = () => {
                   <div className="mb-3 flex gap-4">
                     <Avatar className="size-12 rounded-full ring-1 ring-input">
                       <AvatarImage
-                        src="https://www.shadcnblocks.com
-/images/block/avatar-2.webp"
+                        src="https://www.shadcnblocks.com/images/block/avatar-2.webp"
                         alt="avatar"
                       />
                     </Avatar>
@@ -97,8 +93,7 @@ const Testimonial17 = () => {
               <CarouselItem>
                 <div className="select-none rounded-2xl border p-8">
                   <img
-                    src="https://www.shadcnblocks.com
-/images/block/logos/tailwind.svg"
+                    src="https://www.shadcnblocks.com/images/block/logos/tailwind.svg"
                     alt="logo"
                     className="mb-6 h-4 lg:h-5"
                   />
@@ -109,8 +104,7 @@ const Testimonial17 = () => {
                   <div className="mb-3 flex gap-4">
                     <Avatar className="size-12 rounded-full ring-1 ring-input">
                       <AvatarImage
-                        src="https://www.shadcnblocks.com
-/images/block/avatar-3.webp"
+                        src="https://www.shadcnblocks.com/images/block/avatar-3.webp"
                         alt="avatar"
                       />
                     </Avatar>
@@ -140,8 +134,7 @@ const Testimonial17 = () => {
           <div className="col-span-2 hidden grid-cols-2 items-center gap-6 lg:grid">
             <div className="rounded-2xl border p-8">
               <img
-                src="https://www.shadcnblocks.com
-/images/block/logos/shadcn-ui.svg"
+                src="https://www.shadcnblocks.com/images/block/logos/shadcn-ui.svg"
                 alt="logo"
                 className="mb-6 h-6 sm:h-8"
               />
@@ -152,8 +145,7 @@ const Testimonial17 = () => {
               <div className="mb-3 flex gap-4">
                 <Avatar className="size-12 rounded-full ring-1 ring-input">
                   <AvatarImage
-                    src="https://www.shadcnblocks.com
-/images/block/avatar-1.webp"
+                    src="https://www.shadcnblocks.com/images/block/avatar-1.webp"
                     alt="avatar"
                   />
                 </Avatar>
@@ -168,8 +160,7 @@ const Testimonial17 = () => {
             <div className="flex flex-col gap-6">
               <div className="rounded-2xl border p-8">
                 <img
-                  src="https://www.shadcnblocks.com
-/images/block/logos/nextjs.svg"
+                  src="https://www.shadcnblocks.com/images/block/logos/nextjs.svg"
                   alt="logo"
                   className="mb-6 h-8 sm:h-10"
                 />
@@ -180,8 +171,7 @@ const Testimonial17 = () => {
                 <div className="mb-3 flex gap-4">
                   <Avatar className="size-12 rounded-full ring-1 ring-input">
                     <AvatarImage
-                      src="https://www.shadcnblocks.com
-/images/block/avatar-2.webp"
+                      src="https://www.shadcnblocks.com/images/block/avatar-2.webp"
                       alt="avatar"
                     />
                   </Avatar>
@@ -193,8 +183,7 @@ const Testimonial17 = () => {
               </div>
               <div className="rounded-2xl border p-8">
                 <img
-                  src="https://www.shadcnblocks.com
-/images/block/logos/tailwind.svg"
+                  src="https://www.shadcnblocks.com/images/block/logos/tailwind.svg"
                   alt="logo"
                   className="mb-6 h-4 sm:h-5"
                 />
@@ -205,8 +194,7 @@ const Testimonial17 = () => {
                 <div className="mb-3 flex gap-4">
                   <Avatar className="size-12 rounded-full ring-1 ring-input">
                     <AvatarImage
-                      src="https://www.shadcnblocks.com
-/images/block/avatar-3.webp"
+                      src="https://www.shadcnblocks.com/images/block/avatar-3.webp"
                       alt="avatar"
                     />
                   </Avatar>

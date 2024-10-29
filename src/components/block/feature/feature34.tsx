@@ -48,16 +48,14 @@ const Feature34 = () => {
 
             <div className="col-span-3 flex items-center justify-center self-stretch rounded-lg bg-background p-6 text-4xl font-medium">
               <img
-                src="https://www.shadcnblocks.com
-/images/block/block-4.svg"
+                src="https://www.shadcnblocks.com/images/block/block-4.svg"
                 alt="placeholder"
                 className="max-h-44"
               />
             </div>
             <div className="col-span-2 flex items-center justify-center self-stretch rounded-lg bg-background p-6 text-4xl font-medium">
               <img
-                src="https://www.shadcnblocks.com
-/images/block/block-5.svg"
+                src="https://www.shadcnblocks.com/images/block/block-5.svg"
                 alt="placeholder"
                 className="max-h-16"
               />

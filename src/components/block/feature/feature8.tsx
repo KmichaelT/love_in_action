@@ -48,8 +48,7 @@ const Feature8 = () => {
             <div className="mt-10 flex items-center justify-between">
               <p className="text-sm font-light lg:text-base">Built with</p>
               <img
-                src="https://www.shadcnblocks.com
-/images/block/logos/shadcn-ui.svg"
+                src="https://www.shadcnblocks.com/images/block/logos/shadcn-ui.svg"
                 alt="shadcn"
                 className="h-7"
               />
@@ -87,8 +86,7 @@ const Feature8 = () => {
             <div className="mt-10 flex items-center justify-between">
               <p className="text-sm font-light lg:text-base">Styled with</p>
               <img
-                src="https://www.shadcnblocks.com
-/images/block/logos/tailwind.svg"
+                src="https://www.shadcnblocks.com/images/block/logos/tailwind.svg"
                 alt="shadcn"
                 className="h-4"
               />

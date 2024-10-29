@@ -92,8 +92,7 @@ const About2 = () => {
               </div>
               <div className="flex items-center gap-3">
                 <img
-                  src="https://www.shadcnblocks.com
-/images/block/block-4.svg"
+                  src="https://www.shadcnblocks.com/images/block/block-4.svg"
                   alt="logo"
                   className="h-8 w-auto md:h-14"
                 />
@@ -101,8 +100,7 @@ const About2 = () => {
               </div>
               <div className="flex items-center gap-3">
                 <img
-                  src="https://www.shadcnblocks.com
-/images/block/block-5.svg"
+                  src="https://www.shadcnblocks.com/images/block/block-5.svg"
                   alt="logo"
                   className="h-8 w-auto md:h-14"
                 />
@@ -110,8 +108,7 @@ const About2 = () => {
               </div>
               <div className="flex items-center gap-3">
                 <img
-                  src="https://www.shadcnblocks.com
-/images/block/block-6.svg"
+                  src="https://www.shadcnblocks.com/images/block/block-6.svg"
                   alt="logo"
                   className="h-8 w-auto md:h-14"
                 />

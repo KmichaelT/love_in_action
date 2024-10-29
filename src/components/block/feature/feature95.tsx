@@ -41,8 +41,7 @@ const Feature95 = () => {
                 <div className="mt-6 block border bg-muted/50 px-4 py-6 lg:hidden">
                   <div className="aspect-video">
                     <img
-                      src="https://www.shadcnblocks.com
-/images/block/placeholder-dark-1.svg"
+                      src="https://www.shadcnblocks.com/images/block/placeholder-dark-1.svg"
                       alt="placeholder"
                       className="size-full rounded-md border object-cover shadow"
                     />
@@ -73,8 +72,7 @@ const Feature95 = () => {
                 <div className="mt-6 block border bg-muted/50 px-4 py-6 lg:hidden">
                   <div className="aspect-video">
                     <img
-                      src="https://www.shadcnblocks.com
-/images/block/placeholder-dark-2.svg"
+                      src="https://www.shadcnblocks.com/images/block/placeholder-dark-2.svg"
                       alt="placeholder"
                       className="size-full rounded-md border object-cover shadow"
                     />
@@ -105,8 +103,7 @@ const Feature95 = () => {
                 <div className="mt-6 block border bg-muted/50 px-4 py-6 lg:hidden">
                   <div className="aspect-video">
                     <img
-                      src="https://www.shadcnblocks.com
-/images/block/placeholder-dark-3.svg"
+                      src="https://www.shadcnblocks.com/images/block/placeholder-dark-3.svg"
                       alt="placeholder"
                       className="size-full rounded-md border object-cover shadow"
                     />
@@ -137,8 +134,7 @@ const Feature95 = () => {
                 <div className="mt-6 block border bg-muted/50 px-4 py-6 lg:hidden">
                   <div className="aspect-video">
                     <img
-                      src="https://www.shadcnblocks.com
-/images/block/placeholder-dark-1.svg"
+                      src="https://www.shadcnblocks.com/images/block/placeholder-dark-1.svg"
                       alt="placeholder"
                       className="size-full rounded-md border object-cover shadow"
                     />
@@ -149,32 +145,28 @@ const Feature95 = () => {
             <div className="mt-10 hidden rounded-xl border bg-muted/50 p-10 lg:block">
               <TabsContent value="tab-1" className="aspect-video">
                 <img
-                  src="https://www.shadcnblocks.com
-/images/block/placeholder-dark-1.svg"
+                  src="https://www.shadcnblocks.com/images/block/placeholder-dark-1.svg"
                   alt="placeholder"
                   className="size-full rounded-xl border object-cover shadow"
                 />
               </TabsContent>
               <TabsContent value="tab-2" className="aspect-video">
                 <img
-                  src="https://www.shadcnblocks.com
-/images/block/placeholder-dark-2.svg"
+                  src="https://www.shadcnblocks.com/images/block/placeholder-dark-2.svg"
                   alt="placeholder"
                   className="size-full rounded-xl border object-cover shadow"
                 />
               </TabsContent>
               <TabsContent value="tab-3" className="aspect-video">
                 <img
-                  src="https://www.shadcnblocks.com
-/images/block/placeholder-dark-3.svg"
+                  src="https://www.shadcnblocks.com/images/block/placeholder-dark-3.svg"
                   alt="placeholder"
                   className="size-full rounded-xl border object-cover shadow"
                 />
               </TabsContent>
               <TabsContent value="tab-4" className="aspect-video">
                 <img
-                  src="https://www.shadcnblocks.com
-/images/block/placeholder-dark-1.svg"
+                  src="https://www.shadcnblocks.com/images/block/placeholder-dark-1.svg"
                   alt="placeholder"
                   className="size-full rounded-xl border object-cover shadow"
                 />
