@@ -38,8 +38,7 @@ const Testimonial4 = () => {
                 <div className="flex gap-4 leading-5">
                   <Avatar className="size-9 rounded-full ring-1 ring-input">
                     <AvatarImage
-                      src="https://www.shadcnblocks.com
-/images/block/avatar-1.webp"
+                      src="https://www.shadcnblocks.com/images/block/avatar-1.webp"
                       alt="placeholder"
                     />
                   </Avatar>
@@ -61,8 +60,7 @@ const Testimonial4 = () => {
                 <div className="flex gap-4 leading-5">
                   <Avatar className="size-9 rounded-full ring-1 ring-input">
                     <AvatarImage
-                      src="https://www.shadcnblocks.com
-/images/block/avatar-1.webp"
+                      src="https://www.shadcnblocks.com/images/block/avatar-1.webp"
                       alt="placeholder"
                     />
                   </Avatar>
@@ -84,8 +82,7 @@ const Testimonial4 = () => {
                 <div className="flex gap-4 leading-5">
                   <Avatar className="size-9 rounded-full ring-1 ring-input">
                     <AvatarImage
-                      src="https://www.shadcnblocks.com
-/images/block/avatar-1.webp"
+                      src="https://www.shadcnblocks.com/images/block/avatar-1.webp"
                       alt="placeholder"
                     />
                   </Avatar>

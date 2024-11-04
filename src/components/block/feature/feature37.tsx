@@ -53,8 +53,7 @@ const Feature37 = () => {
           </div>
           <div className="flex flex-col justify-between rounded-lg bg-accent md:col-span-2">
             <img
-              src="https://www.shadcnblocks.com
-/images/block/placeholder-4.svg"
+              src="https://www.shadcnblocks.com/images/block/placeholder-4.svg"
               alt="placeholder"
               className="aspect-video size-full max-h-72"
             />

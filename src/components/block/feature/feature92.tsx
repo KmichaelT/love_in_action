@@ -22,8 +22,7 @@ const Feature92 = () => {
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2 text-xl font-semibold">
               <img
-                src="https://www.shadcnblocks.com
-/images/block/logos/figma-icon.svg"
+                src="https://www.shadcnblocks.com/images/block/logos/figma-icon.svg"
                 alt="shadcn"
                 className="h-5 w-auto"
               />
@@ -37,8 +36,7 @@ const Feature92 = () => {
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2 text-xl font-semibold">
               <img
-                src="https://www.shadcnblocks.com
-/images/block/logos/tailwind-small.svg"
+                src="https://www.shadcnblocks.com/images/block/logos/tailwind-small.svg"
                 alt="shadcn"
                 className="h-5 w-auto"
               />
@@ -52,8 +50,7 @@ const Feature92 = () => {
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2 text-xl font-semibold">
               <img
-                src="https://www.shadcnblocks.com
-/images/block/logos/shadcn-ui-small.svg"
+                src="https://www.shadcnblocks.com/images/block/logos/shadcn-ui-small.svg"
                 alt="shadcn"
                 className="h-5 w-auto"
               />

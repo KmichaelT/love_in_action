@@ -14,16 +14,14 @@ const Feature31 = () => {
         <div className="mx-auto grid max-w-screen-lg gap-10 md:grid-cols-2">
           <div className="order-1 flex h-full items-center rounded-lg bg-muted">
             <img
-              src="https://www.shadcnblocks.com
-/images/block/placeholder-dark-1.svg"
+              src="https://www.shadcnblocks.com/images/block/placeholder-dark-1.svg"
               alt="placeholder"
               className="aspect-video w-full object-cover"
             />
           </div>
           <div className="order-3 h-full rounded-lg bg-muted md:px-10 md:pt-10">
             <img
-              src="https://www.shadcnblocks.com
-/images/block/placeholder-dark-2.svg"
+              src="https://www.shadcnblocks.com/images/block/placeholder-dark-2.svg"
               alt="placeholder"
               className="h-full rounded-t-lg object-cover"
             />

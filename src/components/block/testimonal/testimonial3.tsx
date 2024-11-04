@@ -9,8 +9,7 @@ const Testimonial3 = () => {
           </q>
           <div className="flex flex-col items-center gap-2 sm:flex-row">
             <img
-              src="https://www.shadcnblocks.com
-/images/block/logos/shadcn-ui.svg"
+              src="https://www.shadcnblocks.com/images/block/logos/shadcn-ui.svg"
               alt="shadcn"
               className="h-7"
             />

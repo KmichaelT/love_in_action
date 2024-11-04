@@ -30,20 +30,17 @@ const About4 = () => {
             className="max-h-80 w-full object-cover"
           />
           <img
-            src="https://www.shadcnblocks.com
-/images/block/placeholder-4.svg"
+            src="https://www.shadcnblocks.com/images/block/placeholder-4.svg"
             alt="placeholder"
             className="max-h-80 w-full object-cover"
           />
           <img
-            src="https://www.shadcnblocks.com
-/images/block/placeholder-5.svg"
+            src="https://www.shadcnblocks.com/images/block/placeholder-5.svg"
             alt="placeholder"
             className="max-h-80 w-full object-cover"
           />
           <img
-            src="https://www.shadcnblocks.com
-/images/block/placeholder-6.svg"
+            src="https://www.shadcnblocks.com/images/block/placeholder-6.svg"
             alt="placeholder"
             className="max-h-80 w-full object-cover"
           />

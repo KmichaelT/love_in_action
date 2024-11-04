@@ -72,8 +72,7 @@ const Feature85 = () => {
                 A Project Management App You&apos;ll Love Using
               </h2>
               <img
-                src="https://www.shadcnblocks.com
-/images/block/placeholder-aspect-video-1.svg"
+                src="https://www.shadcnblocks.com/images/block/placeholder-aspect-video-1.svg"
                 alt="placeholder"
                 className="max-h-64 w-full rounded-xl object-cover"
               />

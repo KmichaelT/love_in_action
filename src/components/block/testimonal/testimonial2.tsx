@@ -12,22 +12,19 @@ const Testimonial2 = () => {
               <span className="mx-4 inline-flex items-center -space-x-4">
                 <Avatar className="size-11 border lg:size-16">
                   <AvatarImage
-                    src="https://www.shadcnblocks.com
-/images/block/avatar-1.webp"
+                    src="https://www.shadcnblocks.com/images/block/avatar-1.webp"
                     alt="placeholder"
                   />
                 </Avatar>
                 <Avatar className="size-11 border lg:size-16">
                   <AvatarImage
-                    src="https://www.shadcnblocks.com
-/images/block/avatar-6.webp"
+                    src="https://www.shadcnblocks.com/images/block/avatar-6.webp"
                     alt="placeholder"
                   />
                 </Avatar>
                 <Avatar className="size-11 border lg:size-16">
                   <AvatarImage
-                    src="https://www.shadcnblocks.com
-/images/block/avatar-3.webp"
+                    src="https://www.shadcnblocks.com/images/block/avatar-3.webp"
                     alt="placeholder"
                   />
                 </Avatar>

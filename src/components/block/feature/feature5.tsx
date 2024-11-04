@@ -54,8 +54,7 @@ const Feature5 = () => {
           <div className="flex flex-col items-center gap-2 leading-5 sm:flex-row">
             <Avatar className="size-9 rounded-full ring-1 ring-input">
               <AvatarImage
-                src="https://www.shadcnblocks.com
-/images/block/avatar-1.webp"
+                src="https://www.shadcnblocks.com/images/block/avatar-1.webp"
                 alt="placeholder"
               />
             </Avatar>

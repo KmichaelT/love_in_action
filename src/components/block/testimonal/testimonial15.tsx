@@ -21,20 +21,17 @@ const Testimonial15 = () => {
             </p>
             <div className="flex flex-wrap items-center justify-center gap-10 lg:justify-start">
               <img
-                src="https://www.shadcnblocks.com
-/images/block/logos/shadcn-ui.svg"
+                src="https://www.shadcnblocks.com/images/block/logos/shadcn-ui.svg"
                 alt="logo"
                 className="h-6 sm:h-8"
               />
               <img
-                src="https://www.shadcnblocks.com
-/images/block/logos/sketch.svg"
+                src="https://www.shadcnblocks.com/images/block/logos/sketch.svg"
                 alt="logo"
                 className="h-8 sm:h-11"
               />
               <img
-                src="https://www.shadcnblocks.com
-/images/block/logos/tailwind.svg"
+                src="https://www.shadcnblocks.com/images/block/logos/tailwind.svg"
                 alt="logo"
                 className="h-4 sm:h-5"
               />
@@ -44,8 +41,7 @@ const Testimonial15 = () => {
             <div className="flex gap-5 rounded-xl bg-background p-6">
               <Avatar className="size-9 rounded-full ring-1 ring-input">
                 <AvatarImage
-                  src="https://www.shadcnblocks.com
-/images/block/avatar-1.webp"
+                  src="https://www.shadcnblocks.com/images/block/avatar-1.webp"
                   alt="placeholder"
                 />
               </Avatar>
@@ -62,8 +58,7 @@ const Testimonial15 = () => {
             <div className="flex gap-5 rounded-xl border p-6">
               <Avatar className="size-9 rounded-full ring-1 ring-input">
                 <AvatarImage
-                  src="https://www.shadcnblocks.com
-/images/block/avatar-2.webp"
+                  src="https://www.shadcnblocks.com/images/block/avatar-2.webp"
                   alt="placeholder"
                 />
               </Avatar>
@@ -80,8 +75,7 @@ const Testimonial15 = () => {
             <div className="flex gap-5 rounded-xl bg-background p-6">
               <Avatar className="size-9 rounded-full ring-1 ring-input">
                 <AvatarImage
-                  src="https://www.shadcnblocks.com
-/images/block/avatar-3.webp"
+                  src="https://www.shadcnblocks.com/images/block/avatar-3.webp"
                   alt="placeholder"
                 />
               </Avatar>
@@ -98,8 +92,7 @@ const Testimonial15 = () => {
             <div className="flex gap-5 rounded-t-xl border-x border-t px-5 pb-1 pt-6">
               <Avatar className="size-9 rounded-full ring-1 ring-input">
                 <AvatarImage
-                  src="https://www.shadcnblocks.com
-/images/block/avatar-4.webp"
+                  src="https://www.shadcnblocks.com/images/block/avatar-4.webp"
                   alt="placeholder"
                 />
               </Avatar>

@@ -1,13 +1,14 @@
 import { cn } from '@/utilities/cn'
 import React from 'react'
 
-import { serializeLexical } from './serialize'
+import { OverrideStyle, serializeLexical } from './serialize'
 
 type Props = {
   className?: string
   content: Record<string, any>
   enableGutter?: boolean
   enableProse?: boolean
+  overrideStyle?: OverrideStyle
 }
 
 const RichText: React.FC<Props> = ({
@@ -15,6 +16,7 @@ const RichText: React.FC<Props> = ({
   content,
   enableGutter = true,
   enableProse = true,
+  overrideStyle,
 }) => {
   if (!content) {
     return null
@@ -35,7 +37,7 @@ const RichText: React.FC<Props> = ({
         !Array.isArray(content) &&
         typeof content === 'object' &&
         'root' in content &&
-        serializeLexical({ nodes: content?.root?.children })}
+        serializeLexical({ nodes: content?.root?.children, overrideStyle })}
     </div>
   )
 }

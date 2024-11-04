@@ -2,8 +2,9 @@ import { ArrowDownRight, Star } from 'lucide-react';
 
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
+import { Page } from '@/payload-types';
 
-const Hero3 = () => {
+export const Hero3: React.FC<Page['hero']> = ({ links, media, badge, richText }) => {
   return (
     <section className="py-32">
       <div className="container grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
@@ -20,36 +21,31 @@ const Hero3 = () => {
             <span className="inline-flex items-center -space-x-4">
               <Avatar className="size-12 border">
                 <AvatarImage
-                  src="https://www.shadcnblocks.com
-/images/block/avatar-1.webp"
+                  src="https://www.shadcnblocks.com/images/block/avatar-1.webp"
                   alt="placeholder"
                 />
               </Avatar>
               <Avatar className="size-12 border">
                 <AvatarImage
-                  src="https://www.shadcnblocks.com
-/images/block/avatar-2.webp"
+                  src="https://www.shadcnblocks.com/images/block/avatar-2.webp"
                   alt="placeholder"
                 />
               </Avatar>
               <Avatar className="size-12 border">
                 <AvatarImage
-                  src="https://www.shadcnblocks.com
-/images/block/avatar-3.webp"
+                  src="https://www.shadcnblocks.com/images/block/avatar-3.webp"
                   alt="placeholder"
                 />
               </Avatar>
               <Avatar className="size-12 border">
                 <AvatarImage
-                  src="https://www.shadcnblocks.com
-/images/block/avatar-4.webp"
+                  src="https://www.shadcnblocks.com/images/block/avatar-4.webp"
                   alt="placeholder"
                 />
               </Avatar>
               <Avatar className="size-12 border">
                 <AvatarImage
-                  src="https://www.shadcnblocks.com
-/images/block/avatar-5.webp"
+                  src="https://www.shadcnblocks.com/images/block/avatar-5.webp"
                   alt="placeholder"
                 />
               </Avatar>
@@ -77,15 +73,15 @@ const Hero3 = () => {
           </div>
         </div>
         <div className="flex bg-muted">
-          <img
-            src="https://www.shadcnblocks.com/images/block/placeholder-1.svg"
-            alt="placeholder hero"
-            className="max-h-[600px] w-full rounded-md object-cover lg:max-h-[800px]"
-          />
+          {media && typeof media === 'object' && (
+            <Media
+              imgClassName="max-h-[600px] w-full rounded-md object-cover lg:max-h-[800px]"
+              priority
+              resource={media}
+            />
+          )}
         </div>
       </div>
     </section>
   );
 };
-
-export default Hero3;

@@ -17,8 +17,7 @@ const Testimonial12 = () => {
               <CarouselItem className="grid grid-cols-1 gap-y-10 pb-14 pl-8 pr-4 pt-4 sm:pt-8 lg:grid-cols-3 lg:gap-10 lg:p-20">
                 <div>
                   <img
-                    src="https://www.shadcnblocks.com
-/images/block/placeholder-dark-1.svg"
+                    src="https://www.shadcnblocks.com/images/block/placeholder-dark-1.svg"
                     alt="placeholder"
                     className="mx-auto max-h-80 rounded-xl lg:mx-0 lg:max-h-none"
                   />
@@ -30,8 +29,7 @@ const Testimonial12 = () => {
                 <div className="col-span-2">
                   <div className="mb-6 flex items-center justify-center gap-2 lg:mb-8 lg:justify-start">
                     <img
-                      src="https://www.shadcnblocks.com
-/images/block/logos/nike-icon.svg"
+                      src="https://www.shadcnblocks.com/images/block/logos/nike-icon.svg"
                       alt="logo"
                       className="h-auto w-7 lg:w-11"
                     />
@@ -70,8 +68,7 @@ const Testimonial12 = () => {
               <CarouselItem className="grid grid-cols-1 gap-y-10 pb-14 pl-8 pr-4 pt-4 sm:pt-8 lg:grid-cols-3 lg:gap-10 lg:p-20">
                 <div>
                   <img
-                    src="https://www.shadcnblocks.com
-/images/block/placeholder-dark-2.svg"
+                    src="https://www.shadcnblocks.com/images/block/placeholder-dark-2.svg"
                     alt="placeholder"
                     className="mx-auto max-h-80 rounded-xl lg:mx-0 lg:max-h-none"
                   />
@@ -83,8 +80,7 @@ const Testimonial12 = () => {
                 <div className="col-span-2">
                   <div className="mb-6 flex items-center justify-center gap-2 lg:mb-8 lg:justify-start">
                     <img
-                      src="https://www.shadcnblocks.com
-/images/block/logos/slack-icon.svg"
+                      src="https://www.shadcnblocks.com/images/block/logos/slack-icon.svg"
                       alt="logo"
                       className="h-auto w-5 lg:mr-1 lg:w-9"
                     />

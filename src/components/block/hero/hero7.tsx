@@ -3,8 +3,9 @@ import React from 'react';
 
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
+import { Page } from '@/payload-types';
 
-const Hero7 = () => {
+export const Hero7: React.FC<Page['hero']> = ({ links, media, badge, richText }) => {
   return (
     <section className="py-32">
       <div className="container text-center">
@@ -25,36 +26,31 @@ const Hero7 = () => {
           <span className="mx-4 inline-flex items-center -space-x-4">
             <Avatar className="size-14 border">
               <AvatarImage
-                src="https://www.shadcnblocks.com
-/images/block/avatar-1.webp"
+                src="https://www.shadcnblocks.com/images/block/avatar-1.webp"
                 alt="placeholder"
               />
             </Avatar>
             <Avatar className="size-14 border">
               <AvatarImage
-                src="https://www.shadcnblocks.com
-/images/block/avatar-2.webp"
+                src="https://www.shadcnblocks.com/images/block/avatar-2.webp"
                 alt="placeholder"
               />
             </Avatar>
             <Avatar className="size-14 border">
               <AvatarImage
-                src="https://www.shadcnblocks.com
-/images/block/avatar-3.webp"
+                src="https://www.shadcnblocks.com/images/block/avatar-3.webp"
                 alt="placeholder"
               />
             </Avatar>
             <Avatar className="size-14 border">
               <AvatarImage
-                src="https://www.shadcnblocks.com
-/images/block/avatar-4.webp"
+                src="https://www.shadcnblocks.com/images/block/avatar-4.webp"
                 alt="placeholder"
               />
             </Avatar>
             <Avatar className="size-14 border">
               <AvatarImage
-                src="https://www.shadcnblocks.com
-/images/block/avatar-5.webp"
+                src="https://www.shadcnblocks.com/images/block/avatar-5.webp"
                 alt="placeholder"
               />
             </Avatar>
@@ -78,4 +74,3 @@ const Hero7 = () => {
   );
 };
 
-export default Hero7;

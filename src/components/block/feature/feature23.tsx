@@ -20,8 +20,7 @@ const Feature23 = () => {
           <div className="flex flex-col lg:block">
             <div className="h-full max-h-[500px] rounded-lg border bg-muted p-3">
               <img
-                src="https://www.shadcnblocks.com
-/images/block/placeholder-dark-1.svg"
+                src="https://www.shadcnblocks.com/images/block/placeholder-dark-1.svg"
                 alt="placeholder"
                 className="size-full rounded-lg object-cover"
               />
@@ -41,8 +40,7 @@ const Feature23 = () => {
           <div className="flex flex-col lg:block">
             <div className="h-full max-h-[500px] rounded-lg border bg-muted p-3">
               <img
-                src="https://www.shadcnblocks.com
-/images/block/placeholder-dark-2.svg"
+                src="https://www.shadcnblocks.com/images/block/placeholder-dark-2.svg"
                 alt="placeholder"
                 className="size-full rounded-lg object-cover"
               />
@@ -64,8 +62,7 @@ const Feature23 = () => {
           <div className="flex flex-col lg:block">
             <div className="h-full max-h-[500px] rounded-lg border bg-muted p-3">
               <img
-                src="https://www.shadcnblocks.com
-/images/block/placeholder-dark-3.svg"
+                src="https://www.shadcnblocks.com/images/block/placeholder-dark-3.svg"
                 alt="placeholder"
                 className="size-full rounded-lg object-cover"
               />

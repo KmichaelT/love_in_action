@@ -1,8 +1,9 @@
 import { ChevronRight } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
+import { Page } from '@/payload-types';
 
-const Hero8 = () => {
+export const Hero8: React.FC<Page['hero']> = ({ links, media, badge, richText }) => {
   return (
     <section className="py-32">
       <div className="overflow-hidden border-b border-muted">
@@ -40,4 +41,3 @@ const Hero8 = () => {
   );
 };
 
-export default Hero8;

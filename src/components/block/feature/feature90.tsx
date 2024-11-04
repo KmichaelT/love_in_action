@@ -41,16 +41,14 @@ const Feature90 = () => {
             </span>
             <span className="flex aspect-square h-[13vw] min-h-10 shrink-0 items-center justify-center rounded-full border-2 border-background bg-muted md:h-28">
               <img
-                src="https://www.shadcnblocks.com
-/images/block/block-4.svg"
+                src="https://www.shadcnblocks.com/images/block/block-4.svg"
                 alt="logo"
                 className="h-auto w-[8vw] max-w-12 md:w-12"
               />
             </span>
             <span className="flex aspect-square h-[13vw] min-h-10 shrink-0 items-center justify-center rounded-full border-2 border-background bg-muted md:h-28">
               <img
-                src="https://www.shadcnblocks.com
-/images/block/block-5.svg"
+                src="https://www.shadcnblocks.com/images/block/block-5.svg"
                 alt="logo"
                 className="h-auto w-[8vw] max-w-12 md:w-12"
               />

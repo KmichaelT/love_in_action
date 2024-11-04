@@ -17,8 +17,7 @@ const Login1 = () => {
       <div className="container">
         <div className="flex flex-col gap-4">
           <img
-            src="https://www.shadcnblocks.com
-/images/block/logos/shadcn-ui.svg"
+            src="https://www.shadcnblocks.com/images/block/logos/shadcn-ui.svg"
             alt="logo"
             className="h-8"
           />
