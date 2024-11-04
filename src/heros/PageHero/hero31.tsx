@@ -1,6 +1,10 @@
+import { CMSLink } from '@/components/Link';
+import { Media } from '@/components/Media';
+import RichText from '@/components/RichText';
 import { Button } from '@/components/ui/button';
+import { Page } from '@/payload-types';
 
-const Hero31 = () => {
+export const Hero31: React.FC<Page['hero']> = ({ links, images, richText }) => {
   return (
     <section className="relative overflow-hidden py-32">
       <div className="absolute inset-0 overflow-hidden bg-muted">
@@ -80,49 +84,96 @@ const Hero31 = () => {
       </div>
       <div className="container relative">
         <div className="flex flex-col items-center text-center">
-          <h1 className="my-6 text-pretty text-4xl font-bold lg:text-6xl">
-            Welcome to Our Website
-          </h1>
-          <p className="mb-8 max-w-xl text-muted-foreground lg:text-xl">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Elig
-            doloremque mollitia fugiat omnis! Porro facilis quo animi
-            consequatur. Explicabo.
-          </p>
-          <div className="flex w-full flex-col justify-center gap-2 sm:flex-row">
-            <Button variant="outline" className="w-full sm:w-auto">
-              Secondary
-            </Button>
-            <Button className="w-full sm:w-auto">Primary</Button>
-          </div>
+          {richText && <RichText
+            className="flex flex-col items-center text-center"
+            content={richText}
+            enableGutter={false}
+            overrideStyle={{
+              h1: "my-6 text-pretty text-4xl font-bold lg:text-6xl",
+              p: "mb-8 max-w-xl text-muted-foreground lg:text-xl"
+            }}
+          />}
+
+          {Array.isArray(links) && links.length > 0 && (
+            <div className="flex w-full flex-col justify-center gap-2 sm:flex-row">
+              {links.map(({ link }, i) => {
+                return (
+                  <CMSLink className="w-full sm:w-auto" key={i} {...link} />
+                )
+              })}
+            </div>
+          )}
         </div>
       </div>
       <div className="container relative">
         <div className="-mb-48 mt-16 flex justify-center gap-4 pt-4">
-          <div className="aspect-[3/5] w-[320px] rounded-lg border border-border bg-background" />
-          <div className="absolute inset-0">
-            <div className="hidden h-full justify-between px-32 2xl:flex">
-              <div className="flex flex-col gap-8 pb-20">
-                <div className="flex h-[120px] w-[300px] justify-center text-clip rounded-lg border border-border bg-background"></div>
-                <div className="flex h-[190px] w-[300px] justify-center text-clip rounded-lg border border-border bg-background"></div>
+          {images && images.length > 0 && (
+            <>
+              <Media
+                imgClassName="aspect-[3/5] w-[320px] rounded-lg border border-border bg-background object-cover"
+                priority
+                resource={images[0]}
+              />
+              <div className="absolute inset-0">
+                <div className="hidden h-full justify-between px-32 2xl:flex">
+                  <div className="flex flex-col gap-8 pb-20">
+                    {images && images.length > 1 && (
+                      <Media
+                        imgClassName="flex h-[120px] w-[300px] justify-center text-clip rounded-lg border border-border bg-background object-cover"
+                        priority
+                        resource={images?.[1]}
+                      />
+                    )}
+                    {images && images.length > 2 && (
+                      <Media
+                        imgClassName="flex h-[190px] w-[300px] justify-center text-clip rounded-lg border border-border bg-background object-cover"
+                        priority
+                        resource={images?.[2]}
+                      />
+                    )}
+                  </div>
+                  <div className="flex flex-col gap-8 pt-20">
+                    {images && images.length > 3 && (
+                      <Media
+                        imgClassName="flex h-[190px] w-[300px] justify-center text-clip rounded-lg border border-border bg-background object-cover"
+                        priority
+                        resource={images?.[3]}
+                      />
+                    )}
+                    {images && images.length > 4 && (
+                      <Media
+                        imgClassName="flex h-[120px] w-[300px] justify-center text-clip rounded-lg border border-border bg-background object-cover"
+                        priority
+                        resource={images?.[4]}
+                      />
+                    )}
+                  </div>
+                </div>
+                <div className="mx-auto hidden h-full max-w-6xl items-start justify-between px-12 pt-24 md:flex 2xl:hidden">
+                  <div className="flex flex-col gap-8 pb-32">
+                    {images && images.length > 1 && (
+                      <Media
+                        imgClassName="flex h-[120px] w-[300px] justify-center text-clip rounded-lg border border-border bg-background object-cover"
+                        priority
+                        resource={images?.[1]}
+                      />
+                    )}
+                  </div>
+                  <div className="flex flex-col gap-8 pt-32">
+                    {images && images.length > 2 && (
+                      <Media
+                        imgClassName="flex h-[190px] w-[300px] justify-center text-clip rounded-lg border border-border bg-background object-cover"
+                        priority
+                        resource={images?.[2]}
+                      />
+                    )}
+                  </div>
+                </div>
               </div>
-              <div className="flex flex-col gap-8 pt-20">
-                <div className="flex h-[190px] w-[300px] justify-center text-clip rounded-lg border border-border bg-background"></div>
-                <div className="flex h-[120px] w-[300px] justify-center text-clip rounded-lg border border-border bg-background"></div>
-              </div>
-            </div>
-            <div className="mx-auto hidden h-full max-w-6xl items-start justify-between px-12 pt-24 md:flex 2xl:hidden">
-              <div className="flex flex-col gap-8 pb-32">
-                <div className="flex h-[120px] w-[300px] justify-center text-clip rounded-lg border border-border bg-background"></div>
-              </div>
-              <div className="flex flex-col gap-8 pt-32">
-                <div className="flex h-[190px] w-[300px] justify-center text-clip rounded-lg border border-border bg-background"></div>
-              </div>
-            </div>
-          </div>
+            </>
+          )}
         </div>
       </div>
     </section>
   );
 };
-
-export default Hero31;
