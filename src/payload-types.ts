@@ -6695,8 +6695,21 @@ export interface Page {
     icons?: (number | Media)[] | null;
     USPs?: {
       icon?: (number | null) | Media;
-      headline?: string | null;
-      description?: string | null;
+      richText?: {
+        root: {
+          type: string;
+          children: {
+            type: string;
+            version: number;
+            [k: string]: unknown;
+          }[];
+          direction: ('ltr' | 'rtl') | null;
+          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+          indent: number;
+          version: number;
+        };
+        [k: string]: unknown;
+      } | null;
     };
     pricing?: {
       headline?: string | null;

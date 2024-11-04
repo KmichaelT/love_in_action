@@ -1,19 +1,19 @@
 
 
-import { Star } from 'lucide-react';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { Page } from '@/payload-types';
 import RichText from '@/components/RichText';
 import { CMSLink } from '@/components/Link';
 import { Media } from '@/components/Media';
+import { Stars } from '@/components/uiCustom/stars';
 
-export const Hero3: React.FC<Page['hero']> = ({ links, media, badge, richText }) => {
+export const Hero3: React.FC<Page['hero']> = ({ links, images, icons, badge, rating, richText, tagline }) => {
   return (
     <section className="py-32">
       <div className="container grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
         <div className="mx-auto flex flex-col items-center text-center md:ml-auto lg:max-w-3xl lg:items-start lg:text-left">
           {richText && <RichText
-            className="mb-6"
+            className="mx-auto flex flex-col items-center text-center md:ml-auto lg:max-w-3xl lg:items-start lg:text-left"
             content={richText}
             enableGutter={false}
             overrideStyle={{
@@ -21,69 +21,45 @@ export const Hero3: React.FC<Page['hero']> = ({ links, media, badge, richText })
               p: "mb-8 max-w-xl text-muted-foreground lg:text-xl"
             }}
           />}
-          <div className="mb-12 flex w-fit flex-col items-center gap-4 sm:flex-row">
+          {rating && (<div className="mb-12 flex w-fit flex-col items-center gap-4 sm:flex-row">
             <span className="inline-flex items-center -space-x-4">
-              <Avatar className="size-12 border">
-                <AvatarImage
-                  src="https://www.shadcnblocks.com/images/block/avatar-1.webp"
-                  alt="placeholder"
-                />
-              </Avatar>
-              <Avatar className="size-12 border">
-                <AvatarImage
-                  src="https://www.shadcnblocks.com/images/block/avatar-2.webp"
-                  alt="placeholder"
-                />
-              </Avatar>
-              <Avatar className="size-12 border">
-                <AvatarImage
-                  src="https://www.shadcnblocks.com/images/block/avatar-3.webp"
-                  alt="placeholder"
-                />
-              </Avatar>
-              <Avatar className="size-12 border">
-                <AvatarImage
-                  src="https://www.shadcnblocks.com/images/block/avatar-4.webp"
-                  alt="placeholder"
-                />
-              </Avatar>
-              <Avatar className="size-12 border">
-                <AvatarImage
-                  src="https://www.shadcnblocks.com/images/block/avatar-5.webp"
-                  alt="placeholder"
-                />
-              </Avatar>
+              {icons && icons.length > 0 && icons.map((icon, i) => {
+                return (
+                  <Avatar className="size-12 border" key={i}>
+                    <AvatarImage
+                      alt="placeholder"
+                    />
+                    <Media priority resource={icon} />
+                  </Avatar>
+                )
+              })}
             </span>
             <div>
               <div className="flex items-center gap-1">
-                <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                <Star className="size-5 fill-yellow-400 text-yellow-400" />
-                <span className="font-semibold">5.0</span>
+                <Stars rating={rating} />
+                <span className="font-semibold">{rating?.toFixed(1)}</span>
               </div>
-              <p className="text-left font-medium text-muted-foreground">
-                from 200+ reviews
-              </p>
+              {tagline && (<p className="text-left font-medium text-muted-foreground">
+                {tagline}
+              </p>)}
             </div>
-          </div>
+          </div>)}
           {Array.isArray(links) && links.length > 0 && (
             <div className="flex w-full flex-col justify-center gap-2 sm:flex-row lg:justify-start">
               {links.map(({ link }, i) => {
                 return (
-                  <CMSLink className="w-full sm:w-auto" key={i} {...link} />
+                  <CMSLink size="lg" className="w-full sm:w-auto" key={i} {...link} />
                 )
               })}
             </div>
           )}
         </div>
         <div className="flex bg-muted">
-          {media && typeof media === 'object' && (
+          {images && images.length > 0 && (
             <Media
               imgClassName="max-h-[600px] w-full rounded-md object-cover lg:max-h-[800px]"
               priority
-              resource={media}
+              resource={images[0]}
             />
           )}
         </div>

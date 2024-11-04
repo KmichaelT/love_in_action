@@ -46,9 +46,6 @@ import { link } from '@/fields/link'
 What should happen with the two big boxes? Image or Tex?
 18 -> 2 images + 14 icons
 
-
-
-pricing
 */
 
 export const hero: Field = {
@@ -62,7 +59,8 @@ export const hero: Field = {
         {
           "label": "no Hero",
           "value": "none"
-        },"1",
+        },
+        "1",
         "2",
         "3",
         "4",
@@ -118,7 +116,7 @@ export const hero: Field = {
       name: 'tagline',
       type: "text",
       admin: {
-        condition: (_, { designVersion } = {}) => ["27","26","55","21","53","12","51","57"].includes(designVersion),
+        condition: (_, { designVersion } = {}) => ["3","27","26","55","21","53","12","51","57"].includes(designVersion),
       }
     },
     link({
@@ -161,7 +159,7 @@ export const hero: Field = {
       name: 'images',
       type: 'upload',
       admin: {
-        condition: (_, { designVersion } = {}) => ['1','2', '3','4', '5','6', '31', '37', '38'].includes(designVersion),
+        condition: (_, { designVersion } = {}) => ['1','2', '3','4', '5','6', '31', '37', '38', "18"].includes(designVersion),
       },
       relationTo: 'media',
       hasMany: true,
@@ -171,7 +169,7 @@ export const hero: Field = {
       name: 'icons',
       type: 'upload',
       admin: {
-        condition: (_, { designVersion } = {}) => ["53", "28","32","12","51","57","50"].includes(designVersion),  
+        condition: (_, { designVersion } = {}) => ["3","53", "28","32","12","51","57","50", "18"].includes(designVersion),  
       },
       relationTo: 'media',
       hasMany: true,
@@ -190,12 +188,19 @@ export const hero: Field = {
           relationTo: 'media',
         },
         {
-          name: "headline",
-          type: "text",
-        },
-        {
-          name: "description",
-          type: "text",
+          name: 'richText',
+          type: 'richText',
+          editor: lexicalEditor({
+            features: ({ rootFeatures }) => {
+              return [
+                ...rootFeatures,
+                HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
+                FixedToolbarFeature(),
+                InlineToolbarFeature(),
+              ]
+            },
+          }),
+          label: false,
         },
       ]
     },

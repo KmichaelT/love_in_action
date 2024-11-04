@@ -3,7 +3,7 @@ import RichText from '@/components/RichText';
 import { CMSLink } from '@/components/Link';
 import { Media } from '@/components/Media';
 
-export const Hero5: React.FC<Page['hero']> = ({ links, media, badge, richText }) => {
+export const Hero5: React.FC<Page['hero']> = ({ links, images, richText }) => {
   return (
     <section className="overflow-hidden py-32">
       <div className="container">
@@ -11,6 +11,7 @@ export const Hero5: React.FC<Page['hero']> = ({ links, media, badge, richText })
           <div className="flex flex-col items-center gap-6 text-center lg:items-start lg:text-left">
 
             {richText && <RichText
+              className="flex flex-col items-center gap-6 text-center lg:items-start lg:text-left"
               content={richText}
               enableGutter={false}
               overrideStyle={{
@@ -31,11 +32,11 @@ export const Hero5: React.FC<Page['hero']> = ({ links, media, badge, richText })
             )}
 
           </div>
-          {media && typeof media === 'object' && (
+          {images && images.length > 0 && (
             <Media
               imgClassName="aspect-video rounded-md object-cover"
               priority
-              resource={media}
+              resource={images[0]}
             />
           )}
         </div>

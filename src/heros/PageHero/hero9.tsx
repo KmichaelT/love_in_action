@@ -12,7 +12,7 @@ curl 'https://api.example.com/v1/endpoint' \\
     -d param_2="Donec quis lorem ligula."
 `.trim();
 
-const Hero9 = () => {
+export const Hero9: React.FC<Page['hero']> = ({ }) => {
   return (
     <section className="relative py-32">
       {/* Background gradient */}

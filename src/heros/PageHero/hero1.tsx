@@ -8,9 +8,7 @@ import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 
 
-export const Hero1: React.FC<Page['hero']> = ({ links, media, badge, richText }) => {
-  console.log(richText)
-
+export const Hero1: React.FC<Page['hero']> = ({ links, images, badge, richText }) => {
   return (
     <section className="py-32">
       <div className="container">
@@ -19,7 +17,7 @@ export const Hero1: React.FC<Page['hero']> = ({ links, media, badge, richText })
             {badge && <Badge variant="outline">
               {badge}
             </Badge>}
-            {richText && <RichText className="mb-6" content={richText} enableGutter={false} overrideStyle={{
+            {richText && <RichText className="flex flex-col items-center text-center lg:items-start lg:text-left" content={richText} enableGutter={false} overrideStyle={{
               h1: "my-6 text-pretty text-4xl font-bold lg:text-6xl",
               p: "mb-8 max-w-xl text-muted-foreground lg:text-xl"
             }} />}
@@ -33,8 +31,8 @@ export const Hero1: React.FC<Page['hero']> = ({ links, media, badge, richText })
               </div>
             )}
           </div>
-          {media && typeof media === 'object' && (
-            <Media imgClassName="max-h-96 w-full rounded-md object-cover" priority resource={media} />
+          {images && images.length > 0 && (
+            <Media imgClassName="max-h-96 w-full rounded-md object-cover" priority resource={images[0]} />
           )}
         </div>
       </div>

@@ -4,16 +4,16 @@ import RichText from '@/components/RichText';
 import { Page } from '@/payload-types';
 import { Media } from '@/components/Media';
 
-export const Hero2: React.FC<Page['hero']> = ({ links, media, badge, richText }) => {
+export const Hero2: React.FC<Page['hero']> = ({ links, images, badge, richText }) => {
   return (
     <section className="py-32">
       <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
         <div className="flex justify-end bg-muted">
-          {media && typeof media === 'object' && (
+          {images && images.length > 0 && (
             <Media
               imgClassName="max-h-[600px] w-full rounded-md object-cover lg:max-h-[800px]"
               priority
-              resource={media}
+              resource={images[0]}
             />
           )}
         </div>
@@ -22,6 +22,7 @@ export const Hero2: React.FC<Page['hero']> = ({ links, media, badge, richText })
             {badge}
           </Badge>}
           {richText && <RichText
+            className="flex flex-col items-center text-center lg:max-w-3xl lg:items-start lg:text-left"
             content={richText}
             enableGutter={false}
             overrideStyle={{
