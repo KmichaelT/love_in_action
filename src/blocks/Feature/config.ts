@@ -187,8 +187,13 @@ export const FeatureBlock: Block = {
             fields: [
                 {
                     ...icon,
+                    label: "Icon",
+                    name: "usp-icon",
                     admin: {
-                      condition: (_, { designVersion } = {}) => ["FEATURE4", "FEATURE5","FEATURE15", "FEATURE16", "FEATURE26", "FEATURE51", "FEATURE52", "FEATURE57", "FEATURE58","FEATURE67", "FEATURE76", "FEATURE83", "FEATURE85", "FEATURE89", "FEATURE91", "FEATURE93", "FEATURE97", "FEATURE101", "FEATURE104", "FEATURE105", "FEATURE106", "FEATURE107", "FEATURE108"].includes(designVersion),
+                      condition: (data, _) => {
+                        const designVersion = data.layout.find((block) => block.blockType === "feature").designVersion
+                        return ["FEATURE4", "FEATURE5","FEATURE15", "FEATURE16", "FEATURE26", "FEATURE51", "FEATURE52", "FEATURE57", "FEATURE58","FEATURE67", "FEATURE76", "FEATURE83", "FEATURE85", "FEATURE89", "FEATURE91", "FEATURE93", "FEATURE97", "FEATURE101", "FEATURE104", "FEATURE105", "FEATURE106", "FEATURE107", "FEATURE108"].includes(designVersion);
+                      },
                     },
                 },
                 {

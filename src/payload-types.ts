@@ -13451,7 +13451,7 @@ export interface FeatureBlock {
   image?: (number | null) | Media;
   USPs?:
     | {
-        icon?:
+        'usp-icon'?:
           | (
               | 'AArrowDown'
               | 'AArrowUp'
