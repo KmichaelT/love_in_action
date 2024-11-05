@@ -1,24 +1,19 @@
 import { BarChart, Heart, Monitor, Plus, TrendingUp } from 'lucide-react';
 
-import { Button } from '@/components/ui/button';
+import { FeatureBlock } from '@/payload-types';
+import RichText from '@/components/RichText';
+import { CMSLink } from '@/components/Link';
 
-const Feature97 = () => {
+const Feature97: React.FC<FeatureBlock> = ({ richText, image, links, icon, tagline, USPs }) => {
   return (
     <section className="py-32">
       <div className="container">
         <div className="mx-auto flex max-w-xl flex-col gap-6 text-center">
-          <h2 className="text-4xl font-semibold">Platform Highlights</h2>
-          <p className="text-lg">
-            Built with cutting-edge insights, offering a complete perspective on
-            the connection between lifestyle, behavior, and health. Our platform
-            delivers an all-encompassing health overview.
-          </p>
+          {richText && <RichText content={richText} withWrapper={false} overrideStyle={{h2: "text-4xl font-semibold", p: "text-lg"}} />}
           <div className="flex flex-col justify-center gap-2 sm:flex-row">
-            <Button variant="outline">View All Features</Button>
-            <Button>
-              <Plus className="mr-2 h-auto w-4" />
-              Schedule Consultation
-            </Button>
+            {Array.isArray(links) && links.length > 0 && links.map(({ link }, i) => (
+              <CMSLink key={i} {...link} size={'lg'} />
+            ))}
           </div>
         </div>
         <div className="mx-auto mt-20 grid max-w-screen-lg gap-20 md:grid-cols-2">
