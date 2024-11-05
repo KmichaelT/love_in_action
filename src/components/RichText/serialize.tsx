@@ -22,21 +22,13 @@ import { cn } from '@/utilities/cn'
 export type NodeTypes =
   | DefaultNodeTypes
   | SerializedBlockNode<
-    | Extract<Page['layout'][0], { blockType: 'cta' }>
-    | Extract<Page['layout'][0], { blockType: 'mediaBlock' }>
-    | BannerBlockProps
-    | CodeBlockProps
-  >
+      | Extract<Page['layout'][0], { blockType: 'cta' }>
+      | Extract<Page['layout'][0], { blockType: 'mediaBlock' }>
+      | BannerBlockProps
+      | CodeBlockProps
+    >
 
-export type OverrideStyle = Partial<Record<
-  "h1" |
-  "h2" |
-  "h3" |
-  "h4" |
-  "h5" |
-  "h6" |
-  "p"
-  , string>>
+export type OverrideStyle = Partial<Record<'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p', string>>
 
 type Props = {
   nodes: NodeTypes[]
@@ -145,7 +137,7 @@ export function serializeLexical({ nodes, overrideStyle }: Props): JSX.Element {
               return <br className="col-start-2" key={index} />
             }
             case 'paragraph': {
-              let className = "col-start-2"
+              let className = 'col-start-2'
               if (overrideStyle?.p) {
                 className = cn(className, overrideStyle?.p)
               }
@@ -157,7 +149,7 @@ export function serializeLexical({ nodes, overrideStyle }: Props): JSX.Element {
             }
             case 'heading': {
               const Tag = node?.tag
-              let className = "col-start-2"
+              let className = 'col-start-2'
               if (overrideStyle?.[Tag]) {
                 className = cn(className, overrideStyle?.[Tag])
               }
@@ -170,7 +162,14 @@ export function serializeLexical({ nodes, overrideStyle }: Props): JSX.Element {
             case 'list': {
               const Tag = node?.tag
               return (
-                <Tag className="list col-start-2" key={index}>
+                <Tag
+                  className={cn(
+                    'col-start-2 pl-4',
+                    // Add specific styling based on list type
+                    node.listType === 'bullet' ? 'list-disc' : 'list-decimal',
+                  )}
+                  key={index}
+                >
                   {serializedChildren}
                 </Tag>
               )
