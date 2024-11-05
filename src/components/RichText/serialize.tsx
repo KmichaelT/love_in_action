@@ -28,7 +28,7 @@ export type NodeTypes =
       | CodeBlockProps
     >
 
-export type OverrideStyle = Partial<Record<'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p', string>>
+export type OverrideStyle = Partial<Record<'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'li', string>>
 
 type Props = {
   nodes: NodeTypes[]
@@ -110,20 +110,20 @@ export function serializeLexical({ nodes, overrideStyle }: Props): JSX.Element {
           }
 
           switch (blockType) {
-            case 'cta':
-              return <CallToActionBlock key={index} {...block} />
-            case 'mediaBlock':
-              return (
-                <MediaBlock
-                  className="col-start-1 col-span-3"
-                  imgClassName="m-0"
-                  key={index}
-                  {...block}
-                  captionClassName="mx-auto max-w-[48rem]"
-                  enableGutter={false}
-                  disableInnerContainer={true}
-                />
-              )
+            // case 'cta':
+            //   return <CallToActionBlock key={index} {...block} />
+            // case 'mediaBlock':
+            //   return (
+            //     <MediaBlock
+            //       className="col-start-1 col-span-3"
+            //       imgClassName="m-0"
+            //       key={index}
+            //       {...block}
+            //       captionClassName="mx-auto max-w-[48rem]"
+            //       enableGutter={false}
+            //       disableInnerContainer={true}
+            //     />
+            //   )
             case 'banner':
               return <BannerBlock className="col-start-2 mb-4" key={index} {...block} />
             case 'code':
@@ -175,11 +175,16 @@ export function serializeLexical({ nodes, overrideStyle }: Props): JSX.Element {
               )
             }
             case 'listitem': {
+              let className = ''
+              if (overrideStyle?.li) {
+                console.log("overwrite", overrideStyle?.li)
+                className = cn(className, overrideStyle?.li)
+              }
               if (node?.checked != null) {
                 return (
                   <li
                     aria-checked={node.checked ? 'true' : 'false'}
-                    className={` ${node.checked ? '' : ''}`}
+                    className={className}
                     key={index}
                     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
                     role="checkbox"
@@ -191,7 +196,7 @@ export function serializeLexical({ nodes, overrideStyle }: Props): JSX.Element {
                 )
               } else {
                 return (
-                  <li key={index} value={node?.value}>
+                  <li key={index} className={className} value={node?.value}>
                     {serializedChildren}
                   </li>
                 )

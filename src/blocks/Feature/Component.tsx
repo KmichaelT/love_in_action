@@ -215,7 +215,6 @@ export const FeatureBlock: React.FC<Page['layout'][0]> = (props) => {
     
 
     const FeatureToRender = features[designVersion]
-    console.log("hello", FeatureToRender)
 
     if (!FeatureToRender) return null
 

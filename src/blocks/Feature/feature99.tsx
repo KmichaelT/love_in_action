@@ -1,7 +1,7 @@
 import RichText from "@/components/RichText";
 import { FeatureBlock } from "@/payload-types";
 
-const Feature99: React.FC<FeatureBlock> = ({ richText, image, links, icon, tagline }) => {
+const Feature99: React.FC<FeatureBlock> = ({ richText, image, links, icon, tagline, USPs }) => {
   return (
     <section className="py-32">
       <div className="container">
@@ -13,36 +13,14 @@ const Feature99: React.FC<FeatureBlock> = ({ richText, image, links, icon, tagli
           <div>
             {richText && <RichText content={richText} withWrapper={false} overrideStyle={{h2: "mb-11 text-3xl lg:text-5xl"}} />}
             <div className="grid gap-8 md:grid-cols-3">
-              <div className="flex flex-col gap-1 border-l px-4 md:pl-8">
-                <span className="font-mono text-4xl lg:text-7xl">1</span>
-                <h3 className="text-xl font-medium">
-                  Integrate your HR platform effortlessly
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  Our platform supports 38 HR systems, ensuring a smooth
-                  connection in just two minutes.
-                </p>
-              </div>
-              <div className="flex flex-col gap-1 border-l px-4 md:pl-8">
-                <span className="font-mono text-4xl lg:text-7xl">2</span>
-                <h3 className="text-xl font-medium">
-                  Sync employees with ease{' '}
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  Automatically import your team into our system, enabling you
-                  to start analyzing the data instantly.
-                </p>
-              </div>
-              <div className="flex flex-col gap-1 border-l px-4 md:pl-8">
-                <span className="font-mono text-4xl lg:text-7xl">3</span>
-                <h3 className="text-xl font-medium">
-                  Dive into insights and manage your team
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  Whether you work solo or with a team, explore benchmarks,
-                  review offers, and streamline leveling.
-                </p>
-              </div>
+              {USPs?.map(({ richText }, index) => (
+                <div className="flex flex-col gap-1 border-l px-4 md:pl-8" key={index}>
+                  <span className="font-mono text-4xl lg:text-7xl">{index + 1}</span>
+                  {richText && <RichText content={richText} withWrapper={false} overrideStyle={{h3: "text-xl font-medium", p: "text-sm text-muted-foreground", li: "text-sm text-muted-foreground"}} />}
+                </div>
+              ))}
+              
+              
             </div>
           </div>
         </div>

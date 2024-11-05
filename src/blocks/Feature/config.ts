@@ -1,6 +1,6 @@
 import { icon } from "@/components/Icon/config";
 import { linkGroup } from "@/fields/linkGroup";
-import { FixedToolbarFeature, HeadingFeature, InlineToolbarFeature, lexicalEditor } from "@payloadcms/richtext-lexical";
+import { FixedToolbarFeature, HeadingFeature, InlineToolbarFeature, lexicalEditor, OrderedListFeature, ParagraphFeature, UnorderedListFeature } from "@payloadcms/richtext-lexical";
 import { Block } from "payload";
 
 
@@ -180,18 +180,37 @@ export const FeatureBlock: Block = {
           },
           {
             name: "USPs",
-            type: "group",
-            // admin: {
-            //   condition: (_, { designVersion } = {}) => ["FEATURE1", "FEATURE2", "FEATURE20", "FEATURE21", "FEATURE24", "FEATURE38", "FEATURE6", "FEATURE7"].includes(designVersion),
-            // },
+            type: "array",
+            admin: {
+              condition: (_, { designVersion } = {}) => !["FEATURE1", "FEATURE2", "FEATURE6", "FEATURE7", "FEATURE11", "FEATURE24", "FEATURE30", "FEATURE38", "FEATURE55", "FEATURE60", "FEATURE80", "FEATURE86", "FEATURE90"].includes(designVersion),
+            },
             fields: [
                 {
                     ...icon,
                     admin: {
                       condition: (_, { designVersion } = {}) => ["FEATURE4", "FEATURE5","FEATURE15", "FEATURE16", "FEATURE26", "FEATURE51", "FEATURE52", "FEATURE57", "FEATURE58","FEATURE67", "FEATURE76", "FEATURE83", "FEATURE85", "FEATURE89", "FEATURE91", "FEATURE93", "FEATURE97", "FEATURE101", "FEATURE104", "FEATURE105", "FEATURE106", "FEATURE107", "FEATURE108"].includes(designVersion),
                     },
-                }, 
-            ]
+                },
+                {
+                    name: 'richText',
+                    type: 'richText',
+                    editor: lexicalEditor({
+                      features: ({ rootFeatures }) => {
+                        return [
+                          ...rootFeatures,
+                          HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
+                          FixedToolbarFeature(),
+                          InlineToolbarFeature(),
+                          ParagraphFeature(),
+                          OrderedListFeature(),
+                          UnorderedListFeature(),
+                        ]
+                      },
+                    }),
+                    label: false,
+                  }, 
+            ],
+            minRows: 1,
           }
     ],
     labels: {
