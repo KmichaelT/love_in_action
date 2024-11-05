@@ -9,6 +9,7 @@ import {
 
 import { linkGroup } from '@/fields/linkGroup'
 import { link } from '@/fields/link'
+import { icon } from '@/components/Icon/config'
 
 
 /* TODO:
@@ -114,6 +115,13 @@ export const hero: Field = {
       }
     },
     {
+      ...icon,
+      name: 'badgeIcon',
+      admin: {
+        condition: (_, { designVersion } = {}) => ['1','2', '3','4', '5','6'].includes(designVersion),
+      }
+    },
+    {
       name: 'tagline',
       type: "text",
       admin: {
@@ -140,7 +148,7 @@ export const hero: Field = {
         features: ({ rootFeatures }) => {
           return [
             ...rootFeatures,
-            HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
+            HeadingFeature({ enabledHeadingSizes: ['h1'] }),
             FixedToolbarFeature(),
             InlineToolbarFeature(),
           ]

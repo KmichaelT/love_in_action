@@ -28,7 +28,7 @@ import Hero27 from '@/heros/PageHero/hero27';
 import Hero28 from '@/heros/PageHero/hero28';
 import Hero29 from '@/heros/PageHero/hero29';
 import Hero30 from '@/heros/PageHero/hero30';
-import Hero31 from '@/heros/PageHero/hero31';
+import { Hero31 } from '@/heros/PageHero/hero31';
 import Hero32 from '@/heros/PageHero/hero32';
 import Hero33 from '@/heros/PageHero/hero33';
 import Hero34 from '@/heros/PageHero/hero34';

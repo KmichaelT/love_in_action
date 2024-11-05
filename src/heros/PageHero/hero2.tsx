@@ -3,8 +3,9 @@ import { CMSLink } from '@/components/Link';
 import RichText from '@/components/RichText';
 import { Page } from '@/payload-types';
 import { Media } from '@/components/Media';
+import { Icon } from '@/components/Icon';
 
-export const Hero2: React.FC<Page['hero']> = ({ links, images, badge, richText }) => {
+export const Hero2: React.FC<Page['hero']> = ({ links, images, badgeIcon, badge, richText }) => {
   return (
     <section className="py-32">
       <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
@@ -19,7 +20,7 @@ export const Hero2: React.FC<Page['hero']> = ({ links, images, badge, richText }
         </div>
         <div className="flex flex-col items-center text-center lg:max-w-3xl lg:items-start lg:text-left">
           {badge && <Badge variant="outline">
-            {badge}
+            {badge} {badgeIcon && <Icon icon={badgeIcon} className="ml-2 size-4" />}
           </Badge>}
           {richText && <RichText
             className="flex flex-col items-center text-center lg:max-w-3xl lg:items-start lg:text-left"

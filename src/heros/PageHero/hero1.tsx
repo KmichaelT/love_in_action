@@ -6,16 +6,17 @@ import type { Page } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
+import { Icon } from '@/components/Icon';
 
 
-export const Hero1: React.FC<Page['hero']> = ({ links, images, badge, richText }) => {
+export const Hero1: React.FC<Page['hero']> = ({ links, badgeIcon, images, badge, richText }) => {
   return (
     <section className="py-32">
       <div className="container">
         <div className="grid items-center gap-8 lg:grid-cols-2">
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
             {badge && <Badge variant="outline">
-              {badge}
+              {badge} {badgeIcon && <Icon icon={badgeIcon} className="ml-2 size-4" />}
             </Badge>}
             {richText && <RichText className="flex flex-col items-center text-center lg:items-start lg:text-left" content={richText} enableGutter={false} overrideStyle={{
               h1: "my-6 text-pretty text-4xl font-bold lg:text-6xl",
