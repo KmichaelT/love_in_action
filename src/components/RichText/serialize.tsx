@@ -177,7 +177,6 @@ export function serializeLexical({ nodes, overrideStyle }: Props): JSX.Element {
             case 'listitem': {
               let className = ''
               if (overrideStyle?.li) {
-                console.log("overwrite", overrideStyle?.li)
                 className = cn(className, overrideStyle?.li)
               }
               if (node?.checked != null) {
