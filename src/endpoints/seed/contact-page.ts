@@ -4,7 +4,7 @@ export const contact: Partial<Page> = {
   slug: 'contact',
   _status: 'published',
   hero: {
-    type: 'none',
+    designVersion: "none",
   },
   layout: [
     {
