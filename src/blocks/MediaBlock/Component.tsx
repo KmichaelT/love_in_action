@@ -19,6 +19,10 @@ type Props = Extract<Page['layout'][0], { blockType: 'mediaBlock' }> & {
   disableInnerContainer?: boolean
 }
 
+/**
+ * Media Block was part of the standard payload, but is no longer used.
+ * This is a placeholder for now.
+ */
 export const MediaBlock: React.FC<Props> = (props) => {
   const {
     captionClassName,
@@ -32,7 +36,7 @@ export const MediaBlock: React.FC<Props> = (props) => {
   } = props
 
   let caption
-  if (media && typeof media === 'object') caption = media.caption
+  // if (media && typeof media === 'object') caption = media.caption
 
   return (
     <div
@@ -44,7 +48,7 @@ export const MediaBlock: React.FC<Props> = (props) => {
         className,
       )}
     >
-      {position === 'fullscreen' && (
+      {/* {position === 'fullscreen' && (
         <div className="relative">
           <Media resource={media} src={staticImage} />
         </div>
@@ -64,7 +68,7 @@ export const MediaBlock: React.FC<Props> = (props) => {
         >
           <RichText content={caption} enableGutter={false} />
         </div>
-      )}
+      )} */}
     </div>
   )
 }
