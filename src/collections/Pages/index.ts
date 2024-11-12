@@ -70,7 +70,7 @@ export const Pages: CollectionConfig = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [FeatureBlock, Archive],
+              blocks: [FeatureBlock, Archive, FormBlock],
               required: true,
             },
           ],

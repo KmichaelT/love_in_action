@@ -8355,7 +8355,7 @@ export interface Page {
     };
     rating?: number | null;
   };
-  layout: (FeatureBlock | ArchiveBlock)[];
+  layout: (FeatureBlock | ArchiveBlock | FormBlock)[];
   meta?: {
     title?: string | null;
     image?: (number | null) | Media;
@@ -20169,26 +20169,29 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "redirects".
+ * via the `definition` "FormBlock".
  */
-export interface Redirect {
-  id: number;
-  from: string;
-  to?: {
-    type?: ('reference' | 'custom') | null;
-    reference?:
-      | ({
-          relationTo: 'pages';
-          value: number | Page;
-        } | null)
-      | ({
-          relationTo: 'posts';
-          value: number | Post;
-        } | null);
-    url?: string | null;
-  };
-  updatedAt: string;
-  createdAt: string;
+export interface FormBlock {
+  form: number | Form;
+  enableIntro?: boolean | null;
+  introContent?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'formBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -20351,6 +20354,29 @@ export interface Form {
         id?: string | null;
       }[]
     | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects".
+ */
+export interface Redirect {
+  id: number;
+  from: string;
+  to?: {
+    type?: ('reference' | 'custom') | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
