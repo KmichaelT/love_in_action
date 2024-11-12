@@ -21,6 +21,7 @@ type CMSLinkType = {
   url?: string | null
   iconBefore?: IconType | null
   iconAfter?: IconType | null
+  iconClassName?: string
 }
 
 export const CMSLink: React.FC<CMSLinkType> = (props) => {
@@ -36,6 +37,7 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
     url,
     iconBefore,
     iconAfter,
+    iconClassName,
   } = props
 
   const href =
@@ -52,10 +54,10 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
   if (appearance === 'inline') {
     return (
       <Link className={cn(className)} href={href || url || ''} {...newTabProps}>
-        {iconBefore && <Icon className="mr-2 h-6" icon={iconBefore} />}
+        {iconBefore && <Icon className={cn("mr-2 h-6", iconClassName)} icon={iconBefore} />}
         {label && label}
         {children && children}
-        {iconAfter && <Icon className="ml-2 h-6" icon={iconAfter} />}
+        {iconAfter && <Icon className={cn("ml-2 h-6", iconClassName)} icon={iconAfter} />}
       </Link>
     )
   }
@@ -63,10 +65,10 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
   return (
     <Button asChild className={className} size={size as typeof sizeFromProps} variant={appearance}>
       <Link className={cn(className)} href={href || url || ''} {...newTabProps}>
-        {iconBefore && <Icon className="mr-2 h-6" icon={iconBefore} />}
+        {iconBefore && <Icon className={cn("mr-2 h-6", iconClassName)} icon={iconBefore} />}
         {label && label}
         {children && children}
-        {iconAfter && <Icon className="ml-2 h-6" icon={iconAfter} />}
+        {iconAfter && <Icon className={cn("ml-2 h-6", iconClassName)} icon={iconAfter} />}
       </Link>
     </Button>
   )
