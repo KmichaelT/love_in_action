@@ -10,8 +10,9 @@ import {
   UnorderedListFeature,
 } from '@payloadcms/richtext-lexical'
 import { Block } from 'payload'
+export type FeatureDesignVersion = typeof allFeatureDesignVersions[number];
 
-const allFeatureDesignVersions = [
+export const allFeatureDesignVersions = [
   'FEATURE1',
   'FEATURE2',
   'FEATURE3',
@@ -111,6 +112,7 @@ const allFeatureDesignVersions = [
   'FEATURE107',
   'FEATURE108',
   'FEATURE109',
+  'FEATURE117'
 ]
 /**
  * The Feature block is the shadcnblocks.com feature block integrated in payload.
@@ -297,6 +299,7 @@ export const FeatureBlock: Block = {
                 'FEATURE106',
                 'FEATURE107',
                 'FEATURE108',
+                'FEATURE117',
               ].includes(designVersion)
             },
           },
@@ -331,7 +334,7 @@ export const FeatureBlock: Block = {
               const designVersion = data.layout.find(
                 (block) => block.blockType === 'feature',
               ).designVersion
-              return ['FEATURE19', 'FEATURE22', 'FEATURE25', 'FEATURE91'].includes(designVersion)
+              return ['FEATURE19', 'FEATURE22', 'FEATURE25', 'FEATURE91', 'FEATURE117'].includes(designVersion)
             },
           },
           fields: [
@@ -352,11 +355,28 @@ export const FeatureBlock: Block = {
                 const designVersion = data.layout.find(
                   (block) => block.blockType === 'feature',
                 ).designVersion
-                return ['FEATURE91'].includes(designVersion)
+                return ['FEATURE91', 'FEATURE117'].includes(designVersion)
               },
             },
           },
         }),
+        /**
+         * USP images
+         */
+        {
+          name: 'image',
+          type: 'upload',
+          admin: {
+            condition: (data, _) => {
+              const designVersion = data.layout.find(
+                (block) => block.blockType === 'feature',
+              ).designVersion
+              return ['FEATURE3', 'FEATURE51', 'FEATURE102', 'FEATURE66', 'FEATURE78', 'FEATURE81', 'FEATURE117'].includes(designVersion)
+            },
+          },
+          relationTo: 'media',
+          hasMany: false,
+        },
       ],
       minRows: 1,
     },

@@ -8506,7 +8506,8 @@ export interface FeatureBlock {
     | 'FEATURE106'
     | 'FEATURE107'
     | 'FEATURE108'
-    | 'FEATURE109';
+    | 'FEATURE109'
+    | 'FEATURE117';
   badge?: string | null;
   tagline?: string | null;
   icon?:
@@ -20046,6 +20047,7 @@ export interface FeatureBlock {
               id?: string | null;
             }[]
           | null;
+        image?: (number | null) | Media;
         id?: string | null;
       }[]
     | null;

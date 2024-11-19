@@ -97,14 +97,15 @@ import Feature106 from "@/blocks/Feature/feature106"
 import Feature107 from "@/blocks/Feature/feature107"
 import Feature108 from "@/blocks/Feature/feature108"
 import Feature109 from "@/blocks/Feature/feature109"
-
-import type { } from '@/payload-types'
+import Feature117 from "@/blocks/Feature/feature117"
 
 
 import { Page } from "@/payload-types"
+import type { FeatureDesignVersion } from "./config"
+import { JSX } from "react"
 
 
-const features = {
+const features: { [key in FeatureDesignVersion]: any } = {
     FEATURE1: Feature1,
     FEATURE2: Feature2,
     FEATURE3: Feature3,
@@ -203,7 +204,8 @@ const features = {
     FEATURE106: Feature106,
     FEATURE107: Feature107,
     FEATURE108: Feature108,
-    FEATURE109: Feature109
+    FEATURE109: Feature109,
+    Feature117: Feature117
 }
 
 export const FeatureBlock: React.FC<Page['layout'][0]> = (props) => {
