@@ -1,5 +1,7 @@
 import { icon } from '@/components/Icon/config'
 import { linkGroup } from '@/fields/linkGroup'
+import { link } from '@/fields/link'
+
 import {
   FixedToolbarFeature,
   HeadingFeature,
@@ -10,7 +12,6 @@ import {
   UnorderedListFeature,
 } from '@payloadcms/richtext-lexical'
 import { Block } from 'payload'
-export type FeatureDesignVersion = typeof allFeatureDesignVersions[number];
 
 export const allFeatureDesignVersions = [
   'FEATURE1',
@@ -112,8 +113,17 @@ export const allFeatureDesignVersions = [
   'FEATURE107',
   'FEATURE108',
   'FEATURE109',
-  'FEATURE117'
-]
+  'FEATURE117',
+] as const
+
+export type FeatureDesignVersion = (typeof allFeatureDesignVersions)[number]
+
+/**
+ * mutable copy of allFeatureDesignVersions as payload needs this type and
+ * we need a const for other purposes
+ */
+const mutableFeatureDesignVersions = [...allFeatureDesignVersions]
+
 /**
  * The Feature block is the shadcnblocks.com feature block integrated in payload.
  * It is using the same field namings as the heros -> PageHero
@@ -125,7 +135,7 @@ export const FeatureBlock: Block = {
     {
       name: 'designVersion',
       type: 'select',
-      options: allFeatureDesignVersions,
+      options: mutableFeatureDesignVersions,
       defaultValue: 'FEATURE1',
       required: true,
     },
@@ -270,7 +280,7 @@ export const FeatureBlock: Block = {
         {
           ...icon,
           label: 'Icon',
-          name: 'usp-icon',
+          name: 'uspIcon',
           admin: {
             condition: (data, _) => {
               const designVersion = data.layout.find(
@@ -304,6 +314,21 @@ export const FeatureBlock: Block = {
             },
           },
         },
+        /**
+         * Single tagline per USP, for example for feature117
+         */
+        {
+          name: 'tagline',
+          type: 'text',
+          admin: {
+            condition: (data, _) => {
+              const designVersion = data.layout.find(
+                (block) => block.blockType === 'feature',
+              ).designVersion
+              return ['FEATURE117'].includes(designVersion)
+            },
+          },
+        },
         {
           name: 'richText',
           type: 'richText',
@@ -334,7 +359,7 @@ export const FeatureBlock: Block = {
               const designVersion = data.layout.find(
                 (block) => block.blockType === 'feature',
               ).designVersion
-              return ['FEATURE19', 'FEATURE22', 'FEATURE25', 'FEATURE91', 'FEATURE117'].includes(designVersion)
+              return ['FEATURE19', 'FEATURE22', 'FEATURE25', 'FEATURE91'].includes(designVersion)
             },
           },
           fields: [
@@ -355,7 +380,24 @@ export const FeatureBlock: Block = {
                 const designVersion = data.layout.find(
                   (block) => block.blockType === 'feature',
                 ).designVersion
-                return ['FEATURE91', 'FEATURE117'].includes(designVersion)
+                return ['FEATURE91'].includes(designVersion)
+              },
+            },
+          },
+        }),
+        /**
+         * Just a single link
+         */
+        link({
+          appearances: false,
+          overrides: {
+            admin: {
+              description: 'Single link for this USP. Icons might be set automatically, depending on the design version',
+              condition: (data, _) => {
+                const designVersion = data.layout.find(
+                  (block) => block.blockType === 'feature',
+                ).designVersion
+                return ['FEATURE117'].includes(designVersion)
               },
             },
           },
@@ -371,7 +413,15 @@ export const FeatureBlock: Block = {
               const designVersion = data.layout.find(
                 (block) => block.blockType === 'feature',
               ).designVersion
-              return ['FEATURE3', 'FEATURE51', 'FEATURE102', 'FEATURE66', 'FEATURE78', 'FEATURE81', 'FEATURE117'].includes(designVersion)
+              return [
+                'FEATURE3',
+                'FEATURE51',
+                'FEATURE102',
+                'FEATURE66',
+                'FEATURE78',
+                'FEATURE81',
+                'FEATURE117',
+              ].includes(designVersion)
             },
           },
           relationTo: 'media',
