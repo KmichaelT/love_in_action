@@ -151,7 +151,8 @@ export const FeatureBlock: Block = {
       name: 'tagline',
       type: 'text',
       admin: {
-        condition: (_, { designVersion } = {}) => ['FEATURE99'].includes(designVersion),
+        condition: (_, { designVersion } = {}) =>
+          ['FEATURE99', 'FEATURE103'].includes(designVersion),
       },
     },
     {
@@ -392,12 +393,13 @@ export const FeatureBlock: Block = {
           appearances: false,
           overrides: {
             admin: {
-              description: 'Single link for this USP. Icons might be set automatically, depending on the design version',
+              description:
+                'Single link for this USP. Icons might be set automatically, depending on the design version',
               condition: (data, _) => {
                 const designVersion = data.layout.find(
                   (block) => block.blockType === 'feature',
                 ).designVersion
-                return ['FEATURE117'].includes(designVersion)
+                return ['FEATURE103', 'FEATURE117'].includes(designVersion)
               },
             },
           },
