@@ -22,7 +22,7 @@ const Feature103: React.FC<FeatureBlock> = ({ tagline, USPs, richText }) => {
           {USPs?.map((usp, index) => (
             <a
               key={index}
-              href="#"
+              href={usp.link?.url || '#'}
               className="flex flex-col rounded-xl border p-6 hover:border-primary"
             >
               <div className="flex items-start justify-between gap-4">
