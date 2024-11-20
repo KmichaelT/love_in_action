@@ -22,21 +22,13 @@ import { cn } from '@/utilities/cn'
 export type NodeTypes =
   | DefaultNodeTypes
   | SerializedBlockNode<
-    | Extract<Page['layout'][0], { blockType: 'cta' }>
-    | Extract<Page['layout'][0], { blockType: 'mediaBlock' }>
-    | BannerBlockProps
-    | CodeBlockProps
-  >
+      | Extract<Page['layout'][0], { blockType: 'cta' }>
+      | Extract<Page['layout'][0], { blockType: 'mediaBlock' }>
+      | BannerBlockProps
+      | CodeBlockProps
+    >
 
-export type OverrideStyle = Partial<Record<
-  "h1" |
-  "h2" |
-  "h3" |
-  "h4" |
-  "h5" |
-  "h6" |
-  "p"
-  , string>>
+export type OverrideStyle = Partial<Record<'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'li', string>>
 
 type Props = {
   nodes: NodeTypes[]
@@ -118,20 +110,20 @@ export function serializeLexical({ nodes, overrideStyle }: Props): JSX.Element {
           }
 
           switch (blockType) {
-            case 'cta':
-              return <CallToActionBlock key={index} {...block} />
-            case 'mediaBlock':
-              return (
-                <MediaBlock
-                  className="col-start-1 col-span-3"
-                  imgClassName="m-0"
-                  key={index}
-                  {...block}
-                  captionClassName="mx-auto max-w-[48rem]"
-                  enableGutter={false}
-                  disableInnerContainer={true}
-                />
-              )
+            // case 'cta':
+            //   return <CallToActionBlock key={index} {...block} />
+            // case 'mediaBlock':
+            //   return (
+            //     <MediaBlock
+            //       className="col-start-1 col-span-3"
+            //       imgClassName="m-0"
+            //       key={index}
+            //       {...block}
+            //       captionClassName="mx-auto max-w-[48rem]"
+            //       enableGutter={false}
+            //       disableInnerContainer={true}
+            //     />
+            //   )
             case 'banner':
               return <BannerBlock className="col-start-2 mb-4" key={index} {...block} />
             case 'code':
@@ -145,7 +137,7 @@ export function serializeLexical({ nodes, overrideStyle }: Props): JSX.Element {
               return <br className="col-start-2" key={index} />
             }
             case 'paragraph': {
-              let className = "col-start-2"
+              let className = 'col-start-2'
               if (overrideStyle?.p) {
                 className = cn(className, overrideStyle?.p)
               }
@@ -157,7 +149,7 @@ export function serializeLexical({ nodes, overrideStyle }: Props): JSX.Element {
             }
             case 'heading': {
               const Tag = node?.tag
-              let className = "col-start-2"
+              let className = 'col-start-2'
               if (overrideStyle?.[Tag]) {
                 className = cn(className, overrideStyle?.[Tag])
               }
@@ -170,17 +162,28 @@ export function serializeLexical({ nodes, overrideStyle }: Props): JSX.Element {
             case 'list': {
               const Tag = node?.tag
               return (
-                <Tag className="list col-start-2" key={index}>
+                <Tag
+                  className={cn(
+                    'col-start-2 pl-4',
+                    // Add specific styling based on list type
+                    node.listType === 'bullet' ? 'list-disc' : 'list-decimal',
+                  )}
+                  key={index}
+                >
                   {serializedChildren}
                 </Tag>
               )
             }
             case 'listitem': {
+              let className = ''
+              if (overrideStyle?.li) {
+                className = cn(className, overrideStyle?.li)
+              }
               if (node?.checked != null) {
                 return (
                   <li
                     aria-checked={node.checked ? 'true' : 'false'}
-                    className={` ${node.checked ? '' : ''}`}
+                    className={className}
                     key={index}
                     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
                     role="checkbox"
@@ -192,7 +195,7 @@ export function serializeLexical({ nodes, overrideStyle }: Props): JSX.Element {
                 )
               } else {
                 return (
-                  <li key={index} value={node?.value}>
+                  <li key={index} className={className} value={node?.value}>
                     {serializedChildren}
                   </li>
                 )

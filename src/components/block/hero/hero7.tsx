@@ -5,7 +5,7 @@ import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Page } from '@/payload-types';
 
-export const Hero7: React.FC<Page['hero']> = ({ links, media, badge, richText }) => {
+export const Hero7: React.FC<Page['hero']> = ({ links, badge, richText }) => {
   return (
     <section className="py-32">
       <div className="container text-center">
