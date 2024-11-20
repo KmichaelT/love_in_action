@@ -114,6 +114,7 @@ export const allFeatureDesignVersions = [
   'FEATURE108',
   'FEATURE109',
   'FEATURE117',
+  'FEATURE126',
 ] as const
 
 export type FeatureDesignVersion = (typeof allFeatureDesignVersions)[number]

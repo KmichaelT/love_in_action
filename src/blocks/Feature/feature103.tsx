@@ -23,25 +23,21 @@ const Feature103: React.FC<FeatureBlock> = ({ tagline, USPs, richText }) => {
             <a
               key={index}
               href={usp.link?.url || '#'}
-              className="flex flex-col rounded-xl border p-6 hover:border-primary"
+              className="flex flex-col rounded-xl border p-6 hover:border-primary relative"
             >
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex-1">
-                  {usp.richText && (
-                    <RichText 
-                      content={usp.richText} 
-                      withWrapper={false}
-                      overrideStyle={{
-                        h3: "text-lg font-medium mb-4",
-                        p: "text-muted-foreground"
-                      }}
-                    />
-                  )}
-                </div>
-                <span className="flex size-8 shrink-0 items-center justify-center rounded-full border">
-                  <ArrowRight className="h-auto w-4" />
-                </span>
-              </div>
+              {usp.richText && (
+                <RichText 
+                  content={usp.richText} 
+                  withWrapper={false}
+                  overrideStyle={{
+                    h3: "text-lg font-medium mb-4 pr-12",
+                    p: "text-muted-foreground"
+                  }}
+                />
+              )}
+              <span className="absolute right-6 top-6 flex size-8 shrink-0 items-center justify-center rounded-full border">
+                <ArrowRight className="h-auto w-4" />
+              </span>
             </a>
           ))}
         </div>
