@@ -8530,7 +8530,8 @@ export interface FeatureBlock {
     | 'FEATURE107'
     | 'FEATURE108'
     | 'FEATURE109'
-    | 'FEATURE117';
+    | 'FEATURE117'
+    | 'FEATURE126';
   badge?: string | null;
   tagline?: string | null;
   icon?:
