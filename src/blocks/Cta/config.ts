@@ -32,6 +32,7 @@ export type CtaDesignVersion = typeof allCtaDesignVersions[number]
 
 export const CtaBlock: Block = {
   slug: 'cta',
+  interfaceName: 'CtaBlock',
   labels: {
     singular: 'Call to Action',
     plural: 'Call to Actions',
@@ -70,7 +71,7 @@ export const CtaBlock: Block = {
       editor: lexicalEditor({
         features: ({ rootFeatures }) => [
           ...rootFeatures,
-          HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
+          HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
           ParagraphFeature(),
           OrderedListFeature(),
           UnorderedListFeature(),
