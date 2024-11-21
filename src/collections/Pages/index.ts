@@ -8,6 +8,8 @@ import { Content } from '../../blocks/Content/config'
 import { FormBlock } from '../../blocks/Form/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { FeatureBlock } from '@/blocks/Feature/config'
+import { CtaBlock } from '@/blocks/Cta/config'
+
 
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
@@ -70,7 +72,7 @@ export const Pages: CollectionConfig = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [FeatureBlock, Archive, FormBlock],
+              blocks: [FeatureBlock, Archive, FormBlock, CtaBlock],
               required: true,
             },
           ],
