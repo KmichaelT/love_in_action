@@ -49,7 +49,7 @@ export const CtaBlock: Block = {
       type: 'text',
       admin: {
         condition: (_, { designVersion } = {}) =>
-          ['CTA1', 'CTA3', 'CTA4', 'CTA7', 'CTA13', 'CTA15'].includes(designVersion),
+          ['CTA3', 'CTA4', 'CTA7', 'CTA13', 'CTA15'].includes(designVersion),
       },
     },
     {
