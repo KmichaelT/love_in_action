@@ -22,6 +22,7 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
+import { Gallery } from '@/blocks/Gallery/config'
 export const Pages: CollectionConfig = {
   slug: 'pages',
   access: {
@@ -70,7 +71,7 @@ export const Pages: CollectionConfig = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [FeatureBlock, Archive, FormBlock],
+              blocks: [FeatureBlock, Archive, FormBlock, Content, Gallery],
               required: true,
             },
           ],
