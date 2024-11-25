@@ -16,7 +16,8 @@ import { draftMode } from 'next/headers'
 import './globals.css'
 import { ThemeConfig } from '@/globals/ThemeConfig/Component'
 
-// Change fonts by changing class Inter or DM_Sans
+// Change fonts by changing class Geist_Mono or Geist. 
+// No change in tailwind.config.mjs needed (Because it's already synced via --font-mono and --font-sans variables).
 const mono = Geist_Mono({ subsets: ['latin'], variable: '--font-mono' })
 const sans = Geist({ subsets: ['latin'], variable: '--font-sans' })
 
@@ -49,10 +50,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SERVER_URL || 'https://payloadcms.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SERVER_URL || 'https://trieb.work'),
   openGraph: mergeOpenGraph(),
-  twitter: {
-    card: 'summary_large_image',
-    creator: '@payloadcms',
-  },
+  // twitter: {
+  //   card: 'summary_large_image',
+  //   creator: '@payloadcms',
+  // },
 }
