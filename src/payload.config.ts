@@ -28,6 +28,7 @@ import Users from './collections/Users'
 import { seedHandler } from './endpoints/seedHandler'
 import { Footer } from './globals/Footer/config'
 import { Header } from './globals/Header/config'
+import { ThemeConfig } from './globals/ThemeConfig/config'
 import { revalidateRedirects } from './hooks/revalidateRedirects'
 import { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
 import { Page, Post } from 'src/payload-types'
@@ -120,6 +121,7 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL || '',
+      
     },
   }),
   collections: [Pages, Posts, Media, Categories, Users],
@@ -134,7 +136,7 @@ export default buildConfig({
       path: '/seed',
     },
   ],
-  globals: [Header, Footer],
+  globals: [ThemeConfig, Header, Footer],
   plugins: [
     redirectsPlugin({
       collections: ['pages', 'posts'],
