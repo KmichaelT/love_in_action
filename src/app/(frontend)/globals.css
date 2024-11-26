@@ -17,7 +17,8 @@
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
-    --card: 240 5% 96%;
+    /* we won't overwrite the default card background */
+     /* --card: 240 5% 96%;  /* This defines a light gray color */
     --card-foreground: 222.2 84% 4.9%;
 
     --popover: 0 0% 100%;
