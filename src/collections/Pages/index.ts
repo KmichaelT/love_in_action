@@ -23,6 +23,7 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
+import { LogosBlock } from '@/blocks/Logos/config'
 export const Pages: CollectionConfig = {
   slug: 'pages',
   access: {
@@ -71,7 +72,7 @@ export const Pages: CollectionConfig = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [FeatureBlock, Archive, FormBlock, CtaBlock],
+              blocks: [FeatureBlock, Archive, FormBlock, CtaBlock, LogosBlock],
               required: true,
             },
           ],
