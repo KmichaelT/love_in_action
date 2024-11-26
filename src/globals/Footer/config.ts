@@ -2,11 +2,35 @@ import type { GlobalConfig } from 'payload'
 
 import { link } from '@/fields/link'
 import { revalidateFooter } from './hooks/revalidateFooter'
+import { generatePreviewPath } from '@/utilities/generatePreviewPath'
 
 export const Footer: GlobalConfig = {
   slug: 'footer',
   access: {
     read: () => true,
+  },
+  admin: {
+    description: 'Theme configuration (For live preview config has to be saved)',
+    livePreview: {
+      url: () => {
+        console.log('live preview')
+        const path = generatePreviewPath({
+          slug: 'home',
+          collection: 'pages',
+        })
+
+        return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`
+      },
+    },
+    preview: () => {
+      console.log('preview')
+      const path = generatePreviewPath({
+        slug: 'home',
+        collection: 'pages',
+      })
+
+      return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`
+    },
   },
   fields: [
     {

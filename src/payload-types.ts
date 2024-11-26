@@ -43,10 +43,12 @@ export interface Config {
     defaultIDType: number;
   };
   globals: {
+    themeConfig: ThemeConfig;
     header: Header;
     footer: Footer;
   };
   globalsSelect: {
+    themeConfig: ThemeConfigSelect<false> | ThemeConfigSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
   };
@@ -5042,6 +5044,7 @@ export interface Page {
             | 'ZoomOut'
           )
         | null;
+      size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
       reference?: {
         relationTo: 'pages';
         value: number | Page;
@@ -8340,6 +8343,7 @@ export interface Page {
                   | 'ZoomOut'
                 )
               | null;
+            size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
             reference?: {
               relationTo: 'pages';
               value: number | Page;
@@ -13462,6 +13466,7 @@ export interface FeatureBlock {
                 | 'ZoomOut'
               )
             | null;
+          size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
           reference?: {
             relationTo: 'pages';
             value: number | Page;
@@ -20061,6 +20066,7 @@ export interface FeatureBlock {
                       | 'ZoomOut'
                     )
                   | null;
+                size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
                 reference?: {
                   relationTo: 'pages';
                   value: number | Page;
@@ -23347,6 +23353,7 @@ export interface FeatureBlock {
                 | 'ZoomOut'
               )
             | null;
+          size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
           reference?: {
             relationTo: 'pages';
             value: number | Page;
@@ -28614,6 +28621,7 @@ export interface CtaBlock {
                 | 'ZoomOut'
               )
             | null;
+          size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
           reference?: {
             relationTo: 'pages';
             value: number | Page;
@@ -28803,6 +28811,7 @@ export interface PagesSelect<T extends boolean = true> {
               newTab?: T;
               iconBefore?: T;
               iconAfter?: T;
+              size?: T;
               reference?: T;
               url?: T;
             };
@@ -28817,6 +28826,7 @@ export interface PagesSelect<T extends boolean = true> {
                     newTab?: T;
                     iconBefore?: T;
                     iconAfter?: T;
+                    size?: T;
                     reference?: T;
                     url?: T;
                     label?: T;
@@ -28862,6 +28872,7 @@ export interface PagesSelect<T extends boolean = true> {
                           newTab?: T;
                           iconBefore?: T;
                           iconAfter?: T;
+                          size?: T;
                           reference?: T;
                           url?: T;
                           label?: T;
@@ -28893,6 +28904,7 @@ export interface PagesSelect<T extends boolean = true> {
                                 newTab?: T;
                                 iconBefore?: T;
                                 iconAfter?: T;
+                                size?: T;
                                 reference?: T;
                                 url?: T;
                                 label?: T;
@@ -28907,6 +28919,7 @@ export interface PagesSelect<T extends boolean = true> {
                           newTab?: T;
                           iconBefore?: T;
                           iconAfter?: T;
+                          size?: T;
                           reference?: T;
                           url?: T;
                           label?: T;
@@ -28955,6 +28968,7 @@ export interface PagesSelect<T extends boolean = true> {
                           newTab?: T;
                           iconBefore?: T;
                           iconAfter?: T;
+                          size?: T;
                           reference?: T;
                           url?: T;
                           label?: T;
@@ -29290,6 +29304,72 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "themeConfig".
+ */
+export interface ThemeConfig {
+  id: number;
+  radius?: string | null;
+  regularColors?: {
+    background?: string | null;
+    foreground?: string | null;
+    card?: string | null;
+    'card-foreground'?: string | null;
+    popover?: string | null;
+    'popover-foreground'?: string | null;
+    primary?: string | null;
+    'primary-foreground'?: string | null;
+    secondary?: string | null;
+    'secondary-foreground'?: string | null;
+    muted?: string | null;
+    'muted-foreground'?: string | null;
+    accent?: string | null;
+    'accent-foreground'?: string | null;
+    destructive?: string | null;
+    'destructive-foreground'?: string | null;
+    border?: string | null;
+    input?: string | null;
+    ring?: string | null;
+    success?: string | null;
+    warning?: string | null;
+    error?: string | null;
+    'chart-1'?: string | null;
+    'chart-2'?: string | null;
+    'chart-3'?: string | null;
+    'chart-4'?: string | null;
+    'chart-5'?: string | null;
+    muted2?: string | null;
+    'muted2-foreground'?: string | null;
+  };
+  darkmodeColors?: {
+    enableDarkMode?: boolean | null;
+    background?: string | null;
+    foreground?: string | null;
+    card?: string | null;
+    'card-foreground'?: string | null;
+    popover?: string | null;
+    'popover-foreground'?: string | null;
+    primary?: string | null;
+    'primary-foreground'?: string | null;
+    secondary?: string | null;
+    'secondary-foreground'?: string | null;
+    muted?: string | null;
+    'muted-foreground'?: string | null;
+    accent?: string | null;
+    'accent-foreground'?: string | null;
+    destructive?: string | null;
+    'destructive-foreground'?: string | null;
+    border?: string | null;
+    input?: string | null;
+    ring?: string | null;
+    success?: string | null;
+    warning?: string | null;
+    error?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -34215,6 +34295,7 @@ export interface Header {
                       | 'ZoomOut'
                     )
                   | null;
+                size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
                 reference?: {
                   relationTo: 'pages';
                   value: number | Page;
@@ -37505,6 +37586,7 @@ export interface Header {
                     | 'ZoomOut'
                   )
                 | null;
+              size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
               reference?: {
                 relationTo: 'pages';
                 value: number | Page;
@@ -40795,6 +40877,7 @@ export interface Header {
                 | 'ZoomOut'
               )
             | null;
+          size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
           reference?: {
             relationTo: 'pages';
             value: number | Page;
@@ -44099,6 +44182,7 @@ export interface Footer {
                       | 'ZoomOut'
                     )
                   | null;
+                size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
                 reference?: {
                   relationTo: 'pages';
                   value: number | Page;
@@ -44114,6 +44198,76 @@ export interface Footer {
     | null;
   updatedAt?: string | null;
   createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "themeConfig_select".
+ */
+export interface ThemeConfigSelect<T extends boolean = true> {
+  radius?: T;
+  regularColors?:
+    | T
+    | {
+        background?: T;
+        foreground?: T;
+        card?: T;
+        'card-foreground'?: T;
+        popover?: T;
+        'popover-foreground'?: T;
+        primary?: T;
+        'primary-foreground'?: T;
+        secondary?: T;
+        'secondary-foreground'?: T;
+        muted?: T;
+        'muted-foreground'?: T;
+        accent?: T;
+        'accent-foreground'?: T;
+        destructive?: T;
+        'destructive-foreground'?: T;
+        border?: T;
+        input?: T;
+        ring?: T;
+        success?: T;
+        warning?: T;
+        error?: T;
+        'chart-1'?: T;
+        'chart-2'?: T;
+        'chart-3'?: T;
+        'chart-4'?: T;
+        'chart-5'?: T;
+        muted2?: T;
+        'muted2-foreground'?: T;
+      };
+  darkmodeColors?:
+    | T
+    | {
+        enableDarkMode?: T;
+        background?: T;
+        foreground?: T;
+        card?: T;
+        'card-foreground'?: T;
+        popover?: T;
+        'popover-foreground'?: T;
+        primary?: T;
+        'primary-foreground'?: T;
+        secondary?: T;
+        'secondary-foreground'?: T;
+        muted?: T;
+        'muted-foreground'?: T;
+        accent?: T;
+        'accent-foreground'?: T;
+        destructive?: T;
+        'destructive-foreground'?: T;
+        border?: T;
+        input?: T;
+        ring?: T;
+        success?: T;
+        warning?: T;
+        error?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -44140,6 +44294,7 @@ export interface HeaderSelect<T extends boolean = true> {
                           newTab?: T;
                           iconBefore?: T;
                           iconAfter?: T;
+                          size?: T;
                           reference?: T;
                           url?: T;
                           label?: T;
@@ -44160,6 +44315,7 @@ export interface HeaderSelect<T extends boolean = true> {
                     newTab?: T;
                     iconBefore?: T;
                     iconAfter?: T;
+                    size?: T;
                     reference?: T;
                     url?: T;
                     label?: T;
@@ -44178,6 +44334,7 @@ export interface HeaderSelect<T extends boolean = true> {
               newTab?: T;
               iconBefore?: T;
               iconAfter?: T;
+              size?: T;
               reference?: T;
               url?: T;
               label?: T;
@@ -44212,6 +44369,7 @@ export interface FooterSelect<T extends boolean = true> {
                     newTab?: T;
                     iconBefore?: T;
                     iconAfter?: T;
+                    size?: T;
                     reference?: T;
                     url?: T;
                     label?: T;
