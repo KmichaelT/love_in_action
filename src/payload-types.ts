@@ -8384,7 +8384,7 @@ export interface Page {
     | FormBlock
     | ContentBlock
     | {
-        designVersion?: ('GALLERY1' | 'GALLERY3' | 'GALLERY4' | 'GALLERY5' | 'GALLERY6') | null;
+        designVersion?: ('GALLERY1' | 'GALLERY2' | 'GALLERY3' | 'GALLERY4' | 'GALLERY5' | 'GALLERY6') | null;
         richText?: {
           root: {
             type: string;

@@ -8,6 +8,7 @@ import { link } from '@/fields/link'
 
 export const allGalleryDesignVersions = [
   'GALLERY1',
+  'GALLERY2',
   'GALLERY3',
   'GALLERY4',
   'GALLERY5',
@@ -34,6 +35,7 @@ export const Gallery: Block = {
       defaultValue: 'GALLERY1',
       options: [
         { label: 'Gallery 1 (Grid Layout)', value: 'GALLERY1' },
+        { label: 'Gallery 2 (Basic Gallery with just images and fullscreen modal)', value: 'GALLERY2' },
         { label: 'Gallery 3 (Masonry Layout)', value: 'GALLERY3' },
         { label: 'Gallery 4 (Large Images with Overlay)', value: 'GALLERY4' },
         { label: 'Gallery 5 (Carousel)', value: 'GALLERY5' },
