@@ -15,7 +15,6 @@ export const allGalleryDesignVersions = [
   'GALLERY6',
 ] as const
 
-type GalleryDesignVersion = typeof allGalleryDesignVersions[number]
 
 /**
  * mutable copy of allGalleryDesignVersions as payload needs this type
@@ -24,6 +23,7 @@ const galleryDesignVersions: string[] = [...allGalleryDesignVersions]
 
 export const Gallery: Block = {
   slug: 'gallery',
+  interfaceName: 'GalleryBlock',
   labels: {
     singular: 'Gallery',
     plural: 'Gallery Blocks',
@@ -50,16 +50,32 @@ export const Gallery: Block = {
       type: 'richText',
       admin: {
         description: 'Optional heading and description for the gallery',
-        condition: (_, { designVersion } = {}) => galleryDesignVersions.includes(designVersion),
+        condition: (_, { designVersion } = {}) => !["GALLERY1"].includes(designVersion),
       },
       editor: lexicalEditor({
         features: ({ defaultFeatures }) => [
           ...defaultFeatures,
-          HeadingFeature(),
+          HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
           ParagraphFeature(),
         ],
       }),
     },
+    {
+      name: "tagline",
+      type: "text",
+      admin: {
+        condition: (_, { designVersion } = {}) => ["GALLERY6"].includes(designVersion),
+      },
+    },
+    link({
+      appearances: false,
+      overrides: {
+        admin: {
+          description: 'Single link for this gallery. Might look best with arrowRight icon',
+          condition: (_, { designVersion } :any) => ["GALLERY5", "GALLERY6"].includes(designVersion),
+        },
+      },
+    }),
     {
       name: 'elements',
       label: "Gallery Items",

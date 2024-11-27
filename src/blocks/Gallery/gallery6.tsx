@@ -1,7 +1,7 @@
 'use client';
 
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import type { CarouselApi } from '@/components/ui/carousel';
@@ -10,6 +10,9 @@ import {
   CarouselContent,
   CarouselItem,
 } from '@/components/ui/carousel';
+import { GalleryBlock } from '@/payload-types';
+import RichText from '@/components/RichText';
+import { CMSLink } from '@/components/Link';
 
 const data = [
   {
@@ -54,7 +57,7 @@ const data = [
   },
 ];
 
-const Gallery6 = () => {
+const Gallery6: React.FC<GalleryBlock> = ({richText, tagline, link}) => {
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
@@ -78,18 +81,12 @@ const Gallery6 = () => {
         <div className="mb-8 flex flex-col justify-between md:mb-14 md:flex-row md:items-end lg:mb-16">
           <div>
             <p className="mb-6 text-xs font-medium uppercase tracking-wider">
-              Tag Line
+              {tagline}
             </p>
-            <h2 className="mb-3 text-xl font-semibold md:mb-4 md:text-4xl lg:mb-6">
-              Gallery
-            </h2>
-            <a
-              href="#"
-              className="group flex items-center text-xs font-medium md:text-base lg:text-lg"
-            >
-              Book a demo{' '}
-              <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
-            </a>
+ 
+            {richText && <RichText content={richText} overrideStyle={{h2: "mb-3 text-xl font-semibold md:mb-4 md:text-4xl lg:mb-6", h3: "mb-3 text-3xl font-semibold md:mb-4 md:text-4xl lg:mb-6"}} withWrapper={false}/>}
+  
+            { link && <CMSLink className="group flex items-center text-xs font-medium md:text-base lg:text-lg" {...link} iconClassName="ml-2 size-4 transition-transform group-hover:translate-x-1" /> }
           </div>
           <div className="mt-8 flex shrink-0 items-center justify-center gap-2">
             <Button

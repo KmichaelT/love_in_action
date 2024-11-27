@@ -22,7 +22,6 @@ export const GalleryBlock: React.FC<Page['layout'][0]> = (props) => {
   if (props.blockType !== 'gallery') return null
 
   const { designVersion } = props || {}
-  console.log("design", props)
 
   if (!designVersion) return null
 
