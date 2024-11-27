@@ -13,7 +13,6 @@ export const Footer: GlobalConfig = {
     description: 'Theme configuration (For live preview config has to be saved)',
     livePreview: {
       url: () => {
-        console.log('live preview')
         const path = generatePreviewPath({
           slug: 'home',
           collection: 'pages',
@@ -23,7 +22,6 @@ export const Footer: GlobalConfig = {
       },
     },
     preview: () => {
-      console.log('preview')
       const path = generatePreviewPath({
         slug: 'home',
         collection: 'pages',
