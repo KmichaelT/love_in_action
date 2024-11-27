@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 
 import { cn } from 'src/utilities/cn'
-import { GeistMono } from 'geist/font/mono'
-import { GeistSans } from 'geist/font/sans'
+import { Geist_Mono, Geist } from 'next/font/google'
 import React from 'react'
 
 import { AdminBar } from '@/components/AdminBar'
@@ -15,13 +14,19 @@ import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
 
 import './globals.css'
+import { ThemeConfig } from '@/globals/ThemeConfig/Component'
+
+// Change fonts by changing class Geist_Mono or Geist. 
+// No change in tailwind.config.mjs needed (Because it's already synced via --font-mono and --font-sans variables).
+const mono = Geist_Mono({ subsets: ['latin'], variable: '--font-mono' })
+const sans = Geist({ subsets: ['latin'], variable: '--font-sans' })
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
-
   return (
-    <html className={cn(GeistSans.variable, GeistMono.variable)} lang="en" suppressHydrationWarning>
+    <html className={cn(mono.variable, sans.variable)} lang="en" suppressHydrationWarning>
       <head>
+        <ThemeConfig />
         <InitTheme />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
@@ -45,10 +50,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SERVER_URL || 'https://payloadcms.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SERVER_URL || 'https://trieb.work'),
   openGraph: mergeOpenGraph(),
-  twitter: {
-    card: 'summary_large_image',
-    creator: '@payloadcms',
-  },
+  // twitter: {
+  //   card: 'summary_large_image',
+  //   creator: '@payloadcms',
+  // },
 }

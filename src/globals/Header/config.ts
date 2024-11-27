@@ -2,11 +2,35 @@ import type { GlobalConfig } from 'payload'
 
 import { revalidateHeader } from './hooks/revalidateHeader'
 import { navbar } from './navbar/navbar.config'
+import { generatePreviewPath } from '@/utilities/generatePreviewPath'
 
 export const Header: GlobalConfig = {
   slug: 'header',
   access: {
     read: () => true,
+  },
+  admin: {
+    description: 'Theme configuration (For live preview config has to be saved)',
+    livePreview: {
+      url: () => {
+        console.log('live preview')
+        const path = generatePreviewPath({
+          slug: 'home',
+          collection: 'pages',
+        })
+
+        return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`
+      },
+    },
+    preview: () => {
+      console.log('preview')
+      const path = generatePreviewPath({
+        slug: 'home',
+        collection: 'pages',
+      })
+
+      return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`
+    },
   },
   fields: [
     {

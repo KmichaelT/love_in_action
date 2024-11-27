@@ -36,6 +36,7 @@ type LinkType = (options?: {
   appearances?: LinkAppearances[] | false
   disableLabel?: boolean
   overrides?: Record<string, unknown>
+  size?: 'default' | 'sm' | 'lg' | 'icon' | 'clear'
 }) => Field
 
 export const link: LinkType = ({ appearances, disableLabel = false, overrides = {} } = {}) => {
@@ -86,6 +87,11 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
           {
             ...icon,
             name: "iconAfter",
+          },
+          {
+            name: 'size',
+            type: 'select',
+            options: ['default', 'sm', 'lg', 'icon', 'clear'],
           },
         ],
       },

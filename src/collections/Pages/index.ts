@@ -3,11 +3,11 @@ import type { CollectionConfig } from 'payload'
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { Archive } from '../../blocks/ArchiveBlock/config'
-import { CallToAction } from '../../blocks/CallToAction/config'
-import { Content } from '../../blocks/Content/config'
 import { FormBlock } from '../../blocks/Form/config'
-import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { FeatureBlock } from '@/blocks/Feature/config'
+import { CtaBlock } from '@/blocks/Cta/config'
+import { Gallery } from '@/blocks/Gallery/config'
+
 
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
@@ -22,7 +22,6 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
-import { Gallery } from '@/blocks/Gallery/config'
 export const Pages: CollectionConfig = {
   slug: 'pages',
   access: {
@@ -71,7 +70,7 @@ export const Pages: CollectionConfig = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [FeatureBlock, Archive, FormBlock, Content, Gallery],
+              blocks: [FeatureBlock, Archive, FormBlock, CtaBlock, Gallery],
               required: true,
             },
           ],

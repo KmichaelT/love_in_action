@@ -8,6 +8,7 @@ const collectionPrefixMap: Partial<Record<CollectionSlug, string>> = {
 type Props = {
   collection: keyof typeof collectionPrefixMap
   slug: string
+  revalidateGlobals?: boolean
 }
 
 export const generatePreviewPath = ({ collection, slug }: Props) => {
