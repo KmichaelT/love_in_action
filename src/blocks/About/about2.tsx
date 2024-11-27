@@ -1,3 +1,4 @@
+// TODO: add cms connection
 const About2 = () => {
   return (
     <section className="py-32">
