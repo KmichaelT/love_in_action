@@ -9,6 +9,7 @@ import { FeatureBlock } from '@/blocks/Feature/config'
 import { CtaBlock } from '@/blocks/Cta/config'
 import { AboutBlock } from '@/blocks/About/config'
 import { LogosBlock } from '@/blocks/Logos/config'
+import { TestimonialBlock } from '@/blocks/Testimonial/config'
 
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
@@ -72,7 +73,7 @@ export const Pages: CollectionConfig = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [FeatureBlock, Archive, FormBlock, CtaBlock, LogosBlock, AboutBlock],
+              blocks: [FeatureBlock, Archive, FormBlock, CtaBlock, LogosBlock, AboutBlock, TestimonialBlock],
               required: true,
             },
           ],

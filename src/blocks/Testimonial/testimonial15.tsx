@@ -1,7 +1,8 @@
+import { TestimonialBlock } from '@/payload-types';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 
-const Testimonial15 = () => {
+const Testimonial15: React.FC<TestimonialBlock> = ({ headline, link, tagline, testimonial }) => {
   return (
     <section className="mb-32 bg-muted pt-32">
       <div className="container">

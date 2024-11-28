@@ -1,3 +1,4 @@
+import { TestimonialBlock } from '@/payload-types';
 import { Star } from 'lucide-react';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -69,7 +70,7 @@ const testimonials = [
   },
 ];
 
-const Testimonial11 = () => {
+const Testimonial11: React.FC<TestimonialBlock> = ({ headline, link, tagline, testimonial }) => {
   return (
     <section className="relative bg-accent bg-[linear-gradient(hsl(var(--accent))_0%,hsl(var(--background))_100%)] py-32 sm:py-0">
       <div className="container sm:py-32">

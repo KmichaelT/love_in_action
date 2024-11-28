@@ -1,3 +1,4 @@
+import { TestimonialBlock } from '@/payload-types';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import {
   Carousel,
@@ -6,6 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+import RichText from '@/components/RichText';
 
 const testimonials = [
   {
@@ -52,15 +54,22 @@ const testimonials = [
   },
 ];
 
-const Testimonial6 = () => {
+const Testimonial6: React.FC<TestimonialBlock> = ({ headline, link, tagline, testimonial }) => {
   return (
     <section className="py-32">
       <div className="container">
         <Carousel className="w-full">
           <div className="mb-8 flex justify-between px-1 lg:mb-12">
-            <h2 className="text-2xl font-semibold lg:text-5xl">
-              Why Clients Love Us
-            </h2>
+            {headline && <RichText
+              content={headline}
+              withWrapper={false}
+              overrideStyle={{
+                h2: 'text-2xl font-semibold lg:text-5xl',
+                h3: 'text-xl font-semibold lg:text-4xl',
+                h4: 'text-lg font-semibold lg:text-3xl',
+                p: 'text-muted-foreground lg:text-lg'
+              }}
+            />}
             <div className="flex items-center space-x-2">
               <CarouselPrevious className="static translate-y-0" />
               <CarouselNext className="static translate-y-0" />

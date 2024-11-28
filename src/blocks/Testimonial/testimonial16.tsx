@@ -5,6 +5,8 @@ import React, { useState } from 'react';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/utilities/cn';
+import { TestimonialBlock } from '@/payload-types';
+import RichText from '@/components/RichText';
 
 const tweets = [
   {
@@ -209,16 +211,23 @@ const tweets = [
   },
 ];
 
-const Testimonial16 = () => {
+const Testimonial16: React.FC<TestimonialBlock> = ({ headline, link, tagline, testimonial }) => {
   const [expandedTweetId, setExpandedTweetId] = useState<number | null>(null);
 
   return (
     <section className="py-32">
       <div className="container">
         <div className="grid gap-8 lg:grid-cols-2">
-          <h2 className="max-w-md text-3xl font-medium lg:text-[42px] lg:leading-tight">
-            Here&apos;s how our platform is making an impact
-          </h2>
+          {headline && <RichText
+            content={headline}
+            withWrapper={false}
+            overrideStyle={{
+              h2: 'max-w-md text-3xl font-medium lg:text-[42px] lg:leading-tight',
+              h3: 'max-w-md text-2xl font-medium lg:text-4xl lg:leading-tight',
+              h4: 'max-w-md text-xl font-medium lg:text-3xl lg:leading-tight',
+              p: 'mb-4 text-2xl font-medium text-muted-foreground'
+            }}
+          />}
           <div>
             <p className="mb-4 text-2xl font-medium text-muted-foreground">
               See what others are saying
