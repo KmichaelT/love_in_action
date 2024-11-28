@@ -1,22 +1,23 @@
-import { cn } from 'src/utilities/cn'
 import React, { Fragment } from 'react'
 
 import type { Page } from '@/payload-types'
 
 import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
-import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
-import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { FeatureBlock } from '@/blocks/Feature/Component'
 import { CtaBlock } from '@/blocks/Cta/Component'
+import { LogosBlock } from '@/blocks/Logos/Component'
+import { AboutBlock } from '@/blocks/About/Component'
 
-const blockComponents = {
+const blockComponents: Record<Page['layout'][0]['blockType'], React.FC<any>> = {
   archive: ArchiveBlock,
-  content: ContentBlock,
+  // content: ContentBlock,
   formBlock: FormBlock,
-  mediaBlock: MediaBlock,
+  // mediaBlock: MediaBlock,
   feature: FeatureBlock,
   cta: CtaBlock,
+  logos: LogosBlock,
+  about: AboutBlock,
 }
 
 export const RenderBlocks: React.FC<{
