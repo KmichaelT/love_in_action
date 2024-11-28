@@ -1,3 +1,4 @@
+// TODO: add cms connection
 import { CircleArrowRight, Files, Settings } from 'lucide-react';
 
 const About1 = () => {

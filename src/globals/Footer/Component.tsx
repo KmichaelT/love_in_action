@@ -4,14 +4,14 @@ import React from 'react'
 import type { Footer } from '@/payload-types'
 
 
-import Footer1 from '@/components/block/footer/footer1'
-import Footer2 from '@/components/block/footer/footer2'
-import Footer3 from '@/components/block/footer/footer3'
-import Footer4 from '@/components/block/footer/footer4'
-import Footer5 from '@/components/block/footer/footer5'
-import Footer6 from '@/components/block/footer/footer6'
-import Footer7 from '@/components/block/footer/footer7'
-import Footer8 from '@/components/block/footer/footer8'
+import Footer1 from './footer/footer1'
+import Footer2 from './footer/footer2'
+import Footer3 from './footer/footer3'
+import Footer4 from './footer/footer4'
+import Footer5 from './footer/footer5'
+import Footer6 from './footer/footer6'
+import Footer7 from './footer/footer7'
+import Footer8 from './footer/footer8'
 
 export async function Footer() {
   const footer: Footer = await getCachedGlobal('footer', 2)()

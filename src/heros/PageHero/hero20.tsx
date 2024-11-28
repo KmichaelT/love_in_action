@@ -76,7 +76,6 @@ const Hero20 = () => {
               value={currentAccordion}
               onValueChange={(value) => {
                 setCurrentAccordion(value);
-                console.log(value);
                 api?.scrollTo(+value - 1);
               }}
             >
