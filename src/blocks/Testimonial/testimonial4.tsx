@@ -12,9 +12,9 @@ const Testimonial4: React.FC<TestimonialBlock> = ({ headline, link, tagline, tes
           <div className="grid grid-cols-1 items-stretch gap-x-0 gap-y-4 lg:grid-cols-3 lg:gap-4">
             {Array.isArray(testimonial) && testimonial.length > 0 && testimonial[0] && (
               <>
-                {testimonial[0].author?.avatar && <Media
+                {testimonial[0]?.authorAvatar && <Media
                   imgClassName="h-72 w-full rounded-md object-cover lg:h-auto"
-                  resource={testimonial[0].author?.avatar}
+                  resource={testimonial[0]?.authorAvatar}
                 />}
                 <Card className="col-span-2 flex items-center justify-center p-6">
                   <div className="flex flex-col gap-4">
@@ -28,8 +28,8 @@ const Testimonial4: React.FC<TestimonialBlock> = ({ headline, link, tagline, tes
                       />
                     )}
                     <div className="flex flex-col items-start">
-                      <p>{testimonial[0].author?.name ?? ""}</p>
-                      <p className="text-muted-foreground">{testimonial[0].author?.description ?? ""}</p>
+                      <p>{testimonial[0]?.authorName ?? ""}</p>
+                      <p className="text-muted-foreground">{testimonial[0]?.authorDescription ?? ""}</p>
                     </div>
                   </div>
                 </Card>
@@ -50,17 +50,17 @@ const Testimonial4: React.FC<TestimonialBlock> = ({ headline, link, tagline, tes
                 </CardContent>
                 <CardFooter>
                   <div className="flex gap-4 leading-5">
-                    {testimonial[0].author?.avatar && typeof testimonial[0].author?.avatar === "object" && (<Avatar className="size-9 rounded-full ring-1 ring-input">
-                      <AvatarImage asChild src={testimonial[0].author?.avatar.url!}>
+                    {testimonial[0]?.authorAvatar && typeof testimonial[0]?.authorAvatar === "object" && (<Avatar className="size-9 rounded-full ring-1 ring-input">
+                      <AvatarImage asChild src={testimonial[0]?.authorAvatar.url!}>
                         <Media
                           imgClassName="h-9 w-full rounded-md object-cover lg:h-auto"
-                          resource={testimonial[0].author?.avatar}
+                          resource={testimonial[0]?.authorAvatar}
                         />
                       </AvatarImage>
                     </Avatar>)}
                     <div className="text-sm">
-                      <p className="font-medium">{testimonial[1].author?.name ?? ""}</p>
-                      <p className="text-muted-foreground">{testimonial[1].author?.description ?? ""}</p>
+                      <p className="font-medium">{testimonial[1]?.authorName ?? ""}</p>
+                      <p className="text-muted-foreground">{testimonial[1]?.authorDescription ?? ""}</p>
                     </div>
                   </div>
                 </CardFooter>
@@ -79,19 +79,19 @@ const Testimonial4: React.FC<TestimonialBlock> = ({ headline, link, tagline, tes
                 </CardContent>
                 <CardFooter>
                   <div className="flex gap-4 leading-5">
-                    {testimonial[2].author?.avatar && typeof testimonial[2].author?.avatar === "object" && (
+                    {testimonial[2]?.authorAvatar && typeof testimonial[2]?.authorAvatar === "object" && (
                       <Avatar className="size-9 rounded-full ring-1 ring-input">
-                        <AvatarImage asChild src={testimonial[2].author?.avatar.url!}>
+                        <AvatarImage asChild src={testimonial[2]?.authorAvatar.url!}>
                           <Media
                             imgClassName="h-9 w-full rounded-md object-cover lg:h-auto"
-                            resource={testimonial[2].author?.avatar}
+                            resource={testimonial[2]?.authorAvatar}
                           />
                         </AvatarImage>
                       </Avatar>
                     )}
                     <div className="text-sm">
-                      <p className="font-medium">{testimonial[2].author?.name ?? ""}</p>
-                      <p className="text-muted-foreground">{testimonial[2].author?.description ?? ""}</p>
+                      <p className="font-medium">{testimonial[2]?.authorName ?? ""}</p>
+                      <p className="text-muted-foreground">{testimonial[2]?.authorDescription ?? ""}</p>
                     </div>
                   </div>
                 </CardFooter>
@@ -110,19 +110,19 @@ const Testimonial4: React.FC<TestimonialBlock> = ({ headline, link, tagline, tes
                 </CardContent>
                 <CardFooter>
                   <div className="flex gap-4 leading-5">
-                    {testimonial[3].author?.avatar && typeof testimonial[3].author?.avatar === "object" && (
+                    {testimonial[3]?.authorAvatar && typeof testimonial[3]?.authorAvatar === "object" && (
                       <Avatar className="size-9 rounded-full ring-1 ring-input">
-                        <AvatarImage asChild src={testimonial[3].author?.avatar.url!}>
+                        <AvatarImage asChild src={testimonial[3]?.authorAvatar.url!}>
                           <Media
                             imgClassName="h-9 w-full rounded-md object-cover lg:h-auto"
-                            resource={testimonial[3].author?.avatar}
+                            resource={testimonial[3]?.authorAvatar}
                           />
                         </AvatarImage>
                       </Avatar>
                     )}
                     <div className="text-sm">
-                      <p className="font-medium">{testimonial[3].author?.name ?? ""}</p>
-                      <p className="text-muted-foreground">{testimonial[3].author?.description ?? ""}</p>
+                      <p className="font-medium">{testimonial[3]?.authorName ?? ""}</p>
+                      <p className="text-muted-foreground">{testimonial[3]?.authorDescription ?? ""}</p>
                     </div>
                   </div>
                 </CardFooter>

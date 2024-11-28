@@ -1,74 +1,9 @@
 import { TestimonialBlock } from '@/payload-types';
-import { Star } from 'lucide-react';
-
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
-
-const testimonials = [
-  {
-    id: 'testimonial-1',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt urna ac tortor molestie, sit amet lobortis massa cursus. Ut rutrum nunc sit amet tellus cursus congue.',
-    name: 'Customer Name',
-    company: 'Company Name',
-    avatar: 'https://www.shadcnblocks.com/images/block/avatar-1.webp',
-  },
-  {
-    id: 'testimonial-2',
-    text: 'Sed sodales ligula non neque molestie.',
-    name: 'Customer Name',
-    company: 'Company Name',
-    avatar: 'https://www.shadcnblocks.com/images/block/avatar-1.webp',
-  },
-  {
-    id: 'testimonial-3',
-    text: 'Sed sodales ligula non neque molestie, et auctor quam fringilla. Donec placerat justo et vehicula interdum.',
-    name: 'Customer Name',
-    company: 'Company Name',
-    avatar: 'https://www.shadcnblocks.com/images/block/avatar-1.webp',
-  },
-  {
-    id: 'testimonial-4',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    name: 'Customer Name',
-    company: 'Company Name',
-    avatar: 'https://www.shadcnblocks.com/images/block/avatar-1.webp',
-  },
-  {
-    id: 'testimonial-5',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    name: 'Customer Name',
-    company: 'Company Name',
-    avatar: 'https://www.shadcnblocks.com/images/block/avatar-1.webp',
-  },
-  {
-    id: 'testimonial-6',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt urna ac tortor molestie, sit amet lobortis massa cursus. Ut rutrum nunc sit amet tellus cursus congue.',
-    name: 'Customer Name',
-    company: 'Company Name',
-    avatar: 'https://www.shadcnblocks.com/images/block/avatar-1.webp',
-  },
-  {
-    id: 'testimonial-7',
-    text: 'Sed sodales ligula non neque molestie, et auctor quam fringilla. Donec placerat justo et vehicula interdum.',
-    name: 'Customer Name',
-    company: 'Company Name',
-    avatar: 'https://www.shadcnblocks.com/images/block/avatar-1.webp',
-  },
-  {
-    id: 'testimonial-8',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt urna ac tortor molestie, sit amet lobortis massa cursus. Ut rutrum nunc sit amet tellus cursus congue.',
-    name: 'Customer Name',
-    company: 'Company Name',
-    avatar: 'https://www.shadcnblocks.com/images/block/avatar-1.webp',
-  },
-  {
-    id: 'testimonial-9',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    name: 'Customer Name',
-    company: 'Company Name',
-    avatar: 'https://www.shadcnblocks.com/images/block/avatar-1.webp',
-  },
-];
+import { Stars } from '@/components/uiCustom/stars';
+import { Media } from '@/components/Media';
+import RichText from '@/components/RichText';
+import { CMSLink } from '@/components/Link';
 
 const Testimonial11: React.FC<TestimonialBlock> = ({ headline, link, tagline, testimonial }) => {
   return (
@@ -76,76 +11,88 @@ const Testimonial11: React.FC<TestimonialBlock> = ({ headline, link, tagline, te
       <div className="container sm:py-32">
         <div className="flex flex-col items-start gap-12 sm:flex-row sm:items-center sm:justify-between sm:gap-32">
           <div className="flex flex-1 flex-col items-start text-left">
-            <h2 className="my-6 text-pretty text-2xl font-bold lg:text-4xl">
-              Testimonials
-            </h2>
-            <p className="mb-8 max-w-3xl text-muted-foreground lg:text-xl">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Elig
-              doloremque mollitia fugiat omnis! Porro facilis quo animi
-              consequatur. Explicabo.
-            </p>
-            <Button variant="outline">Button</Button>
+            {headline && <RichText
+              content={headline}
+              withWrapper={false}
+              overrideStyle={{
+                h2: 'my-6 text-pretty text-2xl font-bold lg:text-4xl',
+                h3: 'my-6 text-pretty text-1xl font-bold lg:text-3xl',
+                h4: 'my-6 text-pretty text-xl font-bold lg:text-2xl',
+                p: 'mb-8 max-w-3xl text-muted-foreground lg:text-xl',
+              }}
+            />}
+            {link && <CMSLink {...link} />}
           </div>
           <div className="block shrink-0 flex-row gap-12 sm:flex sm:flex-col lg:flex-row lg:gap-24">
-            <div className="mb-8 mr-8 inline-block sm:mb-0 sm:mr-0">
-              <img
-                src="https://www.shadcnblocks.com/images/block/logos/astro.svg"
-                alt="placeholder logo"
-                className="mb-4 h-6"
-              />
-              <div className="flex items-center">
-                <div className="mr-4 shrink-0 text-sm font-semibold">
-                  4.8 / 5
+            {testimonial?.[0] && (<div className="mb-8 mr-8 inline-block sm:mb-0 sm:mr-0">
+              {testimonial?.[0]?.icon && <Media
+                imgClassName="mb-4 h-6"
+                resource={testimonial?.[0]?.icon}
+              />}
+              {testimonial?.[0].rating && (
+                <div className="flex items-center">
+                  <div className="mr-4 shrink-0 text-sm font-semibold">
+                    {testimonial?.[0].rating} / 5
+                  </div>
+                  <div className="flex items-center gap-0.5">
+                    <Stars rating={testimonial?.[0].rating} />
+                  </div>
                 </div>
-                <div className="flex items-center gap-0.5">
-                  <Star className="size-5 fill-primary stroke-none" />
-                  <Star className="size-5 fill-primary stroke-none" />
-                  <Star className="size-5 fill-primary stroke-none" />
-                  <Star className="size-5 fill-primary stroke-none" />
-                  <Star className="size-5 fill-primary stroke-none" />
-                </div>
-              </div>
+              )}
             </div>
-            <div className="mb-8 mr-8 inline-block sm:mb-0 sm:mr-0">
-              <img
-                src="https://www.shadcnblocks.com/images/block/logos/supabase.svg"
-                alt="placeholder logo"
-                className="mb-4 h-6"
-              />
-              <div className="flex items-center">
-                <div className="mr-4 shrink-0 text-sm font-semibold">
-                  4.8 / 5
+            )}
+            {testimonial?.[1] && (<div className="mb-8 mr-8 inline-block sm:mb-0 sm:mr-0">
+              {testimonial?.[1]?.icon && <Media
+                imgClassName="mb-4 h-6"
+                resource={testimonial?.[1]?.icon}
+              />}
+              {testimonial?.[1].rating && (
+                <div className="flex items-center">
+                  <div className="mr-4 shrink-0 text-sm font-semibold">
+                    {testimonial?.[1].rating} / 5
+                  </div>
+                  <div className="flex items-center gap-0.5">
+                    <Stars rating={testimonial?.[1].rating} />
+                  </div>
                 </div>
-                <div className="flex items-center gap-0.5">
-                  <Star className="size-5 fill-primary stroke-none" />
-                  <Star className="size-5 fill-primary stroke-none" />
-                  <Star className="size-5 fill-primary stroke-none" />
-                  <Star className="size-5 fill-primary stroke-none" />
-                  <Star className="size-5 fill-primary stroke-none" />
-                </div>
-              </div>
+              )}
             </div>
+            )}
           </div>
         </div>
       </div>
       <div className="container mt-16 sm:mt-0">
         <div className="w-full columns-1 gap-4 sm:columns-2 lg:columns-3 lg:gap-6 [&>div:nth-child(n+5)]:hidden sm:[&>div:nth-child(n+5)]:inline-block sm:[&>div:nth-child(n+9)]:hidden lg:[&>div:nth-child(n+9)]:inline-block">
-          {testimonials.map((testimonial) => (
+          {Array.isArray(testimonial) && testimonial.map((t) => (
             <div
-              key={testimonial.id}
+              key={t.id}
               className="mb-4 inline-block w-full rounded-lg border border-border bg-background p-6 lg:mb-6"
             >
               <div className="flex flex-col">
-                <p className="mb-4 text-xs">&ldquo;{testimonial.text}&rdquo;</p>
+                {t.text && <RichText
+                  content={t.text}
+                  withWrapper={false}
+                  overrideStyle={{
+                    p: 'mb-4 text-xs',
+                  }}
+                />}
                 <div className="flex items-center gap-1 md:gap-2">
-                  <Avatar className="size-8 md:size-10">
-                    <AvatarImage src="https://www.shadcnblocks.com/images/block/avatar-1.webp" />
-                    <AvatarFallback>{testimonial.name}</AvatarFallback>
-                  </Avatar>
+                  {
+                    t?.authorAvatar && typeof t?.authorAvatar === "object" && (
+                      <Avatar key={t.id} className="size-8 md:size-10">
+                        <AvatarImage asChild src={t?.authorAvatar.url!}>
+                          <Media
+                            imgClassName="h-9 w-full rounded-md object-cover lg:h-auto"
+                            resource={t?.authorAvatar}
+                          />
+                        </AvatarImage>
+                        <AvatarFallback>{t?.authorName}</AvatarFallback>
+                      </Avatar>
+                    )}
                   <div className="text-left">
-                    <p className="text-xs font-medium">{testimonial.name}</p>
+                    <p className="text-xs font-medium">{t?.authorName}</p>
                     <p className="text-xs text-muted-foreground">
-                      {testimonial.company}
+                      {t?.authorDescription}
                     </p>
                   </div>
                 </div>

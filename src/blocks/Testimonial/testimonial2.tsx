@@ -1,10 +1,9 @@
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
 import { TestimonialBlock } from '@/payload-types';
-import { CMSLink } from '@/components/CMSLink';
 import { Media } from '@/components/Media';
 import { splitRichText } from '@/utilities/richtext';
 import RichText from '@/components/RichText';
+import { CMSLink } from '@/components/Link';
 
 const Testimonial2: React.FC<TestimonialBlock> = ({ headline, link, tagline, testimonial }) => {
   const { firstNode, rest } = splitRichText(headline, {
@@ -22,12 +21,12 @@ const Testimonial2: React.FC<TestimonialBlock> = ({ headline, link, tagline, tes
               )}
               <span className="mx-4 inline-flex items-center -space-x-4">
                 {testimonial && testimonial.map((t) =>
-                  t.author?.avatar && typeof t.author?.avatar === "object" && (
+                  t?.authorAvatar && typeof t?.authorAvatar === "object" && (
                     <Avatar key={t.id} className="size-9 rounded-full ring-1 ring-input">
-                      <AvatarImage asChild src={t.author?.avatar.url!}>
+                      <AvatarImage asChild src={t?.authorAvatar.url!}>
                         <Media
                           imgClassName="h-9 w-full rounded-md object-cover lg:h-auto"
-                          resource={t.author?.avatar}
+                          resource={t?.authorAvatar}
                         />
                       </AvatarImage>
                     </Avatar>

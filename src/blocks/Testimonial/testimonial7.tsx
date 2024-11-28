@@ -13,7 +13,8 @@ import {
 } from '@/components/ui/carousel';
 import { TestimonialBlock } from '@/payload-types';
 import RichText from '@/components/RichText';
-import { CMSLink } from '@/components/CMSLink';
+import { CMSLink } from '@/components/Link';
+
 
 const testimonials1 = [
   {

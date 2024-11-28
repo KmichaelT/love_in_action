@@ -12,7 +12,7 @@ import { ChevronRight, Star, Zap } from 'lucide-react'
 import { useRef } from 'react'
 import { TestimonialBlock } from '@/payload-types';
 import RichText from '@/components/RichText';
-import { CMSLink } from '@/components/CMSLink';
+import { CMSLink } from '@/components/Link';
 
 const testimonials = [
     {

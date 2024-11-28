@@ -26,7 +26,7 @@ const Testimonial3: React.FC<TestimonialBlock> = ({ headline, link, tagline, tes
                   />
                 )}
                 <p className="font-medium">
-                  {testimonial[0].author?.name ? testimonial[0].author?.name + ", " : ""}{testimonial[0].author?.description ?? ""}
+                  {testimonial[0]?.authorName ? testimonial[0]?.authorName + ", " : ""}{testimonial[0]?.authorDescription ?? ""}
                 </p>
               </div>
             </>
