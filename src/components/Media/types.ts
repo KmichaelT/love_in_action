@@ -8,12 +8,18 @@ export interface Props {
   className?: string
   fill?: boolean // for NextImage only
   htmlElement?: ElementType | null
+  /**
+   * This class name will be passed to the NextImage component.
+   */
   imgClassName?: string
   onClick?: () => void
   onLoad?: () => void
   priority?: boolean // for NextImage only
   ref?: Ref<HTMLImageElement | HTMLVideoElement | null>
-  resource?: MediaType | string | number // for Payload media
+  /**
+   * for Payload media
+   */
+  resource?: MediaType | string | number 
   size?: string // for NextImage only
   src?: StaticImageData // for static media
   videoClassName?: string
