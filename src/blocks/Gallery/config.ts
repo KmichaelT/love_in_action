@@ -99,7 +99,7 @@ export const Gallery: Block = {
             editor: lexicalEditor({
               features: ({ defaultFeatures }) => [
                 ...defaultFeatures,
-                HeadingFeature(),
+                HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
                 ParagraphFeature(),
               ],
             }),
