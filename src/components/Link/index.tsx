@@ -53,7 +53,7 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
   /* Ensure we don't break any styles set by richText */
   if (appearance === 'inline') {
     return (
-      <Link className={cn(className)} href={href || url || ''} {...newTabProps}>
+      <Link className={cn("flex items-center", className)} href={href || url || ''} {...newTabProps}>
         {iconBefore && <Icon className={cn("mr-2 h-6", iconClassName)} icon={iconBefore} />}
         {label && label}
         {children && children}
@@ -64,7 +64,7 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
 
   return (
     <Button asChild className={className} size={size as typeof sizeFromProps || 'default'} variant={appearance}>
-      <Link className={cn(className)} href={href || url || ''} {...newTabProps}>
+      <Link className={cn("flex items-center", className)} href={href || url || ''} {...newTabProps}>
         {iconBefore && <Icon className={cn("mr-2 h-6", iconClassName)} icon={iconBefore} />}
         {label && label}
         {children && children}

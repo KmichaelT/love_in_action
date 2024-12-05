@@ -5,6 +5,7 @@ import type { Page } from '@/payload-types'
 import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { FeatureBlock } from '@/blocks/Feature/Component'
+import { GalleryBlock } from './Gallery/Component'
 import { CtaBlock } from '@/blocks/Cta/Component'
 import { LogosBlock } from '@/blocks/Logos/Component'
 import { AboutBlock } from '@/blocks/About/Component'
@@ -16,6 +17,7 @@ const blockComponents: Record<Page['layout'][0]['blockType'], React.FC<any>> = {
   formBlock: FormBlock,
   // mediaBlock: MediaBlock,
   feature: FeatureBlock,
+  gallery: GalleryBlock,
   cta: CtaBlock,
   logos: LogosBlock,
   about: AboutBlock,
