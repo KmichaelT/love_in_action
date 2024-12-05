@@ -15,6 +15,9 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { cn } from '@/utilities/cn';
+import RichText from '@/components/RichText';
+import { TestimonialBlock } from '@/payload-types';
+import { CMSLink } from '@/components/Link';
 
 const testimonials = [
   {
@@ -75,28 +78,25 @@ const testimonials = [
   },
 ];
 
-const Testimonial1 = () => {
+const Testimonial1: React.FC<TestimonialBlock> = ({ headline, link, tagline, testimonial }) => {
   return (
     <section className="mb-32 border-b pt-32">
       <div className="container">
         <div className="flex flex-col items-center gap-6">
-          <Badge variant={'outline'}>Testimonials</Badge>
-          <h2 className="mb-2 text-center text-3xl font-semibold lg:text-5xl">
-            Meet our happy clients
-          </h2>
-          <p className="text-muted-foreground lg:text-lg">
-            All of our 1000+ clients are happy
-          </p>
-          <div className="flex w-full flex-col justify-center gap-4 sm:flex-row">
-            <Button className="w-full sm:w-auto">
-              <Globe className="mr-2 size-4" />
-              Primary Button
-            </Button>
-            <Button variant="outline" className="w-full sm:w-auto">
-              <Globe className="mr-2 size-4" />
-              Secondary Button
-            </Button>
-          </div>
+          {tagline && <Badge variant={'outline'}>{tagline}</Badge>}
+          {headline && <RichText
+            content={headline}
+            withWrapper={false}
+            overrideStyle={{
+              h2: 'mb-2 text-center text-3xl font-semibold lg:text-5xl',
+              h3: 'mb-2 text-center text-2xl font-semibold lg:text-4xl',
+              h4: 'mb-2 text-center text-xl font-semibold lg:text-3xl',
+              p: 'text-muted-foreground lg:text-lg',
+            }}
+          />}
+          {link && (<div className="flex w-full flex-col justify-center gap-4 sm:flex-row">
+            <CMSLink className="w-full sm:w-auto" {...link} />
+          </div>)}
           <div className="mt-6 block lg:mt-14 lg:hidden">
             <Carousel opts={{}} className="w-full max-w-[264px] sm:max-w-md">
               <CarouselContent>

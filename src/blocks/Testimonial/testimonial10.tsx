@@ -1,6 +1,7 @@
+import { TestimonialBlock } from '@/payload-types';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
-const Testimonial10 = () => {
+const Testimonial10: React.FC<TestimonialBlock> = ({ headline, link, tagline, testimonial }) => {
   return (
     <section className="py-32">
       <div className="container">

@@ -11,6 +11,10 @@ import {
   CarouselContent,
   CarouselItem,
 } from '@/components/ui/carousel';
+import { TestimonialBlock } from '@/payload-types';
+import RichText from '@/components/RichText';
+import { CMSLink } from '@/components/Link';
+
 
 const testimonials1 = [
   {
@@ -101,7 +105,7 @@ const testimonials2 = [
   },
 ];
 
-const Testimonial7 = () => {
+const Testimonial7: React.FC<TestimonialBlock> = ({ headline, link, tagline, testimonial }) => {
   const plugin1 = useRef(
     AutoScroll({
       startDelay: 500,
@@ -119,13 +123,19 @@ const Testimonial7 = () => {
   return (
     <section className="py-32">
       <div className="container flex flex-col items-center gap-6">
-        <h2 className="mb-2 text-center text-3xl font-semibold lg:text-5xl">
-          Meet our happy clients
-        </h2>
-        <p className="text-muted-foreground lg:text-lg">
-          All of our 1000+ clients are happy
-        </p>
-        <Button className="mt-6">Get started for free</Button>
+        {headline && <RichText
+          content={headline}
+          withWrapper={false}
+          overrideStyle={{
+            h2: 'mb-2 text-center text-3xl font-semibold lg:text-5xl',
+            h3: 'mb-2 text-center text-2xl font-semibold lg:text-4xl',
+            h4: 'mb-2 text-center text-xl font-semibold lg:text-3xl',
+            p: 'text-muted-foreground lg:text-lg'
+          }}
+        />}
+        {link && (
+          <CMSLink {...link} className="mt-6" />
+        )}
       </div>
       <div className="lg:container">
         <div className="mt-16 space-y-4">

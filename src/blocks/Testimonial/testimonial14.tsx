@@ -11,6 +11,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from '@/components/ui/carousel';
+import { TestimonialBlock } from '@/payload-types';
 
 const testimonials = [
   {
@@ -36,7 +37,7 @@ const testimonials = [
   },
 ];
 
-const Testimonial14 = () => {
+const Testimonial14: React.FC<TestimonialBlock> = ({ headline, link, tagline, testimonial }) => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
 

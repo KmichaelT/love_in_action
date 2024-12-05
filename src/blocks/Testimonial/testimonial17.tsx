@@ -10,8 +10,10 @@ import {
   CarouselItem,
 } from '@/components/ui/carousel';
 import { cn } from '@/utilities/cn';
+import { TestimonialBlock } from '@/payload-types';
+import RichText from '@/components/RichText';
 
-const Testimonial17 = () => {
+const Testimonial17: React.FC<TestimonialBlock> = ({ headline, link, tagline, testimonial }) => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
@@ -33,9 +35,16 @@ const Testimonial17 = () => {
     <section className="py-32">
       <div className="container">
         <div className="flex flex-col gap-14 lg:grid lg:grid-cols-3 lg:gap-0">
-          <h2 className="text-center text-3xl font-bold lg:text-left lg:text-4xl">
-            Teams are thriving with our platform
-          </h2>
+          {headline && <RichText
+            content={headline}
+            withWrapper={false}
+            overrideStyle={{
+              h2: 'text-center text-3xl font-bold lg:text-left lg:text-4xl',
+              h3: 'text-center text-2xl font-bold lg:text-left lg:text-3xl',
+              h4: 'text-center text-xl font-bold lg:text-left lg:text-2xl',
+              p: 'text-muted-foreground lg:text-lg'
+            }}
+          />}
           <Carousel setApi={setApi} className="w-full lg:hidden">
             <CarouselContent>
               <CarouselItem>

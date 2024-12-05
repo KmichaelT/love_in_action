@@ -9,6 +9,7 @@ import { GalleryBlock } from './Gallery/Component'
 import { CtaBlock } from '@/blocks/Cta/Component'
 import { LogosBlock } from '@/blocks/Logos/Component'
 import { AboutBlock } from '@/blocks/About/Component'
+import { TestimonialBlock } from '@/blocks/Testimonial/Component'
 
 const blockComponents: Record<Page['layout'][0]['blockType'], React.FC<any>> = {
   archive: ArchiveBlock,
@@ -20,6 +21,7 @@ const blockComponents: Record<Page['layout'][0]['blockType'], React.FC<any>> = {
   cta: CtaBlock,
   logos: LogosBlock,
   about: AboutBlock,
+  testimonial: TestimonialBlock,
 }
 
 export const RenderBlocks: React.FC<{

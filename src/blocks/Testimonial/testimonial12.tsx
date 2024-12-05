@@ -1,3 +1,4 @@
+import { TestimonialBlock } from '@/payload-types';
 import {
   Carousel,
   CarouselContent,
@@ -7,7 +8,7 @@ import {
 } from '@/components/ui/carousel';
 import { Separator } from '@/components/ui/separator';
 
-const Testimonial12 = () => {
+const Testimonial12: React.FC<TestimonialBlock> = ({ headline, link, tagline, testimonial }) => {
   return (
     <section className="py-32">
       <div className="container">
