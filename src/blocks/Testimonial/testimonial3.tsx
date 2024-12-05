@@ -3,6 +3,7 @@ import RichText from '@/components/RichText';
 import { TestimonialBlock } from '@/payload-types';
 
 const Testimonial3: React.FC<TestimonialBlock> = ({ headline, link, tagline, testimonial }) => {
+  console.log(testimonial)
   return (
     <section className="py-32">
       <div className="container">
@@ -21,12 +22,12 @@ const Testimonial3: React.FC<TestimonialBlock> = ({ headline, link, tagline, tes
               <div className="flex flex-col items-center gap-2 sm:flex-row">
                 {testimonial[0].icon && (
                   <Media
-                    imgClassName="h-7"
+                    imgClassName="h-7 w-auto"
                     resource={testimonial[0].icon}
                   />
                 )}
                 <p className="font-medium">
-                  {testimonial[0]?.authorName ? testimonial[0]?.authorName + ", " : ""}{testimonial[0]?.authorDescription ?? ""}
+                  {testimonial[0]?.authorName ?? ""}{testimonial[0]?.authorDescription && ", "}{testimonial[0]?.authorDescription ?? ""}
                 </p>
               </div>
             </>

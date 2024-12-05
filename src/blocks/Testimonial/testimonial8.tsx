@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { cn } from '@/utilities/cn';
 import { TestimonialBlock } from '@/payload-types';
+import RichText from '@/components/RichText';
 
 const testimonials = [
   {
