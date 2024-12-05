@@ -9,6 +9,7 @@ import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carouse
 import { GalleryBlock } from '@/payload-types'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
+import { CMSLink } from '@/components/Link'
 
 
 const Gallery4: React.FC<GalleryBlock> = ({ elements }) => {
@@ -75,7 +76,7 @@ const Gallery4: React.FC<GalleryBlock> = ({ elements }) => {
             {elements &&
               elements.map((item) => (
                 <CarouselItem key={item.id} className="max-w-[320px] pl-[20px] lg:max-w-[360px]">
-                  <a href={item.link?.url || '#'} className="group rounded-xl">
+                  <a href={item.link?.url || '#'} className="group rounded-xl" target={item.link.newTab ? '_blank' : '_self'}>
                     <div className="group relative h-full min-h-[27rem] max-w-full overflow-hidden rounded-xl bg-red-200 md:aspect-[5/4] lg:aspect-[16/9]">
                       {item.image && (
                         <Media
@@ -97,11 +98,14 @@ const Gallery4: React.FC<GalleryBlock> = ({ elements }) => {
                             }}
                           />
                         )}
-                        {/* We can't use CMSLinks here, because we would build <a> as descendant of <a> */}
-                        <div className="flex items-center text-sm">
-                          {item.link?.label || 'Read more'}
-                          <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
-                        </div>
+                        {item.link && (
+                          <CMSLink 
+                            appearance="inline"
+                            withAnchor={false}
+                            {...item.link}
+                            iconClassName="ml-2 size-5 transition-transform group-hover:translate-x-1"
+                          />
+                        )}
                       </div>
                     </div>
                   </a>

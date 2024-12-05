@@ -45,7 +45,7 @@ const About3: React.FC<AboutBlock> = ({ headline, text1, text2, text3, counter, 
           <p className="text-center">Valued by clients worldwide</p>
           <div className="mt-8 flex flex-wrap justify-center gap-8">
             {Array.isArray(logos) && logos.map((logo: MediaType) => (
-              <div className="flex items-center gap-3">
+              <div key={logo.id} className="flex items-center gap-3">
                 <Media key={logo.id} imgClassName="h-8 w-auto md:h-12" resource={logo} />
                 {logo.caption && <RichText
                   content={logo.caption}

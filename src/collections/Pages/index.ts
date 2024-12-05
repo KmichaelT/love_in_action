@@ -11,6 +11,7 @@ import { AboutBlock } from '@/blocks/About/config'
 import { LogosBlock } from '@/blocks/Logos/config'
 import { Gallery } from '@/blocks/Gallery/config'
 import { TestimonialBlock } from '@/blocks/Testimonial/config'
+import { Content } from '@/blocks/Content/config'
 
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
@@ -74,7 +75,7 @@ export const Pages: CollectionConfig = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [FeatureBlock, Archive, FormBlock, CtaBlock, LogosBlock, AboutBlock, Gallery, TestimonialBlock],
+              blocks: [FeatureBlock, Archive, FormBlock, CtaBlock, LogosBlock, AboutBlock, Gallery, TestimonialBlock, Content],
               required: true,
             },
           ],
