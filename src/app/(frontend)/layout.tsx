@@ -15,6 +15,7 @@ import { draftMode } from 'next/headers'
 
 import './globals.css'
 import { ThemeConfig } from '@/globals/ThemeConfig/Component'
+import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
 
 // Change fonts by changing class Geist_Mono or Geist. 
 // No change in tailwind.config.mjs needed (Because it's already synced via --font-mono and --font-sans variables).
@@ -50,7 +51,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SERVER_URL || 'https://trieb.work'),
+  metadataBase: new URL(NEXT_PUBLIC_SERVER_URL || 'https://trieb.work'),
   openGraph: mergeOpenGraph(),
   // twitter: {
   //   card: 'summary_large_image',

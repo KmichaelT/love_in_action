@@ -3,6 +3,7 @@ import type { GlobalConfig } from 'payload'
 import { link } from '@/fields/link'
 import { revalidateFooter } from './hooks/revalidateFooter'
 import { generatePreviewPath } from '@/utilities/generatePreviewPath'
+import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
 
 export const Footer: GlobalConfig = {
   slug: 'footer',
@@ -18,7 +19,7 @@ export const Footer: GlobalConfig = {
           collection: 'pages',
         })
 
-        return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`
+        return `${NEXT_PUBLIC_SERVER_URL}${path}`
       },
     },
     preview: () => {
@@ -27,7 +28,7 @@ export const Footer: GlobalConfig = {
         collection: 'pages',
       })
 
-      return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`
+      return `${NEXT_PUBLIC_SERVER_URL}${path}`
     },
   },
   fields: [

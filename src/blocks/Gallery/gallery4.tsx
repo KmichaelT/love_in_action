@@ -12,7 +12,7 @@ import RichText from '@/components/RichText'
 import { CMSLink } from '@/components/Link'
 
 
-const Gallery4: React.FC<GalleryBlock> = ({ elements }) => {
+const Gallery4: React.FC<GalleryBlock> = ({ richText,elements }) => {
   const [carouselApi, setCarouselApi] = useState<CarouselApi>()
   const [canScrollPrev, setCanScrollPrev] = useState(false)
   const [canScrollNext, setCanScrollNext] = useState(false)
@@ -34,7 +34,15 @@ const Gallery4: React.FC<GalleryBlock> = ({ elements }) => {
     <section className="py-32">
       <div className="container">
         <div className="mb-8 flex items-end justify-between md:mb-14 lg:mb-16">
-          <h2 className="text-3xl font-medium md:text-4xl lg:text-5xl">All case studies</h2>
+          { richText && <RichText
+            content={richText}
+            withWrapper={true}
+            overrideStyle={{
+              h2: 'text-3xl font-medium md:text-4xl lg:text-5xl lg:mb-6 md:mb-4',
+              p: 'text-muted-foreground',
+            }}
+          />
+          }
           <div className="hidden shrink-0 gap-2 md:flex">
             <Button
               size="icon"

@@ -3,6 +3,11 @@ import type { RequiredDataFromCollectionSlug } from 'payload'
 export const home: RequiredDataFromCollectionSlug<'pages'> = {
   slug: 'home',
   _status: 'published',
+  hero: {
+    designVersion: '1',
+    badge: null,
+    badgeIcon: null,
+  },
   layout: [
     {
       blockName: 'Archive Block',

@@ -1,5 +1,7 @@
 // storage-adapter-import-placeholder
-import { postgresAdapter } from '@payloadcms/db-postgres'
+// import { postgresAdapter } from '@payloadcms/db-postgres'
+import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
 import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
@@ -35,18 +37,19 @@ import { Page, Post } from 'src/payload-types'
 
 import { searchFields } from '@/search/fieldOverrides'
 import { beforeSyncWithSearch } from '@/search/beforeSync'
+import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
-  return doc?.title ? `${doc.title} | Payload Website Template` : 'Payload Website Template'
+  return doc?.title ? `${doc.title} | Payblocks Website Template` : 'Payblocks Website Template'
 }
 
 const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
   return doc?.slug
-    ? `${process.env.NEXT_PUBLIC_SERVER_URL!}/${doc.slug}`
-    : process.env.NEXT_PUBLIC_SERVER_URL!
+    ? `${NEXT_PUBLIC_SERVER_URL!}/${doc.slug}`
+    : NEXT_PUBLIC_SERVER_URL!
 }
 
 export default buildConfig({
@@ -118,11 +121,14 @@ export default buildConfig({
       ]
     },
   }),
-  db: postgresAdapter({
-    pool: {
-      connectionString: process.env.DATABASE_URL || '',
+  // db: postgresAdapter({
+  //   pool: {
+  //     connectionString: process.env.DATABASE_URL || '',
       
-    },
+  //   },
+  // }),
+  db: mongooseAdapter({
+    url: process.env.MONGODB_URI || '',
   }),
   collections: [Pages, Posts, Media, Categories, Users],
   cors: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
@@ -194,14 +200,20 @@ export default buildConfig({
       },
     }),
     searchPlugin({
-      collections: ['posts'],
+      collections: ['pages'],
       beforeSync: beforeSyncWithSearch,
       searchOverrides: {
         fields: ({ defaultFields }) => {
           return [...defaultFields, ...searchFields]
         },
       },
-    })  ],
+    }),
+    vercelBlobStorage({
+      collections: {
+        media: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN || '',
+    }),  ],
   secret: process.env.PAYLOAD_SECRET!,
   sharp,
   typescript: {

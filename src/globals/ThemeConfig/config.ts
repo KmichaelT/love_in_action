@@ -3,6 +3,7 @@ import type { GlobalConfig, TextFieldSingleValidation } from 'payload'
 import { revalidateThemeConfig } from './hooks/revalidateThemeConfig'
 import { generatePreviewPath } from '@/utilities/generatePreviewPath'
 import { revalidateTag } from 'next/cache'
+import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
 
 const validateCssColor: TextFieldSingleValidation = (value: string) => {
   const cssColorRegex = /^#(?:[\da-f]{3}){1,2}$|^#(?:[\da-f]{4}){1,2}$|(rgb|hsl)a?\((\s*-?\d+(?:\.\d+)?%?\s*,){2}(\s*-?\d+(?:\.\d+)?%?\s*)\)|(rgb|hsl)a?\((\s*-?\d+(?:\.\d+)?%?\s*,){3}\s*(0|(0?\.\d+)|1)\)/gmi
@@ -34,7 +35,7 @@ export const ThemeConfig: GlobalConfig = {
           collection: 'pages',
         })
 
-        return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`
+        return `${NEXT_PUBLIC_SERVER_URL}${path}`
       },
     },
     preview: () => {
@@ -43,7 +44,7 @@ export const ThemeConfig: GlobalConfig = {
         collection: 'pages',
       })
 
-      return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`
+      return `${NEXT_PUBLIC_SERVER_URL}${path}`
     },
   },
   fields: [

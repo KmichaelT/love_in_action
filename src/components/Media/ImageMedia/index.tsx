@@ -9,6 +9,7 @@ import React from 'react'
 import type { Props as MediaProps } from '../types'
 
 import cssVariables from '@/cssVariables'
+import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
 
 const { breakpoints } = cssVariables
 
@@ -30,7 +31,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
   let width: number | undefined
   let height: number | undefined
   let alt = altFromProps
-  let src: StaticImageData | string = srcFromProps || ''
+  let src: StaticImageData | string | null = srcFromProps || null
 
   if (!src && resource && typeof resource === 'object') {
     const {
@@ -45,7 +46,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
     height = fullHeight!
     alt = altFromResource
 
-    src = `${process.env.NEXT_PUBLIC_SERVER_URL}${url}`
+    src = url ? `${NEXT_PUBLIC_SERVER_URL}${url}` : null
   }
 
   // NOTE: this is used by the browser to determine which image to download at different screen sizes
@@ -56,23 +57,27 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
         .join(', ')
 
   return (
-    <NextImage
-      alt={alt || ''}
-      className={cn(imgClassName)}
-      fill={fill}
-      height={!fill ? height : undefined}
-      onClick={onClick}
-      onLoad={() => {
-        setIsLoading(false)
-        if (typeof onLoadFromProps === 'function') {
-          onLoadFromProps()
-        }
-      }}
-      priority={priority}
-      quality={90}
-      sizes={sizes}
-      src={src}
-      width={!fill ? width : undefined}
-    />
+    <>
+      {src && (
+        <NextImage
+          alt={alt || ''}
+          className={cn(imgClassName)}
+          fill={fill}
+          height={!fill ? height : undefined}
+          onClick={onClick}
+          onLoad={() => {
+            setIsLoading(false)
+            if (typeof onLoadFromProps === 'function') {
+              onLoadFromProps()
+            }
+          }}
+          priority={priority}
+          quality={90}
+          sizes={sizes}
+          src={src}
+          width={!fill ? width : undefined}
+        />
+      )}
+    </>
   )
 }

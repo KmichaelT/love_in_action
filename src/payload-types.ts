@@ -40,7 +40,7 @@ export interface Config {
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
-    defaultIDType: number;
+    defaultIDType: string;
   };
   globals: {
     themeConfig: ThemeConfig;
@@ -84,7 +84,7 @@ export interface UserAuthOperations {
  * via the `definition` "pages".
  */
 export interface Page {
-  id: number;
+  id: string;
   title: string;
   hero: {
     designVersion:
@@ -5047,7 +5047,7 @@ export interface Page {
       size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
       reference?: {
         relationTo: 'pages';
-        value: number | Page;
+        value: string | Page;
       } | null;
       url?: string | null;
     };
@@ -8346,7 +8346,7 @@ export interface Page {
             size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
             reference?: {
               relationTo: 'pages';
-              value: number | Page;
+              value: string | Page;
             } | null;
             url?: string | null;
             label: string;
@@ -8355,10 +8355,10 @@ export interface Page {
           id?: string | null;
         }[]
       | null;
-    images?: (number | Media)[] | null;
-    icons?: (number | Media)[] | null;
+    images?: (string | Media)[] | null;
+    icons?: (string | Media)[] | null;
     USPs?: {
-      icon?: (number | null) | Media;
+      icon?: (string | null) | Media;
       richText?: {
         root: {
           type: string;
@@ -8395,7 +8395,7 @@ export interface Page {
   )[];
   meta?: {
     title?: string | null;
-    image?: (number | null) | Media;
+    image?: (string | null) | Media;
     description?: string | null;
   };
   publishedAt?: string | null;
@@ -8410,7 +8410,7 @@ export interface Page {
  * via the `definition` "media".
  */
 export interface Media {
-  id: number;
+  id: string;
   alt: string;
   caption?: {
     root: {
@@ -13479,7 +13479,7 @@ export interface FeatureBlock {
           size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
           reference?: {
             relationTo: 'pages';
-            value: number | Page;
+            value: string | Page;
           } | null;
           url?: string | null;
           label: string;
@@ -13488,7 +13488,7 @@ export interface FeatureBlock {
         id?: string | null;
       }[]
     | null;
-  image?: (number | null) | Media;
+  image?: (string | null) | Media;
   USPs?:
     | {
         uspIcon?:
@@ -20079,7 +20079,7 @@ export interface FeatureBlock {
                 size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
                 reference?: {
                   relationTo: 'pages';
-                  value: number | Page;
+                  value: string | Page;
                 } | null;
                 url?: string | null;
                 label: string;
@@ -23366,12 +23366,12 @@ export interface FeatureBlock {
           size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
           reference?: {
             relationTo: 'pages';
-            value: number | Page;
+            value: string | Page;
           } | null;
           url?: string | null;
           label: string;
         };
-        image?: (number | null) | Media;
+        image?: (string | null) | Media;
         id?: string | null;
       }[]
     | null;
@@ -23401,12 +23401,12 @@ export interface ArchiveBlock {
   } | null;
   populateBy?: ('collection' | 'selection') | null;
   relationTo?: 'posts' | null;
-  categories?: (number | Category)[] | null;
+  categories?: (string | Category)[] | null;
   limit?: number | null;
   selectedDocs?:
     | {
         relationTo: 'posts';
-        value: number | Post;
+        value: string | Post;
       }[]
     | null;
   id?: string | null;
@@ -23418,12 +23418,12 @@ export interface ArchiveBlock {
  * via the `definition` "categories".
  */
 export interface Category {
-  id: number;
+  id: string;
   title: string;
-  parent?: (number | null) | Category;
+  parent?: (string | null) | Category;
   breadcrumbs?:
     | {
-        doc?: (number | null) | Category;
+        doc?: (string | null) | Category;
         url?: string | null;
         label?: string | null;
         id?: string | null;
@@ -23437,7 +23437,7 @@ export interface Category {
  * via the `definition` "posts".
  */
 export interface Post {
-  id: number;
+  id: string;
   title: string;
   content: {
     root: {
@@ -23454,15 +23454,15 @@ export interface Post {
     };
     [k: string]: unknown;
   };
-  relatedPosts?: (number | Post)[] | null;
-  categories?: (number | Category)[] | null;
+  relatedPosts?: (string | Post)[] | null;
+  categories?: (string | Category)[] | null;
   meta?: {
     title?: string | null;
-    image?: (number | null) | Media;
+    image?: (string | null) | Media;
     description?: string | null;
   };
   publishedAt?: string | null;
-  authors?: (number | User)[] | null;
+  authors?: (string | User)[] | null;
   populatedAuthors?:
     | {
         id?: string | null;
@@ -23480,7 +23480,7 @@ export interface Post {
  * via the `definition` "users".
  */
 export interface User {
-  id: number;
+  id: string;
   name?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -23498,7 +23498,7 @@ export interface User {
  * via the `definition` "FormBlock".
  */
 export interface FormBlock {
-  form: number | Form;
+  form: string | Form;
   enableIntro?: boolean | null;
   introContent?: {
     root: {
@@ -23524,7 +23524,7 @@ export interface FormBlock {
  * via the `definition` "forms".
  */
 export interface Form {
-  id: number;
+  id: string;
   title: string;
   fields?:
     | (
@@ -28634,7 +28634,7 @@ export interface CtaBlock {
           size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
           reference?: {
             relationTo: 'pages';
-            value: number | Page;
+            value: string | Page;
           } | null;
           url?: string | null;
           label: string;
@@ -28643,7 +28643,7 @@ export interface CtaBlock {
         id?: string | null;
       }[]
     | null;
-  image?: (number | null) | Media;
+  image?: (string | null) | Media;
   id?: string | null;
   blockName?: string | null;
   blockType: 'cta';
@@ -31947,13 +31947,13 @@ export interface LogosBlock {
     size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
     reference?: {
       relationTo: 'pages';
-      value: number | Page;
+      value: string | Page;
     } | null;
     url?: string | null;
     label: string;
     appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
   };
-  logos: (number | Media)[];
+  logos: (string | Media)[];
   id?: string | null;
   blockName?: string | null;
   blockType: 'logos';
@@ -35302,14 +35302,14 @@ export interface AboutBlock {
     size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
     reference?: {
       relationTo: 'pages';
-      value: number | Page;
+      value: string | Page;
     } | null;
     url?: string | null;
     label: string;
     appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
   };
-  images?: (number | Media)[] | null;
-  logos?: (number | Media)[] | null;
+  images?: (string | Media)[] | null;
+  logos?: (string | Media)[] | null;
   counter?:
     | {
         value: string;
@@ -38622,14 +38622,14 @@ export interface GalleryBlock {
     size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
     reference?: {
       relationTo: 'pages';
-      value: number | Page;
+      value: string | Page;
     } | null;
     url?: string | null;
     label: string;
   };
   elements?:
     | {
-        image: number | Media;
+        image: string | Media;
         richText?: {
           root: {
             type: string;
@@ -41923,7 +41923,7 @@ export interface GalleryBlock {
           size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
           reference?: {
             relationTo: 'pages';
-            value: number | Page;
+            value: string | Page;
           } | null;
           url?: string | null;
           label: string;
@@ -45253,7 +45253,7 @@ export interface TestimonialBlock {
     size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
     reference?: {
       relationTo: 'pages';
-      value: number | Page;
+      value: string | Page;
     } | null;
     url?: string | null;
     label: string;
@@ -45263,8 +45263,8 @@ export interface TestimonialBlock {
     | {
         authorName?: string | null;
         authorDescription?: string | null;
-        authorAvatar?: (number | null) | Media;
-        icon?: (number | null) | Media;
+        authorAvatar?: (string | null) | Media;
+        icon?: (string | null) | Media;
         rating?: number | null;
         text?: {
           root: {
@@ -48559,7 +48559,7 @@ export interface TestimonialBlock {
           size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
           reference?: {
             relationTo: 'pages';
-            value: number | Page;
+            value: string | Page;
           } | null;
           url?: string | null;
           label: string;
@@ -51874,7 +51874,7 @@ export interface ContentBlock {
           size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
           reference?: {
             relationTo: 'pages';
-            value: number | Page;
+            value: string | Page;
           } | null;
           url?: string | null;
           label: string;
@@ -51892,18 +51892,18 @@ export interface ContentBlock {
  * via the `definition` "redirects".
  */
 export interface Redirect {
-  id: number;
+  id: string;
   from: string;
   to?: {
     type?: ('reference' | 'custom') | null;
     reference?:
       | ({
           relationTo: 'pages';
-          value: number | Page;
+          value: string | Page;
         } | null)
       | ({
           relationTo: 'posts';
-          value: number | Post;
+          value: string | Post;
         } | null);
     url?: string | null;
   };
@@ -51915,8 +51915,8 @@ export interface Redirect {
  * via the `definition` "form-submissions".
  */
 export interface FormSubmission {
-  id: number;
-  form: number | Form;
+  id: string;
+  form: string | Form;
   submissionData?:
     | {
         field: string;
@@ -51932,18 +51932,18 @@ export interface FormSubmission {
  * via the `definition` "search".
  */
 export interface Search {
-  id: number;
+  id: string;
   title?: string | null;
   priority?: number | null;
   doc: {
-    relationTo: 'posts';
-    value: number | Post;
+    relationTo: 'pages';
+    value: string | Page;
   };
   slug?: string | null;
   meta?: {
     title?: string | null;
     description?: string | null;
-    image?: (number | null) | Media;
+    image?: (string | null) | Media;
   };
   categories?:
     | {
@@ -51960,48 +51960,48 @@ export interface Search {
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: number;
+  id: string;
   document?:
     | ({
         relationTo: 'pages';
-        value: number | Page;
+        value: string | Page;
       } | null)
     | ({
         relationTo: 'posts';
-        value: number | Post;
+        value: string | Post;
       } | null)
     | ({
         relationTo: 'media';
-        value: number | Media;
+        value: string | Media;
       } | null)
     | ({
         relationTo: 'categories';
-        value: number | Category;
+        value: string | Category;
       } | null)
     | ({
         relationTo: 'users';
-        value: number | User;
+        value: string | User;
       } | null)
     | ({
         relationTo: 'redirects';
-        value: number | Redirect;
+        value: string | Redirect;
       } | null)
     | ({
         relationTo: 'forms';
-        value: number | Form;
+        value: string | Form;
       } | null)
     | ({
         relationTo: 'form-submissions';
-        value: number | FormSubmission;
+        value: string | FormSubmission;
       } | null)
     | ({
         relationTo: 'search';
-        value: number | Search;
+        value: string | Search;
       } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
-    value: number | User;
+    value: string | User;
   };
   updatedAt: string;
   createdAt: string;
@@ -52011,10 +52011,10 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: number;
+  id: string;
   user: {
     relationTo: 'users';
-    value: number | User;
+    value: string | User;
   };
   key?: string | null;
   value?:
@@ -52034,7 +52034,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: number;
+  id: string;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
@@ -52723,7 +52723,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  * via the `definition` "themeConfig".
  */
 export interface ThemeConfig {
-  id: number;
+  id: string;
   radius?: string | null;
   regularColors?: {
     background?: string | null;
@@ -52789,9 +52789,9 @@ export interface ThemeConfig {
  * via the `definition` "header".
  */
 export interface Header {
-  id: number;
+  id: string;
   designVersion: '1';
-  logo: number | Media;
+  logo: string | Media;
   items?:
     | (
         | {
@@ -57711,7 +57711,7 @@ export interface Header {
                 size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
                 reference?: {
                   relationTo: 'pages';
-                  value: number | Page;
+                  value: string | Page;
                 } | null;
                 url?: string | null;
                 label: string;
@@ -61002,7 +61002,7 @@ export interface Header {
               size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
               reference?: {
                 relationTo: 'pages';
-                value: number | Page;
+                value: string | Page;
               } | null;
               url?: string | null;
               label: string;
@@ -64293,7 +64293,7 @@ export interface Header {
           size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
           reference?: {
             relationTo: 'pages';
-            value: number | Page;
+            value: string | Page;
           } | null;
           url?: string | null;
           label: string;
@@ -64310,9 +64310,9 @@ export interface Header {
  * via the `definition` "footer".
  */
 export interface Footer {
-  id: number;
+  id: string;
   designVersion?: ('1' | '2' | '3' | '4' | '5' | '6' | '7' | '8') | null;
-  logo?: (number | null) | Media;
+  logo?: (string | null) | Media;
   copyright?: string | null;
   subline?: string | null;
   navItems?:
@@ -67598,7 +67598,7 @@ export interface Footer {
                 size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
                 reference?: {
                   relationTo: 'pages';
-                  value: number | Page;
+                  value: string | Page;
                 } | null;
                 url?: string | null;
                 label: string;
@@ -67837,7 +67837,7 @@ export interface CodeBlock {
  */
 export interface MediaBlock {
   position?: ('default' | 'fullscreen') | null;
-  media: number | Media;
+  media: string | Media;
   id?: string | null;
   blockName?: string | null;
   blockType: 'mediaBlock';

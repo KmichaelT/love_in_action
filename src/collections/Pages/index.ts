@@ -26,6 +26,7 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
+import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -44,7 +45,7 @@ export const Pages: CollectionConfig = {
           collection: 'pages',
         })
 
-        return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`
+        return `${NEXT_PUBLIC_SERVER_URL}${path}`
       },
     },
     preview: (data) => {
@@ -53,7 +54,7 @@ export const Pages: CollectionConfig = {
         collection: 'pages',
       })
 
-      return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`
+      return `${NEXT_PUBLIC_SERVER_URL}${path}`
     },
     useAsTitle: 'title',
   },
