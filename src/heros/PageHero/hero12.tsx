@@ -3,8 +3,12 @@ import { ExternalLink } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { cn } from '@/utilities/cn';
+import { Hero } from '@/payload-types';
+import RichText from '@/components/RichText';
+import { CMSLink } from '@/components/Link';
+import { Media } from '@/components/Media';
 
-const Hero12 = () => {
+const Hero12: React.FC<Hero> = ({tagline, richText, links, badge, icons, images}) => {
   return (
     <section className="relative overflow-hidden py-32">
       <div className="container">
@@ -478,86 +482,48 @@ const Hero12 = () => {
         </div>
         <div className="mx-auto flex max-w-5xl flex-col items-center">
           <div className="z-10 flex flex-col items-center gap-6 text-center">
-            <img
-              src="https://www.shadcnblocks.com/images/block/block-1.svg"
-              alt="logo"
-              className="h-16"
-            />
-            <Badge variant="outline">UI Blocks</Badge>
+            {images && images[0] && (
+              <Media
+                priority
+                resource={images[0]}
+                imgClassName="h-16"
+              />
+            )}
+            <Badge variant="outline">{badge}</Badge>
             <div>
-              <h1 className="mb-6 text-pretty text-2xl font-bold lg:text-5xl">
-                Build your next project with Blocks
-              </h1>
-              <p className="text-muted-foreground lg:text-xl">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Elig
-                doloremque mollitia fugiat omnis! Porro facilis quo animi
-                consequatur. Explicabo.
-              </p>
+              {richText && <RichText content={richText} overrideStyle={{h1: "mb-6 text-pretty text-2xl font-bold lg:text-5xl", h2: "mb-6 text-pretty text-2xl font-bold lg:text-5xl", p: "text-muted-foreground lg:text-xl" }} />}
             </div>
-            <div className="mt-4 flex justify-center gap-2">
-              <Button>Get Started</Button>
-              <Button variant="outline">
-                Learn more <ExternalLink className="ml-2 h-4" />
-              </Button>
-            </div>
+            {Array.isArray(links) && links.length > 0 && (
+              <div className="flex w-full flex-col justify-center gap-2 sm:flex-row">
+                {links.map(({ link }, i) => {
+                  return (
+                    <CMSLink className="w-full sm:w-auto" key={i} {...link} />
+                  );
+                })}
+              </div>
+            )}
             <div className="mt-20 flex flex-col items-center gap-4">
-              <p className="text-center: text-muted-foreground lg:text-left">
-                Built with open-source technologies
+              <p className="text-center lg:text-left text-muted-foreground">
+                {tagline}
               </p>
-              <div className="flex flex-wrap items-center justify-center gap-4">
-                <a
-                  href="#"
-                  className={cn(
-                    buttonVariants({ variant: 'outline' }),
-                    'group px-3',
-                  )}
-                >
-                  <img
-                    src="https://www.shadcnblocks.com/images/block/logos/shadcn-ui-small.svg"
-                    alt="company logo"
-                    className="h-6 saturate-0 transition-all group-hover:saturate-100"
-                  />
-                </a>
-                <a
-                  href="#"
-                  className={cn(
-                    buttonVariants({ variant: 'outline' }),
-                    'group px-3',
-                  )}
-                >
-                  <img
-                    src="https://www.shadcnblocks.com/images/block/logos/typescript-small.svg"
-                    alt="company logo"
-                    className="h-6 saturate-0 transition-all group-hover:saturate-100"
-                  />
-                </a>
-
-                <a
-                  href="#"
-                  className={cn(
-                    buttonVariants({ variant: 'outline' }),
-                    'group px-3',
-                  )}
-                >
-                  <img
-                    src="https://www.shadcnblocks.com/images/block/logos/react-icon.svg"
-                    alt="company logo"
-                    className="h-6 saturate-0 transition-all group-hover:saturate-100"
-                  />
-                </a>
-                <a
-                  href="#"
-                  className={cn(
-                    buttonVariants({ variant: 'outline' }),
-                    'group px-3',
-                  )}
-                >
-                  <img
-                    src="https://www.shadcnblocks.com/images/block/logos/tailwind-small.svg"
-                    alt="company logo"
-                    className="h-4 saturate-0 transition-all group-hover:saturate-100"
-                  />
-                </a>
+              <div className="inline-flex flex-wrap items-center justify-center gap-4">
+                {icons && icons.length > 0 && icons.map((icon, i) => (
+                  <div
+                    key={i}
+                    className={cn(
+                      buttonVariants({ variant: 'outline' }),
+                      'group px-3 flex items-center justify-center'
+                    )}
+                  >
+                    <div className="flex items-center justify-center">
+                      <Media 
+                        priority 
+                        resource={icon} 
+                        imgClassName='h-6 w-auto grayscale opacity-70 transition-all duration-200 group-hover:grayscale-0 group-hover:opacity-100'
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

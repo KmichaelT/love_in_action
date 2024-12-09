@@ -11,7 +11,6 @@ import { linkGroup } from '@/fields/linkGroup'
 import { link } from '@/fields/link'
 import { icon } from '@/components/Icon/config'
 
-
 /* TODO:
 13 -> X
 30 -> X
@@ -52,97 +51,103 @@ What should happen with the two big boxes? Image or Tex?
 export const hero: Field = {
   name: 'hero',
   type: 'group',
+  interfaceName: 'Hero',
   fields: [
     {
       name: 'designVersion',
       type: 'select',
       options: [
         {
-          "label": "no Hero",
-          "value": "none"
+          label: 'no Hero',
+          value: 'none',
         },
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "10",
-        "11",
-        "12",
-        "13",
-        "14",
-        "15",
-        "16",
-        "18",
-        "20",
-        "21",
-        "24",
-        "25",
-        "26",
-        "27",
-        "28",
-        "29",
-        "30",
-        "31",
-        "32",
-        "33",
-        "34",
-        "35",
-        "36",
-        "37",
-        "38",
-        "39",
-        "40",
-        "45",
-        "50",
-        "51",
-        "53",
-        "55",
-        "57",
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        '10',
+        '11',
+        '12',
+        '13',
+        '14',
+        '15',
+        '16',
+        '18',
+        '20',
+        '21',
+        '24',
+        '25',
+        '26',
+        '27',
+        '28',
+        '29',
+        '30',
+        '31',
+        '32',
+        '33',
+        '34',
+        '35',
+        '36',
+        '37',
+        '38',
+        '39',
+        '40',
+        '45',
+        '50',
+        '51',
+        '53',
+        '55',
+        '57',
       ],
-      defaultValue: "1",
+      defaultValue: '1',
       required: true,
     },
     {
       name: 'badge',
-      type: "text",
+      type: 'text',
       admin: {
-        condition: (_, { designVersion } = {}) => ['1','2', '3','4', '5','6'].includes(designVersion),
-      }
+        condition: (_, { designVersion } = {}) =>
+          ['1', '2', '3', '4', '5', '6', '12'].includes(designVersion),
+      },
     },
     {
       ...icon,
       name: 'badgeIcon',
       admin: {
-        condition: (_, { designVersion } = {}) => ['1','2', '3','4', '5','6'].includes(designVersion),
-      }
+        condition: (_, { designVersion } = {}) =>
+          ['1', '2', '3', '4', '5', '6'].includes(designVersion),
+      },
     },
     {
       name: 'tagline',
-      type: "text",
+      type: 'text',
       admin: {
-        condition: (_, { designVersion } = {}) => ["3","27","26","55","21","53","12","51","57"].includes(designVersion),
-      }
+        condition: (_, { designVersion } = {}) =>
+          ['3', '27', '26', '55', '21', '53', '12', '51', '57'].includes(designVersion),
+      },
     },
     link({
       appearances: false,
       disableLabel: true,
       overrides: {
-        name: "badgeLink",
+        name: 'badgeLink',
         admin: {
-          condition: (_, { designVersion } = { designVersion: "" }) => ["26","55","21","50"].includes(designVersion),
-        }
-      }
+          condition: (_, { designVersion } = { designVersion: '' }) =>
+            ['26', '55', '21', '50'].includes(designVersion),
+        },
+      },
     }),
     {
       name: 'richText',
       type: 'richText',
       admin: {
-        condition: (_, { designVersion } = {}) => ['1','2', '3','4', '5','6'].includes(designVersion),
+        condition: (_, { designVersion } = {}) =>
+          ['1', '2', '3', '4', '5', '6', '12'].includes(designVersion),
       },
       editor: lexicalEditor({
         features: ({ rootFeatures }) => {
@@ -160,15 +165,17 @@ export const hero: Field = {
       overrides: {
         maxRows: 2,
         admin: {
-          condition: (_, { designVersion } = {}) => ['1','2', '3','4', '5','6'].includes(designVersion),
-        }
+          condition: (_, { designVersion } = {}) =>
+            ['1', '2', '3', '4', '5', '6', '12'].includes(designVersion),
+        },
       },
     }),
     {
       name: 'images',
       type: 'upload',
       admin: {
-        condition: (_, { designVersion } = {}) => ['1','2', '3','4', '5','6', '31', '37', '38', "18"].includes(designVersion),
+        condition: (_, { designVersion } = {}) =>
+          ['1', '2', '3', '4', '5', '6', '12', '31', '37', '38', '18'].includes(designVersion),
       },
       relationTo: 'media',
       hasMany: true,
@@ -178,7 +185,8 @@ export const hero: Field = {
       name: 'icons',
       type: 'upload',
       admin: {
-        condition: (_, { designVersion } = {}) => ["3","53", "28","32","12","51","57","50", "18"].includes(designVersion),  
+        condition: (_, { designVersion } = {}) =>
+          ['3', '53', '28', '32', '12', '51', '57', '50', '18'].includes(designVersion),
       },
       relationTo: 'media',
       hasMany: true,
@@ -188,7 +196,7 @@ export const hero: Field = {
       name: 'USPs',
       type: 'group',
       admin: {
-        condition: (_, { designVersion } = {}) => ["24","25","20","45"].includes(designVersion),  
+        condition: (_, { designVersion } = {}) => ['24', '25', '20', '45'].includes(designVersion),
       },
       fields: [
         {
@@ -211,38 +219,38 @@ export const hero: Field = {
           }),
           label: false,
         },
-      ]
+      ],
     },
     {
       name: 'pricing',
       type: 'group',
       admin: {
-        condition: (_, { designVersion } = {}) => ["33"].includes(designVersion),  
+        condition: (_, { designVersion } = {}) => ['33'].includes(designVersion),
       },
       fields: [
         {
-          name: "headline",
-          type: "text",
+          name: 'headline',
+          type: 'text',
         },
         {
-          name: "price",
-          type: "text",
+          name: 'price',
+          type: 'text',
         },
         {
-          name: "description",
-          type: "text",
+          name: 'description',
+          type: 'text',
         },
-      ]
+      ],
     },
     {
-      name: "rating",
-      type: "number",
+      name: 'rating',
+      type: 'number',
       max: 5,
       min: 1,
       admin: {
-        condition: (_, { designVersion } = {}) => ["3", "4", "7", "15"].includes(designVersion),
+        condition: (_, { designVersion } = {}) => ['3', '4', '7', '15'].includes(designVersion),
       },
-    }
+    },
   ],
   label: false,
 }
