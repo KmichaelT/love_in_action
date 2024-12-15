@@ -27,6 +27,7 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
+import { FaqBlock } from '@/blocks/Faq/config'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -76,7 +77,7 @@ export const Pages: CollectionConfig = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [FeatureBlock, Archive, FormBlock, CtaBlock, LogosBlock, AboutBlock, Gallery, TestimonialBlock, Content],
+              blocks: [FeatureBlock, Archive, FormBlock, CtaBlock, LogosBlock, AboutBlock, Gallery, TestimonialBlock, FaqBlock, Content],
               required: true,
             },
           ],

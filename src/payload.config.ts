@@ -15,9 +15,9 @@ import {
   ItalicFeature,
   LinkFeature,
   lexicalEditor,
+  UnderlineFeature,
 } from '@payloadcms/richtext-lexical'
 import sharp from 'sharp' // editor-import
-import { UnderlineFeature } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -93,6 +93,7 @@ export default buildConfig({
   editor: lexicalEditor({
     features: () => {
       return [
+        FixedToolbarFeature(),
         UnderlineFeature(),
         BoldFeature(),
         ItalicFeature(),

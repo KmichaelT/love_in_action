@@ -11,6 +11,7 @@ import { LogosBlock } from '@/blocks/Logos/Component'
 import { AboutBlock } from '@/blocks/About/Component'
 import { TestimonialBlock } from '@/blocks/Testimonial/Component'
 import { ContentBlock } from './Content/Component'
+import { FaqBlock } from './Faq/Component'
 
 const blockComponents: Record<Page['layout'][0]['blockType'], React.FC<any>> = {
   archive: ArchiveBlock,
@@ -23,6 +24,7 @@ const blockComponents: Record<Page['layout'][0]['blockType'], React.FC<any>> = {
   about: AboutBlock,
   testimonial: TestimonialBlock,
   content: ContentBlock,
+  faq: FaqBlock,
 }
 
 export const RenderBlocks: React.FC<{

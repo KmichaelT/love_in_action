@@ -10,3 +10,4 @@ node_modules
 # Payload default media upload directory
 public/media/
 tsconfig.tsbuildinfo
+.env*.local
