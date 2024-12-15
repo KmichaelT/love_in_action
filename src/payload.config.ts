@@ -2,6 +2,7 @@
 // import { postgresAdapter } from '@payloadcms/db-postgres'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { OAuth2Plugin } from "payload-oauth2";
 
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
 import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
@@ -58,6 +59,7 @@ export default buildConfig({
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below and the import `BeforeLogin` statement on line 15.
       beforeLogin: ['@/components/BeforeLogin'],
+      afterLogin: ['@/components/LoginButton'],
       // The `BeforeDashboard` component renders the 'welcome' block that you see after logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below and the import `BeforeDashboard` statement on line 15.
       beforeDashboard: ['@/components/BeforeDashboard'],
@@ -214,7 +216,48 @@ export default buildConfig({
         media: true,
       },
       token: process.env.BLOB_READ_WRITE_TOKEN || '',
-    }),  ],
+    }),
+    OAuth2Plugin({
+      enabled: true,
+      strategyName: "google",
+      useEmailAsIdentity: true,
+      serverURL: NEXT_PUBLIC_SERVER_URL || "http://localhost:3000",
+      authCollection: "users", // assuming you already have a users collection with auth enabled
+      clientId: process.env.GOOGLE_LOGIN_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_LOGIN_CLIENT_SECRET || "",
+      tokenEndpoint: "https://oauth2.googleapis.com/token",
+      scopes: [
+        "https://www.googleapis.com/auth/userinfo.email",
+        "https://www.googleapis.com/auth/userinfo.profile",
+        "openid",
+      ],
+      providerAuthorizationUrl: "https://accounts.google.com/o/oauth2/v2/auth",
+      getUserInfo: async (accessToken: string) => {
+        const response = await fetch(
+          "https://www.googleapis.com/oauth2/v3/userinfo",
+          { headers: { Authorization: `Bearer ${accessToken}` } },
+        );
+        const user = await response.json();
+        if (!user.email_verified) {
+          throw new Error("Email not verified");
+        }
+        // currently, we just allow users with trieb.work domain to login. We need to add different user groups before we can allow other domains
+        if (!user.email.endsWith("@trieb.work")) {
+          throw new Error("Email domain not allowed");
+        }
+        return { email: user.email, sub: user.sub, name: user.name };
+      },
+      successRedirect: (req) => {
+        return "/admin";
+      },
+      failureRedirect: (req, error) => {
+        console.error(error);
+        return "/login";
+      },
+    }),  
+  
+  
+  ],
   secret: process.env.PAYLOAD_SECRET!,
   sharp,
   typescript: {
