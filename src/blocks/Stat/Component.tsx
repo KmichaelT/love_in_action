@@ -11,6 +11,7 @@ type Stat = {
   [key in StatDesignVersion]: React.FC
 }
 
+
 const stat: Stat = {
   STAT1: Stat1,
   STAT2: Stat2,
