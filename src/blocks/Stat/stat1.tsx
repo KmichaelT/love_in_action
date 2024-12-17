@@ -35,7 +35,7 @@ const Stat1: React.FC<StatBlock> = ({ headline, stats }) => {
           ))}
         </div>
       </div>
-    </section >
+    </section>
   );
 };
 
