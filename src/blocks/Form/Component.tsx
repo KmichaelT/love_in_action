@@ -11,6 +11,8 @@ import { buildInitialFormState } from './buildInitialFormState'
 import { fields } from './fields'
 import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
 
+import Turnstile, { useTurnstile } from "react-turnstile";
+
 export type Value = unknown
 
 export interface Property {
@@ -56,12 +58,20 @@ export const FormBlock: React.FC<
   const [isLoading, setIsLoading] = useState(false)
   const [hasSubmitted, setHasSubmitted] = useState<boolean>()
   const [error, setError] = useState<{ message: string; status?: string } | undefined>()
+  const [turnstileToken, setTurnstileToken] = useState<string | undefined>();
   const router = useRouter()
 
   const onSubmit = useCallback(
     (data: Data) => {
       let loadingTimerID: ReturnType<typeof setTimeout>
       const submitForm = async () => {
+        if (!turnstileToken && process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY) {
+          setError({
+            message: 'Turnstile token is required.',
+            status: '500',
+          })
+          return;
+        }
         setError(undefined)
 
         const dataToSend = Object.entries(data).map(([name, value]) => ({
@@ -82,6 +92,7 @@ export const FormBlock: React.FC<
             }),
             headers: {
               'Content-Type': 'application/json',
+              ...(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ? { 'cf-turnstile-token': turnstileToken } : {}),
             },
             method: 'POST',
           })
@@ -122,7 +133,7 @@ export const FormBlock: React.FC<
 
       void submitForm()
     },
-    [router, formID, redirect, confirmationType],
+    [router, formID, redirect, confirmationType, turnstileToken],
   )
 
   return (
@@ -138,6 +149,7 @@ export const FormBlock: React.FC<
         {error && <div>{`${error.status || '500'}: ${error.message || ''}`}</div>}
         {!hasSubmitted && (
           <form id={formID} onSubmit={handleSubmit(onSubmit)}>
+
             <div className="mb-4 last:mb-0">
               {formFromProps &&
                 formFromProps.fields &&
@@ -161,7 +173,24 @@ export const FormBlock: React.FC<
                 })}
             </div>
 
-            <Button form={formID} type="submit" variant="default">
+            {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && <Turnstile
+              sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+              refreshExpired="auto"
+              className='mb-4'
+              fixedSize={true}
+              appearance="interaction-only"
+              onSuccess={(token) => {
+                setTurnstileToken(token);
+              }}
+              onError={(error) => {
+                setError({
+                  message: 'Bot protection could not verify that you are a real human. Cloudflare error code: ' + error,
+                  status: '500',
+                })
+              }}
+            />}
+
+            <Button form={formID} type="submit" variant="default" disabled={!process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || !turnstileToken}>
               {submitButtonLabel}
             </Button>
           </form>
