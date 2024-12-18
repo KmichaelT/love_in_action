@@ -1,24 +1,40 @@
-# Payload Website Template
+# PayBlocks
 
-This is the official [Payload Website Template](https://github.com/payloadcms/payload/blob/main/templates/website). Use it to power websites, blogs, or portfolios from small to enterprise. This repo includes a fully-working backend, enterprise-grade admin panel, and a beautifully designed, production-ready website.
+PayBlocks is a powerful website builder that combines the best of two worlds: PayloadCMS's robust content management capabilities and shadcnblocks' extensive UI component library. The name "PayBlocks" reflects this fusion - "Pay" from PayloadCMS and "Blocks" from shadcnblocks.
 
-This template is right for you if you are working on:
+This project transforms the traditional PayloadCMS starter into a feature-rich website builder with a beautiful, modern UI and an extensive collection of pre-built components. Whether you're building a corporate website, a portfolio, or a complex web application, PayBlocks provides all the building blocks you need.
 
-- A personal or enterprise-grade website, blog, or portfolio
-- A content publishing platform with a fully featured publication workflow
-- A lead generation website with premium content gated behind authentication
+## ✨ Key Features
 
-Core features:
+- 🎨 **Rich Component Library**
+  - Extensive collection of pre-built blocks from shadcnblocks
+  - Multiple variants for each component type:
+    - 5+ FAQ layouts
+    - 15+ CTA designs
+    - 6+ Gallery layouts
+    - Various form components
+  - All components are fully customizable and responsive
 
-- [Pre-configured Payload Config](#how-it-works)
-- [Authentication](#users-authentication)
-- [Access Control](#access-control)
-- [Layout Builder](#layout-builder)
-- [Draft Preview](#draft-preview)
-- [Live Preview](#live-preview)
-- [Redirects](#redirects)
-- [SEO](#seo)
-- [Website](#website)
+- 🔒 **Enhanced Security**
+  - Cloudflare Turnstile integration for form protection
+  - Secure authentication system
+  - Login with Google
+  - Role-based access control
+
+- 🚀 **Advanced Features**
+  - Layout Builder with drag-and-drop functionality
+  - Live Preview for real-time content editing
+  - Draft Preview system
+  - SEO optimization tools
+  - Redirects management
+  - Advanced form builder with various field types
+
+- 💻 **Developer Experience**
+  - Built with Next.js and TypeScript
+  - Shadcn/ui integration for consistent UI components
+  - MongoDB/PostgreSQL database support
+  - Email integration with Nodemailer
+  - Cloud storage with Vercel Blob
 
 ## Quick Start
 
