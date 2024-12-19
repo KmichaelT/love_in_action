@@ -58758,14 +58758,63 @@ export interface PayloadMigration {
  */
 export interface PagesSelect<T extends boolean = true> {
   title?: T;
-  hero?:
+  hero?: T | HeroSelect<T>;
+  layout?:
     | T
     | {
-        designVersion?: T;
-        badge?: T;
-        badgeIcon?: T;
-        tagline?: T;
-        badgeLink?:
+        feature?: T | FeatureBlockSelect<T>;
+        archive?: T | ArchiveBlockSelect<T>;
+        formBlock?: T | FormBlockSelect<T>;
+        cta?: T | CtaBlockSelect<T>;
+        logos?: T | LogosBlockSelect<T>;
+        about?: T | AboutBlockSelect<T>;
+        gallery?: T | GalleryBlockSelect<T>;
+        testimonial?: T | TestimonialBlockSelect<T>;
+        faq?: T | FaqBlockSelect<T>;
+        stat?: T | StatBlockSelect<T>;
+        splitView?: T | SplitViewBlockSelect<T>;
+        text?: T | TextBlockSelect<T>;
+        mediaBlock?: T | MediaBlockSelect<T>;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+      };
+  publishedAt?: T;
+  slug?: T;
+  slugLock?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Hero_select".
+ */
+export interface HeroSelect<T extends boolean = true> {
+  designVersion?: T;
+  badge?: T;
+  badgeIcon?: T;
+  tagline?: T;
+  badgeLink?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        iconBefore?: T;
+        iconAfter?: T;
+        size?: T;
+        reference?: T;
+        url?: T;
+      };
+  richText?: T;
+  links?:
+    | T
+    | {
+        link?:
           | T
           | {
               type?: T;
@@ -58775,8 +58824,70 @@ export interface PagesSelect<T extends boolean = true> {
               size?: T;
               reference?: T;
               url?: T;
+              label?: T;
+              appearance?: T;
             };
+        id?: T;
+      };
+  images?: T;
+  icons?: T;
+  USPs?:
+    | T
+    | {
+        icon?: T;
         richText?: T;
+      };
+  pricing?:
+    | T
+    | {
+        headline?: T;
+        price?: T;
+        description?: T;
+      };
+  rating?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeatureBlock_select".
+ */
+export interface FeatureBlockSelect<T extends boolean = true> {
+  designVersion?: T;
+  badge?: T;
+  tagline?: T;
+  icon?: T;
+  richText?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              iconBefore?: T;
+              iconAfter?: T;
+              size?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
+  image?: T;
+  USPs?:
+    | T
+    | {
+        uspIcon?: T;
+        tagline?: T;
+        richText?: T;
+        USPFeatures?:
+          | T
+          | {
+              icon?: T;
+              richText?: T;
+              id?: T;
+            };
         links?:
           | T
           | {
@@ -58795,452 +58906,349 @@ export interface PagesSelect<T extends boolean = true> {
                   };
               id?: T;
             };
-        images?: T;
-        icons?: T;
-        USPs?:
+        link?:
           | T
           | {
-              icon?: T;
-              richText?: T;
+              type?: T;
+              newTab?: T;
+              iconBefore?: T;
+              iconAfter?: T;
+              size?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
             };
-        pricing?:
-          | T
-          | {
-              headline?: T;
-              price?: T;
-              description?: T;
-            };
-        rating?: T;
-      };
-  layout?:
-    | T
-    | {
-        feature?:
-          | T
-          | {
-              designVersion?: T;
-              badge?: T;
-              tagline?: T;
-              icon?: T;
-              richText?: T;
-              links?:
-                | T
-                | {
-                    link?:
-                      | T
-                      | {
-                          type?: T;
-                          newTab?: T;
-                          iconBefore?: T;
-                          iconAfter?: T;
-                          size?: T;
-                          reference?: T;
-                          url?: T;
-                          label?: T;
-                          appearance?: T;
-                        };
-                    id?: T;
-                  };
-              image?: T;
-              USPs?:
-                | T
-                | {
-                    uspIcon?: T;
-                    tagline?: T;
-                    richText?: T;
-                    USPFeatures?:
-                      | T
-                      | {
-                          icon?: T;
-                          richText?: T;
-                          id?: T;
-                        };
-                    links?:
-                      | T
-                      | {
-                          link?:
-                            | T
-                            | {
-                                type?: T;
-                                newTab?: T;
-                                iconBefore?: T;
-                                iconAfter?: T;
-                                size?: T;
-                                reference?: T;
-                                url?: T;
-                                label?: T;
-                                appearance?: T;
-                              };
-                          id?: T;
-                        };
-                    link?:
-                      | T
-                      | {
-                          type?: T;
-                          newTab?: T;
-                          iconBefore?: T;
-                          iconAfter?: T;
-                          size?: T;
-                          reference?: T;
-                          url?: T;
-                          label?: T;
-                        };
-                    image?: T;
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        archive?:
-          | T
-          | {
-              introContent?: T;
-              populateBy?: T;
-              relationTo?: T;
-              categories?: T;
-              limit?: T;
-              selectedDocs?: T;
-              id?: T;
-              blockName?: T;
-            };
-        formBlock?:
-          | T
-          | {
-              form?: T;
-              enableIntro?: T;
-              introContent?: T;
-              id?: T;
-              blockName?: T;
-            };
-        cta?:
-          | T
-          | {
-              designVersion?: T;
-              tagline?: T;
-              icon?: T;
-              richText?: T;
-              links?:
-                | T
-                | {
-                    link?:
-                      | T
-                      | {
-                          type?: T;
-                          newTab?: T;
-                          iconBefore?: T;
-                          iconAfter?: T;
-                          size?: T;
-                          reference?: T;
-                          url?: T;
-                          label?: T;
-                          appearance?: T;
-                        };
-                    id?: T;
-                  };
-              image?: T;
-              id?: T;
-              blockName?: T;
-            };
-        logos?:
-          | T
-          | {
-              designVersion?: T;
-              richText?: T;
-              link?:
-                | T
-                | {
-                    type?: T;
-                    newTab?: T;
-                    iconBefore?: T;
-                    iconAfter?: T;
-                    size?: T;
-                    reference?: T;
-                    url?: T;
-                    label?: T;
-                    appearance?: T;
-                  };
-              logos?: T;
-              id?: T;
-              blockName?: T;
-            };
-        about?:
-          | T
-          | {
-              designVersion?: T;
-              headline?: T;
-              text1?: T;
-              text2?: T;
-              text3?: T;
-              link?:
-                | T
-                | {
-                    type?: T;
-                    newTab?: T;
-                    iconBefore?: T;
-                    iconAfter?: T;
-                    size?: T;
-                    reference?: T;
-                    url?: T;
-                    label?: T;
-                    appearance?: T;
-                  };
-              images?: T;
-              logos?: T;
-              counter?:
-                | T
-                | {
-                    value?: T;
-                    title?: T;
-                    description?: T;
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        gallery?:
-          | T
-          | {
-              designVersion?: T;
-              richText?: T;
-              tagline?: T;
-              link?:
-                | T
-                | {
-                    type?: T;
-                    newTab?: T;
-                    iconBefore?: T;
-                    iconAfter?: T;
-                    size?: T;
-                    reference?: T;
-                    url?: T;
-                    label?: T;
-                  };
-              elements?:
-                | T
-                | {
-                    image?: T;
-                    richText?: T;
-                    link?:
-                      | T
-                      | {
-                          type?: T;
-                          newTab?: T;
-                          iconBefore?: T;
-                          iconAfter?: T;
-                          size?: T;
-                          reference?: T;
-                          url?: T;
-                          label?: T;
-                        };
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        testimonial?:
-          | T
-          | {
-              designVersion?: T;
-              headline?: T;
-              tagline?: T;
-              link?:
-                | T
-                | {
-                    type?: T;
-                    newTab?: T;
-                    iconBefore?: T;
-                    iconAfter?: T;
-                    size?: T;
-                    reference?: T;
-                    url?: T;
-                    label?: T;
-                    appearance?: T;
-                  };
-              testimonial?:
-                | T
-                | {
-                    authorName?: T;
-                    authorDescription?: T;
-                    authorAvatar?: T;
-                    icon?: T;
-                    rating?: T;
-                    text?: T;
-                    link?:
-                      | T
-                      | {
-                          type?: T;
-                          newTab?: T;
-                          iconBefore?: T;
-                          iconAfter?: T;
-                          size?: T;
-                          reference?: T;
-                          url?: T;
-                          label?: T;
-                          appearance?: T;
-                        };
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        faq?:
-          | T
-          | {
-              designVersion?: T;
-              badge?: T;
-              headline?: T;
-              faqs?:
-                | T
-                | {
-                    question?: T;
-                    answer?: T;
-                    id?: T;
-                  };
-              calloutText?: T;
-              calloutLink?:
-                | T
-                | {
-                    type?: T;
-                    newTab?: T;
-                    iconBefore?: T;
-                    iconAfter?: T;
-                    size?: T;
-                    reference?: T;
-                    url?: T;
-                    label?: T;
-                    appearance?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        stat?:
-          | T
-          | {
-              designVersion?: T;
-              headline?: T;
-              stats?:
-                | T
-                | {
-                    counter?: T;
-                    title?: T;
-                    description?: T;
-                    id?: T;
-                  };
-              links?:
-                | T
-                | {
-                    link?:
-                      | T
-                      | {
-                          type?: T;
-                          newTab?: T;
-                          iconBefore?: T;
-                          iconAfter?: T;
-                          size?: T;
-                          reference?: T;
-                          url?: T;
-                          label?: T;
-                          appearance?: T;
-                        };
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        splitView?:
-          | T
-          | {
-              columns?:
-                | T
-                | {
-                    text?:
-                      | T
-                      | {
-                          size?: T;
-                          content?: T;
-                          links?:
-                            | T
-                            | {
-                                link?:
-                                  | T
-                                  | {
-                                      type?: T;
-                                      newTab?: T;
-                                      iconBefore?: T;
-                                      iconAfter?: T;
-                                      size?: T;
-                                      reference?: T;
-                                      url?: T;
-                                      label?: T;
-                                      appearance?: T;
-                                    };
-                                id?: T;
-                              };
-                          id?: T;
-                          blockName?: T;
-                        };
-                    mediaBlock?:
-                      | T
-                      | {
-                          size?: T;
-                          media?: T;
-                          caption?: T;
-                          aspectRatio?: T;
-                          id?: T;
-                          blockName?: T;
-                        };
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        text?:
-          | T
-          | {
-              content?: T;
-              links?:
-                | T
-                | {
-                    link?:
-                      | T
-                      | {
-                          type?: T;
-                          newTab?: T;
-                          iconBefore?: T;
-                          iconAfter?: T;
-                          size?: T;
-                          reference?: T;
-                          url?: T;
-                          label?: T;
-                          appearance?: T;
-                        };
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        mediaBlock?:
-          | T
-          | {
-              media?: T;
-              caption?: T;
-              aspectRatio?: T;
-              id?: T;
-              blockName?: T;
-            };
-      };
-  meta?:
-    | T
-    | {
-        title?: T;
         image?: T;
-        description?: T;
+        id?: T;
       };
-  publishedAt?: T;
-  slug?: T;
-  slugLock?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  _status?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ArchiveBlock_select".
+ */
+export interface ArchiveBlockSelect<T extends boolean = true> {
+  introContent?: T;
+  populateBy?: T;
+  relationTo?: T;
+  categories?: T;
+  limit?: T;
+  selectedDocs?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FormBlock_select".
+ */
+export interface FormBlockSelect<T extends boolean = true> {
+  form?: T;
+  enableIntro?: T;
+  introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CtaBlock_select".
+ */
+export interface CtaBlockSelect<T extends boolean = true> {
+  designVersion?: T;
+  tagline?: T;
+  icon?: T;
+  richText?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              iconBefore?: T;
+              iconAfter?: T;
+              size?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
+  image?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LogosBlock_select".
+ */
+export interface LogosBlockSelect<T extends boolean = true> {
+  designVersion?: T;
+  richText?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        iconBefore?: T;
+        iconAfter?: T;
+        size?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+        appearance?: T;
+      };
+  logos?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutBlock_select".
+ */
+export interface AboutBlockSelect<T extends boolean = true> {
+  designVersion?: T;
+  headline?: T;
+  text1?: T;
+  text2?: T;
+  text3?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        iconBefore?: T;
+        iconAfter?: T;
+        size?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+        appearance?: T;
+      };
+  images?: T;
+  logos?: T;
+  counter?:
+    | T
+    | {
+        value?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GalleryBlock_select".
+ */
+export interface GalleryBlockSelect<T extends boolean = true> {
+  designVersion?: T;
+  richText?: T;
+  tagline?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        iconBefore?: T;
+        iconAfter?: T;
+        size?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+      };
+  elements?:
+    | T
+    | {
+        image?: T;
+        richText?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              iconBefore?: T;
+              iconAfter?: T;
+              size?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialBlock_select".
+ */
+export interface TestimonialBlockSelect<T extends boolean = true> {
+  designVersion?: T;
+  headline?: T;
+  tagline?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        iconBefore?: T;
+        iconAfter?: T;
+        size?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+        appearance?: T;
+      };
+  testimonial?:
+    | T
+    | {
+        authorName?: T;
+        authorDescription?: T;
+        authorAvatar?: T;
+        icon?: T;
+        rating?: T;
+        text?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              iconBefore?: T;
+              iconAfter?: T;
+              size?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FaqBlock_select".
+ */
+export interface FaqBlockSelect<T extends boolean = true> {
+  designVersion?: T;
+  badge?: T;
+  headline?: T;
+  faqs?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        id?: T;
+      };
+  calloutText?: T;
+  calloutLink?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        iconBefore?: T;
+        iconAfter?: T;
+        size?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+        appearance?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatBlock_select".
+ */
+export interface StatBlockSelect<T extends boolean = true> {
+  designVersion?: T;
+  headline?: T;
+  stats?:
+    | T
+    | {
+        counter?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              iconBefore?: T;
+              iconAfter?: T;
+              size?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SplitViewBlock_select".
+ */
+export interface SplitViewBlockSelect<T extends boolean = true> {
+  columns?:
+    | T
+    | {
+        text?: T | TextBlockSelect<T>;
+        mediaBlock?: T | MediaBlockSelect<T>;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextBlock_select".
+ */
+export interface TextBlockSelect<T extends boolean = true> {
+  content?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              iconBefore?: T;
+              iconAfter?: T;
+              size?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MediaBlock_select".
+ */
+export interface MediaBlockSelect<T extends boolean = true> {
+  media?: T;
+  caption?: T;
+  aspectRatio?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
