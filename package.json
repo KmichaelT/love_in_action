@@ -1,7 +1,7 @@
 {
-  "name": "payload-starter",
+  "name": "payblocks",
   "version": "1.0.0",
-  "description": "Website template for Payload",
+  "description": "A Website template for PayloadCMS, featurig shadcn/ui and shadcnblocks.",
   "license": "MIT",
   "type": "module",
   "scripts": {
