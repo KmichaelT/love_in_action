@@ -190,7 +190,7 @@ export const FormBlock: React.FC<
               }}
             />}
 
-            <Button form={formID} type="submit" variant="default" disabled={!process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || !turnstileToken}>
+            <Button form={formID} type="submit" variant="default" disabled={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ? !turnstileToken : false}>
               {submitButtonLabel}
             </Button>
           </form>
