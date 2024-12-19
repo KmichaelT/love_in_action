@@ -35,6 +35,7 @@ type Props = {
 }
 
 export function serializeLexical({ nodes, overrideStyle }: Props): JSX.Element {
+  // TODO: add defaults for overwrite styles
   return (
     <Fragment>
       {nodes?.map((node, index): JSX.Element | null => {
