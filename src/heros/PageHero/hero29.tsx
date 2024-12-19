@@ -35,7 +35,7 @@ const Hero29 = () => {
                 <path
                   d="M 40 0 L 0 0 0 40"
                   fill="none"
-                  stroke="hsl(var(--background))"
+                  stroke="hsl(from_var(--background)_h_s_l)"
                   strokeWidth="0.5"
                   strokeOpacity={0.6}
                 />
@@ -50,24 +50,24 @@ const Hero29 = () => {
                 <path
                   d="M 70 80 H 90 M 80 70 V 90"
                   fill="none"
-                  stroke="hsl(var(--background))"
+                  stroke="hsl(from_var(--background)_h_s_l)"
                   strokeWidth="1"
                   strokeOpacity={0.3}
                 />
               </pattern>
             </defs>
             <g filter="url(#blur1)">
-              <rect width="1400" height="900" fill="hsl(var(--background))" />
+              <rect width="1400" height="900" fill="hsl(from_var(--background)_h_s_l)" />
               <circle
                 cx="400"
                 cy="740"
-                fill="hsl(var(--primary)/0.2)"
+                fill="hsl(from_var(--primary)_h_s_l/0.2)"
                 r="300"
               />
               <circle
                 cx="1100"
                 cy="600"
-                fill="hsl(var(--primary)/0.3)"
+                fill="hsl(from_var(--primary)_h_s_l/0.3)"
                 r="240"
               />
             </g>

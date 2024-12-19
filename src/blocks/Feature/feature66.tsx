@@ -13,7 +13,7 @@ const Feature66 = () => {
                 alt="placeholder"
                 className="absolute size-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
               />
-              <div className="absolute inset-x-0 bottom-0 mt-auto max-h-[50%] min-h-[50%] bg-[linear-gradient(transparent,hsl(var(--primary)/0.8)_80%)] mix-blend-multiply" />
+              <div className="absolute inset-x-0 bottom-0 mt-auto max-h-[50%] min-h-[50%] bg-[linear-gradient(transparent,hsl(from_var(--primary)_h_s_l/0.8)_80%)] mix-blend-multiply" />
               <div className="absolute inset-x-0 bottom-0 flex flex-col items-start p-6 text-primary-foreground md:p-8">
                 <img
                   src="https://www.shadcnblocks.com/images/block/logos/astro.svg"
@@ -33,7 +33,7 @@ const Feature66 = () => {
                 alt="placeholder"
                 className="absolute size-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
               />
-              <div className="absolute inset-x-0 bottom-0 mt-auto max-h-[50%] min-h-[50%] bg-[linear-gradient(transparent,hsl(var(--primary)/0.8)_80%)] mix-blend-multiply" />
+              <div className="absolute inset-x-0 bottom-0 mt-auto max-h-[50%] min-h-[50%] bg-[linear-gradient(transparent,hsl(from_var(--primary)_h_s_l/0.8)_80%)] mix-blend-multiply" />
               <div className="absolute inset-x-0 bottom-0 flex flex-col items-start p-6 text-primary-foreground md:p-8">
                 <img
                   src="https://www.shadcnblocks.com/images/block/logos/nextjs.svg"

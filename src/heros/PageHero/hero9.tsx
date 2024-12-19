@@ -17,9 +17,9 @@ export const Hero9: React.FC<Page['hero']> = ({ }) => {
   return (
     <section className="relative py-32">
       {/* Background gradient */}
-      <div className="pointer-events-none absolute -inset-y-20 inset-x-0 bg-[radial-gradient(ellipse_60%_60%_at_65%_50%,hsl(var(--accent))_0%,transparent_80%)]"></div>
+      <div className="pointer-events-none absolute -inset-y-20 inset-x-0 bg-[radial-gradient(ellipse_60%_60%_at_65%_50%,hsl(from_var(--accent)_h_s_l)_0%,transparent_80%)]"></div>
       {/* Background pattern */}
-      <div className="pointer-events-none absolute -inset-y-20 inset-x-0 bg-[radial-gradient(hsl(var(--accent-foreground)/0.1)_1px,transparent_1px)] [background-size:8px_8px] [mask-image:radial-gradient(ellipse_60%_60%_at_65%_50%,#000_0%,transparent_80%)]"></div>
+      <div className="pointer-events-none absolute -inset-y-20 inset-x-0 bg-[radial-gradient(hsl(from_var(--accent-foreground)_h_s_l/0.1)_1px,transparent_1px)] [background-size:8px_8px] [mask-image:radial-gradient(ellipse_60%_60%_at_65%_50%,#000_0%,transparent_80%)]"></div>
       {/* Content */}
       <div className="container relative">
         <div className="flex flex-col items-start text-left">

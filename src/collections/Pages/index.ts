@@ -29,6 +29,7 @@ import {
 import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
 import { FaqBlock } from '@/blocks/Faq/config'
 import { StatBlock } from '@/blocks/Stat/config'
+import { ContactBlock } from '@/blocks/Contact/config'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -78,7 +79,7 @@ export const Pages: CollectionConfig = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [FeatureBlock, Archive, FormBlock, CtaBlock, LogosBlock, AboutBlock, Gallery, TestimonialBlock, FaqBlock, StatBlock, Content],
+              blocks: [FeatureBlock, Archive, FormBlock, CtaBlock, LogosBlock, AboutBlock, Gallery, TestimonialBlock, FaqBlock, StatBlock, ContactBlock, Content],
               required: true,
             },
           ],

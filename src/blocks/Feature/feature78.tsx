@@ -64,7 +64,7 @@ const Feature78 = () => {
                     ))}
                   </TabsList>
                 </div>
-                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--background))_0%,transparent_10%,transparent_90%,hsl(var(--background))_100%)] md:hidden" />
+                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,hsl(from_var(--background)_h_s_l)_0%,transparent_10%,transparent_90%,hsl(from_var(--background)_h_s_l)_100%)] md:hidden" />
               </div>
             </div>
             <div className="container">

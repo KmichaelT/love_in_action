@@ -13,6 +13,7 @@ import { TestimonialBlock } from '@/blocks/Testimonial/Component'
 import { ContentBlock } from './Content/Component'
 import { FaqBlock } from './Faq/Component'
 import { StatBlock } from './Stat/Component'
+import ContactBlock from './Contact/Component'
 
 const blockComponents: Record<Page['layout'][0]['blockType'], React.FC<any>> = {
   archive: ArchiveBlock,
@@ -27,6 +28,7 @@ const blockComponents: Record<Page['layout'][0]['blockType'], React.FC<any>> = {
   content: ContentBlock,
   faq: FaqBlock,
   stat: StatBlock,
+  contact: ContactBlock,
 }
 
 export const RenderBlocks: React.FC<{

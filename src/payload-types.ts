@@ -98,6 +98,7 @@ export interface Page {
     | TestimonialBlock
     | FaqBlock
     | StatBlock
+    | ContactBlock
     | ContentBlock
   )[];
   meta?: {
@@ -55264,6 +55265,59 @@ export interface StatBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactBlock".
+ */
+export interface ContactBlock {
+  designVersion: 'CONTACT1' | 'CONTACT2' | 'CONTACT3' | 'CONTACT4';
+  headlineAndDescription?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  contactBlocks?:
+    | {
+        icon?: string | null;
+        description?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  maps?:
+    | {
+        iframe?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  form?: FormBlock[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contact';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "ContentBlock".
  */
 export interface ContentBlock {
@@ -59121,6 +59175,40 @@ export interface PagesSelect<T extends boolean = true> {
                           appearance?: T;
                         };
                     id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contact?:
+          | T
+          | {
+              designVersion?: T;
+              headlineAndDescription?: T;
+              contactBlocks?:
+                | T
+                | {
+                    icon?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              maps?:
+                | T
+                | {
+                    iframe?: T;
+                    id?: T;
+                  };
+              form?:
+                | T
+                | {
+                    formBlock?:
+                      | T
+                      | {
+                          form?: T;
+                          enableIntro?: T;
+                          introContent?: T;
+                          id?: T;
+                          blockName?: T;
+                        };
                   };
               id?: T;
               blockName?: T;

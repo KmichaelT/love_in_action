@@ -7,7 +7,7 @@ const Hero51 = () => {
     <section className="py-32">
       <div className="">
         <div className="container relative mx-auto max-w-screen-sm py-10 text-center">
-          <div className="absolute inset-0 -z-10 size-full bg-[linear-gradient(to_right,hsl(var(--muted))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--muted))_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_50%_100%_at_50%_50%,#000_60%,transparent_100%)]"></div>
+          <div className="absolute inset-0 -z-10 size-full bg-[linear-gradient(to_right,hsl(from_var(--muted)_h_s_l)_1px,transparent_1px),linear-gradient(to_bottom,hsl(from_var(--muted)_h_s_l)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_50%_100%_at_50%_50%,#000_60%,transparent_100%)]"></div>
           <h1 className="mb-3 text-4xl lg:text-7xl">
             Explore a World of Digital Assets
           </h1>

@@ -639,7 +639,7 @@ const ProductsMenu = () => (
               alt="placeholder"
               className="size-full object-cover object-center"
             />
-            <div className="absolute inset-0 bg-[linear-gradient(hsl(var(--accent))_0%,transparent_50%,hsl(var(--accent))_100%)]"></div>
+            <div className="absolute inset-0 bg-[linear-gradient(hsl(from_var(--accent)_h_s_l)_0%,transparent_50%,hsl(from_var(--accent)_h_s_l)_100%)]"></div>
           </div>
           <div className="relative z-20 flex flex-col px-6 lg:px-0">
             <div className="mt-auto flex items-center space-x-1 text-xs">
@@ -1061,7 +1061,7 @@ const ResourcesMenu = () => (
               className="size-full object-cover object-center invert"
             />
           </div>
-          <div className="absolute inset-x-0 top-0 z-10 h-3/5 bg-[linear-gradient(hsl(var(--primary))_50%,transparent)] md:bottom-[-10%] md:top-auto md:h-[50%] md:bg-[linear-gradient(transparent,hsl(var(--primary))_50%)]"></div>
+          <div className="absolute inset-x-0 top-0 z-10 h-3/5 bg-[linear-gradient(hsl(from_var(--primary)_h_s_l)_50%,transparent)] md:bottom-[-10%] md:top-auto md:h-[50%] md:bg-[linear-gradient(transparent,hsl(from_var(--primary)_h_s_l)_50%)]"></div>
         </div>
       </NavigationMenuLink>
     </div>

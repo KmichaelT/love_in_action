@@ -36,7 +36,7 @@ export const Hero31: React.FC<Page['hero']> = ({ links, images, richText }) => {
               <path
                 d="M 40 0 L 0 0 0 40"
                 fill="none"
-                stroke="hsl(var(--background))"
+                stroke="hsl(from_var(--background)_h_s_l)"
                 strokeWidth="0.5"
                 strokeOpacity={0.6}
               />
@@ -51,31 +51,31 @@ export const Hero31: React.FC<Page['hero']> = ({ links, images, richText }) => {
               <path
                 d="M 70 80 H 90 M 80 70 V 90"
                 fill="none"
-                stroke="hsl(var(--background))"
+                stroke="hsl(from_var(--background)_h_s_l)"
                 strokeWidth="1"
                 strokeOpacity={0.3}
               />
             </pattern>
           </defs>
           <g filter="url(#blur1)">
-            <rect width="1400" height="900" fill="hsl(var(--muted))" />
+            <rect width="1400" height="900" fill="hsl(from_var(--muted)_h_s_l)" />
             <rect
               x="0"
               y="0"
               width="1400"
               height="900"
-              fill="hsl(var(--primary)/0.1)"
+              fill="hsl(from_var(--primary)_h_s_l/0.1)"
             ></rect>
             <g transform="translate(1400, 900)">
               <path
                 d="M-707.3 0C-692.6 -130.2 -677.8 -260.4 -612.6 -353.7C-547.3 -446.9 -431.5 -503.2 -321 -556C-210.5 -608.8 -105.2 -658.1 0 -707.3L0 0Z"
-                fill="hsl(var(--background))"
+                fill="hsl(from_var(--background)_h_s_l)"
               ></path>
             </g>
             <g transform="translate(0, 0)">
               <path
                 d="M707.3 0C662.2 107.6 617.1 215.3 563.8 325.5C510.5 435.7 449 548.5 353.7 612.6C258.3 676.6 129.2 692 0 707.3L0 0Z"
-                fill="hsl(var(--background))"
+                fill="hsl(from_var(--background)_h_s_l)"
               ></path>
             </g>
           </g>

@@ -7,7 +7,7 @@ import { CMSLink } from '@/components/Link';
 
 const Testimonial11: React.FC<TestimonialBlock> = ({ headline, link, tagline, testimonial }) => {
   return (
-    <section className="relative bg-accent bg-[linear-gradient(hsl(var(--accent))_0%,hsl(var(--background))_100%)] py-32 sm:py-0">
+    <section className="relative bg-accent bg-[linear-gradient(hsl(from_var(--accent)_h_s_l)_0%,hsl(from_var(--background)_h_s_l)_100%)] py-32 sm:py-0">
       <div className="container sm:py-32">
         <div className="flex flex-col items-start gap-12 sm:flex-row sm:items-center sm:justify-between sm:gap-32">
           <div className="flex flex-1 flex-col items-start text-left">
@@ -101,7 +101,7 @@ const Testimonial11: React.FC<TestimonialBlock> = ({ headline, link, tagline, te
           ))}
         </div>
       </div>
-      <div className="pointer-events-none absolute bottom-0 left-0 hidden w-full sm:block sm:h-[16.875rem] sm:bg-[linear-gradient(transparent_0%,hsl(var(--accent))_100%)] lg:h-56"></div>
+      <div className="pointer-events-none absolute bottom-0 left-0 hidden w-full sm:block sm:h-[16.875rem] sm:bg-[linear-gradient(transparent_0%,hsl(from_var(--accent)_h_s_l)_100%)] lg:h-56"></div>
     </section>
   );
 };
