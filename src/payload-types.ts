@@ -98,7 +98,9 @@ export interface Page {
     | TestimonialBlock
     | FaqBlock
     | StatBlock
-    | ContentBlock
+    | SplitViewBlock
+    | TextBlock
+    | MediaBlock
   )[];
   meta?: {
     title?: string | null;
@@ -55264,29 +55266,37 @@ export interface StatBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ContentBlock".
+ * via the `definition` "SplitViewBlock".
  */
-export interface ContentBlock {
-  columns?:
+export interface SplitViewBlock {
+  columns?: (TextBlock | MediaBlock)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'splitView';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextBlock".
+ */
+export interface TextBlock {
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  links?:
     | {
-        size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
-        richText?: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        enableLink?: boolean | null;
-        link?: {
+        link: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
           iconBefore?:
@@ -58575,7 +58585,19 @@ export interface ContentBlock {
     | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'content';
+  blockType: 'text';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MediaBlock".
+ */
+export interface MediaBlock {
+  media: string | Media;
+  caption?: string | null;
+  aspectRatio?: ('16/9' | '4/3' | '1/1' | 'original') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'mediaBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -59125,15 +59147,59 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        content?:
+        splitView?:
           | T
           | {
               columns?:
                 | T
                 | {
-                    size?: T;
-                    richText?: T;
-                    enableLink?: T;
+                    text?:
+                      | T
+                      | {
+                          size?: T;
+                          content?: T;
+                          links?:
+                            | T
+                            | {
+                                link?:
+                                  | T
+                                  | {
+                                      type?: T;
+                                      newTab?: T;
+                                      iconBefore?: T;
+                                      iconAfter?: T;
+                                      size?: T;
+                                      reference?: T;
+                                      url?: T;
+                                      label?: T;
+                                      appearance?: T;
+                                    };
+                                id?: T;
+                              };
+                          id?: T;
+                          blockName?: T;
+                        };
+                    mediaBlock?:
+                      | T
+                      | {
+                          size?: T;
+                          media?: T;
+                          caption?: T;
+                          aspectRatio?: T;
+                          id?: T;
+                          blockName?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        text?:
+          | T
+          | {
+              content?: T;
+              links?:
+                | T
+                | {
                     link?:
                       | T
                       | {
@@ -59149,6 +59215,15 @@ export interface PagesSelect<T extends boolean = true> {
                         };
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        mediaBlock?:
+          | T
+          | {
+              media?: T;
+              caption?: T;
+              aspectRatio?: T;
               id?: T;
               blockName?: T;
             };
@@ -74585,17 +74660,6 @@ export interface CodeBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'code';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MediaBlock".
- */
-export interface MediaBlock {
-  position?: ('default' | 'fullscreen') | null;
-  media: string | Media;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'mediaBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -2,7 +2,10 @@
 // import { postgresAdapter } from '@payloadcms/db-postgres'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
-import { OAuth2Plugin } from "payload-oauth2";
+import { en } from '@payloadcms/translations/languages/en'
+import { de } from '@payloadcms/translations/languages/de'
+
+import { OAuth2Plugin } from 'payload-oauth2'
 
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
 import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
@@ -48,9 +51,7 @@ const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
 }
 
 const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
-  return doc?.slug
-    ? `${NEXT_PUBLIC_SERVER_URL!}/${doc.slug}`
-    : NEXT_PUBLIC_SERVER_URL!
+  return doc?.slug ? `${NEXT_PUBLIC_SERVER_URL!}/${doc.slug}` : NEXT_PUBLIC_SERVER_URL!
 }
 
 export default buildConfig({
@@ -127,7 +128,7 @@ export default buildConfig({
   // db: postgresAdapter({
   //   pool: {
   //     connectionString: process.env.DATABASE_URL || '',
-      
+
   //   },
   // }),
   db: mongooseAdapter({
@@ -219,44 +220,41 @@ export default buildConfig({
     }),
     OAuth2Plugin({
       enabled: true,
-      strategyName: "google",
+      strategyName: 'google',
       useEmailAsIdentity: true,
-      serverURL: NEXT_PUBLIC_SERVER_URL || "http://localhost:3000",
-      authCollection: "users", // assuming you already have a users collection with auth enabled
-      clientId: process.env.GOOGLE_LOGIN_CLIENT_ID || "",
-      clientSecret: process.env.GOOGLE_LOGIN_CLIENT_SECRET || "",
-      tokenEndpoint: "https://oauth2.googleapis.com/token",
+      serverURL: NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
+      authCollection: 'users', // assuming you already have a users collection with auth enabled
+      clientId: process.env.GOOGLE_LOGIN_CLIENT_ID || '',
+      clientSecret: process.env.GOOGLE_LOGIN_CLIENT_SECRET || '',
+      tokenEndpoint: 'https://oauth2.googleapis.com/token',
       scopes: [
-        "https://www.googleapis.com/auth/userinfo.email",
-        "https://www.googleapis.com/auth/userinfo.profile",
-        "openid",
+        'https://www.googleapis.com/auth/userinfo.email',
+        'https://www.googleapis.com/auth/userinfo.profile',
+        'openid',
       ],
-      providerAuthorizationUrl: "https://accounts.google.com/o/oauth2/v2/auth",
+      providerAuthorizationUrl: 'https://accounts.google.com/o/oauth2/v2/auth',
       getUserInfo: async (accessToken: string) => {
-        const response = await fetch(
-          "https://www.googleapis.com/oauth2/v3/userinfo",
-          { headers: { Authorization: `Bearer ${accessToken}` } },
-        );
-        const user = await response.json();
+        const response = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        })
+        const user = await response.json()
         if (!user.email_verified) {
-          throw new Error("Email not verified");
+          throw new Error('Email not verified')
         }
         // currently, we just allow users with trieb.work domain to login. We need to add different user groups before we can allow other domains
-        if (!user.email.endsWith("@trieb.work")) {
-          throw new Error("Email domain not allowed");
+        if (!user.email.endsWith('@trieb.work')) {
+          throw new Error('Email domain not allowed')
         }
-        return { email: user.email, sub: user.sub, name: user.name };
+        return { email: user.email, sub: user.sub, name: user.name }
       },
       successRedirect: (req) => {
-        return "/admin";
+        return '/admin'
       },
       failureRedirect: (req, error) => {
-        console.error(error);
-        return "/login";
+        console.error(error)
+        return '/login'
       },
-    }),  
-  
-  
+    }),
   ],
   secret: process.env.PAYLOAD_SECRET!,
   sharp,
@@ -265,6 +263,9 @@ export default buildConfig({
   },
   localization: {
     locales: ['en', 'de'],
-    defaultLocale: 'en', 
+    defaultLocale: 'en',
+  },
+  i18n: {
+    supportedLanguages: { en, de },
   },
 })

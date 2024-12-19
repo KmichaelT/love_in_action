@@ -35,7 +35,17 @@ type Props = {
 }
 
 export function serializeLexical({ nodes, overrideStyle }: Props): JSX.Element {
-  // TODO: add defaults for overwrite styles
+  const defaultStyles: OverrideStyle = {
+    h1: 'mb-4 text-4xl font-semibold md:text-5xl',
+    h2: 'mb-4 text-3xl font-semibold',
+    h3: 'mb-3 text-2xl font-semibold',
+    h4: 'mb-2 text-xl font-semibold',
+    p: 'text-lg mb-3',
+    li: 'text-lg'
+  }
+
+  const mergedStyles = { ...defaultStyles, ...overrideStyle }
+
   return (
     <Fragment>
       {nodes?.map((node, index): JSX.Element | null => {
@@ -94,7 +104,7 @@ export function serializeLexical({ nodes, overrideStyle }: Props): JSX.Element {
                 }
               }
             }
-            return serializeLexical({ nodes: node.children as NodeTypes[], overrideStyle })
+            return serializeLexical({ nodes: node.children as NodeTypes[], overrideStyle: mergedStyles })
           }
         }
 
@@ -138,8 +148,13 @@ export function serializeLexical({ nodes, overrideStyle }: Props): JSX.Element {
             }
             case 'paragraph': {
               let className = 'col-start-2'
-              if (overrideStyle?.p) {
-                className = cn(className, overrideStyle?.p)
+              if (mergedStyles?.p) {
+                className = cn(className, mergedStyles?.p)
+              }
+              if (node.format === 'center') {
+                className = cn(className, 'text-center')
+              } else if (node.format === 'right') {
+                className = cn(className, 'text-right')
               }
               return (
                 <p className={className} key={index}>
@@ -150,8 +165,13 @@ export function serializeLexical({ nodes, overrideStyle }: Props): JSX.Element {
             case 'heading': {
               const Tag = node?.tag
               let className = 'col-start-2'
-              if (overrideStyle?.[Tag]) {
-                className = cn(className, overrideStyle?.[Tag])
+              if (mergedStyles?.[Tag]) {
+                className = cn(className, mergedStyles?.[Tag])
+              }
+              if (node.format === 'center') {
+                className = cn(className, 'text-center')
+              } else if (node.format === 'right') {
+                className = cn(className, 'text-right')
               }
               return (
                 <Tag className={className} key={index}>
@@ -176,8 +196,8 @@ export function serializeLexical({ nodes, overrideStyle }: Props): JSX.Element {
             }
             case 'listitem': {
               let className = ''
-              if (overrideStyle?.li) {
-                className = cn(className, overrideStyle?.li)
+              if (mergedStyles?.li) {
+                className = cn(className, mergedStyles?.li)
               }
               if (node?.checked != null) {
                 return (
@@ -218,6 +238,8 @@ export function serializeLexical({ nodes, overrideStyle }: Props): JSX.Element {
                   reference={fields.doc as any}
                   type={fields.linkType === 'internal' ? 'reference' : 'custom'}
                   url={fields.url}
+                  appearance="inline"
+                  className="text-muted-foreground hover:underline transition-colors"
                 >
                   {serializedChildren}
                 </CMSLink>

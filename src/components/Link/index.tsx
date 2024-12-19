@@ -69,11 +69,11 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
   /* Ensure we don't break any styles set by richText */
   if (appearance === 'inline') {
     if (!withAnchor) {
-      return <span className={cn('flex items-center', className)}>{content}</span>
+      return <span className={cn('inline-flex items-center', className)}>{content}</span>
     }
     return (
       <Link
-        className={cn('flex items-center', className)}
+        className={cn('inline-flex items-center', className)}
         href={href || url || ''}
         {...newTabProps}
       >

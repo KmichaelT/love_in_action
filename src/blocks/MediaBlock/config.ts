@@ -5,25 +5,38 @@ export const MediaBlock: Block = {
   interfaceName: 'MediaBlock',
   fields: [
     {
-      name: 'position',
-      type: 'select',
-      defaultValue: 'default',
-      options: [
-        {
-          label: 'Default',
-          value: 'default',
-        },
-        {
-          label: 'Fullscreen',
-          value: 'fullscreen',
-        },
-      ],
-    },
-    {
       name: 'media',
       type: 'upload',
       relationTo: 'media',
       required: true,
+    },
+    {
+      name: 'caption',
+      type: 'text',
+      required: false,
+    },
+    {
+      name: 'aspectRatio',
+      type: 'select',
+      defaultValue: '16/9',
+      options: [
+        {
+          label: '16:9',
+          value: '16/9',
+        },
+        {
+          label: '4:3',
+          value: '4/3',
+        },
+        {
+          label: '1:1',
+          value: '1/1',
+        },
+        {
+          label: 'Original',
+          value: 'original',
+        },
+      ],
     },
   ],
 }

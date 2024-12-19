@@ -11,9 +11,13 @@ import { AboutBlock } from '@/blocks/About/config'
 import { LogosBlock } from '@/blocks/Logos/config'
 import { Gallery } from '@/blocks/Gallery/config'
 import { TestimonialBlock } from '@/blocks/Testimonial/config'
-import { Content } from '@/blocks/Content/config'
-
+import { FaqBlock } from '@/blocks/Faq/config'
+import { StatBlock } from '@/blocks/Stat/config'
+import { SplitViewBlock } from '@/blocks/SplitView/config'
+import { TextBlock } from '@/blocks/TextBlock/config'
+import { MediaBlock } from '@/blocks/MediaBlock/config'
 import { hero } from '@/heros/config'
+
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '@/hooks/populatePublishedAt'
 import { generatePreviewPath } from '@/utilities/generatePreviewPath'
@@ -27,11 +31,20 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
-import { FaqBlock } from '@/blocks/Faq/config'
-import { StatBlock } from '@/blocks/Stat/config'
+
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
+  labels: {
+    plural: {
+      en: 'Pages',
+      de: 'Seiten',
+    },
+    singular: {
+      en: 'Page',
+      de: 'Seite',
+    },
+  },
   access: {
     create: authenticated,
     delete: authenticated,
@@ -78,7 +91,7 @@ export const Pages: CollectionConfig = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [FeatureBlock, Archive, FormBlock, CtaBlock, LogosBlock, AboutBlock, Gallery, TestimonialBlock, FaqBlock, StatBlock, Content],
+              blocks: [FeatureBlock, Archive, FormBlock, CtaBlock, LogosBlock, AboutBlock, Gallery, TestimonialBlock, FaqBlock, StatBlock, SplitViewBlock, TextBlock, MediaBlock],
               required: true,
             },
           ],
