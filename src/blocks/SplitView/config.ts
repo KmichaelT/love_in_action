@@ -1,16 +1,5 @@
 import type { Block, Field } from 'payload'
 
-import {
-  FixedToolbarFeature,
-  HeadingFeature,
-  InlineToolbarFeature,
-  lexicalEditor,
-  AlignFeature,
-} from '@payloadcms/richtext-lexical'
-
-import { link } from '@/fields/link'
-import { GalleryBlock } from '../Gallery/Component'
-import { CtaBlock } from '../Cta/config'
 import { TextBlock } from '../TextBlock/config'
 import { MediaBlock } from '../MediaBlock/config'
 
@@ -49,6 +38,31 @@ export const SplitViewBlock: Block = {
   slug: 'splitView',
   interfaceName: 'SplitViewBlock',
   fields: [
+    {
+      name: 'backgroundColor',
+      type: 'select',
+      defaultValue: 'background',
+      options: [
+        {
+          label: 'Default',
+          value: 'background'
+        },
+        {
+          label: 'Accent',
+          value: 'accent'
+        },
+        {
+          label: 'Primary',
+          value: 'primary'
+        }
+      ],
+      admin: {
+        description: {
+          en: 'Choose the background color for this section',
+          de: 'Wahlen Sie die Hintergrundfarbe für diese Sektion'
+        }
+      }
+    },
     {
       name: 'columns',
       label: {

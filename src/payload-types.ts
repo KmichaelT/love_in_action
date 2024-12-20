@@ -55270,6 +55270,7 @@ export interface StatBlock {
  * via the `definition` "SplitViewBlock".
  */
 export interface SplitViewBlock {
+  backgroundColor?: ('background' | 'accent' | 'primary') | null;
   columns?: (TextBlock | MediaBlock)[] | null;
   id?: string | null;
   blockName?: string | null;
@@ -59215,6 +59216,7 @@ export interface StatBlockSelect<T extends boolean = true> {
  * via the `definition` "SplitViewBlock_select".
  */
 export interface SplitViewBlockSelect<T extends boolean = true> {
+  backgroundColor?: T;
   columns?:
     | T
     | {

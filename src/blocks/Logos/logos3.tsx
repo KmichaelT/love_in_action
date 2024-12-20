@@ -38,7 +38,7 @@ const Logos3: React.FC<LogosBlock> = ({ richText, logos }) => {
             plugins={[AutoScroll({ playOnInit: true })]}
           >
             <CarouselContent className="ml-0">
-              {logos.map((logo: MediaType) => (
+              {logos?.map((logo: MediaType) => (
                 <CarouselItem
                   key={logo.id}
                   className="basis-1/3 pl-0 sm:basis-1/4 md:basis-1/5 lg:basis-1/6"
