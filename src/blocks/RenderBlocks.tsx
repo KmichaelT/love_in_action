@@ -15,8 +15,9 @@ import { StatBlock } from './Stat/Component'
 import { SplitViewBlock } from './SplitView/Component'
 import { TextBlock } from './TextBlock/Component'
 import { MediaBlock } from './MediaBlock/Component'
+import customBlocks from '@/blocks/CustomBlock'
 
-const blockComponents: Record<Page['layout'][0]['blockType'], React.FC<any>> = {
+const blockComponents: Partial<Record<Page['layout'][0]['blockType'], React.FC<any>>> = {
   archive: ArchiveBlock,
   formBlock: FormBlock,
   feature: FeatureBlock,
@@ -30,6 +31,7 @@ const blockComponents: Record<Page['layout'][0]['blockType'], React.FC<any>> = {
   splitView: SplitViewBlock,
   text: TextBlock,
   mediaBlock: MediaBlock,
+  ...customBlocks
 }
 
 export const RenderBlocks: React.FC<{

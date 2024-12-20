@@ -101,6 +101,7 @@ export interface Page {
     | SplitViewBlock
     | TextBlock
     | MediaBlock
+    | CustomBlock
   )[];
   meta?: {
     title?: string | null;
@@ -58601,6 +58602,16 @@ export interface MediaBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CustomBlock".
+ */
+export interface CustomBlock {
+  customBlockType: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'customblock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -58775,6 +58786,7 @@ export interface PagesSelect<T extends boolean = true> {
         splitView?: T | SplitViewBlockSelect<T>;
         text?: T | TextBlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
+        customblock?: T | CustomBlockSelect<T>;
       };
   meta?:
     | T
@@ -59247,6 +59259,15 @@ export interface MediaBlockSelect<T extends boolean = true> {
   media?: T;
   caption?: T;
   aspectRatio?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CustomBlock_select".
+ */
+export interface CustomBlockSelect<T extends boolean = true> {
+  customBlockType?: T;
   id?: T;
   blockName?: T;
 }

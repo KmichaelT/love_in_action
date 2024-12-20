@@ -17,6 +17,7 @@ import { SplitViewBlock } from '@/blocks/SplitView/config'
 import { TextBlock } from '@/blocks/TextBlock/config'
 import { MediaBlock } from '@/blocks/MediaBlock/config'
 import { hero } from '@/heros/config'
+import { CustomBlock } from '@/blocks/CustomBlock/config'
 
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '@/hooks/populatePublishedAt'
@@ -31,7 +32,6 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
-
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -91,7 +91,22 @@ export const Pages: CollectionConfig = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [FeatureBlock, Archive, FormBlock, CtaBlock, LogosBlock, AboutBlock, Gallery, TestimonialBlock, FaqBlock, StatBlock, SplitViewBlock, TextBlock, MediaBlock],
+              blocks: [
+                FeatureBlock,
+                Archive,
+                FormBlock,
+                CtaBlock,
+                LogosBlock,
+                AboutBlock,
+                Gallery,
+                TestimonialBlock,
+                FaqBlock,
+                StatBlock,
+                SplitViewBlock,
+                TextBlock,
+                MediaBlock,
+                CustomBlock,
+              ],
               required: true,
             },
           ],
