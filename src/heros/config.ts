@@ -252,10 +252,7 @@ export const hero: Field = {
         condition: (_, { designVersion } = {}) => ['3', '4', '7', '15'].includes(designVersion),
       },
     },
-<<<<<<< HEAD
-=======
     ...customHeroFields
->>>>>>> 4250393 (feat: adding generic custom heros)
   ],
   label: false,
 }
