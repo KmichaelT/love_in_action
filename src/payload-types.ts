@@ -59651,7 +59651,7 @@ export interface ThemeConfig {
  */
 export interface Header {
   id: string;
-  designVersion: '1';
+  designVersion: '1' | '5';
   logo: string | Media;
   items?:
     | (

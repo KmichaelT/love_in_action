@@ -8,6 +8,7 @@ import { Navbar1 } from './navbar/navbar1'
 // import { Navbar4 } from './navbar/navbar4'
 
 import type { Header } from '@/payload-types'
+import Navbar5 from './navbar/navbar5'
 
 interface HeaderClientProps {
   header: Header
@@ -36,5 +37,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ header }) => {
     //   return <Navbar3 header={header} />
     // case '4':
     //   return <Navbar4 header={header} />
+    case '5':
+      return <Navbar5 header={header} />
   }
 }

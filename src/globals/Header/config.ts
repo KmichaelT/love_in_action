@@ -48,6 +48,10 @@ export const Header: GlobalConfig = {
         // },
 
         // '4' Version 4 is the same as version 1 with only difference of more advance sub menu. Therefore we want to migrate the advance submenu as block options into v1
+      {
+        label: "5 (simple)",
+        value: "5"
+      }
       ],
       defaultValue: '1',
       required: true,
