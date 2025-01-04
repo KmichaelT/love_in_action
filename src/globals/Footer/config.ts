@@ -4,6 +4,7 @@ import { link } from '@/fields/link'
 import { revalidateFooter } from './hooks/revalidateFooter'
 import { generatePreviewPath } from '@/utilities/generatePreviewPath'
 import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
+import { socialIcon } from '@/components/SocialIcon/config'
 
 export const Footer: GlobalConfig = {
   slug: 'footer',
@@ -55,18 +56,103 @@ export const Footer: GlobalConfig = {
       name: 'subline',
       type: 'text',
       label: 'Subline',
-      defaultValue: 'Components made easy. This cool starter template will help you get started with your next project.',
+      defaultValue:
+        'Components made easy. This cool starter template will help you get started with your next project.',
       admin: {
-        condition: (_, siblingData) => siblingData.designVersion === '6' || siblingData.designVersion === '7' || siblingData.designVersion === '8',
+        condition: (_, siblingData) =>
+          siblingData.designVersion === '2' ||
+          siblingData.designVersion === '6' ||
+          siblingData.designVersion === '7' ||
+          siblingData.designVersion === '8',
       },
+    },
+    /**
+     * Legal links like imprint, privacy policy, etc. that are displayed at the bottom of the footer.
+     */
+    {
+      name: 'legalLinks',
+      label: {
+        de: 'Rechtliches',
+        en: 'Legal Links',
+      },
+      admin: {
+        description: {
+          de: 'Legale Links wie Impressum, Datenschutzerklärung, etc.',
+          en: 'Legal links like imprint, privacy policy, etc.',
+        },
+        condition: (_, siblingData) => {
+          const version = siblingData?.designVersion
+          return (
+            version === '1' ||
+            version === '2' ||
+            version === '3' ||
+            version === '4' ||
+            version === '6' ||
+            version === '7'
+          )
+        },
+      },
+      type: 'array',
+      fields: [
+        link({
+          appearances: false,
+          disableIcon: true,
+        }),
+      ],
+      maxRows: 3,
+    },
+    /**
+     * Social media links that are displayed in the footer
+     */
+    {
+      name: 'socialLinks',
+      type: 'array',
+      label: {
+        en: 'Social Media Links',
+        de: 'Social Media Links',
+      },
+      admin: {
+        description: {
+          en: 'Add social media links with icons',
+          de: 'Fügen Sie Social Media Links mit Icons hinzu',
+        },
+        condition: (_, siblingData) => {
+          const version = siblingData?.designVersion
+          return (
+            version === '1' ||
+            version === '3' ||
+            version === '4' ||
+            version === '5' ||
+            version === '6' ||
+            version === '7' ||
+            version === '8'
+          )
+        },
+      },
+      fields: [
+        {
+          type: 'row',
+          fields: [
+            socialIcon,
+            {
+              name: 'url',
+              type: 'text',
+              required: true,
+              admin: {
+                placeholder: 'https://...',
+              },
+            },
+          ],
+        },
+      ],
     },
     {
       name: 'navItems',
       type: 'array',
       fields: [
         {
-          name: "title",
-          type: "text",
+          name: 'title',
+          type: 'text',
           required: true,
         },
         {

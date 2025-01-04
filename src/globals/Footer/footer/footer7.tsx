@@ -1,7 +1,7 @@
 import { Footer } from '@/payload-types';
-import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { Media } from "@/components/Media";
 import { CMSLink } from '@/components/Link';
+import { SocialIcon } from '@/components/SocialIcon';
 
 
 
@@ -17,7 +17,7 @@ const Footer7: React.FC<{ footer: Footer }> = ({ footer }) => {
                   {footer.logo && <Media
                     resource={footer.logo}
                     alt="logo"
-                    className="h-11"
+                    imgClassName="h-11 w-auto"
                   />}
                   {/* <p className="text-3xl font-semibold">Shadcnblocks</p> */}
                 </span>
@@ -26,26 +26,13 @@ const Footer7: React.FC<{ footer: Footer }> = ({ footer }) => {
                 </p>
               </div>
               <ul className="flex items-center space-x-6 text-muted-foreground">
-                <li className="font-medium hover:text-primary">
-                  <a href="#">
-                    <FaInstagram className="size-6" />
-                  </a>
-                </li>
-                <li className="font-medium hover:text-primary">
-                  <a href="#">
-                    <FaFacebook className="size-6" />
-                  </a>
-                </li>
-                <li className="font-medium hover:text-primary">
-                  <a href="#">
-                    <FaTwitter className="size-6" />
-                  </a>
-                </li>
-                <li className="font-medium hover:text-primary">
-                  <a href="#">
-                    <FaLinkedin className="size-6" />
-                  </a>
-                </li>
+                {footer.socialLinks?.map((social, index) => (
+                  <li key={index} className="font-medium hover:text-primary">
+                    <a href={social.url}>
+                      <SocialIcon type={social.icon} />
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="grid grid-cols-3 gap-6 lg:gap-20">
@@ -69,12 +56,11 @@ const Footer7: React.FC<{ footer: Footer }> = ({ footer }) => {
           <div className="mt-20 flex flex-col justify-between gap-4 border-t pt-8 text-center text-sm font-medium text-muted-foreground lg:flex-row lg:items-center lg:text-left">
             <p>{footer.copyright && `© ${new Date().getFullYear()} ${footer.copyright}`}</p>
             <ul className="flex justify-center gap-4 lg:justify-start">
-              <li className="hover:text-primary">
-                <a href="#"> Terms and Conditions</a>
-              </li>
-              <li className="hover:text-primary">
-                <a href="#"> Privacy Policy</a>
-              </li>
+              {footer.legalLinks?.map((item, index) => (
+                <li key={index} className="hover:text-primary">
+                  <CMSLink {...item.link} />
+                </li>
+              ))}
             </ul>
           </div>
         </footer>

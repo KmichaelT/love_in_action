@@ -1,9 +1,15 @@
 import type { Field } from 'payload'
 
 import deepMerge from '@/utilities/deepMerge'
-import { icon } from '@/components/Icon/config';
+import { icon } from '@/components/Icon/config'
 
-export type LinkAppearances = 'default' | 'outline' | 'inline' | "destructive" | "ghost" | "secondary"
+export type LinkAppearances =
+  | 'default'
+  | 'outline'
+  | 'inline'
+  | 'destructive'
+  | 'ghost'
+  | 'secondary'
 
 export const appearanceOptions: Record<LinkAppearances, { label: string; value: string }> = {
   default: {
@@ -29,17 +35,23 @@ export const appearanceOptions: Record<LinkAppearances, { label: string; value: 
   secondary: {
     label: 'Secondary',
     value: 'secondary',
-  },  
+  },
 }
 
 type LinkType = (options?: {
   appearances?: LinkAppearances[] | false
   disableLabel?: boolean
+  disableIcon?: boolean
   overrides?: Record<string, unknown>
   size?: 'default' | 'sm' | 'lg' | 'icon' | 'clear'
 }) => Field
 
-export const link: LinkType = ({ appearances, disableLabel = false, overrides = {} } = {}) => {
+export const link: LinkType = ({
+  appearances,
+  disableLabel = false,
+  disableIcon = false,
+  overrides = {},
+} = {}) => {
   const linkResult: Field = {
     name: 'link',
     type: 'group',
@@ -79,19 +91,6 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
               width: '50%',
             },
             label: 'Open in new tab',
-          },
-          {
-            ...icon,
-            name: "iconBefore",
-          },
-          {
-            ...icon,
-            name: "iconAfter",
-          },
-          {
-            name: 'size',
-            type: 'select',
-            options: ['default', 'sm', 'lg', 'icon', 'clear'],
           },
         ],
       },
@@ -149,6 +148,19 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
     linkResult.fields = [...linkResult.fields, ...linkTypes]
   }
 
+  if (!disableIcon) {
+    linkResult.fields.push(
+      {
+        ...icon,
+        name: 'iconBefore',
+      },
+      {
+        ...icon,
+        name: 'iconAfter',
+      },
+    )
+  }
+
   if (appearances !== false) {
     let appearanceOptionsToUse = Object.values(appearanceOptions)
 
@@ -164,6 +176,15 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
       },
       defaultValue: 'default',
       options: appearanceOptionsToUse,
+    })
+
+    /**
+     * The size makes only sense if appearances are not disabled
+     */
+    linkResult.fields.push({
+      name: 'size',
+      type: 'select',
+      options: ['default', 'sm', 'lg', 'icon', 'clear'],
     })
   }
 
