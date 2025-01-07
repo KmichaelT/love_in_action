@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation'
 
 import './index.scss'
 import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
+import { ThemeColorHelper } from './ThemeColorHelper'
 
 const baseClass = 'admin-bar'
 
@@ -43,6 +44,9 @@ export const AdminBar: React.FC<{
     setShow(user?.id)
   }, [])
 
+  // Theme Color Picker on right side of screen
+  const [showThemeColorPicker, setShowThemeColorPicker] = useState(false)
+
   return (
     <div
       className={cn(baseClass, 'py-2 bg-black text-white', {
@@ -51,7 +55,18 @@ export const AdminBar: React.FC<{
       })}
     >
       <div className="container">
-        {/* TODO: ThemeColorHelper */}
+        <div className="flex items-center gap-4">
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={showThemeColorPicker}
+              onChange={(e) => setShowThemeColorPicker(e.target.checked)}
+              className="w-4 h-4"
+            />
+            <span>Theme Editor</span>
+          </label>
+          {showThemeColorPicker && <ThemeColorHelper />}
+        </div>
         <PayloadAdminBar
           {...adminBarProps}
           className="py-2 text-white"
