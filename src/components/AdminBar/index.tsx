@@ -51,6 +51,7 @@ export const AdminBar: React.FC<{
       })}
     >
       <div className="container">
+        {/* TODO: ThemeColorHelper */}
         <PayloadAdminBar
           {...adminBarProps}
           className="py-2 text-white"
