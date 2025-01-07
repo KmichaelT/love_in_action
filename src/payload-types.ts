@@ -94,22 +94,21 @@ export interface Page {
     | CtaBlock
     | LogosBlock
     | AboutBlock
+    | ContactBlock
     | GalleryBlock
     | TestimonialBlock
     | FaqBlock
     | StatBlock
-<<<<<<< HEAD
-    | ContactBlock
-    | ContentBlock
-=======
     | SplitViewBlock
     | TextBlock
     | MediaBlock
     | CustomBlock
->>>>>>> main
   )[];
   meta?: {
     title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
     image?: (string | null) | Media;
     description?: string | null;
   };
@@ -8386,6 +8385,9 @@ export interface Hero {
                 | 'ZoomOut'
               )
             | null;
+          /**
+           * Choose how the link should be rendered.
+           */
           appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
           size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
         };
@@ -13496,6 +13498,9 @@ export interface FeatureBlock {
                 | 'ZoomOut'
               )
             | null;
+          /**
+           * Choose how the link should be rendered.
+           */
           appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
           size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
         };
@@ -15157,6 +15162,9 @@ export interface FeatureBlock {
           };
           [k: string]: unknown;
         } | null;
+        /**
+         * USPs can feature 1 or many features, with icon and richText
+         */
         USPFeatures?:
           | {
               icon?:
@@ -20096,12 +20104,18 @@ export interface FeatureBlock {
                       | 'ZoomOut'
                     )
                   | null;
+                /**
+                 * Choose how the link should be rendered.
+                 */
                 appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
                 size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
               };
               id?: string | null;
             }[]
           | null;
+        /**
+         * Single link for this USP. Icons might be set automatically, depending on the design version
+         */
         link?: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
@@ -23471,6 +23485,9 @@ export interface Post {
   categories?: (string | Category)[] | null;
   meta?: {
     title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
     image?: (string | null) | Media;
     description?: string | null;
   };
@@ -23649,6 +23666,9 @@ export interface Form {
       )[]
     | null;
   submitButtonLabel?: string | null;
+  /**
+   * Choose whether to display an on-page message or redirect to a different page after they submit the form.
+   */
   confirmationType?: ('message' | 'redirect') | null;
   confirmationMessage?: {
     root: {
@@ -23668,6 +23688,9 @@ export interface Form {
   redirect?: {
     url: string;
   };
+  /**
+   * Send custom emails when the form submits. Use comma separated lists to send the same email to multiple recipients. To reference a value from this form, wrap that field's name with double curly brackets, i.e. {{firstName}}. You can use a wildcard {{*}} to output all data and {{*:table}} to format it as an HTML table in the email.
+   */
   emails?:
     | {
         emailTo?: string | null;
@@ -23676,6 +23699,9 @@ export interface Form {
         replyTo?: string | null;
         emailFrom?: string | null;
         subject: string;
+        /**
+         * Enter the message that should be sent in this email.
+         */
         message?: {
           root: {
             type: string;
@@ -28651,6 +28677,9 @@ export interface CtaBlock {
                 | 'ZoomOut'
               )
             | null;
+          /**
+           * Choose how the link should be rendered.
+           */
           appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
           size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
         };
@@ -31964,6 +31993,9 @@ export interface LogosBlock {
           | 'ZoomOut'
         )
       | null;
+    /**
+     * Choose how the link should be rendered.
+     */
     appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
     size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
   };
@@ -35319,6 +35351,9 @@ export interface AboutBlock {
           | 'ZoomOut'
         )
       | null;
+    /**
+     * Choose how the link should be rendered.
+     */
     appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
     size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
   };
@@ -35338,10 +35373,69 @@ export interface AboutBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactBlock".
+ */
+export interface ContactBlock {
+  designVersion: 'CONTACT1' | 'CONTACT2' | 'CONTACT3' | 'CONTACT4';
+  headlineAndDescription?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  contactBlocks?:
+    | {
+        icon?: string | null;
+        description?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  maps?:
+    | {
+        iframe?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  form?: FormBlock[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contact';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "GalleryBlock".
  */
 export interface GalleryBlock {
+  /**
+   * Choose the design version for this gallery block
+   */
   designVersion?: ('GALLERY1' | 'GALLERY2' | 'GALLERY3' | 'GALLERY4' | 'GALLERY5' | 'GALLERY6') | null;
+  /**
+   * Optional heading and description for the gallery
+   */
   richText?: {
     root: {
       type: string;
@@ -35358,6 +35452,9 @@ export interface GalleryBlock {
     [k: string]: unknown;
   } | null;
   tagline?: string | null;
+  /**
+   * Single link for this gallery. Might look best with arrowRight icon
+   */
   link?: {
     type?: ('reference' | 'custom') | null;
     newTab?: boolean | null;
@@ -38640,6 +38737,9 @@ export interface GalleryBlock {
         )
       | null;
   };
+  /**
+   * Add images to the gallery
+   */
   elements?:
     | {
         image: string | Media;
@@ -45268,6 +45368,9 @@ export interface TestimonialBlock {
           | 'ZoomOut'
         )
       | null;
+    /**
+     * Choose how the link should be rendered.
+     */
     appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
     size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
   };
@@ -48574,6 +48677,9 @@ export interface TestimonialBlock {
                 | 'ZoomOut'
               )
             | null;
+          /**
+           * Choose how the link should be rendered.
+           */
           appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
           size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
         };
@@ -51923,6 +52029,9 @@ export interface FaqBlock {
           | 'ZoomOut'
         )
       | null;
+    /**
+     * Choose how the link should be rendered.
+     */
     appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
     size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
   };
@@ -55256,6 +55365,9 @@ export interface StatBlock {
                 | 'ZoomOut'
               )
             | null;
+          /**
+           * Choose how the link should be rendered.
+           */
           appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
           size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
         };
@@ -55268,66 +55380,12 @@ export interface StatBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
-<<<<<<< HEAD
- * via the `definition` "ContactBlock".
- */
-export interface ContactBlock {
-  designVersion: 'CONTACT1' | 'CONTACT2' | 'CONTACT3' | 'CONTACT4';
-  headlineAndDescription?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  contactBlocks?:
-    | {
-        icon?: string | null;
-        description?: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        id?: string | null;
-      }[]
-    | null;
-  maps?:
-    | {
-        iframe?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  form?: FormBlock[] | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'contact';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ContentBlock".
-=======
  * via the `definition` "SplitViewBlock".
->>>>>>> main
  */
 export interface SplitViewBlock {
+  /**
+   * Choose the background color for this section
+   */
   backgroundColor?: ('background' | 'accent' | 'primary') | null;
   columns?: (TextBlock | MediaBlock)[] | null;
   id?: string | null;
@@ -58637,6 +58695,9 @@ export interface TextBlock {
                 | 'ZoomOut'
               )
             | null;
+          /**
+           * Choose how the link should be rendered.
+           */
           appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
           size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
         };
@@ -58675,6 +58736,9 @@ export interface CustomBlock {
  */
 export interface Redirect {
   id: string;
+  /**
+   * You will need to rebuild the website when changing this field.
+   */
   from: string;
   to?: {
     type?: ('reference' | 'custom') | null;
@@ -58710,6 +58774,8 @@ export interface FormSubmission {
   createdAt: string;
 }
 /**
+ * This is a collection of automatically created search results. These results are used by the global site search and will be updated automatically as documents in the CMS are created or updated.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "search".
  */
@@ -58832,407 +58898,13 @@ export interface PagesSelect<T extends boolean = true> {
   layout?:
     | T
     | {
-<<<<<<< HEAD
-        feature?:
-          | T
-          | {
-              designVersion?: T;
-              badge?: T;
-              tagline?: T;
-              icon?: T;
-              richText?: T;
-              links?:
-                | T
-                | {
-                    link?:
-                      | T
-                      | {
-                          type?: T;
-                          newTab?: T;
-                          iconBefore?: T;
-                          iconAfter?: T;
-                          size?: T;
-                          reference?: T;
-                          url?: T;
-                          label?: T;
-                          appearance?: T;
-                        };
-                    id?: T;
-                  };
-              image?: T;
-              USPs?:
-                | T
-                | {
-                    uspIcon?: T;
-                    tagline?: T;
-                    richText?: T;
-                    USPFeatures?:
-                      | T
-                      | {
-                          icon?: T;
-                          richText?: T;
-                          id?: T;
-                        };
-                    links?:
-                      | T
-                      | {
-                          link?:
-                            | T
-                            | {
-                                type?: T;
-                                newTab?: T;
-                                iconBefore?: T;
-                                iconAfter?: T;
-                                size?: T;
-                                reference?: T;
-                                url?: T;
-                                label?: T;
-                                appearance?: T;
-                              };
-                          id?: T;
-                        };
-                    link?:
-                      | T
-                      | {
-                          type?: T;
-                          newTab?: T;
-                          iconBefore?: T;
-                          iconAfter?: T;
-                          size?: T;
-                          reference?: T;
-                          url?: T;
-                          label?: T;
-                        };
-                    image?: T;
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        archive?:
-          | T
-          | {
-              introContent?: T;
-              populateBy?: T;
-              relationTo?: T;
-              categories?: T;
-              limit?: T;
-              selectedDocs?: T;
-              id?: T;
-              blockName?: T;
-            };
-        formBlock?:
-          | T
-          | {
-              form?: T;
-              enableIntro?: T;
-              introContent?: T;
-              id?: T;
-              blockName?: T;
-            };
-        cta?:
-          | T
-          | {
-              designVersion?: T;
-              tagline?: T;
-              icon?: T;
-              richText?: T;
-              links?:
-                | T
-                | {
-                    link?:
-                      | T
-                      | {
-                          type?: T;
-                          newTab?: T;
-                          iconBefore?: T;
-                          iconAfter?: T;
-                          size?: T;
-                          reference?: T;
-                          url?: T;
-                          label?: T;
-                          appearance?: T;
-                        };
-                    id?: T;
-                  };
-              image?: T;
-              id?: T;
-              blockName?: T;
-            };
-        logos?:
-          | T
-          | {
-              designVersion?: T;
-              richText?: T;
-              link?:
-                | T
-                | {
-                    type?: T;
-                    newTab?: T;
-                    iconBefore?: T;
-                    iconAfter?: T;
-                    size?: T;
-                    reference?: T;
-                    url?: T;
-                    label?: T;
-                    appearance?: T;
-                  };
-              logos?: T;
-              id?: T;
-              blockName?: T;
-            };
-        about?:
-          | T
-          | {
-              designVersion?: T;
-              headline?: T;
-              text1?: T;
-              text2?: T;
-              text3?: T;
-              link?:
-                | T
-                | {
-                    type?: T;
-                    newTab?: T;
-                    iconBefore?: T;
-                    iconAfter?: T;
-                    size?: T;
-                    reference?: T;
-                    url?: T;
-                    label?: T;
-                    appearance?: T;
-                  };
-              images?: T;
-              logos?: T;
-              counter?:
-                | T
-                | {
-                    value?: T;
-                    title?: T;
-                    description?: T;
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        gallery?:
-          | T
-          | {
-              designVersion?: T;
-              richText?: T;
-              tagline?: T;
-              link?:
-                | T
-                | {
-                    type?: T;
-                    newTab?: T;
-                    iconBefore?: T;
-                    iconAfter?: T;
-                    size?: T;
-                    reference?: T;
-                    url?: T;
-                    label?: T;
-                  };
-              elements?:
-                | T
-                | {
-                    image?: T;
-                    richText?: T;
-                    link?:
-                      | T
-                      | {
-                          type?: T;
-                          newTab?: T;
-                          iconBefore?: T;
-                          iconAfter?: T;
-                          size?: T;
-                          reference?: T;
-                          url?: T;
-                          label?: T;
-                        };
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        testimonial?:
-          | T
-          | {
-              designVersion?: T;
-              headline?: T;
-              tagline?: T;
-              link?:
-                | T
-                | {
-                    type?: T;
-                    newTab?: T;
-                    iconBefore?: T;
-                    iconAfter?: T;
-                    size?: T;
-                    reference?: T;
-                    url?: T;
-                    label?: T;
-                    appearance?: T;
-                  };
-              testimonial?:
-                | T
-                | {
-                    authorName?: T;
-                    authorDescription?: T;
-                    authorAvatar?: T;
-                    icon?: T;
-                    rating?: T;
-                    text?: T;
-                    link?:
-                      | T
-                      | {
-                          type?: T;
-                          newTab?: T;
-                          iconBefore?: T;
-                          iconAfter?: T;
-                          size?: T;
-                          reference?: T;
-                          url?: T;
-                          label?: T;
-                          appearance?: T;
-                        };
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        faq?:
-          | T
-          | {
-              designVersion?: T;
-              badge?: T;
-              headline?: T;
-              faqs?:
-                | T
-                | {
-                    question?: T;
-                    answer?: T;
-                    id?: T;
-                  };
-              calloutText?: T;
-              calloutLink?:
-                | T
-                | {
-                    type?: T;
-                    newTab?: T;
-                    iconBefore?: T;
-                    iconAfter?: T;
-                    size?: T;
-                    reference?: T;
-                    url?: T;
-                    label?: T;
-                    appearance?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        stat?:
-          | T
-          | {
-              designVersion?: T;
-              headline?: T;
-              stats?:
-                | T
-                | {
-                    counter?: T;
-                    title?: T;
-                    description?: T;
-                    id?: T;
-                  };
-              links?:
-                | T
-                | {
-                    link?:
-                      | T
-                      | {
-                          type?: T;
-                          newTab?: T;
-                          iconBefore?: T;
-                          iconAfter?: T;
-                          size?: T;
-                          reference?: T;
-                          url?: T;
-                          label?: T;
-                          appearance?: T;
-                        };
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        contact?:
-          | T
-          | {
-              designVersion?: T;
-              headlineAndDescription?: T;
-              contactBlocks?:
-                | T
-                | {
-                    icon?: T;
-                    description?: T;
-                    id?: T;
-                  };
-              maps?:
-                | T
-                | {
-                    iframe?: T;
-                    id?: T;
-                  };
-              form?:
-                | T
-                | {
-                    formBlock?:
-                      | T
-                      | {
-                          form?: T;
-                          enableIntro?: T;
-                          introContent?: T;
-                          id?: T;
-                          blockName?: T;
-                        };
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        content?:
-          | T
-          | {
-              columns?:
-                | T
-                | {
-                    size?: T;
-                    richText?: T;
-                    enableLink?: T;
-                    link?:
-                      | T
-                      | {
-                          type?: T;
-                          newTab?: T;
-                          iconBefore?: T;
-                          iconAfter?: T;
-                          size?: T;
-                          reference?: T;
-                          url?: T;
-                          label?: T;
-                          appearance?: T;
-                        };
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-=======
         feature?: T | FeatureBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
         cta?: T | CtaBlockSelect<T>;
         logos?: T | LogosBlockSelect<T>;
         about?: T | AboutBlockSelect<T>;
+        contact?: T | ContactBlockSelect<T>;
         gallery?: T | GalleryBlockSelect<T>;
         testimonial?: T | TestimonialBlockSelect<T>;
         faq?: T | FaqBlockSelect<T>;
@@ -59241,7 +58913,6 @@ export interface PagesSelect<T extends boolean = true> {
         text?: T | TextBlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
         customblock?: T | CustomBlockSelect<T>;
->>>>>>> main
       };
   meta?:
     | T
@@ -59501,6 +59172,34 @@ export interface AboutBlockSelect<T extends boolean = true> {
         title?: T;
         description?: T;
         id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactBlock_select".
+ */
+export interface ContactBlockSelect<T extends boolean = true> {
+  designVersion?: T;
+  headlineAndDescription?: T;
+  contactBlocks?:
+    | T
+    | {
+        icon?: T;
+        description?: T;
+        id?: T;
+      };
+  maps?:
+    | T
+    | {
+        iframe?: T;
+        id?: T;
+      };
+  form?:
+    | T
+    | {
+        formBlock?: T | FormBlockSelect<T>;
       };
   id?: T;
   blockName?: T;
@@ -60030,6 +59729,8 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   createdAt?: T;
 }
 /**
+ * Theme configuration (For live preview config has to be saved)
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "themeConfig".
  */
@@ -60037,58 +59738,208 @@ export interface ThemeConfig {
   id: string;
   radius?: string | null;
   regularColors?: {
+    /**
+     * The main background color of the website. Used for the overall page background and provides the base canvas for all content.
+     */
     background?: string | null;
+    /**
+     * The primary text color used throughout the website. Provides optimal contrast against the background for readability.
+     */
     foreground?: string | null;
+    /**
+     * Background color for card components. Used for elevated surfaces that contain grouped content.
+     */
     card?: string | null;
+    /**
+     * Text color used within card components. Ensures readable content against the card background.
+     */
     'card-foreground'?: string | null;
+    /**
+     * Background color for floating elements like dropdowns, tooltips, and popovers.
+     */
     popover?: string | null;
+    /**
+     * Text color used within popover elements. Ensures content is readable against the popover background.
+     */
     'popover-foreground'?: string | null;
+    /**
+     * Main brand color used for important interactive elements like primary buttons, links, and key UI components. This color should reflect your brand identity.
+     */
     primary?: string | null;
+    /**
+     * Text color used on primary backgrounds. Ensures optimal contrast and readability for emphasized content.
+     */
     'primary-foreground'?: string | null;
+    /**
+     * Used for secondary UI elements and alternative actions. Provides visual hierarchy and contrast to primary elements.
+     */
     secondary?: string | null;
+    /**
+     * Text color for secondary UI elements. Ensures readability while maintaining visual distinction from primary text.
+     */
     'secondary-foreground'?: string | null;
+    /**
+     * Used for subtle background variations and disabled states. Creates visual depth without drawing attention.
+     */
     muted?: string | null;
+    /**
+     * Used for less prominent text like placeholders and disabled content. Provides subtle contrast against the background.
+     */
     'muted-foreground'?: string | null;
+    /**
+     * Used for highlighting and emphasizing specific UI elements. Adds visual interest and draws attention to important features.
+     */
     accent?: string | null;
+    /**
+     * Text color used on accent backgrounds. Ensures optimal contrast and readability for emphasized content.
+     */
     'accent-foreground'?: string | null;
+    /**
+     * Used for destructive actions like deleting or removing content. Provides clear visual indication of potential negative consequences.
+     */
     destructive?: string | null;
+    /**
+     * Text color used on destructive backgrounds. Ensures optimal contrast and readability for emphasized content.
+     */
     'destructive-foreground'?: string | null;
+    /**
+     * Used for borders and outlines of UI elements. Provides visual separation and definition.
+     */
     border?: string | null;
+    /**
+     * Background color for input fields and text areas. Provides a clear and readable surface for user input.
+     */
     input?: string | null;
+    /**
+     * Used for ring or glow effects around interactive elements. Provides visual feedback and emphasis.
+     */
     ring?: string | null;
+    /**
+     * Used for success messages and positive feedback. Provides a clear visual indication of successful actions.
+     */
     success?: string | null;
+    /**
+     * Used for warning messages and cautionary feedback. Provides a clear visual indication of potential issues.
+     */
     warning?: string | null;
+    /**
+     * Used for error messages and critical feedback. Provides a clear visual indication of errors or problems.
+     */
     error?: string | null;
+    /**
+     * Used for the first series of data in charts and graphs. Provides visual distinction and clarity.
+     */
     'chart-1'?: string | null;
+    /**
+     * Used for the second series of data in charts and graphs. Provides visual distinction and clarity.
+     */
     'chart-2'?: string | null;
+    /**
+     * Used for the third series of data in charts and graphs. Provides visual distinction and clarity.
+     */
     'chart-3'?: string | null;
+    /**
+     * Used for the fourth series of data in charts and graphs. Provides visual distinction and clarity.
+     */
     'chart-4'?: string | null;
+    /**
+     * Used for the fifth series of data in charts and graphs. Provides visual distinction and clarity.
+     */
     'chart-5'?: string | null;
+    /**
+     * Used for subtle background variations and disabled states. Creates visual depth without drawing attention.
+     */
     muted2?: string | null;
+    /**
+     * Used for less prominent text like placeholders and disabled content. Provides subtle contrast against the background.
+     */
     'muted2-foreground'?: string | null;
   };
   darkmodeColors?: {
     enableDarkMode?: boolean | null;
+    /**
+     * The main background color of the website. Used for the overall page background and provides the base canvas for all content.
+     */
     background?: string | null;
+    /**
+     * The primary text color used throughout the website. Provides optimal contrast against the background for readability.
+     */
     foreground?: string | null;
+    /**
+     * Background color for card components. Used for elevated surfaces that contain grouped content.
+     */
     card?: string | null;
+    /**
+     * Text color used within card components. Ensures readable content against the card background.
+     */
     'card-foreground'?: string | null;
+    /**
+     * Background color for floating elements like dropdowns, tooltips, and popovers.
+     */
     popover?: string | null;
+    /**
+     * Text color used within popover elements. Ensures content is readable against the popover background.
+     */
     'popover-foreground'?: string | null;
+    /**
+     * Main brand color used for important interactive elements like primary buttons, links, and key UI components. This color should reflect your brand identity.
+     */
     primary?: string | null;
+    /**
+     * Text color used on primary backgrounds. Ensures optimal contrast and readability for emphasized content.
+     */
     'primary-foreground'?: string | null;
+    /**
+     * Used for secondary UI elements and alternative actions. Provides visual hierarchy and contrast to primary elements.
+     */
     secondary?: string | null;
+    /**
+     * Text color for secondary UI elements. Ensures readability while maintaining visual distinction from primary text.
+     */
     'secondary-foreground'?: string | null;
+    /**
+     * Used for subtle background variations and disabled states. Creates visual depth without drawing attention.
+     */
     muted?: string | null;
+    /**
+     * Used for less prominent text like placeholders and disabled content. Provides subtle contrast against the background.
+     */
     'muted-foreground'?: string | null;
+    /**
+     * Used for highlighting and emphasizing specific UI elements. Adds visual interest and draws attention to important features.
+     */
     accent?: string | null;
+    /**
+     * Text color used on accent backgrounds. Ensures optimal contrast and readability for emphasized content.
+     */
     'accent-foreground'?: string | null;
+    /**
+     * Used for destructive actions like deleting or removing content. Provides clear visual indication of potential negative consequences.
+     */
     destructive?: string | null;
+    /**
+     * Text color used on destructive backgrounds. Ensures optimal contrast and readability for emphasized content.
+     */
     'destructive-foreground'?: string | null;
+    /**
+     * Used for borders and outlines of UI elements. Provides visual separation and definition.
+     */
     border?: string | null;
+    /**
+     * Background color for input fields and text areas. Provides a clear and readable surface for user input.
+     */
     input?: string | null;
+    /**
+     * Used for ring or glow effects around interactive elements. Provides visual feedback and emphasis.
+     */
     ring?: string | null;
+    /**
+     * Used for success messages and positive feedback. Provides a clear visual indication of successful actions.
+     */
     success?: string | null;
+    /**
+     * Used for warning messages and cautionary feedback. Provides a clear visual indication of potential issues.
+     */
     warning?: string | null;
     error?: string | null;
   };
@@ -60096,6 +59947,8 @@ export interface ThemeConfig {
   createdAt?: string | null;
 }
 /**
+ * Theme configuration (For live preview config has to be saved)
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header".
  */
@@ -71605,6 +71458,9 @@ export interface Header {
                 | 'ZoomOut'
               )
             | null;
+          /**
+           * Choose how the link should be rendered.
+           */
           appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
           size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
         };
@@ -71615,6 +71471,8 @@ export interface Header {
   createdAt?: string | null;
 }
 /**
+ * Theme configuration (For live preview config has to be saved)
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "footer".
  */
@@ -71624,6 +71482,9 @@ export interface Footer {
   logo?: (string | null) | Media;
   copyright?: string | null;
   subline?: string | null;
+  /**
+   * Legal links like imprint, privacy policy, etc.
+   */
   legalLinks?:
     | {
         link: {
@@ -71639,6 +71500,9 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Add social media links with icons
+   */
   socialLinks?:
     | {
         icon:
