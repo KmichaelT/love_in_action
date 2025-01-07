@@ -28,6 +28,7 @@ export type FormBlockType = {
   blockType?: 'formBlock'
   enableIntro: boolean
   form: FormType
+  withoutWrapper?: boolean
   introContent?: {
     [k: string]: unknown
   }[]
@@ -40,6 +41,7 @@ export const FormBlock: React.FC<
 > = (props) => {
   const {
     enableIntro,
+    withoutWrapper,
     form: formFromProps,
     form: { id: formID, confirmationMessage, confirmationType, redirect, submitButtonLabel } = {},
     introContent,
@@ -136,66 +138,64 @@ export const FormBlock: React.FC<
     [router, formID, redirect, confirmationType, turnstileToken],
   )
 
-  return (
-    <div className="container lg:max-w-[48rem] pb-20">
-      <FormProvider {...formMethods}>
-        {enableIntro && introContent && !hasSubmitted && (
-          <RichText className="mb-8" content={introContent} enableGutter={false} />
-        )}
-        {!isLoading && hasSubmitted && confirmationType === 'message' && (
-          <RichText content={confirmationMessage} />
-        )}
-        {isLoading && !hasSubmitted && <p>Loading, please wait...</p>}
-        {error && <div>{`${error.status || '500'}: ${error.message || ''}`}</div>}
-        {!hasSubmitted && (
-          <form id={formID} onSubmit={handleSubmit(onSubmit)}>
+  const form = (<FormProvider {...formMethods}>
+    {enableIntro && introContent && !hasSubmitted && (
+      <RichText className="mb-8" content={introContent} enableGutter={false} />
+    )}
+    {!isLoading && hasSubmitted && confirmationType === 'message' && (
+      <RichText content={confirmationMessage} />
+    )}
+    {isLoading && !hasSubmitted && <p>Loading, please wait...</p>}
+    {error && <div>{`${error.status || '500'}: ${error.message || ''}`}</div>}
+    {!hasSubmitted && (
+      <form id={formID} onSubmit={handleSubmit(onSubmit)}>
 
-            <div className="mb-4 last:mb-0">
-              {formFromProps &&
-                formFromProps.fields &&
-                formFromProps.fields?.map((field, index) => {
-                  const Field: React.FC<any> = fields?.[field.blockType]
-                  if (Field) {
-                    return (
-                      <div className="mb-6 last:mb-0" key={index}>
-                        <Field
-                          form={formFromProps}
-                          {...field}
-                          {...formMethods}
-                          control={control}
-                          errors={errors}
-                          register={register}
-                        />
-                      </div>
-                    )
-                  }
-                  return null
-                })}
-            </div>
+        <div className="mb-4 last:mb-0">
+          {formFromProps &&
+            formFromProps.fields &&
+            formFromProps.fields?.map((field, index) => {
+              const Field: React.FC<any> = fields?.[field.blockType]
+              if (Field) {
+                return (
+                  <div className="mb-6 last:mb-0" key={index}>
+                    <Field
+                      form={formFromProps}
+                      {...field}
+                      {...formMethods}
+                      control={control}
+                      errors={errors}
+                      register={register}
+                    />
+                  </div>
+                )
+              }
+              return null
+            })}
+        </div>
 
-            {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && <Turnstile
-              sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
-              refreshExpired="auto"
-              className='mb-4'
-              fixedSize={true}
-              appearance="interaction-only"
-              onSuccess={(token) => {
-                setTurnstileToken(token);
-              }}
-              onError={(error) => {
-                setError({
-                  message: 'Bot protection could not verify that you are a real human. Cloudflare error code: ' + error,
-                  status: '500',
-                })
-              }}
-            />}
+        {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && <Turnstile
+          sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+          refreshExpired="auto"
+          className='mb-4'
+          fixedSize={true}
+          appearance="interaction-only"
+          onSuccess={(token) => {
+            setTurnstileToken(token);
+          }}
+          onError={(error) => {
+            setError({
+              message: 'Bot protection could not verify that you are a real human. Cloudflare error code: ' + error,
+              status: '500',
+            })
+          }}
+        />}
 
-            <Button form={formID} type="submit" variant="default" disabled={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ? !turnstileToken : false}>
-              {submitButtonLabel}
-            </Button>
-          </form>
-        )}
-      </FormProvider>
-    </div>
-  )
+        <Button form={formID} type="submit" variant="default" disabled={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ? !turnstileToken : false}>
+          {submitButtonLabel}
+        </Button>
+      </form>
+    )}
+  </FormProvider>
+  );
+  return withoutWrapper ? form : <div className="container lg:max-w-[48rem] pb-20">{form}</div>;
 }

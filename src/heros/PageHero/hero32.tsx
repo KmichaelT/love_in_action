@@ -163,7 +163,7 @@ const Hero32 = () => {
               <path
                 d="M 24 0 L 0 0 0 24"
                 fill="none"
-                stroke="hsl(var(--muted))"
+                stroke="hsl(from_var(--muted)_h_s_l)"
                 strokeWidth="1"
                 strokeOpacity={0.5}
               />
@@ -173,7 +173,7 @@ const Hero32 = () => {
         </svg>
       </div>
       <div className="relative">
-        <div className="absolute left-0 z-10 hidden h-full w-1/2 bg-[linear-gradient(to_right,hsl(var(--background))_85%,transparent_100%)] md:block"></div>
+        <div className="absolute left-0 z-10 hidden h-full w-1/2 bg-[linear-gradient(to_right,hsl(from_var(--background)_h_s_l)_85%,transparent_100%)] md:block"></div>
         <div className="md:-space-x-26 container relative flex flex-col items-start md:flex-row md:items-center">
           <div className="z-20 -mx-[calc(theme(container.padding))] w-[calc(100%+2*theme(container.padding))] shrink-0 bg-background px-[calc(theme(container.padding))] pt-32 md:w-1/2 md:bg-transparent md:pb-32">
             <div className="flex flex-col items-start text-left">

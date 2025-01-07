@@ -32,6 +32,7 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
+import { ContactBlock } from '@/blocks/Contact/config'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -98,6 +99,7 @@ export const Pages: CollectionConfig = {
                 CtaBlock,
                 LogosBlock,
                 AboutBlock,
+                ContactBlock,
                 Gallery,
                 TestimonialBlock,
                 FaqBlock,

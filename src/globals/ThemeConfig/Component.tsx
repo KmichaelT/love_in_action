@@ -5,7 +5,7 @@ import type { ThemeConfig } from '@/payload-types'
 export async function ThemeConfig() {
   const themeConfig: ThemeConfig = await getCachedGlobal('themeConfig', 2)()
 
-  return <style dangerouslySetInnerHTML={{
+  return <style id="theme-config" dangerouslySetInnerHTML={{
     __html: `
 :root { 
   --radius: ${themeConfig.radius};

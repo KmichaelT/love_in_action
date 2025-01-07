@@ -10,8 +10,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { ContactBlock } from '@/payload-types';
+import RichText from '@/components/RichText';
+import { FormBlock, FormBlockType } from '../Form/Component';
 
-const Contact1 = () => {
+const Contact1: React.FC<ContactBlock> = ({ headlineAndDescription, form, contactBlocks, maps }) => {
   return (
     <section className="relative py-32">
       {/* Background gradients */}
@@ -23,13 +26,17 @@ const Contact1 = () => {
       <div className="container grid w-full grid-cols-1 gap-x-32 overflow-hidden lg:grid-cols-2">
         <div className="w-full pb-10 md:space-y-10 md:pb-0">
           <div className="space-y-4 md:max-w-[40rem]">
-            <h1 className="text-4xl font-medium lg:text-5xl">
-              Book free demo now
-            </h1>
-            <div className="text-muted-foreground md:text-base lg:text-lg lg:leading-7">
-              In non libero bibendum odio pellentesque ullamcorper. Aenean
-              condimentum, dolor commodo pulvinar bibendum.
-            </div>
+            {headlineAndDescription && <RichText
+              content={headlineAndDescription}
+              withWrapper={false}
+              overrideStyle={{
+                h1: 'text-4xl font-medium lg:text-5xl',
+                h2: 'text-3xl font-medium lg:text-4xl',
+                h3: 'text-2xl font-medium lg:text-3xl',
+                h4: 'text-1xl font-medium lg:text-2xl',
+                p: 'text-muted-foreground md:text-base lg:text-lg lg:leading-7',
+              }}
+            />}
           </div>
           <div className="hidden md:block">
             <div className="space-y-16 pb-20 lg:pb-0">
@@ -87,7 +94,12 @@ const Contact1 = () => {
         </div>
         <div className="flex w-full justify-center lg:mt-2.5">
           <div className="relative flex w-full min-w-80 max-w-[30rem] flex-col items-center overflow-visible md:min-w-96">
-            <form className="z-10 space-y-6">
+            <div className="z-10 space-y-6">
+              <div className="w-full space-y-6 rounded-xl border border-border bg-background px-6 py-10 shadow-sm">
+                {form?.[0] && <FormBlock {...form?.[0] as FormBlockType} withoutWrapper={true} />}
+              </div>
+            </div>
+            {/* <form className="z-10 space-y-6">
               <div className="w-full space-y-6 rounded-xl border border-border bg-background px-6 py-10 shadow-sm">
                 <div>
                   <div className="mb-2.5 text-sm font-medium">
@@ -178,12 +190,12 @@ const Contact1 = () => {
                   </div>
                 </div>
               </div>
-            </form>
+            </form> 
           </div>
-        </div>   
+        </div>
       </div>
-    */}
-    </section >
+      */}
+    </section>
   );
 };
 
