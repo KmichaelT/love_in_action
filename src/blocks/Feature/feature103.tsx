@@ -1,22 +1,30 @@
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react'
 
-import { Badge } from '@/components/ui/badge';
-import { FeatureBlock } from '@/payload-types';
-import RichText from '@/components/RichText';
+import { Badge } from '@/components/ui/badge'
+import { FeatureBlock } from '@/payload-types'
+import RichText from '@/components/RichText'
 
 /**
  * https://www.shadcnblocks.com/block/feature103/
- * @returns 
+ * @returns
  */
 const Feature103: React.FC<FeatureBlock> = ({ tagline, USPs, richText }) => {
   return (
     <section className="py-32">
       <div className="container">
         <div className="flex flex-col gap-3">
-          <Badge variant="outline" className="w-fit">
-            {tagline}
-          </Badge>
-          { richText && <RichText content={richText} withWrapper={false} overrideStyle={{h2: "text-2xl md:text-4xl"}} />}
+          {tagline && (
+            <Badge variant="outline" className="w-fit">
+              {tagline}
+            </Badge>
+          )}
+          {richText && (
+            <RichText
+              content={richText}
+              withWrapper={false}
+              overrideStyle={{ h2: 'text-2xl md:text-4xl' }}
+            />
+          )}
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           {USPs?.map((usp, index) => (
@@ -26,12 +34,12 @@ const Feature103: React.FC<FeatureBlock> = ({ tagline, USPs, richText }) => {
               className="flex flex-col rounded-xl border p-6 hover:border-primary relative"
             >
               {usp.richText && (
-                <RichText 
-                  content={usp.richText} 
+                <RichText
+                  content={usp.richText}
                   withWrapper={false}
                   overrideStyle={{
-                    h3: "text-lg font-medium mb-4 pr-12",
-                    p: "text-muted-foreground"
+                    h3: 'text-lg font-medium mb-4 pr-12',
+                    p: 'text-muted-foreground',
                   }}
                 />
               )}
@@ -43,7 +51,7 @@ const Feature103: React.FC<FeatureBlock> = ({ tagline, USPs, richText }) => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Feature103;
+export default Feature103

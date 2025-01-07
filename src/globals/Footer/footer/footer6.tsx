@@ -66,15 +66,9 @@ const Footer6: React.FC<{ footer: Footer }> = ({ footer }) => {
             {footer.copyright && `© ${new Date().getFullYear()} ${footer.copyright}`}
           </div>
           <div className="flex flex-col items-start gap-4 text-xs text-muted-foreground sm:text-sm md:flex-row lg:items-center">
-            <a href="#" className="hover:text-accent-foreground">
-              Terms
-            </a>
-            <a href="#" className="hover:text-accent-foreground">
-              Privacy Policy
-            </a>
-            <a href="#" className="hover:text-accent-foreground">
-              Cookies
-            </a>
+            {footer.legalLinks?.map((item, index) => (
+              <CMSLink key={index} {...item.link} className="hover:text-accent-foreground" />
+            ))}
           </div>
         </div>
       </div>

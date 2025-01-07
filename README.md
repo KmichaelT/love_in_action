@@ -187,6 +187,31 @@ Although Next.js includes a robust set of caching strategies out of the box, Pay
 
 To spin up this example locally, follow the [Quick Start](#quick-start). Then [Seed](#seed) the database with a few pages, posts, and projects.
 
+### Customizing Fonts
+
+PayBlocks uses the Geist font family by default, but you can easily customize the fonts to match your brand. The fonts are configured in two places:
+
+1. **Frontend Layout (`src/app/(frontend)/layout.tsx`):**
+   - Import your desired fonts from `next/font/google` or any other font source
+   - Replace the font assignments for `mono` and `sans`:
+   ```typescript
+   const mono = Geist_Mono({ subsets: ['latin'], variable: '--font-mono' })
+   const sans = Geist({ subsets: ['latin'], variable: '--font-sans' })
+   ```
+   - The `variable` names (`--font-mono` and `--font-sans`) should remain unchanged as they are used by Tailwind
+
+2. **Tailwind Config (`tailwind.config.mjs`):**
+   - The font variables are already configured in the Tailwind theme
+   - No changes are needed in the Tailwind config as long as you keep the variable names consistent
+
+Example of changing to a different font:
+```typescript
+import { Inter, Roboto_Mono } from 'next/font/google'
+
+const mono = Roboto_Mono({ subsets: ['latin'], variable: '--font-mono' })
+const sans = Inter({ subsets: ['latin'], variable: '--font-sans' })
+```
+
 ### Docker
 
 Alternatively, you can use [Docker](https://www.docker.com) to spin up this template locally. To do so, follow these steps:

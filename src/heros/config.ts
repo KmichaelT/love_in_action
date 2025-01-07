@@ -10,6 +10,7 @@ import {
 import { linkGroup } from '@/fields/linkGroup'
 import { link } from '@/fields/link'
 import { icon } from '@/components/Icon/config'
+import { customHeroFields } from './CustomHero/config'
 
 /* TODO:
 13 -> X
@@ -251,6 +252,7 @@ export const hero: Field = {
         condition: (_, { designVersion } = {}) => ['3', '4', '7', '15'].includes(designVersion),
       },
     },
+    ...customHeroFields
   ],
   label: false,
 }

@@ -13,38 +13,6 @@ import { Label } from '@/components/ui/label';
 import { Footer } from '@/payload-types';
 import { CMSLink } from '@/components/Link';
 
-const sections = [
-  {
-    title: 'Product',
-    links: [
-      { name: 'Overview', href: '#' },
-      { name: 'Pricing', href: '#' },
-      { name: 'Marketplace', href: '#' },
-      { name: 'Features', href: '#' },
-      { name: 'Integrations', href: '#' },
-      { name: 'Pricing', href: '#' },
-    ],
-  },
-  {
-    title: 'Company',
-    links: [
-      { name: 'About', href: '#' },
-      { name: 'Team', href: '#' },
-      { name: 'Blog', href: '#' },
-      { name: 'Careers', href: '#' },
-      { name: 'Contact', href: '#' },
-      { name: 'Privacy', href: '#' },
-    ],
-  },
-  {
-    title: 'Resources',
-    links: [
-      { name: 'Help', href: '#' },
-      { name: 'Sales', href: '#' },
-      { name: 'Advertise', href: '#' },
-    ],
-  },
-];
 
 const Footer3: React.FC<{ footer: Footer }> = ({ footer }) => {
   return (
@@ -128,12 +96,11 @@ const Footer3: React.FC<{ footer: Footer }> = ({ footer }) => {
           <div className="mt-24 flex flex-col flex-wrap justify-between gap-4 border-t pt-8 text-sm font-medium text-muted-foreground md:flex-row md:items-center">
             <p>{footer.copyright && `© ${new Date().getFullYear()} ${footer.copyright}`}</p>
             <ul className="flex gap-4">
-              <li className="whitespace-nowrap underline hover:text-primary">
-                <a href="#">Terms and Conditions</a>
-              </li>
-              <li className="whitespace-nowrap underline hover:text-primary">
-                <a href="#">Privacy Policy</a>
-              </li>
+              {footer.legalLinks?.map((item, index) => (
+                <li key={index} className="whitespace-nowrap underline hover:text-primary">
+                  <CMSLink {...item.link} />
+                </li>
+              ))}
             </ul>
           </div>
         </footer>

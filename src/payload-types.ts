@@ -98,8 +98,15 @@ export interface Page {
     | TestimonialBlock
     | FaqBlock
     | StatBlock
+<<<<<<< HEAD
     | ContactBlock
     | ContentBlock
+=======
+    | SplitViewBlock
+    | TextBlock
+    | MediaBlock
+    | CustomBlock
+>>>>>>> main
   )[];
   meta?: {
     title?: string | null;
@@ -1803,6 +1810,11 @@ export interface Hero {
   badgeLink?: {
     type?: ('reference' | 'custom') | null;
     newTab?: boolean | null;
+    reference?: {
+      relationTo: 'pages';
+      value: string | Page;
+    } | null;
+    url?: string | null;
     iconBefore?:
       | (
           | 'AArrowDown'
@@ -5075,12 +5087,6 @@ export interface Hero {
           | 'ZoomOut'
         )
       | null;
-    size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
-    reference?: {
-      relationTo: 'pages';
-      value: string | Page;
-    } | null;
-    url?: string | null;
   };
   richText?: {
     root: {
@@ -5102,6 +5108,12 @@ export interface Hero {
         link: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
+          url?: string | null;
+          label: string;
           iconBefore?:
             | (
                 | 'AArrowDown'
@@ -8374,14 +8386,8 @@ export interface Hero {
                 | 'ZoomOut'
               )
             | null;
-          size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
-          reference?: {
-            relationTo: 'pages';
-            value: string | Page;
-          } | null;
-          url?: string | null;
-          label: string;
           appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
+          size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
         };
         id?: string | null;
       }[]
@@ -10212,6 +10218,12 @@ export interface FeatureBlock {
         link: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
+          url?: string | null;
+          label: string;
           iconBefore?:
             | (
                 | 'AArrowDown'
@@ -13484,14 +13496,8 @@ export interface FeatureBlock {
                 | 'ZoomOut'
               )
             | null;
-          size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
-          reference?: {
-            relationTo: 'pages';
-            value: string | Page;
-          } | null;
-          url?: string | null;
-          label: string;
           appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
+          size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
         };
         id?: string | null;
       }[]
@@ -16812,6 +16818,12 @@ export interface FeatureBlock {
               link: {
                 type?: ('reference' | 'custom') | null;
                 newTab?: boolean | null;
+                reference?: {
+                  relationTo: 'pages';
+                  value: string | Page;
+                } | null;
+                url?: string | null;
+                label: string;
                 iconBefore?:
                   | (
                       | 'AArrowDown'
@@ -20084,14 +20096,8 @@ export interface FeatureBlock {
                       | 'ZoomOut'
                     )
                   | null;
-                size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
-                reference?: {
-                  relationTo: 'pages';
-                  value: string | Page;
-                } | null;
-                url?: string | null;
-                label: string;
                 appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
+                size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
               };
               id?: string | null;
             }[]
@@ -20099,6 +20105,12 @@ export interface FeatureBlock {
         link?: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
+          url?: string | null;
+          label: string;
           iconBefore?:
             | (
                 | 'AArrowDown'
@@ -23371,13 +23383,6 @@ export interface FeatureBlock {
                 | 'ZoomOut'
               )
             | null;
-          size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
-          reference?: {
-            relationTo: 'pages';
-            value: string | Page;
-          } | null;
-          url?: string | null;
-          label: string;
         };
         image?: (string | null) | Media;
         id?: string | null;
@@ -25368,6 +25373,12 @@ export interface CtaBlock {
         link: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
+          url?: string | null;
+          label: string;
           iconBefore?:
             | (
                 | 'AArrowDown'
@@ -28640,14 +28651,8 @@ export interface CtaBlock {
                 | 'ZoomOut'
               )
             | null;
-          size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
-          reference?: {
-            relationTo: 'pages';
-            value: string | Page;
-          } | null;
-          url?: string | null;
-          label: string;
           appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
+          size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
         };
         id?: string | null;
       }[]
@@ -28681,6 +28686,12 @@ export interface LogosBlock {
   link?: {
     type?: ('reference' | 'custom') | null;
     newTab?: boolean | null;
+    reference?: {
+      relationTo: 'pages';
+      value: string | Page;
+    } | null;
+    url?: string | null;
+    label: string;
     iconBefore?:
       | (
           | 'AArrowDown'
@@ -31953,14 +31964,8 @@ export interface LogosBlock {
           | 'ZoomOut'
         )
       | null;
-    size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
-    reference?: {
-      relationTo: 'pages';
-      value: string | Page;
-    } | null;
-    url?: string | null;
-    label: string;
     appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
+    size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
   };
   logos: (string | Media)[];
   id?: string | null;
@@ -32036,6 +32041,12 @@ export interface AboutBlock {
   link?: {
     type?: ('reference' | 'custom') | null;
     newTab?: boolean | null;
+    reference?: {
+      relationTo: 'pages';
+      value: string | Page;
+    } | null;
+    url?: string | null;
+    label: string;
     iconBefore?:
       | (
           | 'AArrowDown'
@@ -35308,14 +35319,8 @@ export interface AboutBlock {
           | 'ZoomOut'
         )
       | null;
-    size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
-    reference?: {
-      relationTo: 'pages';
-      value: string | Page;
-    } | null;
-    url?: string | null;
-    label: string;
     appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
+    size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
   };
   images?: (string | Media)[] | null;
   logos?: (string | Media)[] | null;
@@ -35356,6 +35361,12 @@ export interface GalleryBlock {
   link?: {
     type?: ('reference' | 'custom') | null;
     newTab?: boolean | null;
+    reference?: {
+      relationTo: 'pages';
+      value: string | Page;
+    } | null;
+    url?: string | null;
+    label: string;
     iconBefore?:
       | (
           | 'AArrowDown'
@@ -38628,13 +38639,6 @@ export interface GalleryBlock {
           | 'ZoomOut'
         )
       | null;
-    size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
-    reference?: {
-      relationTo: 'pages';
-      value: string | Page;
-    } | null;
-    url?: string | null;
-    label: string;
   };
   elements?:
     | {
@@ -38657,6 +38661,12 @@ export interface GalleryBlock {
         link: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
+          url?: string | null;
+          label: string;
           iconBefore?:
             | (
                 | 'AArrowDown'
@@ -41929,13 +41939,6 @@ export interface GalleryBlock {
                 | 'ZoomOut'
               )
             | null;
-          size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
-          reference?: {
-            relationTo: 'pages';
-            value: string | Page;
-          } | null;
-          url?: string | null;
-          label: string;
         };
         id?: string | null;
       }[]
@@ -41987,6 +41990,12 @@ export interface TestimonialBlock {
   link?: {
     type?: ('reference' | 'custom') | null;
     newTab?: boolean | null;
+    reference?: {
+      relationTo: 'pages';
+      value: string | Page;
+    } | null;
+    url?: string | null;
+    label: string;
     iconBefore?:
       | (
           | 'AArrowDown'
@@ -45259,14 +45268,8 @@ export interface TestimonialBlock {
           | 'ZoomOut'
         )
       | null;
-    size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
-    reference?: {
-      relationTo: 'pages';
-      value: string | Page;
-    } | null;
-    url?: string | null;
-    label: string;
     appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
+    size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
   };
   testimonial?:
     | {
@@ -45293,6 +45296,12 @@ export interface TestimonialBlock {
         link?: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
+          url?: string | null;
+          label: string;
           iconBefore?:
             | (
                 | 'AArrowDown'
@@ -48565,14 +48574,8 @@ export interface TestimonialBlock {
                 | 'ZoomOut'
               )
             | null;
-          size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
-          reference?: {
-            relationTo: 'pages';
-            value: string | Page;
-          } | null;
-          url?: string | null;
-          label: string;
           appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
+          size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
         };
         id?: string | null;
       }[]
@@ -48642,6 +48645,12 @@ export interface FaqBlock {
   calloutLink?: {
     type?: ('reference' | 'custom') | null;
     newTab?: boolean | null;
+    reference?: {
+      relationTo: 'pages';
+      value: string | Page;
+    } | null;
+    url?: string | null;
+    label: string;
     iconBefore?:
       | (
           | 'AArrowDown'
@@ -51914,14 +51923,8 @@ export interface FaqBlock {
           | 'ZoomOut'
         )
       | null;
-    size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
-    reference?: {
-      relationTo: 'pages';
-      value: string | Page;
-    } | null;
-    url?: string | null;
-    label: string;
     appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
+    size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
   };
   id?: string | null;
   blockName?: string | null;
@@ -51975,6 +51978,12 @@ export interface StatBlock {
         link: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
+          url?: string | null;
+          label: string;
           iconBefore?:
             | (
                 | 'AArrowDown'
@@ -55247,14 +55256,8 @@ export interface StatBlock {
                 | 'ZoomOut'
               )
             | null;
-          size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
-          reference?: {
-            relationTo: 'pages';
-            value: string | Page;
-          } | null;
-          url?: string | null;
-          label: string;
           appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
+          size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
         };
         id?: string | null;
       }[]
@@ -55265,6 +55268,7 @@ export interface StatBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+<<<<<<< HEAD
  * via the `definition` "ContactBlock".
  */
 export interface ContactBlock {
@@ -55319,30 +55323,48 @@ export interface ContactBlock {
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "ContentBlock".
+=======
+ * via the `definition` "SplitViewBlock".
+>>>>>>> main
  */
-export interface ContentBlock {
-  columns?:
+export interface SplitViewBlock {
+  backgroundColor?: ('background' | 'accent' | 'primary') | null;
+  columns?: (TextBlock | MediaBlock)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'splitView';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextBlock".
+ */
+export interface TextBlock {
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  links?:
     | {
-        size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
-        richText?: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        enableLink?: boolean | null;
-        link?: {
+        link: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
+          url?: string | null;
+          label: string;
           iconBefore?:
             | (
                 | 'AArrowDown'
@@ -58615,21 +58637,37 @@ export interface ContentBlock {
                 | 'ZoomOut'
               )
             | null;
-          size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
-          reference?: {
-            relationTo: 'pages';
-            value: string | Page;
-          } | null;
-          url?: string | null;
-          label: string;
           appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
+          size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
         };
         id?: string | null;
       }[]
     | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'content';
+  blockType: 'text';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MediaBlock".
+ */
+export interface MediaBlock {
+  media: string | Media;
+  caption?: string | null;
+  aspectRatio?: ('16/9' | '4/3' | '1/1' | 'original') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'mediaBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CustomBlock".
+ */
+export interface CustomBlock {
+  customBlockType: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'customblock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -58790,63 +58828,11 @@ export interface PayloadMigration {
  */
 export interface PagesSelect<T extends boolean = true> {
   title?: T;
-  hero?:
-    | T
-    | {
-        designVersion?: T;
-        badge?: T;
-        badgeIcon?: T;
-        tagline?: T;
-        badgeLink?:
-          | T
-          | {
-              type?: T;
-              newTab?: T;
-              iconBefore?: T;
-              iconAfter?: T;
-              size?: T;
-              reference?: T;
-              url?: T;
-            };
-        richText?: T;
-        links?:
-          | T
-          | {
-              link?:
-                | T
-                | {
-                    type?: T;
-                    newTab?: T;
-                    iconBefore?: T;
-                    iconAfter?: T;
-                    size?: T;
-                    reference?: T;
-                    url?: T;
-                    label?: T;
-                    appearance?: T;
-                  };
-              id?: T;
-            };
-        images?: T;
-        icons?: T;
-        USPs?:
-          | T
-          | {
-              icon?: T;
-              richText?: T;
-            };
-        pricing?:
-          | T
-          | {
-              headline?: T;
-              price?: T;
-              description?: T;
-            };
-        rating?: T;
-      };
+  hero?: T | HeroSelect<T>;
   layout?:
     | T
     | {
+<<<<<<< HEAD
         feature?:
           | T
           | {
@@ -59240,6 +59226,22 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+=======
+        feature?: T | FeatureBlockSelect<T>;
+        archive?: T | ArchiveBlockSelect<T>;
+        formBlock?: T | FormBlockSelect<T>;
+        cta?: T | CtaBlockSelect<T>;
+        logos?: T | LogosBlockSelect<T>;
+        about?: T | AboutBlockSelect<T>;
+        gallery?: T | GalleryBlockSelect<T>;
+        testimonial?: T | TestimonialBlockSelect<T>;
+        faq?: T | FaqBlockSelect<T>;
+        stat?: T | StatBlockSelect<T>;
+        splitView?: T | SplitViewBlockSelect<T>;
+        text?: T | TextBlockSelect<T>;
+        mediaBlock?: T | MediaBlockSelect<T>;
+        customblock?: T | CustomBlockSelect<T>;
+>>>>>>> main
       };
   meta?:
     | T
@@ -59254,6 +59256,472 @@ export interface PagesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Hero_select".
+ */
+export interface HeroSelect<T extends boolean = true> {
+  designVersion?: T;
+  badge?: T;
+  badgeIcon?: T;
+  tagline?: T;
+  badgeLink?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        iconBefore?: T;
+        iconAfter?: T;
+      };
+  richText?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              iconBefore?: T;
+              iconAfter?: T;
+              appearance?: T;
+              size?: T;
+            };
+        id?: T;
+      };
+  images?: T;
+  icons?: T;
+  USPs?:
+    | T
+    | {
+        icon?: T;
+        richText?: T;
+      };
+  pricing?:
+    | T
+    | {
+        headline?: T;
+        price?: T;
+        description?: T;
+      };
+  rating?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeatureBlock_select".
+ */
+export interface FeatureBlockSelect<T extends boolean = true> {
+  designVersion?: T;
+  badge?: T;
+  tagline?: T;
+  icon?: T;
+  richText?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              iconBefore?: T;
+              iconAfter?: T;
+              appearance?: T;
+              size?: T;
+            };
+        id?: T;
+      };
+  image?: T;
+  USPs?:
+    | T
+    | {
+        uspIcon?: T;
+        tagline?: T;
+        richText?: T;
+        USPFeatures?:
+          | T
+          | {
+              icon?: T;
+              richText?: T;
+              id?: T;
+            };
+        links?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    iconBefore?: T;
+                    iconAfter?: T;
+                    appearance?: T;
+                    size?: T;
+                  };
+              id?: T;
+            };
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              iconBefore?: T;
+              iconAfter?: T;
+            };
+        image?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ArchiveBlock_select".
+ */
+export interface ArchiveBlockSelect<T extends boolean = true> {
+  introContent?: T;
+  populateBy?: T;
+  relationTo?: T;
+  categories?: T;
+  limit?: T;
+  selectedDocs?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FormBlock_select".
+ */
+export interface FormBlockSelect<T extends boolean = true> {
+  form?: T;
+  enableIntro?: T;
+  introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CtaBlock_select".
+ */
+export interface CtaBlockSelect<T extends boolean = true> {
+  designVersion?: T;
+  tagline?: T;
+  icon?: T;
+  richText?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              iconBefore?: T;
+              iconAfter?: T;
+              appearance?: T;
+              size?: T;
+            };
+        id?: T;
+      };
+  image?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LogosBlock_select".
+ */
+export interface LogosBlockSelect<T extends boolean = true> {
+  designVersion?: T;
+  richText?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+        iconBefore?: T;
+        iconAfter?: T;
+        appearance?: T;
+        size?: T;
+      };
+  logos?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutBlock_select".
+ */
+export interface AboutBlockSelect<T extends boolean = true> {
+  designVersion?: T;
+  headline?: T;
+  text1?: T;
+  text2?: T;
+  text3?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+        iconBefore?: T;
+        iconAfter?: T;
+        appearance?: T;
+        size?: T;
+      };
+  images?: T;
+  logos?: T;
+  counter?:
+    | T
+    | {
+        value?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GalleryBlock_select".
+ */
+export interface GalleryBlockSelect<T extends boolean = true> {
+  designVersion?: T;
+  richText?: T;
+  tagline?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+        iconBefore?: T;
+        iconAfter?: T;
+      };
+  elements?:
+    | T
+    | {
+        image?: T;
+        richText?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              iconBefore?: T;
+              iconAfter?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialBlock_select".
+ */
+export interface TestimonialBlockSelect<T extends boolean = true> {
+  designVersion?: T;
+  headline?: T;
+  tagline?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+        iconBefore?: T;
+        iconAfter?: T;
+        appearance?: T;
+        size?: T;
+      };
+  testimonial?:
+    | T
+    | {
+        authorName?: T;
+        authorDescription?: T;
+        authorAvatar?: T;
+        icon?: T;
+        rating?: T;
+        text?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              iconBefore?: T;
+              iconAfter?: T;
+              appearance?: T;
+              size?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FaqBlock_select".
+ */
+export interface FaqBlockSelect<T extends boolean = true> {
+  designVersion?: T;
+  badge?: T;
+  headline?: T;
+  faqs?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        id?: T;
+      };
+  calloutText?: T;
+  calloutLink?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+        iconBefore?: T;
+        iconAfter?: T;
+        appearance?: T;
+        size?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatBlock_select".
+ */
+export interface StatBlockSelect<T extends boolean = true> {
+  designVersion?: T;
+  headline?: T;
+  stats?:
+    | T
+    | {
+        counter?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              iconBefore?: T;
+              iconAfter?: T;
+              appearance?: T;
+              size?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SplitViewBlock_select".
+ */
+export interface SplitViewBlockSelect<T extends boolean = true> {
+  backgroundColor?: T;
+  columns?:
+    | T
+    | {
+        text?: T | TextBlockSelect<T>;
+        mediaBlock?: T | MediaBlockSelect<T>;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextBlock_select".
+ */
+export interface TextBlockSelect<T extends boolean = true> {
+  content?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              iconBefore?: T;
+              iconAfter?: T;
+              appearance?: T;
+              size?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MediaBlock_select".
+ */
+export interface MediaBlockSelect<T extends boolean = true> {
+  media?: T;
+  caption?: T;
+  aspectRatio?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CustomBlock_select".
+ */
+export interface CustomBlockSelect<T extends boolean = true> {
+  customBlockType?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -59633,7 +60101,7 @@ export interface ThemeConfig {
  */
 export interface Header {
   id: string;
-  designVersion: '1';
+  designVersion: '1' | '5';
   logo: string | Media;
   items?:
     | (
@@ -61279,6 +61747,12 @@ export interface Header {
               link: {
                 type?: ('reference' | 'custom') | null;
                 newTab?: boolean | null;
+                reference?: {
+                  relationTo: 'pages';
+                  value: string | Page;
+                } | null;
+                url?: string | null;
+                label: string;
                 iconBefore?:
                   | (
                       | 'AArrowDown'
@@ -64551,13 +65025,6 @@ export interface Header {
                       | 'ZoomOut'
                     )
                   | null;
-                size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
-                reference?: {
-                  relationTo: 'pages';
-                  value: string | Page;
-                } | null;
-                url?: string | null;
-                label: string;
               };
               Description?: string | null;
               id?: string | null;
@@ -64570,6 +65037,12 @@ export interface Header {
             link: {
               type?: ('reference' | 'custom') | null;
               newTab?: boolean | null;
+              reference?: {
+                relationTo: 'pages';
+                value: string | Page;
+              } | null;
+              url?: string | null;
+              label: string;
               iconBefore?:
                 | (
                     | 'AArrowDown'
@@ -67842,13 +68315,6 @@ export interface Header {
                     | 'ZoomOut'
                   )
                 | null;
-              size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
-              reference?: {
-                relationTo: 'pages';
-                value: string | Page;
-              } | null;
-              url?: string | null;
-              label: string;
             };
             id?: string | null;
             blockName?: string | null;
@@ -67861,6 +68327,12 @@ export interface Header {
         link: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
+          url?: string | null;
+          label: string;
           iconBefore?:
             | (
                 | 'AArrowDown'
@@ -71133,14 +71605,8 @@ export interface Header {
                 | 'ZoomOut'
               )
             | null;
-          size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
-          reference?: {
-            relationTo: 'pages';
-            value: string | Page;
-          } | null;
-          url?: string | null;
-          label: string;
           appearance?: ('default' | 'outline' | 'inline' | 'destructive' | 'ghost' | 'secondary') | null;
+          size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
         };
         id?: string | null;
       }[]
@@ -71158,6 +71624,41 @@ export interface Footer {
   logo?: (string | null) | Media;
   copyright?: string | null;
   subline?: string | null;
+  legalLinks?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
+          url?: string | null;
+          label: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  socialLinks?:
+    | {
+        icon:
+          | 'facebook'
+          | 'twitter'
+          | 'instagram'
+          | 'linkedin'
+          | 'discord'
+          | 'reddit'
+          | 'telegram'
+          | 'github'
+          | 'youtube'
+          | 'tiktok'
+          | 'apple'
+          | 'android'
+          | 'googleplay';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
   navItems?:
     | {
         title: string;
@@ -71166,6 +71667,12 @@ export interface Footer {
               link: {
                 type?: ('reference' | 'custom') | null;
                 newTab?: boolean | null;
+                reference?: {
+                  relationTo: 'pages';
+                  value: string | Page;
+                } | null;
+                url?: string | null;
+                label: string;
                 iconBefore?:
                   | (
                       | 'AArrowDown'
@@ -74438,13 +74945,6 @@ export interface Footer {
                       | 'ZoomOut'
                     )
                   | null;
-                size?: ('default' | 'sm' | 'lg' | 'icon' | 'clear') | null;
-                reference?: {
-                  relationTo: 'pages';
-                  value: string | Page;
-                } | null;
-                url?: string | null;
-                label: string;
               };
               id?: string | null;
             }[]
@@ -74548,12 +75048,11 @@ export interface HeaderSelect<T extends boolean = true> {
                       | {
                           type?: T;
                           newTab?: T;
-                          iconBefore?: T;
-                          iconAfter?: T;
-                          size?: T;
                           reference?: T;
                           url?: T;
                           label?: T;
+                          iconBefore?: T;
+                          iconAfter?: T;
                         };
                     Description?: T;
                     id?: T;
@@ -74569,12 +75068,11 @@ export interface HeaderSelect<T extends boolean = true> {
                 | {
                     type?: T;
                     newTab?: T;
-                    iconBefore?: T;
-                    iconAfter?: T;
-                    size?: T;
                     reference?: T;
                     url?: T;
                     label?: T;
+                    iconBefore?: T;
+                    iconAfter?: T;
                   };
               id?: T;
               blockName?: T;
@@ -74588,13 +75086,13 @@ export interface HeaderSelect<T extends boolean = true> {
           | {
               type?: T;
               newTab?: T;
-              iconBefore?: T;
-              iconAfter?: T;
-              size?: T;
               reference?: T;
               url?: T;
               label?: T;
+              iconBefore?: T;
+              iconAfter?: T;
               appearance?: T;
+              size?: T;
             };
         id?: T;
       };
@@ -74611,6 +75109,27 @@ export interface FooterSelect<T extends boolean = true> {
   logo?: T;
   copyright?: T;
   subline?: T;
+  legalLinks?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
+  socialLinks?:
+    | T
+    | {
+        icon?: T;
+        url?: T;
+        id?: T;
+      };
   navItems?:
     | T
     | {
@@ -74623,12 +75142,11 @@ export interface FooterSelect<T extends boolean = true> {
                 | {
                     type?: T;
                     newTab?: T;
-                    iconBefore?: T;
-                    iconAfter?: T;
-                    size?: T;
                     reference?: T;
                     url?: T;
                     label?: T;
+                    iconBefore?: T;
+                    iconAfter?: T;
                   };
               id?: T;
             };
@@ -74673,17 +75191,6 @@ export interface CodeBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'code';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MediaBlock".
- */
-export interface MediaBlock {
-  position?: ('default' | 'fullscreen') | null;
-  media: string | Media;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'mediaBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

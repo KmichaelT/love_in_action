@@ -10,25 +10,28 @@ import { CtaBlock } from '@/blocks/Cta/Component'
 import { LogosBlock } from '@/blocks/Logos/Component'
 import { AboutBlock } from '@/blocks/About/Component'
 import { TestimonialBlock } from '@/blocks/Testimonial/Component'
-import { ContentBlock } from './Content/Component'
 import { FaqBlock } from './Faq/Component'
 import { StatBlock } from './Stat/Component'
-import ContactBlock from './Contact/Component'
+import { SplitViewBlock } from './SplitView/Component'
+import { TextBlock } from './TextBlock/Component'
+import { MediaBlock } from './MediaBlock/Component'
+import customBlocks from '@/blocks/CustomBlock'
 
-const blockComponents: Record<Page['layout'][0]['blockType'], React.FC<any>> = {
+const blockComponents: Partial<Record<Page['layout'][0]['blockType'], React.FC<any>>> = {
   archive: ArchiveBlock,
   formBlock: FormBlock,
-  // mediaBlock: MediaBlock,
   feature: FeatureBlock,
   gallery: GalleryBlock,
   cta: CtaBlock,
   logos: LogosBlock,
   about: AboutBlock,
   testimonial: TestimonialBlock,
-  content: ContentBlock,
   faq: FaqBlock,
   stat: StatBlock,
-  contact: ContactBlock,
+  splitView: SplitViewBlock,
+  text: TextBlock,
+  mediaBlock: MediaBlock,
+  ...customBlocks
 }
 
 export const RenderBlocks: React.FC<{
