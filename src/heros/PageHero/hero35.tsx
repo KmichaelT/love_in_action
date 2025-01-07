@@ -31,7 +31,7 @@ const Hero35 = () => {
             <div className="border-b border-r border-border"></div>
             <div className="border-b border-border"></div>
             <div className="relative border-b border-l border-border">
-              <div className="absolute -bottom-[6px] -left-[6px] size-[12px] rounded-full border-[3px] border-[hsl(theme(colors.accent-foreground))] bg-accent-foreground ring-8 ring-accent"></div>
+              <div className="absolute -bottom-[6px] -left-[6px] size-[12px] rounded-full border-[3px] border-[theme(colors.accent-foreground))] bg-accent-foreground ring-8 ring-accent"></div>
             </div>
             <div className="border-r"></div>
             <div className="relative">
@@ -41,7 +41,7 @@ const Hero35 = () => {
             </div>
             <div className="border-l"></div>
             <div className="relative border-r border-t border-border">
-              <div className="absolute -right-[6px] -top-[6px] size-[12px] rounded-full border-[3px] border-[hsl(theme(colors.accent-foreground))] bg-accent-foreground ring-8 ring-accent"></div>
+              <div className="absolute -right-[6px] -top-[6px] size-[12px] rounded-full border-[3px] border-[theme(colors.accent-foreground))] bg-accent-foreground ring-8 ring-accent"></div>
             </div>
             <div className="border-t border-border"></div>
             <div className="border-l border-t border-border"></div>
