@@ -12,6 +12,7 @@ import {
   UnorderedListFeature,
 } from '@payloadcms/richtext-lexical'
 import { Block } from 'payload'
+import { backgroundColor } from '@/fields/color'
 
 export const allFeatureDesignVersions = [
   'FEATURE1',
@@ -133,6 +134,7 @@ export const FeatureBlock: Block = {
   slug: 'feature',
   interfaceName: 'FeatureBlock',
   fields: [
+    backgroundColor,
     {
       name: 'designVersion',
       type: 'select',

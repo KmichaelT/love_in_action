@@ -4,6 +4,7 @@ import { revalidateHeader } from './hooks/revalidateHeader'
 import { navbar } from './navbar/navbar.config'
 import { generatePreviewPath } from '@/utilities/generatePreviewPath'
 import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
+import { backgroundColor } from '@/fields/color'
 
 export const Header: GlobalConfig = {
   slug: 'header',
@@ -32,6 +33,7 @@ export const Header: GlobalConfig = {
     },
   },
   fields: [
+    backgroundColor,
     {
       name: 'designVersion',
       type: 'select',
@@ -48,10 +50,10 @@ export const Header: GlobalConfig = {
         // },
 
         // '4' Version 4 is the same as version 1 with only difference of more advance sub menu. Therefore we want to migrate the advance submenu as block options into v1
-      {
-        label: "5 (simple)",
-        value: "5"
-      }
+        {
+          label: "5 (simple)",
+          value: "5"
+        }
       ],
       defaultValue: '1',
       required: true,

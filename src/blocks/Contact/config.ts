@@ -1,6 +1,7 @@
 import { Block } from 'payload'
 import { HeadingFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 import { FormBlock } from '../Form/config'
+import { backgroundColor } from '@/fields/color'
 
 
 export const allContactDesignVersions = ['CONTACT1', 'CONTACT2', 'CONTACT3', 'CONTACT4'] as const
@@ -15,6 +16,7 @@ export const ContactBlock: Block = {
     plural: 'Contacts'
   },
   fields: [
+    backgroundColor,
     {
       name: 'designVersion',
       type: 'select',

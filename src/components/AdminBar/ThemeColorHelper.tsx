@@ -312,6 +312,7 @@ export const ThemeColorHelper: React.FC<{}> = () => {
     colorPicker.prepend(radiusLabel)
 
     const copy = document.createElement('button')
+    copy.style.color = 'black'
     copy.style.backgroundColor = 'white'
     copy.style.border = '1px solid black'
     copy.style.borderRadius = '4px'

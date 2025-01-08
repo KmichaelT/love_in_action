@@ -1,9 +1,11 @@
+import { backgroundColor } from '@/fields/color'
 import type { Block } from 'payload'
 
 export const MediaBlock: Block = {
   slug: 'mediaBlock',
   interfaceName: 'MediaBlock',
   fields: [
+    backgroundColor,
     {
       name: 'media',
       type: 'upload',

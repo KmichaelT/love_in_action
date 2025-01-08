@@ -1,3 +1,4 @@
+import { backgroundColor } from '@/fields/color'
 import { Block } from 'payload'
 
 /**
@@ -11,6 +12,7 @@ export const CustomBlock: Block = {
     plural: 'Custom Blocks',
   },
   fields: [
+    backgroundColor,
     {
       name: 'customBlockType', // Changed from blockType to avoid conflict
       type: 'select',
