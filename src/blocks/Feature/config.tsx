@@ -2,6 +2,7 @@ import { icon } from '@/components/Icon/config'
 import { linkGroup } from '@/fields/linkGroup'
 import { link } from '@/fields/link'
 
+
 import {
   FixedToolbarFeature,
   HeadingFeature,
@@ -12,6 +13,7 @@ import {
   UnorderedListFeature,
 } from '@payloadcms/richtext-lexical'
 import { Block } from 'payload'
+import { designVersionDescription } from '@/components/DesignVersionDescription'
 import { backgroundColor } from '@/fields/color'
 
 export const allFeatureDesignVersions = [
@@ -147,7 +149,7 @@ export const FeatureBlock: Block = {
       type: 'text',
       admin: {
         condition: (_, { designVersion } = {}) =>
-          ['1', '2', '3', '4', '5', '6'].includes(designVersion),
+          ['FEATURE1', 'FEATURE2', 'FEATURE3', 'FEATURE4', 'FEATURE5', 'FEATURE6'].includes(designVersion),
       },
     },
     {
@@ -259,6 +261,30 @@ export const FeatureBlock: Block = {
       relationTo: 'media',
       hasMany: false,
     },
+
+    designVersionDescription(
+      "description3",
+      (_, { designVersion } = {}) =>
+        [
+          'FEATURE3',
+        ].includes(designVersion),
+      {
+        en: "You have feature 3 selected",
+        de: "Du hast feature 3 ausgewählt",
+      }
+    ),
+    designVersionDescription(
+      "description91",
+      (_, { designVersion } = {}) =>
+        [
+          'FEATURE91',
+        ].includes(designVersion),
+      {
+        en: "You need to have exactly two USPs for FEATURE 91 block to work",
+        de: "Du musst genau zwei USPs haben, damit dieser Block funktioniert",
+      }
+    ),
+
     {
       name: 'USPs',
       type: 'array',

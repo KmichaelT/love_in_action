@@ -9,7 +9,9 @@ import { CMSLink } from '@/components/Link'
  * @returns
  */
 const Feature91: React.FC<FeatureBlock> = ({ USPs }) => {
-  if (!USPs || USPs.length !== 2) return null
+  if (!USPs || USPs.length !== 2) {
+    return <p className='text-red-500'>You need to have exactly two USPs for Feature91 block to work</p>
+  }
   const [usp1, usp2] = USPs
   return (
     <section className="py-32">
