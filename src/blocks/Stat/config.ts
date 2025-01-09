@@ -1,3 +1,4 @@
+import { backgroundColor } from '@/fields/color'
 import { linkGroup } from '@/fields/linkGroup'
 import {
   HeadingFeature,
@@ -17,6 +18,7 @@ export const StatBlock: Block = {
     plural: 'Stats',
   },
   fields: [
+    backgroundColor,
     {
       name: 'designVersion',
       type: 'select',

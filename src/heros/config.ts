@@ -11,6 +11,7 @@ import { linkGroup } from '@/fields/linkGroup'
 import { link } from '@/fields/link'
 import { icon } from '@/components/Icon/config'
 import { customHeroFields } from './CustomHero/config'
+import { backgroundColor } from '@/fields/color'
 
 /* TODO:
 13 -> X
@@ -54,6 +55,7 @@ export const hero: Field = {
   type: 'group',
   interfaceName: 'Hero',
   fields: [
+    backgroundColor,
     {
       name: 'designVersion',
       type: 'select',

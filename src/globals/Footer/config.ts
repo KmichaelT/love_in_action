@@ -5,6 +5,7 @@ import { revalidateFooter } from './hooks/revalidateFooter'
 import { generatePreviewPath } from '@/utilities/generatePreviewPath'
 import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
 import { socialIcon } from '@/components/SocialIcon/config'
+import { backgroundColor } from '@/fields/color'
 
 export const Footer: GlobalConfig = {
   slug: 'footer',
@@ -33,6 +34,7 @@ export const Footer: GlobalConfig = {
     },
   },
   fields: [
+    backgroundColor,
     {
       name: 'designVersion',
       type: 'select',

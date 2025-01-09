@@ -1,3 +1,4 @@
+import { backgroundColor } from '@/fields/color'
 import { link } from '@/fields/link'
 import {
   HeadingFeature,
@@ -20,6 +21,7 @@ export const LogosBlock: Block = {
     plural: 'multiple Logos',
   },
   fields: [
+    backgroundColor,
     {
       name: 'designVersion',
       type: 'select',

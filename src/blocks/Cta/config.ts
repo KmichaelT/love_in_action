@@ -11,6 +11,7 @@ import {
   UnorderedListFeature,
 } from '@payloadcms/richtext-lexical'
 import { Block } from 'payload'
+import { backgroundColor, color } from '@/fields/color'
 
 export const allCtaDesignVersions = [
   'CTA1',
@@ -38,6 +39,7 @@ export const CtaBlock: Block = {
     plural: 'Call to Actions',
   },
   fields: [
+    backgroundColor,
     {
       name: 'designVersion',
       type: 'select',

@@ -8,11 +8,13 @@ import {
 
 import { linkGroup } from '@/fields/linkGroup'
 import { Block } from 'payload'
+import { backgroundColor } from '@/fields/color'
 
 export const TextBlock: Block = {
   slug: 'text',
   interfaceName: 'TextBlock',
   fields: [
+    backgroundColor,
     {
       name: 'content',
       type: 'richText',

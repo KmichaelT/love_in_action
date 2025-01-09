@@ -1,6 +1,5 @@
+import { backgroundColor } from '@/fields/color'
 import { link } from '@/fields/link'
-import { Page, TestimonialBlock as TestimonialBlockType } from '@/payload-types'
-import { parentLayoutCondition } from '@/utilities/parentLayoutCondition'
 import {
   HeadingFeature,
   lexicalEditor,
@@ -20,6 +19,7 @@ export const FaqBlock: Block = {
     plural: 'FAQs',
   },
   fields: [
+    backgroundColor,
     {
       name: 'designVersion',
       type: 'select',

@@ -124,6 +124,43 @@ export interface Page {
  * via the `definition` "Hero".
  */
 export interface Hero {
+  /**
+   * Choose the background color for this section. If left empty, the default color will be used.
+   */
+  backgroundColor?:
+    | (
+        | 'background'
+        | 'foreground'
+        | 'card'
+        | 'card-foreground'
+        | 'popover'
+        | 'popover-foreground'
+        | 'primary'
+        | 'primary-foreground'
+        | 'secondary'
+        | 'secondary-foreground'
+        | 'muted'
+        | 'muted-foreground'
+        | 'accent'
+        | 'accent-foreground'
+        | 'destructive'
+        | 'destructive-foreground'
+        | 'border'
+        | 'input'
+        | 'ring'
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'chart-1'
+        | 'chart-2'
+        | 'chart-3'
+        | 'chart-4'
+        | 'chart-5'
+        | 'muted2'
+        | 'muted2-foreground'
+        | 'transparent'
+      )
+    | null;
   designVersion:
     | 'none'
     | '1'
@@ -8460,6 +8497,43 @@ export interface Media {
  * via the `definition` "FeatureBlock".
  */
 export interface FeatureBlock {
+  /**
+   * Choose the background color for this section. If left empty, the default color will be used.
+   */
+  backgroundColor?:
+    | (
+        | 'background'
+        | 'foreground'
+        | 'card'
+        | 'card-foreground'
+        | 'popover'
+        | 'popover-foreground'
+        | 'primary'
+        | 'primary-foreground'
+        | 'secondary'
+        | 'secondary-foreground'
+        | 'muted'
+        | 'muted-foreground'
+        | 'accent'
+        | 'accent-foreground'
+        | 'destructive'
+        | 'destructive-foreground'
+        | 'border'
+        | 'input'
+        | 'ring'
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'chart-1'
+        | 'chart-2'
+        | 'chart-3'
+        | 'chart-4'
+        | 'chart-5'
+        | 'muted2'
+        | 'muted2-foreground'
+        | 'transparent'
+      )
+    | null;
   designVersion:
     | 'FEATURE1'
     | 'FEATURE2'
@@ -23411,6 +23485,43 @@ export interface FeatureBlock {
  * via the `definition` "ArchiveBlock".
  */
 export interface ArchiveBlock {
+  /**
+   * Choose the background color for this section. If left empty, the default color will be used.
+   */
+  backgroundColor?:
+    | (
+        | 'background'
+        | 'foreground'
+        | 'card'
+        | 'card-foreground'
+        | 'popover'
+        | 'popover-foreground'
+        | 'primary'
+        | 'primary-foreground'
+        | 'secondary'
+        | 'secondary-foreground'
+        | 'muted'
+        | 'muted-foreground'
+        | 'accent'
+        | 'accent-foreground'
+        | 'destructive'
+        | 'destructive-foreground'
+        | 'border'
+        | 'input'
+        | 'ring'
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'chart-1'
+        | 'chart-2'
+        | 'chart-3'
+        | 'chart-4'
+        | 'chart-5'
+        | 'muted2'
+        | 'muted2-foreground'
+        | 'transparent'
+      )
+    | null;
   introContent?: {
     root: {
       type: string;
@@ -23728,6 +23839,43 @@ export interface Form {
  * via the `definition` "CtaBlock".
  */
 export interface CtaBlock {
+  /**
+   * Choose the background color for this section. If left empty, the default color will be used.
+   */
+  backgroundColor?:
+    | (
+        | 'background'
+        | 'foreground'
+        | 'card'
+        | 'card-foreground'
+        | 'popover'
+        | 'popover-foreground'
+        | 'primary'
+        | 'primary-foreground'
+        | 'secondary'
+        | 'secondary-foreground'
+        | 'muted'
+        | 'muted-foreground'
+        | 'accent'
+        | 'accent-foreground'
+        | 'destructive'
+        | 'destructive-foreground'
+        | 'border'
+        | 'input'
+        | 'ring'
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'chart-1'
+        | 'chart-2'
+        | 'chart-3'
+        | 'chart-4'
+        | 'chart-5'
+        | 'muted2'
+        | 'muted2-foreground'
+        | 'transparent'
+      )
+    | null;
   designVersion:
     | 'CTA1'
     | 'CTA3'
@@ -28696,6 +28844,43 @@ export interface CtaBlock {
  * via the `definition` "LogosBlock".
  */
 export interface LogosBlock {
+  /**
+   * Choose the background color for this section. If left empty, the default color will be used.
+   */
+  backgroundColor?:
+    | (
+        | 'background'
+        | 'foreground'
+        | 'card'
+        | 'card-foreground'
+        | 'popover'
+        | 'popover-foreground'
+        | 'primary'
+        | 'primary-foreground'
+        | 'secondary'
+        | 'secondary-foreground'
+        | 'muted'
+        | 'muted-foreground'
+        | 'accent'
+        | 'accent-foreground'
+        | 'destructive'
+        | 'destructive-foreground'
+        | 'border'
+        | 'input'
+        | 'ring'
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'chart-1'
+        | 'chart-2'
+        | 'chart-3'
+        | 'chart-4'
+        | 'chart-5'
+        | 'muted2'
+        | 'muted2-foreground'
+        | 'transparent'
+      )
+    | null;
   designVersion: 'LOGOS2' | 'LOGOS3';
   richText?: {
     root: {
@@ -32009,6 +32194,43 @@ export interface LogosBlock {
  * via the `definition` "AboutBlock".
  */
 export interface AboutBlock {
+  /**
+   * Choose the background color for this section. If left empty, the default color will be used.
+   */
+  backgroundColor?:
+    | (
+        | 'background'
+        | 'foreground'
+        | 'card'
+        | 'card-foreground'
+        | 'popover'
+        | 'popover-foreground'
+        | 'primary'
+        | 'primary-foreground'
+        | 'secondary'
+        | 'secondary-foreground'
+        | 'muted'
+        | 'muted-foreground'
+        | 'accent'
+        | 'accent-foreground'
+        | 'destructive'
+        | 'destructive-foreground'
+        | 'border'
+        | 'input'
+        | 'ring'
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'chart-1'
+        | 'chart-2'
+        | 'chart-3'
+        | 'chart-4'
+        | 'chart-5'
+        | 'muted2'
+        | 'muted2-foreground'
+        | 'transparent'
+      )
+    | null;
   designVersion: 'ABOUT1' | 'ABOUT2' | 'ABOUT3' | 'ABOUT4' | 'ABOUT5';
   headline?: {
     root: {
@@ -35376,6 +35598,43 @@ export interface AboutBlock {
  * via the `definition` "ContactBlock".
  */
 export interface ContactBlock {
+  /**
+   * Choose the background color for this section. If left empty, the default color will be used.
+   */
+  backgroundColor?:
+    | (
+        | 'background'
+        | 'foreground'
+        | 'card'
+        | 'card-foreground'
+        | 'popover'
+        | 'popover-foreground'
+        | 'primary'
+        | 'primary-foreground'
+        | 'secondary'
+        | 'secondary-foreground'
+        | 'muted'
+        | 'muted-foreground'
+        | 'accent'
+        | 'accent-foreground'
+        | 'destructive'
+        | 'destructive-foreground'
+        | 'border'
+        | 'input'
+        | 'ring'
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'chart-1'
+        | 'chart-2'
+        | 'chart-3'
+        | 'chart-4'
+        | 'chart-5'
+        | 'muted2'
+        | 'muted2-foreground'
+        | 'transparent'
+      )
+    | null;
   designVersion: 'CONTACT1' | 'CONTACT2' | 'CONTACT3' | 'CONTACT4';
   headlineAndDescription?: {
     root: {
@@ -35429,6 +35688,43 @@ export interface ContactBlock {
  * via the `definition` "GalleryBlock".
  */
 export interface GalleryBlock {
+  /**
+   * Choose the background color for this section. If left empty, the default color will be used.
+   */
+  backgroundColor?:
+    | (
+        | 'background'
+        | 'foreground'
+        | 'card'
+        | 'card-foreground'
+        | 'popover'
+        | 'popover-foreground'
+        | 'primary'
+        | 'primary-foreground'
+        | 'secondary'
+        | 'secondary-foreground'
+        | 'muted'
+        | 'muted-foreground'
+        | 'accent'
+        | 'accent-foreground'
+        | 'destructive'
+        | 'destructive-foreground'
+        | 'border'
+        | 'input'
+        | 'ring'
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'chart-1'
+        | 'chart-2'
+        | 'chart-3'
+        | 'chart-4'
+        | 'chart-5'
+        | 'muted2'
+        | 'muted2-foreground'
+        | 'transparent'
+      )
+    | null;
   /**
    * Choose the design version for this gallery block
    */
@@ -42052,6 +42348,43 @@ export interface GalleryBlock {
  * via the `definition` "TestimonialBlock".
  */
 export interface TestimonialBlock {
+  /**
+   * Choose the background color for this section. If left empty, the default color will be used.
+   */
+  backgroundColor?:
+    | (
+        | 'background'
+        | 'foreground'
+        | 'card'
+        | 'card-foreground'
+        | 'popover'
+        | 'popover-foreground'
+        | 'primary'
+        | 'primary-foreground'
+        | 'secondary'
+        | 'secondary-foreground'
+        | 'muted'
+        | 'muted-foreground'
+        | 'accent'
+        | 'accent-foreground'
+        | 'destructive'
+        | 'destructive-foreground'
+        | 'border'
+        | 'input'
+        | 'ring'
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'chart-1'
+        | 'chart-2'
+        | 'chart-3'
+        | 'chart-4'
+        | 'chart-5'
+        | 'muted2'
+        | 'muted2-foreground'
+        | 'transparent'
+      )
+    | null;
   designVersion:
     | 'TESTIMONIAL1'
     | 'TESTIMONIAL2'
@@ -48695,6 +49028,43 @@ export interface TestimonialBlock {
  * via the `definition` "FaqBlock".
  */
 export interface FaqBlock {
+  /**
+   * Choose the background color for this section. If left empty, the default color will be used.
+   */
+  backgroundColor?:
+    | (
+        | 'background'
+        | 'foreground'
+        | 'card'
+        | 'card-foreground'
+        | 'popover'
+        | 'popover-foreground'
+        | 'primary'
+        | 'primary-foreground'
+        | 'secondary'
+        | 'secondary-foreground'
+        | 'muted'
+        | 'muted-foreground'
+        | 'accent'
+        | 'accent-foreground'
+        | 'destructive'
+        | 'destructive-foreground'
+        | 'border'
+        | 'input'
+        | 'ring'
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'chart-1'
+        | 'chart-2'
+        | 'chart-3'
+        | 'chart-4'
+        | 'chart-5'
+        | 'muted2'
+        | 'muted2-foreground'
+        | 'transparent'
+      )
+    | null;
   designVersion: 'FAQ1' | 'FAQ2' | 'FAQ3' | 'FAQ4' | 'FAQ5';
   badge?: string | null;
   headline?: {
@@ -52044,6 +52414,43 @@ export interface FaqBlock {
  * via the `definition` "StatBlock".
  */
 export interface StatBlock {
+  /**
+   * Choose the background color for this section. If left empty, the default color will be used.
+   */
+  backgroundColor?:
+    | (
+        | 'background'
+        | 'foreground'
+        | 'card'
+        | 'card-foreground'
+        | 'popover'
+        | 'popover-foreground'
+        | 'primary'
+        | 'primary-foreground'
+        | 'secondary'
+        | 'secondary-foreground'
+        | 'muted'
+        | 'muted-foreground'
+        | 'accent'
+        | 'accent-foreground'
+        | 'destructive'
+        | 'destructive-foreground'
+        | 'border'
+        | 'input'
+        | 'ring'
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'chart-1'
+        | 'chart-2'
+        | 'chart-3'
+        | 'chart-4'
+        | 'chart-5'
+        | 'muted2'
+        | 'muted2-foreground'
+        | 'transparent'
+      )
+    | null;
   designVersion: 'STAT1' | 'STAT2' | 'STAT4' | 'STAT5' | 'STAT6' | 'STAT7' | 'STAT8';
   headline?: {
     root: {
@@ -55384,9 +55791,42 @@ export interface StatBlock {
  */
 export interface SplitViewBlock {
   /**
-   * Choose the background color for this section
+   * Choose the background color for this section. If left empty, the default color will be used.
    */
-  backgroundColor?: ('background' | 'accent' | 'primary') | null;
+  backgroundColor?:
+    | (
+        | 'background'
+        | 'foreground'
+        | 'card'
+        | 'card-foreground'
+        | 'popover'
+        | 'popover-foreground'
+        | 'primary'
+        | 'primary-foreground'
+        | 'secondary'
+        | 'secondary-foreground'
+        | 'muted'
+        | 'muted-foreground'
+        | 'accent'
+        | 'accent-foreground'
+        | 'destructive'
+        | 'destructive-foreground'
+        | 'border'
+        | 'input'
+        | 'ring'
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'chart-1'
+        | 'chart-2'
+        | 'chart-3'
+        | 'chart-4'
+        | 'chart-5'
+        | 'muted2'
+        | 'muted2-foreground'
+        | 'transparent'
+      )
+    | null;
   columns?: (TextBlock | MediaBlock)[] | null;
   id?: string | null;
   blockName?: string | null;
@@ -55397,6 +55837,43 @@ export interface SplitViewBlock {
  * via the `definition` "TextBlock".
  */
 export interface TextBlock {
+  /**
+   * Choose the background color for this section. If left empty, the default color will be used.
+   */
+  backgroundColor?:
+    | (
+        | 'background'
+        | 'foreground'
+        | 'card'
+        | 'card-foreground'
+        | 'popover'
+        | 'popover-foreground'
+        | 'primary'
+        | 'primary-foreground'
+        | 'secondary'
+        | 'secondary-foreground'
+        | 'muted'
+        | 'muted-foreground'
+        | 'accent'
+        | 'accent-foreground'
+        | 'destructive'
+        | 'destructive-foreground'
+        | 'border'
+        | 'input'
+        | 'ring'
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'chart-1'
+        | 'chart-2'
+        | 'chart-3'
+        | 'chart-4'
+        | 'chart-5'
+        | 'muted2'
+        | 'muted2-foreground'
+        | 'transparent'
+      )
+    | null;
   content?: {
     root: {
       type: string;
@@ -58713,6 +59190,43 @@ export interface TextBlock {
  * via the `definition` "MediaBlock".
  */
 export interface MediaBlock {
+  /**
+   * Choose the background color for this section. If left empty, the default color will be used.
+   */
+  backgroundColor?:
+    | (
+        | 'background'
+        | 'foreground'
+        | 'card'
+        | 'card-foreground'
+        | 'popover'
+        | 'popover-foreground'
+        | 'primary'
+        | 'primary-foreground'
+        | 'secondary'
+        | 'secondary-foreground'
+        | 'muted'
+        | 'muted-foreground'
+        | 'accent'
+        | 'accent-foreground'
+        | 'destructive'
+        | 'destructive-foreground'
+        | 'border'
+        | 'input'
+        | 'ring'
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'chart-1'
+        | 'chart-2'
+        | 'chart-3'
+        | 'chart-4'
+        | 'chart-5'
+        | 'muted2'
+        | 'muted2-foreground'
+        | 'transparent'
+      )
+    | null;
   media: string | Media;
   caption?: string | null;
   aspectRatio?: ('16/9' | '4/3' | '1/1' | 'original') | null;
@@ -58725,6 +59239,43 @@ export interface MediaBlock {
  * via the `definition` "CustomBlock".
  */
 export interface CustomBlock {
+  /**
+   * Choose the background color for this section. If left empty, the default color will be used.
+   */
+  backgroundColor?:
+    | (
+        | 'background'
+        | 'foreground'
+        | 'card'
+        | 'card-foreground'
+        | 'popover'
+        | 'popover-foreground'
+        | 'primary'
+        | 'primary-foreground'
+        | 'secondary'
+        | 'secondary-foreground'
+        | 'muted'
+        | 'muted-foreground'
+        | 'accent'
+        | 'accent-foreground'
+        | 'destructive'
+        | 'destructive-foreground'
+        | 'border'
+        | 'input'
+        | 'ring'
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'chart-1'
+        | 'chart-2'
+        | 'chart-3'
+        | 'chart-4'
+        | 'chart-5'
+        | 'muted2'
+        | 'muted2-foreground'
+        | 'transparent'
+      )
+    | null;
   customBlockType: string;
   id?: string | null;
   blockName?: string | null;
@@ -58933,6 +59484,7 @@ export interface PagesSelect<T extends boolean = true> {
  * via the `definition` "Hero_select".
  */
 export interface HeroSelect<T extends boolean = true> {
+  backgroundColor?: T;
   designVersion?: T;
   badge?: T;
   badgeIcon?: T;
@@ -58988,6 +59540,7 @@ export interface HeroSelect<T extends boolean = true> {
  * via the `definition` "FeatureBlock_select".
  */
 export interface FeatureBlockSelect<T extends boolean = true> {
+  backgroundColor?: T;
   designVersion?: T;
   badge?: T;
   tagline?: T;
@@ -59065,6 +59618,7 @@ export interface FeatureBlockSelect<T extends boolean = true> {
  * via the `definition` "ArchiveBlock_select".
  */
 export interface ArchiveBlockSelect<T extends boolean = true> {
+  backgroundColor?: T;
   introContent?: T;
   populateBy?: T;
   relationTo?: T;
@@ -59090,6 +59644,7 @@ export interface FormBlockSelect<T extends boolean = true> {
  * via the `definition` "CtaBlock_select".
  */
 export interface CtaBlockSelect<T extends boolean = true> {
+  backgroundColor?: T;
   designVersion?: T;
   tagline?: T;
   icon?: T;
@@ -59121,6 +59676,7 @@ export interface CtaBlockSelect<T extends boolean = true> {
  * via the `definition` "LogosBlock_select".
  */
 export interface LogosBlockSelect<T extends boolean = true> {
+  backgroundColor?: T;
   designVersion?: T;
   richText?: T;
   link?:
@@ -59145,6 +59701,7 @@ export interface LogosBlockSelect<T extends boolean = true> {
  * via the `definition` "AboutBlock_select".
  */
 export interface AboutBlockSelect<T extends boolean = true> {
+  backgroundColor?: T;
   designVersion?: T;
   headline?: T;
   text1?: T;
@@ -59181,6 +59738,7 @@ export interface AboutBlockSelect<T extends boolean = true> {
  * via the `definition` "ContactBlock_select".
  */
 export interface ContactBlockSelect<T extends boolean = true> {
+  backgroundColor?: T;
   designVersion?: T;
   headlineAndDescription?: T;
   contactBlocks?:
@@ -59209,6 +59767,7 @@ export interface ContactBlockSelect<T extends boolean = true> {
  * via the `definition` "GalleryBlock_select".
  */
 export interface GalleryBlockSelect<T extends boolean = true> {
+  backgroundColor?: T;
   designVersion?: T;
   richText?: T;
   tagline?: T;
@@ -59249,6 +59808,7 @@ export interface GalleryBlockSelect<T extends boolean = true> {
  * via the `definition` "TestimonialBlock_select".
  */
 export interface TestimonialBlockSelect<T extends boolean = true> {
+  backgroundColor?: T;
   designVersion?: T;
   headline?: T;
   tagline?: T;
@@ -59297,6 +59857,7 @@ export interface TestimonialBlockSelect<T extends boolean = true> {
  * via the `definition` "FaqBlock_select".
  */
 export interface FaqBlockSelect<T extends boolean = true> {
+  backgroundColor?: T;
   designVersion?: T;
   badge?: T;
   headline?: T;
@@ -59329,6 +59890,7 @@ export interface FaqBlockSelect<T extends boolean = true> {
  * via the `definition` "StatBlock_select".
  */
 export interface StatBlockSelect<T extends boolean = true> {
+  backgroundColor?: T;
   designVersion?: T;
   headline?: T;
   stats?:
@@ -59380,6 +59942,7 @@ export interface SplitViewBlockSelect<T extends boolean = true> {
  * via the `definition` "TextBlock_select".
  */
 export interface TextBlockSelect<T extends boolean = true> {
+  backgroundColor?: T;
   content?: T;
   links?:
     | T
@@ -59407,6 +59970,7 @@ export interface TextBlockSelect<T extends boolean = true> {
  * via the `definition` "MediaBlock_select".
  */
 export interface MediaBlockSelect<T extends boolean = true> {
+  backgroundColor?: T;
   media?: T;
   caption?: T;
   aspectRatio?: T;
@@ -59418,6 +59982,7 @@ export interface MediaBlockSelect<T extends boolean = true> {
  * via the `definition` "CustomBlock_select".
  */
 export interface CustomBlockSelect<T extends boolean = true> {
+  backgroundColor?: T;
   customBlockType?: T;
   id?: T;
   blockName?: T;
@@ -59954,6 +60519,43 @@ export interface ThemeConfig {
  */
 export interface Header {
   id: string;
+  /**
+   * Choose the background color for this section. If left empty, the default color will be used.
+   */
+  backgroundColor?:
+    | (
+        | 'background'
+        | 'foreground'
+        | 'card'
+        | 'card-foreground'
+        | 'popover'
+        | 'popover-foreground'
+        | 'primary'
+        | 'primary-foreground'
+        | 'secondary'
+        | 'secondary-foreground'
+        | 'muted'
+        | 'muted-foreground'
+        | 'accent'
+        | 'accent-foreground'
+        | 'destructive'
+        | 'destructive-foreground'
+        | 'border'
+        | 'input'
+        | 'ring'
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'chart-1'
+        | 'chart-2'
+        | 'chart-3'
+        | 'chart-4'
+        | 'chart-5'
+        | 'muted2'
+        | 'muted2-foreground'
+        | 'transparent'
+      )
+    | null;
   designVersion: '1' | '5';
   logo: string | Media;
   items?:
@@ -71478,6 +72080,43 @@ export interface Header {
  */
 export interface Footer {
   id: string;
+  /**
+   * Choose the background color for this section. If left empty, the default color will be used.
+   */
+  backgroundColor?:
+    | (
+        | 'background'
+        | 'foreground'
+        | 'card'
+        | 'card-foreground'
+        | 'popover'
+        | 'popover-foreground'
+        | 'primary'
+        | 'primary-foreground'
+        | 'secondary'
+        | 'secondary-foreground'
+        | 'muted'
+        | 'muted-foreground'
+        | 'accent'
+        | 'accent-foreground'
+        | 'destructive'
+        | 'destructive-foreground'
+        | 'border'
+        | 'input'
+        | 'ring'
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'chart-1'
+        | 'chart-2'
+        | 'chart-3'
+        | 'chart-4'
+        | 'chart-5'
+        | 'muted2'
+        | 'muted2-foreground'
+        | 'transparent'
+      )
+    | null;
   designVersion?: ('1' | '2' | '3' | '4' | '5' | '6' | '7' | '8') | null;
   logo?: (string | null) | Media;
   copyright?: string | null;
@@ -74894,6 +75533,7 @@ export interface ThemeConfigSelect<T extends boolean = true> {
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
+  backgroundColor?: T;
   designVersion?: T;
   logo?: T;
   items?:
@@ -74969,6 +75609,7 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
+  backgroundColor?: T;
   designVersion?: T;
   logo?: T;
   copyright?: T;
@@ -75025,6 +75666,43 @@ export interface FooterSelect<T extends boolean = true> {
  * via the `definition` "BannerBlock".
  */
 export interface BannerBlock {
+  /**
+   * Choose the background color for this section. If left empty, the default color will be used.
+   */
+  backgroundColor?:
+    | (
+        | 'background'
+        | 'foreground'
+        | 'card'
+        | 'card-foreground'
+        | 'popover'
+        | 'popover-foreground'
+        | 'primary'
+        | 'primary-foreground'
+        | 'secondary'
+        | 'secondary-foreground'
+        | 'muted'
+        | 'muted-foreground'
+        | 'accent'
+        | 'accent-foreground'
+        | 'destructive'
+        | 'destructive-foreground'
+        | 'border'
+        | 'input'
+        | 'ring'
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'chart-1'
+        | 'chart-2'
+        | 'chart-3'
+        | 'chart-4'
+        | 'chart-5'
+        | 'muted2'
+        | 'muted2-foreground'
+        | 'transparent'
+      )
+    | null;
   style: 'info' | 'warning' | 'error' | 'success';
   content: {
     root: {
@@ -75050,6 +75728,43 @@ export interface BannerBlock {
  * via the `definition` "CodeBlock".
  */
 export interface CodeBlock {
+  /**
+   * Choose the background color for this section. If left empty, the default color will be used.
+   */
+  backgroundColor?:
+    | (
+        | 'background'
+        | 'foreground'
+        | 'card'
+        | 'card-foreground'
+        | 'popover'
+        | 'popover-foreground'
+        | 'primary'
+        | 'primary-foreground'
+        | 'secondary'
+        | 'secondary-foreground'
+        | 'muted'
+        | 'muted-foreground'
+        | 'accent'
+        | 'accent-foreground'
+        | 'destructive'
+        | 'destructive-foreground'
+        | 'border'
+        | 'input'
+        | 'ring'
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'chart-1'
+        | 'chart-2'
+        | 'chart-3'
+        | 'chart-4'
+        | 'chart-5'
+        | 'muted2'
+        | 'muted2-foreground'
+        | 'transparent'
+      )
+    | null;
   language?: ('typescript' | 'javascript' | 'css') | null;
   code: string;
   id?: string | null;

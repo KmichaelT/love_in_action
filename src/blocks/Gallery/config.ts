@@ -5,6 +5,7 @@ import {
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 import { link } from '@/fields/link'
+import { backgroundColor } from '@/fields/color'
 
 export const allGalleryDesignVersions = [
   'GALLERY1',
@@ -29,6 +30,7 @@ export const Gallery: Block = {
     plural: 'Gallery Blocks',
   },
   fields: [
+    backgroundColor,
     {
       name: 'designVersion',
       type: 'select',
@@ -72,7 +74,7 @@ export const Gallery: Block = {
       overrides: {
         admin: {
           description: 'Single link for this gallery. Might look best with arrowRight icon',
-          condition: (_, { designVersion } :any) => ["GALLERY5", "GALLERY6"].includes(designVersion),
+          condition: (_, { designVersion }: any) => ["GALLERY5", "GALLERY6"].includes(designVersion),
         },
       },
     }),
@@ -94,15 +96,15 @@ export const Gallery: Block = {
           required: true,
         },
         {
-            name: 'richText',
-            type: 'richText',
-            editor: lexicalEditor({
-              features: ({ defaultFeatures }) => [
-                ...defaultFeatures,
-                HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
-                ParagraphFeature(),
-              ],
-            }),
+          name: 'richText',
+          type: 'richText',
+          editor: lexicalEditor({
+            features: ({ defaultFeatures }) => [
+              ...defaultFeatures,
+              HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
+              ParagraphFeature(),
+            ],
+          }),
         },
         link({
           appearances: false,
