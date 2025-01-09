@@ -25,6 +25,7 @@ import {
 import type { Header as HeaderType } from '@/payload-types'
 
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+import Link from 'next/link'
 
 const Navbar5: React.FC<{ header: HeaderType }> = ({ header }) => {
   return (
@@ -32,7 +33,9 @@ const Navbar5: React.FC<{ header: HeaderType }> = ({ header }) => {
       <div className="container">
         <nav className="flex items-center justify-between">
           <div className="flex items-center">
-            <Media resource={header.logo} priority className="h-9" imgClassName="h-full w-auto" />
+            <Link href="/">
+              <Media resource={header.logo} priority className="h-9" imgClassName="h-full w-auto" />
+            </Link>
           </div>
           <NavigationMenu className="hidden lg:block z-50">
             <NavigationMenuList>
@@ -109,7 +112,9 @@ const Navbar5: React.FC<{ header: HeaderType }> = ({ header }) => {
                 <SheetHeader>
                   <SheetTitle>
                     <div className="flex items-center">
-                      <Media resource={header.logo} priority className="h-9" imgClassName="h-full w-auto" />
+                      <Link href="/">
+                        <Media resource={header.logo} priority className="h-9" imgClassName="h-full w-auto" />
+                      </Link>
                     </div>
                   </SheetTitle>
                 </SheetHeader>
