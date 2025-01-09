@@ -423,6 +423,7 @@ export const FeatureBlock: Block = {
                 'FEATURE51',
                 'FEATURE102',
                 'FEATURE66',
+                'FEATURE72',
                 'FEATURE78',
                 'FEATURE81',
                 'FEATURE117',
