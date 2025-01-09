@@ -33,13 +33,17 @@ const Faq4: React.FC<FaqBlock> = ({ headline, badge, faqs }) => {
           <Accordion type="single" collapsible>
             {faqs?.map(({question, answer, id}, index) => (
               <AccordionItem key={id} value={`item-${index}`} className="border-b-0">
-                <AccordionTrigger className="hover:text-foreground/60 hover:no-underline">
+                <AccordionTrigger className="hover:text-foreground/60 hover:no-underline text-left">
                   {question}
                 </AccordionTrigger>
                 {answer && (
                   <AccordionContent>
                     <RichText
                       content={answer}
+                      overrideStyle={{
+                        p: '',
+                        li: '',
+                      }}
                       withWrapper={false}
                     />
                   </AccordionContent>
