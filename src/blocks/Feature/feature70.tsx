@@ -9,6 +9,12 @@ import {
   CarouselContent,
   CarouselItem,
 } from '@/components/ui/carousel';
+import { FeatureBlock } from '@/payload-types';
+import RichText from '@/components/RichText';
+import { splitRichText } from '@/utilities/richtext';
+import Link from 'next/link';
+import { CMSLink } from '@/components/Link';
+import { Media } from '@/components/Media';
 
 const features = [
   {
@@ -37,7 +43,7 @@ const features = [
   },
 ];
 
-const Feature70 = () => {
+const Feature70: React.FC<FeatureBlock> = ({ USPs, richText }) => {
   const [selection, setSelection] = useState(0);
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   useEffect(() => {
@@ -68,57 +74,84 @@ const Feature70 = () => {
               className="size-full [&>div]:h-full"
             >
               <CarouselContent className="mx-0 size-full">
-                {features.map((feature) => (
-                  <CarouselItem key={feature.id} className="px-0">
-                    <img
-                      src={feature.image}
-                      alt={feature.title}
-                      className="size-full object-cover object-center"
-                    />
-                  </CarouselItem>
-                ))}
+                {USPs && USPs?.map((usp) => {
+                  if (!usp.image) {
+                    return (
+                      <CarouselItem key={usp.id} className="px-0 text-red-500">
+                        USPs need to have a image set.
+                      </CarouselItem>
+                    )
+                  }
+                  return (
+                    <CarouselItem key={usp.id} className="px-0">
+                      <Media resource={usp.image} imgClassName="rounded-3xl size-full object-cover object-center" className="size-full rounded-3xl" />
+                    </CarouselItem>
+                  )
+                })}
               </CarouselContent>
             </Carousel>
           </div>
           <div className="flex shrink-0 flex-col md:w-1/2 md:pr-8 lg:pl-24 lg:text-left 2xl:pl-32">
-            <h2 className="mb-6 text-pretty text-3xl font-bold lg:text-5xl">
-              Feature Description
-            </h2>
-            <p className="mb-16 text-muted-foreground lg:text-xl">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Elig
-              doloremque mollitia fugiat omnis! Porro facilis quo animi
-              consequatur. Explicabo.
-            </p>
+            {richText && (
+              <RichText
+                withWrapper={false}
+                content={richText}
+                overrideStyle={{
+                  h1: 'mb-6 text-pretty text-3xl font-bold lg:text-5xl',
+                  h2: 'mb-6 text-pretty text-3xl font-bold lg:text-5xl',
+                  h3: 'mb-6 text-pretty text-2xl font-bold lg:text-4xl',
+                  h4: 'mb-6 text-pretty text-xl font-bold lg:text-3xl',
+                  p: 'mb-16 text-muted-foreground lg:text-xl',
+                }}
+              />
+            )}
             <ul className="space-y-2">
-              {features.map((feature, i) => (
-                <li
-                  key={feature.id}
-                  className="group relative w-full cursor-pointer px-6 py-3 transition data-[open]:bg-accent"
-                  data-open={selection === i ? 'true' : undefined}
-                  onClick={() => setSelection(i)}
-                >
-                  <div className="flex items-center justify-between gap-x-2">
-                    <div className="text-sm font-semibold text-accent-foreground">
-                      {feature.title}
+              {USPs && USPs?.map((usp, i) => {
+                if (!usp.richText) {
+                  return <div className="text-red-500">USPs need to have richText set</div>;
+                }
+                const { firstNode, rest } = splitRichText(usp.richText, {
+                  splitOn: ['h2', 'h3', 'h4'],
+                  takeFirst: true
+                });
+                if (!firstNode || !rest) {
+                  return <div className="text-red-500">USPs need to have richText with a heading and text set</div>;
+                }
+                return (
+                  <li
+                    key={usp.id}
+                    className="group relative w-full cursor-pointer px-6 py-3 transition data-[open]:bg-accent"
+                    data-open={selection === i ? 'true' : undefined}
+                    onClick={() => setSelection(i)}
+                  >
+                    <div className="flex items-center justify-between gap-x-2">
+                      <div className="text-sm font-semibold text-accent-foreground">
+                        {firstNode.root.children?.[0]?.children?.[0]?.text}
+                      </div>
+                      <div className="flex size-8 items-center justify-center rounded-full bg-accent text-accent-foreground group-hover:bg-primary group-hover:text-primary-foreground group-data-[open]:bg-primary group-data-[open]:text-primary-foreground">
+                        <ChevronDown className="size-4 shrink-0 transition-transform duration-200 group-data-[open]:rotate-180" />
+                      </div>
                     </div>
-                    <div className="flex size-8 items-center justify-center rounded-full bg-accent text-accent-foreground group-hover:bg-primary group-hover:text-primary-foreground group-data-[open]:bg-primary group-data-[open]:text-primary-foreground">
-                      <ChevronDown className="size-4 shrink-0 transition-transform duration-200 group-data-[open]:rotate-180" />
+                    <div className="hidden text-sm font-medium group-data-[open]:block">
+                      <RichText
+                        withWrapper={false}
+                        content={rest}
+                        overrideStyle={{
+                          p: "my-4 text-muted-foreground lg:my-6"
+                        }}
+                      />
+                      {usp.links?.map((link) => (
+                        <CMSLink
+                          key={link.id}
+                          {...link.link}
+                          className="group/link flex items-center pb-3 text-sm text-accent-foreground"
+                          iconClassName="ml-2 size-4 transition-transform group-hover/link:translate-x-1"
+                        />
+                      ))}
                     </div>
-                  </div>
-                  <div className="hidden text-sm font-medium group-data-[open]:block">
-                    <p className="my-4 text-muted-foreground lg:my-6">
-                      {feature.description}
-                    </p>
-                    <a
-                      href="#"
-                      className="group/link flex items-center pb-3 text-sm text-accent-foreground"
-                    >
-                      Learn more{' '}
-                      <ArrowRight className="ml-2 size-4 transition-transform group-hover/link:translate-x-1" />
-                    </a>
-                  </div>
-                </li>
-              ))}
+                  </li>
+                )
+              })}
             </ul>
           </div>
         </div>

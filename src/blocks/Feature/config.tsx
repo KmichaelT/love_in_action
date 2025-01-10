@@ -410,7 +410,7 @@ export const FeatureBlock: Block = {
                 const designVersion = data.layout.find(
                   (block) => block.blockType === 'feature',
                 ).designVersion
-                return ['FEATURE91'].includes(designVersion)
+                return ['FEATURE70', 'FEATURE91'].includes(designVersion)
               },
             },
           },
@@ -449,6 +449,7 @@ export const FeatureBlock: Block = {
                 'FEATURE51',
                 'FEATURE102',
                 'FEATURE66',
+                'FEATURE70',
                 'FEATURE72',
                 'FEATURE78',
                 'FEATURE81',
