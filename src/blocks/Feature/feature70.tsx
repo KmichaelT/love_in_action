@@ -12,36 +12,9 @@ import {
 import { FeatureBlock } from '@/payload-types';
 import RichText from '@/components/RichText';
 import { splitRichText } from '@/utilities/richtext';
-import Link from 'next/link';
 import { CMSLink } from '@/components/Link';
 import { Media } from '@/components/Media';
 
-const features = [
-  {
-    id: 'feature-1',
-    title: 'Feature 1',
-    description:
-      'Nam vitae molestie arcu. Quisque eu libero orci. Aliquam imperdiet magna nec massa consectetur, id interdum ante congue.',
-    href: '#',
-    image: 'https://www.shadcnblocks.com/images/block/placeholder-1.svg',
-  },
-  {
-    id: 'feature-2',
-    title: 'Feature 2',
-    description:
-      'Nam vitae molestie arcu. Quisque eu libero orci. Aliquam imperdiet magna nec massa consectetur, id interdum ante congue.',
-    href: '#',
-    image: 'https://www.shadcnblocks.com/images/block/placeholder-2.svg',
-  },
-  {
-    id: 'feature-3',
-    title: 'Feature 3',
-    description:
-      'Nam vitae molestie arcu. Quisque eu libero orci. Aliquam imperdiet magna nec massa consectetur, id interdum ante congue.',
-    href: '#',
-    image: 'https://www.shadcnblocks.com/images/block/placeholder-3.svg',
-  },
-];
 
 const Feature70: React.FC<FeatureBlock> = ({ USPs, richText }) => {
   const [selection, setSelection] = useState(0);
@@ -108,14 +81,14 @@ const Feature70: React.FC<FeatureBlock> = ({ USPs, richText }) => {
             <ul className="space-y-2">
               {USPs && USPs?.map((usp, i) => {
                 if (!usp.richText) {
-                  return <div className="text-red-500">USPs need to have richText set</div>;
+                  return <div key={usp.id} className="text-red-500">USPs need to have richText set</div>;
                 }
                 const { firstNode, rest } = splitRichText(usp.richText, {
                   splitOn: ['h2', 'h3', 'h4'],
                   takeFirst: true
                 });
                 if (!firstNode || !rest) {
-                  return <div className="text-red-500">USPs need to have richText with a heading and text set</div>;
+                  return <div key={usp.id} className="text-red-500">USPs need to have richText with a heading and text set</div>;
                 }
                 return (
                   <li
