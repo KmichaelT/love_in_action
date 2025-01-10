@@ -12,36 +12,9 @@ import {
 import { FeatureBlock } from '@/payload-types';
 import RichText from '@/components/RichText';
 import { splitRichText } from '@/utilities/richtext';
-import Link from 'next/link';
 import { CMSLink } from '@/components/Link';
 import { Media } from '@/components/Media';
 
-const features = [
-  {
-    id: 'feature-1',
-    title: 'Feature 1',
-    description:
-      'Nam vitae molestie arcu. Quisque eu libero orci. Aliquam imperdiet magna nec massa consectetur, id interdum ante congue.',
-    href: '#',
-    image: 'https://www.shadcnblocks.com/images/block/placeholder-1.svg',
-  },
-  {
-    id: 'feature-2',
-    title: 'Feature 2',
-    description:
-      'Nam vitae molestie arcu. Quisque eu libero orci. Aliquam imperdiet magna nec massa consectetur, id interdum ante congue.',
-    href: '#',
-    image: 'https://www.shadcnblocks.com/images/block/placeholder-2.svg',
-  },
-  {
-    id: 'feature-3',
-    title: 'Feature 3',
-    description:
-      'Nam vitae molestie arcu. Quisque eu libero orci. Aliquam imperdiet magna nec massa consectetur, id interdum ante congue.',
-    href: '#',
-    image: 'https://www.shadcnblocks.com/images/block/placeholder-3.svg',
-  },
-];
 
 const Feature70: React.FC<FeatureBlock> = ({ USPs, richText }) => {
   const [selection, setSelection] = useState(0);
