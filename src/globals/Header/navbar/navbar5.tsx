@@ -42,8 +42,8 @@ const Navbar5: React.FC<{ header: HeaderType }> = ({ header }) => {
               {header.items?.map((item) => {
                 if (item.blockType === "link") {
                   return (
-                    <CMSLink 
-                      key={item.id} 
+                    <CMSLink
+                      key={item.id}
                       {...item.link}
                       className={cn(
                         'text-muted-foreground',
@@ -63,9 +63,9 @@ const Navbar5: React.FC<{ header: HeaderType }> = ({ header }) => {
                       </NavigationMenuTrigger>
                       <NavigationMenuContent>
                         <ul className="w-80 p-3">
-                          <NavigationMenuLink>
-                            {item.subitems.map((subitem) => (
-                              <li key={subitem.id}>
+                          {item.subitems.map((subitem) => (
+                            <NavigationMenuLink asChild key={subitem.id}>
+                              <li>
                                 <CMSLink
                                   className={cn(
                                     'flex select-none gap-4 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
@@ -84,8 +84,8 @@ const Navbar5: React.FC<{ header: HeaderType }> = ({ header }) => {
                                   </div>
                                 </CMSLink>
                               </li>
-                            ))}
-                          </NavigationMenuLink>
+                            </NavigationMenuLink>
+                          ))}
                         </ul>
                       </NavigationMenuContent>
                     </NavigationMenuItem>
@@ -94,7 +94,7 @@ const Navbar5: React.FC<{ header: HeaderType }> = ({ header }) => {
               })}
             </NavigationMenuList>
           </NavigationMenu>
-          
+
           {/* Right Button Group */}
           <div className="hidden lg:flex gap-2">
             {header?.buttons?.map((btn) => <CMSLink key={btn.id} {...btn.link} />)}
@@ -124,8 +124,8 @@ const Navbar5: React.FC<{ header: HeaderType }> = ({ header }) => {
                     {header.items?.map((item) => {
                       if (item.blockType === "link") {
                         return (
-                          <CMSLink 
-                            key={item.id} 
+                          <CMSLink
+                            key={item.id}
                             {...item.link}
                             className="font-semibold"
                           />
