@@ -81,14 +81,14 @@ const Feature70: React.FC<FeatureBlock> = ({ USPs, richText }) => {
             <ul className="space-y-2">
               {USPs && USPs?.map((usp, i) => {
                 if (!usp.richText) {
-                  return <div className="text-red-500">USPs need to have richText set</div>;
+                  return <div key={usp.id} className="text-red-500">USPs need to have richText set</div>;
                 }
                 const { firstNode, rest } = splitRichText(usp.richText, {
                   splitOn: ['h2', 'h3', 'h4'],
                   takeFirst: true
                 });
                 if (!firstNode || !rest) {
-                  return <div className="text-red-500">USPs need to have richText with a heading and text set</div>;
+                  return <div key={usp.id} className="text-red-500">USPs need to have richText with a heading and text set</div>;
                 }
                 return (
                   <li
