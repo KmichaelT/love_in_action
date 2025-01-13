@@ -42,6 +42,7 @@ import { Page, Post } from 'src/payload-types'
 import { searchFields } from '@/search/fieldOverrides'
 import { beforeSyncWithSearch } from '@/search/beforeSync'
 import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
+import localization from './localization.config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -261,10 +262,9 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-  localization: {
-    locales: ['en', 'de'],
-    defaultLocale: 'en',
-  },
+  // Enable localization for the website
+  localization,
+  // Enable localization for admin panel
   i18n: {
     supportedLanguages: { en, de },
   },

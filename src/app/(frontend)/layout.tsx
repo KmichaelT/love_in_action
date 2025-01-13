@@ -22,8 +22,18 @@ import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
 const mono = Geist_Mono({ subsets: ['latin'], variable: '--font-mono' })
 const sans = Geist({ subsets: ['latin'], variable: '--font-sans' })
 
+export const metadata: Metadata = {
+  metadataBase: new URL(NEXT_PUBLIC_SERVER_URL || 'https://trieb.work'),
+  openGraph: mergeOpenGraph(),
+  // twitter: {
+  //   card: 'summary_large_image',
+  //   creator: '@payloadcms',
+  // },
+}
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
+  // TODO: Add active locale to html lang attribute
   return (
     <html className={cn(mono.variable, sans.variable)} lang="en" suppressHydrationWarning>
       <head>
@@ -48,13 +58,4 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </body>
     </html>
   )
-}
-
-export const metadata: Metadata = {
-  metadataBase: new URL(NEXT_PUBLIC_SERVER_URL || 'https://trieb.work'),
-  openGraph: mergeOpenGraph(),
-  // twitter: {
-  //   card: 'summary_large_image',
-  //   creator: '@payloadcms',
-  // },
 }
