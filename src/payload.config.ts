@@ -20,6 +20,7 @@ import {
   LinkFeature,
   lexicalEditor,
   UnderlineFeature,
+  ParagraphFeature,
 } from '@payloadcms/richtext-lexical'
 import sharp from 'sharp' // editor-import
 import path from 'path'
@@ -100,6 +101,7 @@ export default buildConfig({
         UnderlineFeature(),
         BoldFeature(),
         ItalicFeature(),
+        ParagraphFeature(),
         LinkFeature({
           enabledCollections: ['pages', 'posts'],
           fields: ({ defaultFields }) => {
