@@ -404,6 +404,7 @@ export const FeatureBlock: Block = {
             {
               name: 'richText',
               type: 'richText',
+              localized: true,
             },
           ],
         },
