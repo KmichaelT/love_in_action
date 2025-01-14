@@ -141,6 +141,7 @@ export const Footer: GlobalConfig = {
             {
               name: 'url',
               type: 'text',
+              localized: true,
               required: true,
               admin: {
                 placeholder: 'https://...',

@@ -43,6 +43,7 @@ export const StatBlock: Block = {
         {
           name: 'counter',
           type: 'text',
+          localized: true,
           required: true,
         },
         {
