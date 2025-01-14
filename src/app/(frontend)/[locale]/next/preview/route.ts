@@ -1,9 +1,10 @@
 import jwt from 'jsonwebtoken'
 import { draftMode } from 'next/headers'
 import { redirect } from 'next/navigation'
-import { getPayload } from 'payload'
+import { getPayload, Locale } from 'payload'
 import configPromise from '@payload-config'
 import { CollectionSlug } from 'payload'
+import localization, { locales } from '@/localization.config'
 
 const payloadToken = 'payload-token'
 
@@ -20,6 +21,7 @@ export async function GET(
   const token = req.cookies.get(payloadToken)?.value
   const { searchParams } = new URL(req.url)
   const path = searchParams.get('path')
+  const locale = searchParams.get('locale') as typeof locales[number]
   const collection = searchParams.get('collection') as CollectionSlug
   const slug = searchParams.get('slug')
 
@@ -32,12 +34,20 @@ export async function GET(
       return new Response('No path provided', { status: 404 })
     }
 
+    if (!locale) {
+      return new Response('No locale provided', { status: 404 })
+    }
+
+    if (!locales.includes(locale)) {
+      return new Response('Locale invalid', { status: 404 })
+    }
+
     if (!collection) {
-      return new Response('No path provided', { status: 404 })
+      return new Response('No collection provided', { status: 404 })
     }
 
     if (!slug) {
-      return new Response('No path provided', { status: 404 })
+      return new Response('No slug provided', { status: 404 })
     }
 
     if (!token) {
@@ -64,17 +74,23 @@ export async function GET(
       return new Response('You are not allowed to preview this page', { status: 403 })
     }
 
+    console.log("locale", locale, "collection", collection, "slug", slug, "path", path)
+
     // Verify the given slug exists
     try {
       const docs = await payload.find({
-        collection: collection,
+        collection,
         draft: true,
+        overrideAccess: true,
+        locale,
         where: {
           slug: {
             equals: slug,
           },
         },
       })
+
+      console.log("docs", docs)
 
       if (!docs.docs.length) {
         return new Response('Document not found', { status: 404 })

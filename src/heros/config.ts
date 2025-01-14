@@ -113,6 +113,7 @@ export const hero: Field = {
     {
       name: 'badge',
       type: 'text',
+      localized: true,
       admin: {
         condition: (_, { designVersion } = {}) =>
           ['1', '2', '3', '4', '5', '6', '12'].includes(designVersion),
@@ -129,6 +130,7 @@ export const hero: Field = {
     {
       name: 'tagline',
       type: 'text',
+      localized: true,
       admin: {
         condition: (_, { designVersion } = {}) =>
           ['3', '27', '26', '55', '21', '53', '12', '51', '57'].includes(designVersion),
@@ -148,6 +150,7 @@ export const hero: Field = {
     {
       name: 'richText',
       type: 'richText',
+      localized: true,
       admin: {
         condition: (_, { designVersion } = {}) =>
           ['1', '2', '3', '4', '5', '6', '12'].includes(designVersion),
@@ -210,6 +213,7 @@ export const hero: Field = {
         {
           name: 'richText',
           type: 'richText',
+          localized: true,
           editor: lexicalEditor({
             features: ({ rootFeatures }) => {
               return [
@@ -234,14 +238,17 @@ export const hero: Field = {
         {
           name: 'headline',
           type: 'text',
+          localized: true,
         },
         {
           name: 'price',
           type: 'text',
+          localized: true,
         },
         {
           name: 'description',
           type: 'text',
+          localized: true,
         },
       ],
     },

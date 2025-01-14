@@ -15,6 +15,7 @@ export const MediaBlock: Block = {
     {
       name: 'caption',
       type: 'text',
+      localized: true,
       required: false,
     },
     {

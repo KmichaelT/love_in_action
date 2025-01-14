@@ -33,6 +33,7 @@ import {
 } from '@payloadcms/plugin-seo/fields'
 import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
 import { ContactBlock } from '@/blocks/Contact/config'
+import localization from '@/localization.config'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -55,19 +56,21 @@ export const Pages: CollectionConfig = {
   admin: {
     defaultColumns: ['title', 'slug', 'updatedAt'],
     livePreview: {
-      url: ({ data }) => {
+      url: ({ data, locale }, ...rest2) => {
         const path = generatePreviewPath({
           slug: typeof data?.slug === 'string' ? data.slug : '',
           collection: 'pages',
+          locale: locale.code,
         })
 
         return `${NEXT_PUBLIC_SERVER_URL}${path}`
       },
     },
-    preview: (data) => {
+    preview: (data, options) => {
       const path = generatePreviewPath({
         slug: typeof data?.slug === 'string' ? data.slug : '',
         collection: 'pages',
+        locale: options.locale
       })
 
       return `${NEXT_PUBLIC_SERVER_URL}${path}`

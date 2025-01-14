@@ -65,6 +65,7 @@ export const TestimonialBlock: Block = {
     {
       name: 'headline',
       type: 'richText',
+      localized: true,
       admin: {
         condition: (_, { designVersion } = { designVersion: '' }) =>
           ['TESTIMONIAL2', 'TESTIMONIAL6', 'TESTIMONIAL7', 'TESTIMONIAL13', 'TESTIMONIAL16', 'TESTIMONIAL17', 'TESTIMONIAL18', 'TESTIMONIAL19'].includes(designVersion),
@@ -80,6 +81,7 @@ export const TestimonialBlock: Block = {
     {
       name: 'tagline',
       type: 'text',
+      localized: true,
       admin: {
         condition: (_, { designVersion } = { designVersion: '' }) =>
           ['TESTIMONIAL13', 'TESTIMONIAL16', 'TESTIMONIAL17', 'TESTIMONIAL18', 'TESTIMONIAL19'].includes(designVersion),
@@ -106,6 +108,7 @@ export const TestimonialBlock: Block = {
         {
           name: 'authorName',
           type: 'text',
+          localized: true,
           admin: {
             condition: (parent: Page, { id }) =>
               ['TESTIMONIAL3', 'TESTIMONIAL4', 'TESTIMONIAL6', 'TESTIMONIAL7', 'TESTIMONIAL10', 'TESTIMONIAL17', 'TESTIMONIAL18', 'TESTIMONIAL19'].includes(parentLayoutCondition<TestimonialBlockType>(parent, id, 'testimonial')?.designVersion!),
@@ -114,6 +117,7 @@ export const TestimonialBlock: Block = {
         {
           name: 'authorDescription',
           type: 'text',
+          localized: true,
           admin: {
             condition: (parent: Page, { id }) =>
               ['TESTIMONIAL3', 'TESTIMONIAL4', 'TESTIMONIAL6', 'TESTIMONIAL7', 'TESTIMONIAL10', 'TESTIMONIAL17', 'TESTIMONIAL18', 'TESTIMONIAL19'].includes(parentLayoutCondition<TestimonialBlockType>(parent, id, 'testimonial')?.designVersion!),
@@ -150,6 +154,7 @@ export const TestimonialBlock: Block = {
         {
           name: 'text',
           type: 'richText',
+          localized: true,
           admin: {
             condition: (parent: Page, { id }) =>
               ['TESTIMONIAL3', 'TESTIMONIAL4', 'TESTIMONIAL6', 'TESTIMONIAL7', 'TESTIMONIAL10', 'TESTIMONIAL16', 'TESTIMONIAL17', 'TESTIMONIAL18', 'TESTIMONIAL19'].includes(parentLayoutCondition<TestimonialBlockType>(parent, id, 'testimonial')?.designVersion!),

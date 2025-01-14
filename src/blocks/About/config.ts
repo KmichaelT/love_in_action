@@ -40,6 +40,7 @@ export const AboutBlock: Block = {
     {
       name: 'headline',
       type: 'richText',
+      localized: true,
       editor: lexicalEditor({
         features: ({ rootFeatures }) => [
           ...rootFeatures,
@@ -50,6 +51,7 @@ export const AboutBlock: Block = {
     {
       name: 'text1',
       type: 'richText',
+      localized: true,
       editor: lexicalEditor({
         features: ({ rootFeatures }) => [
           ...rootFeatures,
@@ -60,6 +62,7 @@ export const AboutBlock: Block = {
     {
       name: 'text2',
       type: 'richText',
+      localized: true,
       editor: lexicalEditor({
         features: ({ rootFeatures }) => [
           ...rootFeatures,
@@ -70,6 +73,7 @@ export const AboutBlock: Block = {
     {
       name: 'text3',
       type: 'richText',
+      localized: true,
       editor: lexicalEditor({
         features: ({ rootFeatures }) => [
           ...rootFeatures,

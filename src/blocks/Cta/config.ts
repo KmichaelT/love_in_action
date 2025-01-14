@@ -49,6 +49,7 @@ export const CtaBlock: Block = {
     {
       name: 'tagline',
       type: 'text',
+      localized: true,
       admin: {
         condition: (_, { designVersion } = {}) =>
           ['CTA3', 'CTA4', 'CTA7', 'CTA13', 'CTA15'].includes(designVersion),
@@ -64,6 +65,7 @@ export const CtaBlock: Block = {
     {
       name: 'richText',
       type: 'richText',
+      localized: true,
       admin: {
         condition: (_, { designVersion } = {}) =>
           ['CTA1', 'CTA3', 'CTA4', 'CTA5', 'CTA6', 'CTA7', 'CTA10', 'CTA11', 'CTA12', 'CTA13', 'CTA15', 'CTA16'].includes(

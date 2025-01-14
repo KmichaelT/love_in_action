@@ -1,3 +1,4 @@
+import localization from '@/localization.config'
 import { CollectionSlug } from 'payload'
 
 const collectionPrefixMap: Partial<Record<CollectionSlug, string>> = {
@@ -8,16 +9,17 @@ const collectionPrefixMap: Partial<Record<CollectionSlug, string>> = {
 type Props = {
   collection: keyof typeof collectionPrefixMap
   slug: string
-  revalidateGlobals?: boolean
+  locale: string
 }
 
-export const generatePreviewPath = ({ collection, slug }: Props) => {
-  const path = `${collectionPrefixMap[collection]}/${slug}`
+export const generatePreviewPath = ({ collection, slug, locale }: Props) => {
+  const path = `${locale !== localization.defaultLocale ? `/${locale}` : ''}${collectionPrefixMap[collection]}/${slug}`
 
   const params = {
     slug,
     collection,
     path,
+    locale,
   }
 
   const encodedParams = new URLSearchParams()

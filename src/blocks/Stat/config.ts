@@ -28,6 +28,7 @@ export const StatBlock: Block = {
     {
       name: 'headline',
       type: 'richText',
+      localized: true,
       editor: lexicalEditor({
         features: ({ rootFeatures }) => [
           ...rootFeatures,
@@ -42,16 +43,19 @@ export const StatBlock: Block = {
         {
           name: 'counter',
           type: 'text',
+          localized: true,
           required: true,
         },
         {
           name: 'title',
           type: 'text',
+          localized: true,
           required: true,
         },
         {
           name: 'description',
           type: 'richText',
+          localized: true,
           editor: lexicalEditor({
             features: ({ rootFeatures }) => rootFeatures,
           }),

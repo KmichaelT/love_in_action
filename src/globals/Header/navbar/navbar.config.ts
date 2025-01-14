@@ -19,6 +19,7 @@ export const navbar: Field[] = [
           {
             type: "text",
             name: "label",
+            localized: true,
             required: true,
           },
           {
@@ -30,13 +31,14 @@ export const navbar: Field[] = [
             maxRows: 10,
             fields: [
               link({
-                  appearances: false,
+                appearances: false,
               }),
               {
                 type: "text",
+                localized: true,
                 name: "Description",
               },
-            ] 
+            ]
           }
         ]
       },
@@ -48,13 +50,13 @@ export const navbar: Field[] = [
         },
         fields: [
           link({
-              appearances: false,
+            appearances: false,
           })
         ]
       }
     ],
 
-  },{
+  }, {
     type: "array",
     name: "buttons",
     fields: [
