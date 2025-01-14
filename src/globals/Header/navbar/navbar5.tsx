@@ -57,7 +57,7 @@ const Navbar5: React.FC<{ header: HeaderType }> = ({ header }) => {
                 } else if (item.blockType === "sub") {
                   return (
                     <NavigationMenuItem key={item.id} className="text-muted-foreground">
-                      <NavigationMenuTrigger>
+                      <NavigationMenuTrigger className="bg-transparent">
                         {item.icon && <Icon className="mr-2 h-6" icon={item.icon} />}
                         <span>{item.label}</span>
                       </NavigationMenuTrigger>
