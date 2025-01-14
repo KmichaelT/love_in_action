@@ -18,6 +18,7 @@ export const Header: GlobalConfig = {
         const path = generatePreviewPath({
           slug: 'home',
           collection: 'pages',
+          locale: "en"
         })
 
         return `${NEXT_PUBLIC_SERVER_URL}${path}`
@@ -27,6 +28,7 @@ export const Header: GlobalConfig = {
       const path = generatePreviewPath({
         slug: 'home',
         collection: 'pages',
+        locale: "en"
       })
 
       return `${NEXT_PUBLIC_SERVER_URL}${path}`
