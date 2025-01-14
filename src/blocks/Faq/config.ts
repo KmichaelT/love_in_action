@@ -29,6 +29,7 @@ export const FaqBlock: Block = {
     {
       name: 'badge',
       type: 'text',
+      localized: true,
       defaultValue: 'FAQ',
       admin: {
         condition: (_, { designVersion } = { designVersion: '' }) =>
@@ -38,6 +39,7 @@ export const FaqBlock: Block = {
     {
       name: 'headline',
       type: 'richText',
+      localized: true,
       editor: lexicalEditor({
         features: ({ rootFeatures }) => [
           ...rootFeatures,
@@ -57,6 +59,7 @@ export const FaqBlock: Block = {
         {
           name: 'answer',
           type: 'richText',
+          localized: true,
           editor: lexicalEditor({
             features: ({ rootFeatures }) => [...rootFeatures, UnorderedListFeature()],
           }),
@@ -66,6 +69,7 @@ export const FaqBlock: Block = {
     {
       name: 'calloutText',
       type: 'richText',
+      localized: true,
       admin: {
         condition: (_, { designVersion } = { designVersion: '' }) =>
           ['FAQ3', 'FAQ4'].includes(designVersion),

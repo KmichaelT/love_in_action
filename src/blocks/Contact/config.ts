@@ -27,6 +27,7 @@ export const ContactBlock: Block = {
     {
       name: 'headlineAndDescription',
       type: 'richText',
+      localized: true,
       editor: lexicalEditor({
         features: ({ rootFeatures }) => [
           ...rootFeatures,
@@ -45,6 +46,7 @@ export const ContactBlock: Block = {
         {
           name: 'description',
           type: 'richText',
+          localized: true,
           editor: lexicalEditor({
             features: ({ rootFeatures }) => rootFeatures
           }),

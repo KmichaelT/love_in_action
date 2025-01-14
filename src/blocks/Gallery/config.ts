@@ -50,6 +50,7 @@ export const Gallery: Block = {
     {
       name: 'richText',
       type: 'richText',
+      localized: true,
       admin: {
         description: 'Optional heading and description for the gallery',
         condition: (_, { designVersion } = {}) => !["GALLERY1"].includes(designVersion),
@@ -65,6 +66,7 @@ export const Gallery: Block = {
     {
       name: "tagline",
       type: "text",
+      localized: true,
       admin: {
         condition: (_, { designVersion } = {}) => ["GALLERY6"].includes(designVersion),
       },
@@ -98,6 +100,7 @@ export const Gallery: Block = {
         {
           name: 'richText',
           type: 'richText',
+          localized: true,
           editor: lexicalEditor({
             features: ({ defaultFeatures }) => [
               ...defaultFeatures,

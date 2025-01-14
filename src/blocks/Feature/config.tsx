@@ -147,6 +147,7 @@ export const FeatureBlock: Block = {
     {
       name: 'badge',
       type: 'text',
+      localized: true,
       admin: {
         condition: (_, { designVersion } = {}) =>
           ['FEATURE1', 'FEATURE2', 'FEATURE3', 'FEATURE4', 'FEATURE5', 'FEATURE6'].includes(designVersion),
@@ -155,6 +156,7 @@ export const FeatureBlock: Block = {
     {
       name: 'tagline',
       type: 'text',
+      localized: true,
       admin: {
         condition: (_, { designVersion } = {}) =>
           ['FEATURE99', 'FEATURE103'].includes(designVersion),
@@ -179,6 +181,7 @@ export const FeatureBlock: Block = {
     {
       name: 'richText',
       type: 'richText',
+      localized: true,
       admin: {
         condition: (_, { designVersion } = {}) =>
           ![
@@ -350,6 +353,7 @@ export const FeatureBlock: Block = {
         {
           name: 'tagline',
           type: 'text',
+          localized: true,
           admin: {
             condition: (data, _) => {
               const designVersion = data.layout.find(
@@ -362,6 +366,7 @@ export const FeatureBlock: Block = {
         {
           name: 'richText',
           type: 'richText',
+          localized: true,
           editor: lexicalEditor({
             features: ({ rootFeatures }) => {
               return [

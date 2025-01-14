@@ -28,6 +28,7 @@ export const Code: Block = {
     {
       name: 'code',
       type: 'code',
+      localized: true,
       label: false,
       required: true,
     },
