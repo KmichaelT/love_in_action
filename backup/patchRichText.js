@@ -19,7 +19,7 @@ function modifyRichText(obj) {
         Array.isArray(value.root.children)
       ) {
         // Wrap the object in an "en" key
-        obj[key] = { en: value };
+        obj[key] = { en: value, de: value };
       } else if (typeof value === 'object') {
         // Recursively process nested objects
         modifyRichText(value);

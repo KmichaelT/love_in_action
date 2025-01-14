@@ -1,6 +1,5 @@
 import { withPayload } from '@payloadcms/next/withPayload'
 import type { NextConfig } from 'next'
-import redirects from './redirects.js'
 import localization from './src/localization.config'
 
 
@@ -20,11 +19,36 @@ const nextConfig: NextConfig = {
     ],
   },
   reactStrictMode: true,
-  redirects,
+  redirects: async () => {
+    return [
+      {
+        destination: '/ie-incompatible.html',
+        has: [
+          {
+            type: 'header',
+            key: 'user-agent',
+            value: '(.*Trident.*)', // all ie browsers
+          },
+        ],
+        permanent: false,
+        source: '/:path((?!ie-incompatible.html$).*)', // all pages except the incompatibility page
+      },
+      {
+        source: '/home',
+        destination: `/`,
+        permanent: true,
+      },
+      {
+        source: '/:locale/home',
+        destination: `/:locale`,
+        permanent: true,
+      },
+    ]
+  },
   rewrites: async () => {
     const { locales, defaultLocale } = localization;
     const nonDefaultLocales = locales.filter(locale => locale !== defaultLocale);
-    const protectedPath = [...nonDefaultLocales, 'api', 'admin'];
+    const protectedPath = [...nonDefaultLocales, 'api', 'admin', '_next'];
     if (nonDefaultLocales.length > 0) {
       return [
         {

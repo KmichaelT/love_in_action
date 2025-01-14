@@ -1,11 +1,13 @@
 import { LocalizationConfig } from "payload";
 
 // You need to restart the development server after changing this file
+export const locales = ['en', 'de'] as const;
+
 const localization: LocalizationConfig = {
-  locales: ['en', 'de'],
+  locales: [...locales],
   defaultLocale: 'en',
   fallback: true,
-};
+} as const;
 
 export default localization;
 

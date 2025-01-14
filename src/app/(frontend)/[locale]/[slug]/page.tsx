@@ -27,12 +27,16 @@ export async function generateStaticParams() {
   const { locales } = payload.config.localization as LocalizationConfig;
   const localCodes = locales.map((locale) => locale.code);
 
+  if (pages.docs.length === 0) {
+    return []
+  }
+
   const params = pages.docs
-    ?.filter((doc) => {
-      return doc.slug !== 'home'
-    })
+    // ?.filter((doc) => {
+    //   return doc.slug !== 'home'
+    // })
     .flatMap(({ slug }) => {
-      return localCodes.map((locale) => ({ slug, locale }))
+      return localCodes.map((locale) => ({ locale, slug }))
     })
 
   return params
