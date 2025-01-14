@@ -43,15 +43,17 @@ export const Posts: CollectionConfig = {
         const path = generatePreviewPath({
           slug: typeof data?.slug === 'string' ? data.slug : '',
           collection: 'posts',
+          locale: data.locale.code,
         })
 
         return `${NEXT_PUBLIC_SERVER_URL}${path}`
       },
     },
-    preview: (data) => {
+    preview: (data, options) => {
       const path = generatePreviewPath({
         slug: typeof data?.slug === 'string' ? data.slug : '',
         collection: 'posts',
+        locale: options.locale,
       })
 
       return `${NEXT_PUBLIC_SERVER_URL}${path}`
