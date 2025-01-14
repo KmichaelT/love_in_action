@@ -72,6 +72,7 @@ export const Posts: CollectionConfig = {
             {
               name: 'content',
               type: 'richText',
+              localized: true,
               editor: lexicalEditor({
                 features: ({ rootFeatures }) => {
                   return [
