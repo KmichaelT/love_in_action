@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import { CollectionSlug } from 'payload'
+import localization from '@/localization.config'
 
 const payloadToken = 'payload-token'
 
@@ -20,6 +21,7 @@ export async function GET(
   const token = req.cookies.get(payloadToken)?.value
   const { searchParams } = new URL(req.url)
   const path = searchParams.get('path')
+  const locale = searchParams.get('locale')
   const collection = searchParams.get('collection') as CollectionSlug
   const slug = searchParams.get('slug')
 
@@ -85,6 +87,6 @@ export async function GET(
 
     draft.enable()
 
-    redirect(path)
+    redirect(`${locale !== localization.defaultLocale ? `/${locale}` : ''}${path}`)
   }
 }

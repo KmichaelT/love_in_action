@@ -48,6 +48,7 @@ export const Footer: GlobalConfig = {
     {
       name: 'copyright',
       type: 'text',
+      localized: true,
       label: 'Copyright',
       defaultValue: 'Company Name. All rights reserved.',
     },
@@ -57,6 +58,7 @@ export const Footer: GlobalConfig = {
     {
       name: 'subline',
       type: 'text',
+      localized: true,
       label: 'Subline',
       defaultValue:
         'Components made easy. This cool starter template will help you get started with your next project.',
@@ -155,6 +157,7 @@ export const Footer: GlobalConfig = {
         {
           name: 'title',
           type: 'text',
+          localized: true,
           required: true,
         },
         {
