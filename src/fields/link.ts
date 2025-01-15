@@ -163,16 +163,19 @@ export const link: LinkType = ({
   }
 
   if (!disableIcon) {
-    linkResult.fields.push(
-      {
-        ...icon,
-        name: 'iconBefore',
-      },
-      {
-        ...icon,
-        name: 'iconAfter',
-      },
-    )
+    linkResult.fields.push({
+      type: 'row',
+      fields: [
+        {
+          ...icon,
+          name: 'iconBefore',
+        },
+        {
+          ...icon,
+          name: 'iconAfter',
+        },
+      ],
+    })
   }
 
   if (appearances !== false) {
@@ -183,22 +186,20 @@ export const link: LinkType = ({
     }
 
     linkResult.fields.push({
-      name: 'appearance',
-      type: 'select',
-      admin: {
-        description: 'Choose how the link should be rendered.',
-      },
-      defaultValue: 'default',
-      options: appearanceOptionsToUse,
-    })
-
-    /**
-     * The size makes only sense if appearances are not disabled
-     */
-    linkResult.fields.push({
-      name: 'size',
-      type: 'select',
-      options: ['default', 'sm', 'lg', 'icon', 'clear'],
+      type: 'row',
+      fields: [{
+        name: 'appearance',
+        type: 'select',
+        admin: {
+          description: 'Choose how the link should be rendered.',
+        },
+        defaultValue: 'default',
+        options: appearanceOptionsToUse,
+      }, {
+        name: 'size',
+        type: 'select',
+        options: ['default', 'sm', 'lg', 'icon', 'clear'],
+      }]
     })
   }
 

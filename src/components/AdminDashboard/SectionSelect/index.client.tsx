@@ -45,7 +45,7 @@ const SectionSelect: React.FC<CustomSelectProps> = ({ path, options }) => {
   }
 
   return (
-    <div>
+    <div className='field-type select'>
       <label className="field-label">
         Section inside Document (optional)
       </label>

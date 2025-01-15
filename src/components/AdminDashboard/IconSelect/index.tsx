@@ -1,34 +1,49 @@
+"use client"
 import * as React from 'react';
-import SectionSelectClient, { OptionsData } from './index.client';
-import { getPayload } from 'payload';
-import configPromise from '@payload-config'
+import { SelectInput, useAuth, useField, useFormFields, useWatchForm } from '@payloadcms/ui';
+import { useEffect, useRef, useState } from 'react';
+import * as lucide from "lucide-react";
+import { Icon } from '@/components/Icon';
+import { Field, OptionObject } from 'payload';
 
-const SectionSelect: React.FC<any> = async (data) => {
-  const payload = await getPayload({ config: configPromise });
-  const pages = await payload.find({
-    collection: 'pages',
-    draft: false,
-    limit: 1000,
-    locale: 'all',
-    overrideAccess: false
-  })
+export type OptionsData = Record<string, {
+  label: string;
+  value: string;
+}[]>;
 
-  const options = pages?.docs.reduce((akku, page) => {
-    if (!page.id) {
-      return akku;
-    }
-    akku[page.id] = page?.layout?.map((block, i) => {
-      return {
-        label: `Section ${i + 1} (${block?.blockName || block?.blockType})`,
-        value: block?.id!
-      }
-    })
-    return akku;
-  }, {} as OptionsData)
+type CustomSelectProps = {
+  path: string;
+  options: OptionsData;
+  field?: {
+    label?: string;
+    description?: string;
+  };
+}
+
+const keys = Object.keys(lucide).filter((v) => !["default", "icons"].includes(v) && !v.startsWith("Lucide") && !v.endsWith("Icon"));
+
+const IconSelect: React.FC<CustomSelectProps> = (props) => {
+  console.dir(props, { depth: 1 })
+  const { path, field } = props;
+  const { value, setValue, } = useField<string>({ path })
 
   return (
-    <SectionSelectClient path={data.path} options={options} />
+    <div className='field-type select'>
+      {field?.label && <label className="field-label">
+        {field?.label}
+      </label>}
+      <SelectInput
+        path={path}
+        name={path}
+        options={keys.map((k) => ({ label: <span className="flex items-center gap-2"><Icon style={{ width: 16, height: 16 }} icon={k as any} /> {k}</span>, value: k })) as any as OptionObject[]}
+        value={value}
+        onChange={(e) => setValue((e as any)?.value || "")}
+      />
+      {field?.description && <div className="field-description">
+        {field?.description}
+      </div>}
+    </div>
   )
 }
 
-export default SectionSelect
+export default IconSelect
