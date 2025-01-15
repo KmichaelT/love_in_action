@@ -13,7 +13,7 @@ type Props = {
 }
 
 export const generatePreviewPath = ({ collection, slug, locale }: Props) => {
-  const path = `${locale !== localization.defaultLocale ? `/${locale}` : ''}${collectionPrefixMap[collection]}/${slug}`
+  const path = `${locale !== localization.defaultLocale ? `/${locale}` : ''}${collectionPrefixMap[collection]}/${slug === 'home' ? '' : slug}`
 
   const params = {
     slug,

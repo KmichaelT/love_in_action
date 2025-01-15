@@ -71,11 +71,15 @@ async function resolveParams(props: Args) {
     slug = slugRaw || "home";
   } else {
     // localeOrSlug is a slug
-
     if (localeOrSlug === "home") {
       // We do not want to serve under /home. This route should be served directly under /
       notFound();
     }
+    // If localeOrSlug is a slug, then slugRaw has to be empty
+    if (slugRaw) {
+      notFound();
+    }
+
     // If localeOrSlug is not a locale, we want to serve page with default locale
     locale = localization.defaultLocale as Locale;
     // If no slug is provided, we want to serve page saved under slug "home" under / url
