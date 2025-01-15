@@ -41,7 +41,7 @@ const Feature50: React.FC<FeatureBlock> = ({ richText, links, USPs }) => {
                 <a
                   key={index}
                   href={link?.url || '#'}
-                  className="col-span-7 grid rounded-lg bg-muted sm:grid-cols-2"
+                  className="col-span-7 grid overflow-hidden rounded-lg bg-muted sm:grid-cols-2"
                 >
                   <div className="flex flex-col justify-between p-8 lg:p-12">
                     <div>
@@ -75,7 +75,7 @@ const Feature50: React.FC<FeatureBlock> = ({ richText, links, USPs }) => {
                     <div className="order-first relative h-72 sm:order-last sm:h-full">
                       <Media
                         resource={image}
-                        imgClassName="absolute inset-0 h-full w-full rounded-lg border-b object-cover sm:rounded-none lg:border-b-0 lg:border-l"
+                        imgClassName="absolute inset-0 h-full w-full object-cover"
                       />
                     </div>
                   )}

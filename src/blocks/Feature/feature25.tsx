@@ -1,17 +1,15 @@
-import { Check } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import RichText from '@/components/RichText';
-import { FeatureBlock } from '@/payload-types';
+import { Check } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
+import { Separator } from '@/components/ui/separator'
+import RichText from '@/components/RichText'
+import { FeatureBlock } from '@/payload-types'
 
 const Feature25: React.FC<FeatureBlock & { tagline?: string }> = ({ richText, USPs, tagline }) => {
   return (
     <section className="py-32">
       <div className="container">
         <div className="mx-auto flex max-w-screen-md flex-col items-center gap-6">
-          {tagline && (
-            <Badge variant="outline">{tagline}</Badge>
-          )}
+          {tagline && <Badge variant="outline">{tagline}</Badge>}
           {richText && (
             <RichText
               content={richText}
@@ -28,9 +26,11 @@ const Feature25: React.FC<FeatureBlock & { tagline?: string }> = ({ richText, US
               <Separator className="my-16 w-full" />
               <div className="mx-auto inline-block w-full gap-x-10 lg:grid lg:grid-cols-4">
                 {usp.richText && (
-                  <h3 className="mb-4 text-2xl font-semibold lg:text-3xl">
-                    <RichText content={usp.richText} withWrapper={false} />
-                  </h3>
+                  <RichText
+                    content={usp.richText}
+                    withWrapper={true}
+                    overrideStyle={{ h3: 'mb-4 text-2xl font-semibold lg:text-3xl' }}
+                  />
                 )}
                 <ul className="col-span-3 grid gap-x-10 gap-y-4 lg:grid-cols-3">
                   {usp.USPFeatures?.map((feature, idx) => (
@@ -48,7 +48,7 @@ const Feature25: React.FC<FeatureBlock & { tagline?: string }> = ({ richText, US
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Feature25;
+export default Feature25
