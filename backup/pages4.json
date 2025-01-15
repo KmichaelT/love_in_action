@@ -1,0 +1,1816 @@
+[
+	{
+		"_id": {
+			"$oid": "6751c7097b4fa22eda751274"
+		},
+		"hero": {
+			"designVersion": "12",
+			"badge": {
+				"en": "payblocks",
+				"de": "payblocks"
+			},
+			"badgeIcon": "AirVent",
+			"tagline": {
+				"en": "Built with tech you know and love",
+				"de": "Built with tech you know and love"
+			},
+			"badgeLink": {
+				"type": "reference"
+			},
+			"richText": {
+				"en": {
+					"root": {
+						"children": [
+							{
+								"children": [
+									{
+										"detail": 0,
+										"format": 0,
+										"mode": "normal",
+										"style": "",
+										"text": "Build faster with Payload 3.0 & shadcn/ui",
+										"type": "text",
+										"version": 1
+									}
+								],
+								"direction": "ltr",
+								"format": "",
+								"indent": 0,
+								"type": "heading",
+								"version": 1,
+								"tag": "h1"
+							},
+							{
+								"children": [
+									{
+										"detail": 0,
+										"format": 0,
+										"mode": "normal",
+										"style": "",
+										"text": "The ultimate Next.js + PayloadCMS starter kit featuring 50+ premium shadcn/ui components. Combine the power of headless CMS with the simplicity of a visual page builder. Gets you ready in minutes by using the amazing work of shadcnblocks.com.",
+										"type": "text",
+										"version": 1
+									}
+								],
+								"direction": "ltr",
+								"format": "",
+								"indent": 0,
+								"type": "paragraph",
+								"version": 1,
+								"textFormat": 0,
+								"textStyle": ""
+							}
+						],
+						"direction": "ltr",
+						"format": "",
+						"indent": 0,
+						"type": "root",
+						"version": 1
+					}
+				},
+				"de": {
+					"root": {
+						"children": [
+							{
+								"children": [
+									{
+										"detail": 0,
+										"format": 0,
+										"mode": "normal",
+										"style": "",
+										"text": "Starte deine nächste Website mit Payload 3 & shadcn/ui",
+										"type": "text",
+										"version": 1
+									}
+								],
+								"direction": "ltr",
+								"format": "",
+								"indent": 0,
+								"type": "heading",
+								"version": 1,
+								"tag": "h1"
+							},
+							{
+								"children": [
+									{
+										"detail": 0,
+										"format": 0,
+										"mode": "normal",
+										"style": "",
+										"text": "Der ultimative Next.js + PayloadCMS Starter mit über 50 Premium shadcn/ui Komponenten und visuellem Editor.",
+										"type": "text",
+										"version": 1
+									}
+								],
+								"direction": "ltr",
+								"format": "",
+								"indent": 0,
+								"type": "paragraph",
+								"version": 1,
+								"textFormat": 0,
+								"textStyle": ""
+							}
+						],
+						"direction": "ltr",
+						"format": "",
+						"indent": 0,
+						"type": "root",
+						"version": 1
+					}
+				}
+			},
+			"links": [
+				{
+					"link": {
+						"type": "reference",
+						"reference": {
+							"relationTo": "pages",
+							"value": {
+								"$oid": "6751c7097b4fa22eda751274"
+							}
+						},
+						"label": {
+							"en": "Get started",
+							"de": "Features"
+						},
+						"appearance": "default"
+					},
+					"id": "67543f8e8a19e1af37ab3fc5"
+				},
+				{
+					"link": {
+						"type": "reference",
+						"reference": {
+							"relationTo": "pages",
+							"value": {
+								"$oid": "6751c7097b4fa22eda751274"
+							}
+						},
+						"label": {
+							"en": "Learn more",
+							"de": "Jetzt kaufen"
+						},
+						"iconAfter": "ExternalLink",
+						"appearance": "secondary"
+					},
+					"id": "67543fa28a19e1af37ab3fc7"
+				}
+			],
+			"images": [
+				{
+					"$oid": "675446bbd671c041736a6d6d"
+				}
+			],
+			"icons": [
+				{
+					"$oid": "675442fdd671c041736a6858"
+				},
+				{
+					"$oid": "6754436dd671c041736a69da"
+				},
+				{
+					"$oid": "67574abe69d2a3762cb04b5a"
+				},
+				{
+					"$oid": "67574aeb69d2a3762cb04b6f"
+				}
+			],
+			"USPs": {},
+			"pricing": {}
+		},
+		"layout": [
+			{
+				"blockType": "feature",
+				"designVersion": "FEATURE97",
+				"richText": {
+					"en": {
+						"root": {
+							"children": [
+								{
+									"children": [
+										{
+											"detail": 0,
+											"format": 0,
+											"mode": "normal",
+											"style": "",
+											"text": "Ship Better Websites, Faster Than Ever",
+											"type": "text",
+											"version": 1
+										}
+									],
+									"direction": "ltr",
+									"format": "",
+									"indent": 0,
+									"type": "heading",
+									"version": 1,
+									"tag": "h2"
+								},
+								{
+									"children": [
+										{
+											"detail": 0,
+											"format": 0,
+											"mode": "normal",
+											"style": "",
+											"text": "Stop wrestling with CMS integration and component libraries. Payblocks combines the best of modern web development—Next.js, PayloadCMS, and shadcn/ui—into a powerful starter kit that lets you focus on building, not configuring.",
+											"type": "text",
+											"version": 1
+										}
+									],
+									"direction": "ltr",
+									"format": "",
+									"indent": 0,
+									"type": "paragraph",
+									"version": 1,
+									"textFormat": 0,
+									"textStyle": ""
+								}
+							],
+							"direction": "ltr",
+							"format": "",
+							"indent": 0,
+							"type": "root",
+							"version": 1
+						}
+					}
+				},
+				"links": [
+					{
+						"link": {
+							"type": "reference",
+							"reference": {
+								"relationTo": "pages",
+								"value": {
+									"$oid": "6751c7097b4fa22eda751274"
+								}
+							},
+							"url": {
+								"en": "#feat",
+								"de": "#feat"
+							},
+							"label": {
+								"en": "View All features",
+								"de": "View All features"
+							},
+							"appearance": "outline"
+						},
+						"id": "67574d6e423e285a0753ddf6"
+					},
+					{
+						"link": {
+							"type": "custom",
+							"newTab": true,
+							"url": {
+								"en": "https://www.shadcnblocks.com/",
+								"de": "https://www.shadcnblocks.com/"
+							},
+							"label": {
+								"en": "Buy now",
+								"de": "Buy now"
+							},
+							"iconBefore": null,
+							"iconAfter": "ExternalLink",
+							"appearance": "default"
+						},
+						"id": "67574d92423e285a0753ddf7"
+					}
+				],
+				"USPs": [
+					{
+						"uspIcon": "Paintbrush",
+						"richText": {
+							"en": {
+								"root": {
+									"children": [
+										{
+											"children": [
+												{
+													"detail": 0,
+													"format": 0,
+													"mode": "normal",
+													"style": "",
+													"text": "Visual Building",
+													"type": "text",
+													"version": 1
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "heading",
+											"version": 1,
+											"tag": "h3"
+										},
+										{
+											"children": [
+												{
+													"detail": 0,
+													"format": 0,
+													"mode": "normal",
+													"style": "",
+													"text": "Build pages visually with drag-and-drop while maintaining full code control",
+													"type": "text",
+													"version": 1
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "paragraph",
+											"version": 1,
+											"textFormat": 0,
+											"textStyle": ""
+										}
+									],
+									"direction": "ltr",
+									"format": "",
+									"indent": 0,
+									"type": "root",
+									"version": 1
+								}
+							}
+						},
+						"USPFeatures": [
+							{
+								"id": "6763f2752ef311bb1e27b12d"
+							}
+						],
+						"links": [],
+						"link": {
+							"type": "reference"
+						},
+						"id": "6763f2572ef311bb1e27b12b"
+					},
+					{
+						"uspIcon": "Blocks",
+						"richText": {
+							"en": {
+								"root": {
+									"children": [
+										{
+											"children": [
+												{
+													"detail": 0,
+													"format": 0,
+													"mode": "normal",
+													"style": "",
+													"text": "Premium Components",
+													"type": "text",
+													"version": 1
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "heading",
+											"version": 1,
+											"tag": "h3"
+										},
+										{
+											"children": [
+												{
+													"detail": 0,
+													"format": 0,
+													"mode": "normal",
+													"style": "",
+													"text": "50+ premium shadcn/ui components ready for production use",
+													"type": "text",
+													"version": 1
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "paragraph",
+											"version": 1,
+											"textFormat": 0,
+											"textStyle": ""
+										}
+									],
+									"direction": "ltr",
+									"format": "",
+									"indent": 0,
+									"type": "root",
+									"version": 1
+								}
+							}
+						},
+						"USPFeatures": [],
+						"links": [],
+						"link": {
+							"type": "reference"
+						},
+						"id": "6763f2b82ef311bb1e27b12f"
+					},
+					{
+						"uspIcon": "Database",
+						"richText": {
+							"en": {
+								"root": {
+									"children": [
+										{
+											"children": [
+												{
+													"detail": 0,
+													"format": 0,
+													"mode": "normal",
+													"style": "",
+													"text": "PayloadCMS Integration",
+													"type": "text",
+													"version": 1
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "heading",
+											"version": 1,
+											"tag": "h3"
+										},
+										{
+											"children": [
+												{
+													"detail": 0,
+													"format": 0,
+													"mode": "normal",
+													"style": "",
+													"text": "Fully integrated headless CMS with live preview and TypeScript support",
+													"type": "text",
+													"version": 1
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "paragraph",
+											"version": 1,
+											"textFormat": 0,
+											"textStyle": ""
+										}
+									],
+									"direction": "ltr",
+									"format": "",
+									"indent": 0,
+									"type": "root",
+									"version": 1
+								}
+							}
+						},
+						"USPFeatures": [],
+						"links": [],
+						"link": {
+							"type": "reference"
+						},
+						"id": "6763f2d22ef311bb1e27b131"
+					},
+					{
+						"uspIcon": "Code",
+						"richText": {
+							"en": {
+								"root": {
+									"children": [
+										{
+											"children": [
+												{
+													"detail": 0,
+													"format": 0,
+													"mode": "normal",
+													"style": "",
+													"text": "Developer Experience",
+													"type": "text",
+													"version": 1
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "heading",
+											"version": 1,
+											"tag": "h3"
+										},
+										{
+											"children": [
+												{
+													"detail": 0,
+													"format": 0,
+													"mode": "normal",
+													"style": "",
+													"text": "Built for developers with clean code, full TypeScript support, and excellent DX",
+													"type": "text",
+													"version": 1
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "paragraph",
+											"version": 1,
+											"textFormat": 0,
+											"textStyle": ""
+										}
+									],
+									"direction": "ltr",
+									"format": "",
+									"indent": 0,
+									"type": "root",
+									"version": 1
+								}
+							}
+						},
+						"USPFeatures": [],
+						"links": [],
+						"link": {
+							"type": "reference"
+						},
+						"id": "6763f33e2ef311bb1e27b135"
+					}
+				],
+				"id": "67574c8d423e285a0753ddf5",
+				"blockName": "Main Benefits Section"
+			},
+			{
+				"blockType": "faq",
+				"designVersion": "FAQ4",
+				"badge": {
+					"en": "FAQ",
+					"de": "FAQ"
+				},
+				"headline": {
+					"en": {
+						"root": {
+							"children": [
+								{
+									"children": [
+										{
+											"detail": 0,
+											"format": 0,
+											"mode": "normal",
+											"style": "",
+											"text": "Questions ? Answers!",
+											"type": "text",
+											"version": 1
+										}
+									],
+									"direction": "ltr",
+									"format": "",
+									"indent": 0,
+									"type": "heading",
+									"version": 1,
+									"tag": "h2"
+								}
+							],
+							"direction": "ltr",
+							"format": "",
+							"indent": 0,
+							"type": "root",
+							"version": 1
+						}
+					}
+				},
+				"faqs": [
+					{
+						"question": "What's included in Payblocks?",
+						"answer": {
+							"en": {
+								"root": {
+									"children": [
+										{
+											"children": [
+												{
+													"detail": 0,
+													"format": 0,
+													"mode": "normal",
+													"style": "",
+													"text": "Payblocks comes as a complete package with everything you need to launch a professional website:",
+													"type": "text",
+													"version": 1
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "paragraph",
+											"version": 1,
+											"textFormat": 0,
+											"textStyle": ""
+										},
+										{
+											"children": [
+												{
+													"children": [
+														{
+															"detail": 0,
+															"format": 0,
+															"mode": "normal",
+															"style": "",
+															"text": "Complete Next.js 14+ starter with App Router and TypeScript configuration",
+															"type": "text",
+															"version": 1
+														}
+													],
+													"direction": "ltr",
+													"format": "",
+													"indent": 0,
+													"type": "listitem",
+													"version": 1,
+													"value": 1
+												},
+												{
+													"children": [
+														{
+															"detail": 0,
+															"format": 0,
+															"mode": "normal",
+															"style": "",
+															"text": "PayloadCMS integration with visual page builder and live preview",
+															"type": "text",
+															"version": 1
+														}
+													],
+													"direction": "ltr",
+													"format": "",
+													"indent": 0,
+													"type": "listitem",
+													"version": 1,
+													"value": 2
+												},
+												{
+													"children": [
+														{
+															"detail": 0,
+															"format": 0,
+															"mode": "normal",
+															"style": "",
+															"text": "50+ premium shadcn/ui components including:",
+															"type": "text",
+															"version": 1
+														}
+													],
+													"direction": "ltr",
+													"format": "",
+													"indent": 0,
+													"type": "listitem",
+													"version": 1,
+													"value": 3
+												},
+												{
+													"children": [
+														{
+															"detail": 0,
+															"format": 0,
+															"mode": "normal",
+															"style": "",
+															"text": "Hero sections and landing page blocks",
+															"type": "text",
+															"version": 1
+														}
+													],
+													"direction": "ltr",
+													"format": "",
+													"indent": 0,
+													"type": "listitem",
+													"version": 1,
+													"value": 4
+												},
+												{
+													"children": [
+														{
+															"detail": 0,
+															"format": 0,
+															"mode": "normal",
+															"style": "",
+															"text": "Pricing tables and feature grids",
+															"type": "text",
+															"version": 1
+														}
+													],
+													"direction": "ltr",
+													"format": "",
+													"indent": 0,
+													"type": "listitem",
+													"version": 1,
+													"value": 5
+												},
+												{
+													"children": [
+														{
+															"detail": 0,
+															"format": 0,
+															"mode": "normal",
+															"style": "",
+															"text": "Blog and content templates",
+															"type": "text",
+															"version": 1
+														}
+													],
+													"direction": "ltr",
+													"format": "",
+													"indent": 0,
+													"type": "listitem",
+													"version": 1,
+													"value": 6
+												},
+												{
+													"children": [
+														{
+															"detail": 0,
+															"format": 0,
+															"mode": "normal",
+															"style": "",
+															"text": "Navigation and footer variations",
+															"type": "text",
+															"version": 1
+														}
+													],
+													"direction": "ltr",
+													"format": "",
+													"indent": 0,
+													"type": "listitem",
+													"version": 1,
+													"value": 7
+												},
+												{
+													"children": [
+														{
+															"detail": 0,
+															"format": 0,
+															"mode": "normal",
+															"style": "",
+															"text": "Forms and contact sections",
+															"type": "text",
+															"version": 1
+														}
+													],
+													"direction": "ltr",
+													"format": "",
+													"indent": 0,
+													"type": "listitem",
+													"version": 1,
+													"value": 8
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "list",
+											"version": 1,
+											"listType": "bullet",
+											"start": 1,
+											"tag": "ul"
+										},
+										{
+											"children": [
+												{
+													"detail": 0,
+													"format": 0,
+													"mode": "normal",
+													"style": "",
+													"text": "You can customise many theme settings directly in payloadCMS.",
+													"type": "text",
+													"version": 1
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "paragraph",
+											"version": 1,
+											"textFormat": 0,
+											"textStyle": ""
+										},
+										{
+											"children": [],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "paragraph",
+											"version": 1,
+											"textFormat": 0,
+											"textStyle": ""
+										},
+										{
+											"children": [],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "paragraph",
+											"version": 1,
+											"textFormat": 0,
+											"textStyle": ""
+										}
+									],
+									"direction": "ltr",
+									"format": "",
+									"indent": 0,
+									"type": "root",
+									"version": 1
+								}
+							}
+						},
+						"id": "675c19f4822c1774f63aa15f"
+					},
+					{
+						"question": "Can I customize the design system without coding?",
+						"answer": {
+							"en": {
+								"root": {
+									"children": [
+										{
+											"children": [
+												{
+													"detail": 0,
+													"format": 0,
+													"mode": "normal",
+													"style": "",
+													"text": "Yes! Payblocks comes with a built-in admin panel where you can customize colors, typography, spacing, and other design tokens without touching code. All components automatically update to reflect your changes while maintaining the professional polish of shadcn/ui.",
+													"type": "text",
+													"version": 1
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "paragraph",
+											"version": 1,
+											"textFormat": 0,
+											"textStyle": ""
+										}
+									],
+									"direction": "ltr",
+									"format": "",
+									"indent": 0,
+									"type": "root",
+									"version": 1
+								}
+							}
+						},
+						"id": "675c1b2a88650f1f5304812b"
+					},
+					{
+						"question": "Is PayloadCMS difficult to learn if I'm coming from other CMS platforms?",
+						"answer": {
+							"en": {
+								"root": {
+									"children": [
+										{
+											"children": [
+												{
+													"detail": 0,
+													"format": 0,
+													"mode": "normal",
+													"style": "",
+													"text": "PayloadCMS is a modern, developer-first headless CMS that's fully integrated with Next.js. Unlike traditional CMS platforms, PayloadCMS offers several distinct advantages:",
+													"type": "text",
+													"version": 1
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "paragraph",
+											"version": 1,
+											"textFormat": 0,
+											"textStyle": ""
+										},
+										{
+											"children": [
+												{
+													"children": [
+														{
+															"detail": 0,
+															"format": 0,
+															"mode": "normal",
+															"style": "",
+															"text": "Built entirely in TypeScript with full type safety",
+															"type": "text",
+															"version": 1
+														}
+													],
+													"direction": "ltr",
+													"format": "",
+													"indent": 0,
+													"type": "listitem",
+													"version": 1,
+													"value": 1
+												},
+												{
+													"children": [
+														{
+															"detail": 0,
+															"format": 0,
+															"mode": "normal",
+															"style": "",
+															"text": "Uses MongoDB for flexible content modeling",
+															"type": "text",
+															"version": 1
+														}
+													],
+													"direction": "ltr",
+													"format": "",
+													"indent": 0,
+													"type": "listitem",
+													"version": 1,
+													"value": 2
+												},
+												{
+													"children": [
+														{
+															"detail": 0,
+															"format": 0,
+															"mode": "normal",
+															"style": "",
+															"text": "Provides a GraphQL API out of the box",
+															"type": "text",
+															"version": 1
+														}
+													],
+													"direction": "ltr",
+													"format": "",
+													"indent": 0,
+													"type": "listitem",
+													"version": 1,
+													"value": 3
+												},
+												{
+													"children": [
+														{
+															"detail": 0,
+															"format": 0,
+															"mode": "normal",
+															"style": "",
+															"text": "Includes built-in authentication and access control",
+															"type": "text",
+															"version": 1
+														}
+													],
+													"direction": "ltr",
+													"format": "",
+													"indent": 0,
+													"type": "listitem",
+													"version": 1,
+													"value": 4
+												},
+												{
+													"children": [
+														{
+															"detail": 0,
+															"format": 0,
+															"mode": "normal",
+															"style": "",
+															"text": "Offers real-time preview capabilities",
+															"type": "text",
+															"version": 1
+														}
+													],
+													"direction": "ltr",
+													"format": "",
+													"indent": 0,
+													"type": "listitem",
+													"version": 1,
+													"value": 5
+												},
+												{
+													"children": [
+														{
+															"detail": 0,
+															"format": 0,
+															"mode": "normal",
+															"style": "",
+															"text": "Allows for direct integration with your Next.js application",
+															"type": "text",
+															"version": 1
+														}
+													],
+													"direction": "ltr",
+													"format": "",
+													"indent": 0,
+													"type": "listitem",
+													"version": 1,
+													"value": 6
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "list",
+											"version": 1,
+											"listType": "bullet",
+											"start": 1,
+											"tag": "ul"
+										},
+										{
+											"children": [
+												{
+													"detail": 0,
+													"format": 0,
+													"mode": "normal",
+													"style": "",
+													"text": "The learning curve is gentle for developers familiar with Node.js and React, as PayloadCMS follows modern JavaScript patterns and practices. Its admin UI is intuitive and customizable, and the documentation is comprehensive and well-maintained. As a newer project, it benefits from modern architectural decisions and active community development.",
+													"type": "text",
+													"version": 1
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "paragraph",
+											"version": 1,
+											"textFormat": 0,
+											"textStyle": ""
+										}
+									],
+									"direction": "ltr",
+									"format": "",
+									"indent": 0,
+									"type": "root",
+									"version": 1
+								}
+							}
+						},
+						"id": "675ef8d3a0a17846a84c8c2d"
+					}
+				],
+				"calloutLink": {
+					"type": "reference",
+					"reference": {
+						"relationTo": "pages",
+						"value": {
+							"$oid": "6751c7097b4fa22eda751274"
+						}
+					},
+					"label": {
+						"en": "Home",
+						"de": "Home"
+					},
+					"appearance": "default"
+				},
+				"id": "675c19ee822c1774f63aa15d",
+				"blockName": "FAQ Home"
+			}
+		],
+		"meta": {
+			"title": {
+				"en": "Payblocks: shadcn/ui and PayloadCMS website template",
+				"de": "Payblocks: shadcn/ui and PayloadCMS website template"
+			},
+			"description": {
+				"en": "Launch your next web project faster with our Next.js and PayloadCMS starter kit. Get 50+ shadcn/ui components built for modern development.",
+				"de": "Launch your next web project faster with our Next.js and PayloadCMS starter kit. Get 50+ shadcn/ui components built for modern development."
+			}
+		},
+		"slugLock": true,
+		"_status": "published",
+		"createdAt": {
+			"$date": "2024-12-05T15:30:17.854Z"
+		},
+		"updatedAt": {
+			"$date": "2025-01-14T15:01:41.45Z"
+		},
+		"__v": 0,
+		"publishedAt": {
+			"$date": "2024-12-05T15:30:30.384Z"
+		},
+		"slug": "home",
+		"title": "Home"
+	},
+	{
+		"_id": {
+			"$oid": "677feaa45a268d7dae1d5e96"
+		},
+		"hero": {
+			"designVersion": "1",
+			"badge": {
+				"en": "payblocks"
+			},
+			"badgeLink": {
+				"type": "reference"
+			},
+			"richText": {
+				"en": {
+					"root": {
+						"children": [
+							{
+								"children": [
+									{
+										"detail": 0,
+										"format": 0,
+										"mode": "normal",
+										"style": "",
+										"text": "Powerful Features for Modern Web Development",
+										"type": "text",
+										"version": 1
+									}
+								],
+								"direction": "ltr",
+								"format": "",
+								"indent": 0,
+								"type": "heading",
+								"version": 1,
+								"tag": "h1"
+							},
+							{
+								"children": [
+									{
+										"detail": 0,
+										"format": 0,
+										"mode": "normal",
+										"style": "",
+										"text": "Helping developers to build websites in minutes instead of days. - Features",
+										"type": "text",
+										"version": 1
+									}
+								],
+								"direction": "ltr",
+								"format": "",
+								"indent": 0,
+								"type": "paragraph",
+								"version": 1,
+								"textFormat": 0,
+								"textStyle": ""
+							}
+						],
+						"direction": "ltr",
+						"format": "",
+						"indent": 0,
+						"type": "root",
+						"version": 1
+					}
+				}
+			},
+			"links": [
+				{
+					"link": {
+						"type": "reference",
+						"reference": {
+							"relationTo": "pages",
+							"value": {
+								"$oid": "6751c7097b4fa22eda751274"
+							}
+						},
+						"url": {
+							"en": "#6-main-features-0"
+						},
+						"label": {
+							"en": "Features"
+						},
+						"iconAfter": "ArrowDownRight",
+						"appearance": "default"
+					},
+					"id": "67854b0ad9ee4d614548199c"
+				}
+			],
+			"images": [
+				{
+					"$oid": "67854aa6df6014de2143c1f8"
+				}
+			],
+			"USPs": {},
+			"pricing": {}
+		},
+		"meta": {
+			"title": {
+				"en": "Powerful Features To Make Web Development Simple | Payblocks"
+			},
+			"description": {
+				"en": "Discover how Payblocks helps you build websites faster. From visual page building to premium components - streamline your development workflow."
+			}
+		},
+		"slugLock": true,
+		"_status": "published",
+		"layout": [
+			{
+				"blockType": "feature",
+				"designVersion": "FEATURE50",
+				"richText": {
+					"en": {
+						"root": {
+							"children": [
+								{
+									"children": [
+										{
+											"detail": 0,
+											"format": 0,
+											"mode": "normal",
+											"style": "",
+											"text": "Theme Features",
+											"type": "text",
+											"version": 1
+										}
+									],
+									"direction": "ltr",
+									"format": "",
+									"indent": 0,
+									"type": "heading",
+									"version": 1,
+									"tag": "h2"
+								},
+								{
+									"children": [
+										{
+											"detail": 0,
+											"format": 0,
+											"mode": "normal",
+											"style": "",
+											"text": "The Complete Package: Powerful Features That Make Website Development Simple and Fast",
+											"type": "text",
+											"version": 1
+										}
+									],
+									"direction": "ltr",
+									"format": "",
+									"indent": 0,
+									"type": "paragraph",
+									"version": 1,
+									"textFormat": 0,
+									"textStyle": ""
+								}
+							],
+							"direction": "ltr",
+							"format": "",
+							"indent": 0,
+							"type": "root",
+							"version": 1
+						}
+					}
+				},
+				"links": [
+					{
+						"link": {
+							"type": "reference",
+							"reference": {
+								"relationTo": "pages",
+								"value": {
+									"$oid": "6751c7097b4fa22eda751274"
+								}
+							},
+							"label": {
+								"en": "Buy now"
+							},
+							"iconAfter": "ArrowRight",
+							"appearance": "outline"
+						},
+						"id": "677ff0af45217044b7007a16"
+					}
+				],
+				"USPs": [
+					{
+						"tagline": {
+							"en": "Wordpress-like UX"
+						},
+						"richText": {
+							"en": {
+								"root": {
+									"children": [
+										{
+											"children": [
+												{
+													"detail": 0,
+													"format": 0,
+													"mode": "normal",
+													"style": "",
+													"text": "Visual Page Building",
+													"type": "text",
+													"version": 1
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "heading",
+											"version": 1,
+											"tag": "h3"
+										},
+										{
+											"children": [
+												{
+													"detail": 0,
+													"format": 0,
+													"mode": "normal",
+													"style": "",
+													"text": "Watch your pages come to life as you build them. Our visual editor lets you drag and drop components right where you want them. See exactly how everything looks while you work. It's perfect for building pages quickly or showing designs to clients during meetings.",
+													"type": "text",
+													"version": 1
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "paragraph",
+											"version": 1,
+											"textFormat": 0,
+											"textStyle": ""
+										}
+									],
+									"direction": "ltr",
+									"format": "",
+									"indent": 0,
+									"type": "root",
+									"version": 1
+								}
+							}
+						},
+						"USPFeatures": [],
+						"links": [],
+						"link": {
+							"type": "reference",
+							"reference": {
+								"relationTo": "pages",
+								"value": {
+									"$oid": "6751c7097b4fa22eda751274"
+								}
+							},
+							"label": {
+								"en": "Learn more"
+							},
+							"iconAfter": "ChevronRight"
+						},
+						"image": {
+							"$oid": "677ff4d115030d74959b7422"
+						},
+						"id": "677ff0d752388f431652a8af"
+					},
+					{
+						"tagline": {
+							"en": "Content Management System included"
+						},
+						"richText": {
+							"en": {
+								"root": {
+									"children": [
+										{
+											"children": [
+												{
+													"detail": 0,
+													"format": 0,
+													"mode": "normal",
+													"style": "",
+													"text": "PayloadCMS Integration",
+													"type": "text",
+													"version": 1
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "heading",
+											"version": 1,
+											"tag": "h3"
+										},
+										{
+											"children": [
+												{
+													"detail": 0,
+													"format": 0,
+													"mode": "normal",
+													"style": "",
+													"text": "Closing the gap between CMS and Next. You get a clean admin interface that's easy to use, plus all the power of a proper headless CMS. Create custom fields, manage content types, and handle users without any extra setup. It's all ready to go.",
+													"type": "text",
+													"version": 1
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "paragraph",
+											"version": 1,
+											"textFormat": 0,
+											"textStyle": ""
+										}
+									],
+									"direction": "ltr",
+									"format": "",
+									"indent": 0,
+									"type": "root",
+									"version": 1
+								}
+							}
+						},
+						"USPFeatures": [],
+						"links": [],
+						"link": {
+							"type": "reference",
+							"reference": {
+								"relationTo": "pages",
+								"value": {
+									"$oid": "6751c7097b4fa22eda751274"
+								}
+							},
+							"label": {
+								"en": "Learn more"
+							}
+						},
+						"image": {
+							"$oid": "677ff5c715030d74959b74b2"
+						},
+						"id": "677ff0db52388f431652a8b1"
+					},
+					{
+						"tagline": {
+							"en": "shadcn/ui components"
+						},
+						"richText": {
+							"en": {
+								"root": {
+									"children": [
+										{
+											"children": [
+												{
+													"detail": 0,
+													"format": 0,
+													"mode": "normal",
+													"style": "",
+													"text": "50+ Ready-to-Use Components",
+													"type": "text",
+													"version": 1
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "heading",
+											"version": 1,
+											"tag": "h3"
+										},
+										{
+											"children": [
+												{
+													"detail": 0,
+													"format": 0,
+													"mode": "normal",
+													"style": "",
+													"text": "We partnered with shadcnblocks.com to provide you a complete set of premium shadcn/ui components. Every component is production-ready and looks great out of the box. No more rebuilding common elements from scratch.",
+													"type": "text",
+													"version": 1
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "paragraph",
+											"version": 1,
+											"textFormat": 0,
+											"textStyle": ""
+										}
+									],
+									"direction": "ltr",
+									"format": "",
+									"indent": 0,
+									"type": "root",
+									"version": 1
+								}
+							}
+						},
+						"USPFeatures": [],
+						"links": [],
+						"link": {
+							"type": "reference",
+							"reference": {
+								"relationTo": "pages",
+								"value": {
+									"$oid": "6751c7097b4fa22eda751274"
+								}
+							},
+							"label": {
+								"en": "Learn more"
+							}
+						},
+						"image": {
+							"$oid": "67866bb81b1e6cad64d56e7c"
+						},
+						"id": "677ff0dc52388f431652a8b3"
+					},
+					{
+						"tagline": {
+							"en": "No-code theme configuration"
+						},
+						"richText": {
+							"en": {
+								"root": {
+									"children": [
+										{
+											"children": [
+												{
+													"detail": 0,
+													"format": 0,
+													"mode": "normal",
+													"style": "",
+													"text": "Theme Customization",
+													"type": "text",
+													"version": 1
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "heading",
+											"version": 1,
+											"tag": "h3"
+										},
+										{
+											"children": [
+												{
+													"detail": 0,
+													"format": 0,
+													"mode": "normal",
+													"style": "",
+													"text": "Change colors, borders, and spacing without touching code. Our visual theme editor makes it simple to match your brand. It's like having a design system that configures itself.",
+													"type": "text",
+													"version": 1
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "paragraph",
+											"version": 1,
+											"textFormat": 0,
+											"textStyle": ""
+										}
+									],
+									"direction": "ltr",
+									"format": "",
+									"indent": 0,
+									"type": "root",
+									"version": 1
+								}
+							}
+						},
+						"USPFeatures": [],
+						"links": [],
+						"link": {
+							"type": "reference",
+							"reference": {
+								"relationTo": "pages",
+								"value": {
+									"$oid": "6751c7097b4fa22eda751274"
+								}
+							},
+							"label": {
+								"en": "Learn more"
+							}
+						},
+						"image": {
+							"$oid": "677ff7d315030d74959b7648"
+						},
+						"id": "677ff0dd52388f431652a8b5"
+					},
+					{
+						"tagline": {
+							"en": "CLEAN CODE"
+						},
+						"richText": {
+							"en": {
+								"root": {
+									"children": [
+										{
+											"children": [
+												{
+													"detail": 0,
+													"format": 0,
+													"mode": "normal",
+													"style": "",
+													"text": "Built for Real Development",
+													"type": "text",
+													"version": 1
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "heading",
+											"version": 1,
+											"tag": "h3"
+										},
+										{
+											"children": [
+												{
+													"detail": 0,
+													"format": 0,
+													"mode": "normal",
+													"style": "",
+													"text": "Everything's set up the way developers expect.  The project structure is logical, documentation is thorough, and you can extend everything exactly how you need.",
+													"type": "text",
+													"version": 1
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "paragraph",
+											"version": 1,
+											"textFormat": 0,
+											"textStyle": ""
+										}
+									],
+									"direction": "ltr",
+									"format": "",
+									"indent": 0,
+									"type": "root",
+									"version": 1
+								}
+							}
+						},
+						"USPFeatures": [],
+						"links": [],
+						"link": {
+							"type": "reference",
+							"reference": {
+								"relationTo": "pages",
+								"value": {
+									"$oid": "6751c7097b4fa22eda751274"
+								}
+							},
+							"label": {
+								"en": "built for devs"
+							}
+						},
+						"image": {
+							"$oid": "677ff34f15030d74959b70b2"
+						},
+						"id": "677ff1f552388f431652a8b7"
+					},
+					{
+						"tagline": {
+							"en": "PERFORMANCE THROUGH CACHING"
+						},
+						"richText": {
+							"en": {
+								"root": {
+									"children": [
+										{
+											"children": [
+												{
+													"detail": 0,
+													"format": 0,
+													"mode": "normal",
+													"style": "",
+													"text": "Lightning Fast by Default",
+													"type": "text",
+													"version": 1
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "heading",
+											"version": 1,
+											"tag": "h3"
+										},
+										{
+											"children": [
+												{
+													"detail": 0,
+													"format": 0,
+													"mode": "normal",
+													"style": "",
+													"text": "We've configured Next.js for optimal performance, set up proper image optimization, automatic cache invalidation, and ensured components load efficiently. Get excellent Core Web Vitals scores right from the start.",
+													"type": "text",
+													"version": 1
+												}
+											],
+											"direction": "ltr",
+											"format": "",
+											"indent": 0,
+											"type": "paragraph",
+											"version": 1,
+											"textFormat": 0,
+											"textStyle": ""
+										}
+									],
+									"direction": "ltr",
+									"format": "",
+									"indent": 0,
+									"type": "root",
+									"version": 1
+								}
+							}
+						},
+						"USPFeatures": [],
+						"links": [],
+						"link": {
+							"type": "reference",
+							"reference": {
+								"relationTo": "pages",
+								"value": {
+									"$oid": "6751c7097b4fa22eda751274"
+								}
+							},
+							"label": {
+								"en": "Learn more"
+							},
+							"iconAfter": "ChevronRight"
+						},
+						"image": {
+							"$oid": "677ff79815030d74959b752f"
+						},
+						"id": "677ff27752388f431652a8b9"
+					}
+				],
+				"id": "677feed845217044b7007a15",
+				"blockName": "6 main features"
+			},
+			{
+				"blockType": "cta",
+				"designVersion": "CTA10",
+				"richText": {
+					"en": {
+						"root": {
+							"children": [
+								{
+									"children": [
+										{
+											"detail": 0,
+											"format": 0,
+											"mode": "normal",
+											"style": "",
+											"text": "Don't waste time",
+											"type": "text",
+											"version": 1
+										}
+									],
+									"direction": "ltr",
+									"format": "",
+									"indent": 0,
+									"type": "heading",
+									"version": 1,
+									"tag": "h2"
+								},
+								{
+									"children": [
+										{
+											"detail": 0,
+											"format": 0,
+											"mode": "normal",
+											"style": "",
+											"text": "Start your next project with payblocks now and create stunning websites! ",
+											"type": "text",
+											"version": 1
+										}
+									],
+									"direction": "ltr",
+									"format": "",
+									"indent": 0,
+									"type": "paragraph",
+									"version": 1,
+									"textFormat": 0,
+									"textStyle": ""
+								}
+							],
+							"direction": "ltr",
+							"format": "",
+							"indent": 0,
+							"type": "root",
+							"version": 1
+						}
+					}
+				},
+				"links": [
+					{
+						"link": {
+							"type": "custom",
+							"url": {
+								"en": "https://shadcnblocks.com"
+							},
+							"label": {
+								"en": "Buy now $299"
+							},
+							"iconAfter": "ChevronRight",
+							"appearance": "default"
+						},
+						"id": "6787869f909b8bde2cc07b21"
+					},
+					{
+						"link": {
+							"type": "reference",
+							"reference": {
+								"relationTo": "pages",
+								"value": {
+									"$oid": "67641ec66a1a4cc24ad50971"
+								}
+							},
+							"label": {
+								"en": "Contact Us"
+							},
+							"appearance": "outline"
+						},
+						"id": "678786c1909b8bde2cc07b23"
+					}
+				],
+				"id": "677feac8d8d08961d86c23cf",
+				"blockName": "CTA - Don't waste time"
+			}
+		],
+		"createdAt": {
+			"$date": "2025-01-09T15:26:28.539Z"
+		},
+		"updatedAt": {
+			"$date": "2025-01-15T09:59:22.577Z"
+		},
+		"__v": 0,
+		"publishedAt": {
+			"$date": "2025-01-09T15:26:32.48Z"
+		},
+		"slug": "features",
+		"title": "Features"
+	}
+]

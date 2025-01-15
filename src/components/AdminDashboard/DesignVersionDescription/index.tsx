@@ -19,7 +19,7 @@ export const designVersionDescription = (name: string, condition: Condition<any,
     condition,
     components: {
       Field: {
-        path: "@/components/DesignVersionDescription",
+        path: "@/components/AdminDashboard/DesignVersionDescription",
         serverProps: {
           description: {
             en: description?.en,

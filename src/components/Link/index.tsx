@@ -16,11 +16,12 @@ type CMSLinkType = {
     relationTo: 'pages' | 'posts'
     value: Page | Post | string | number
   } | null
+  section?: string | null
   size?: ButtonProps['size'] | null
   type?: 'custom' | 'reference' | null
   url?: string | null
-  iconBefore?: IconType | null
-  iconAfter?: IconType | null
+  iconBefore?: string | null
+  iconAfter?: string | null
   iconClassName?: string
   /**
    * If true, we use the next/link (default behavior).
@@ -39,6 +40,7 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
     label,
     newTab,
     reference,
+    section,
     size: sizeFromProps,
     url,
     iconBefore,
@@ -47,10 +49,15 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
     withAnchor = true,
   } = props
 
-  const href =
+  let href =
     type === 'reference' && typeof reference?.value === 'object' && reference.value.slug
       ? `${reference?.relationTo !== 'pages' ? `/${reference?.relationTo}` : ''}/${reference.value.slug}`
       : url
+
+  if (type === 'reference' && section) {
+    href += `#${section}`
+  }
+
 
   if (!href) return null
 

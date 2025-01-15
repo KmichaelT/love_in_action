@@ -176,7 +176,6 @@ export const ThemeColorHelper: React.FC<{}> = () => {
 
 
         hoveredElement.style.outline = `2px solid ${highlightColor}`
-        console.log('Hovered Element Classes:', c);
         popover = document.createElement('div')
         popover.style.background = "red"
         popover.style.color = "black"
@@ -188,7 +187,6 @@ export const ThemeColorHelper: React.FC<{}> = () => {
         document.body.appendChild(popover)
         placeElementAbove(hoveredElement, popover, -2, -8)
         prevHoveredElement = hoveredElement
-        console.log("popover", popover)
         setTimeout(() => {
           hoveredElement.style.outline = 'none'
           if (popover) {
@@ -261,7 +259,6 @@ export const ThemeColorHelper: React.FC<{}> = () => {
 
 
       const over = (event) => {
-        console.log(event)
         color.style.border = '1px solid #f0f'
         label.style.color = '#f0f'
         const newThemeConfig = themeConfigElement?.innerHTML?.replace(`${name}: ${value}`, `${name}: #f0f`)
@@ -270,7 +267,6 @@ export const ThemeColorHelper: React.FC<{}> = () => {
         }
       }
       const out = (event) => {
-        console.log(event)
         color.style.border = '1px solid white'
         label.style.color = 'black'
         const newThemeConfig = themeConfigElement?.innerHTML?.replace(`${name}: #f0f`, `${name}: ${value}`)

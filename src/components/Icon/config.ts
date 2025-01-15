@@ -1,15 +1,14 @@
-import * as lucide from "lucide-react";
-import { SelectField } from 'payload';
+import { TextField } from 'payload';
 
-export const icon: SelectField = {
-  type: "select",
+export const icon: TextField = {
+  type: 'text',
   name: "icon",
-  options: Object.keys(lucide).filter((v) => !["default", "icons"].includes(v) && !v.startsWith("Lucide") && !v.endsWith("Icon")),
-  // TODO add components to show Icon in admin dashboard once docs for this are ready
-  // admin: {
-  //   components: {
-  //     Cell,
-  //     Field
-  //   }
-  // }
+  admin: {
+    width: '50%',
+    components: {
+      Field: {
+        path: '@/components/AdminDashboard/IconSelect',
+      }
+    },
+  },
 }
