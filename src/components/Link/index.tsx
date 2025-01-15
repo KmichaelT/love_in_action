@@ -20,8 +20,8 @@ type CMSLinkType = {
   size?: ButtonProps['size'] | null
   type?: 'custom' | 'reference' | null
   url?: string | null
-  iconBefore?: IconType | null
-  iconAfter?: IconType | null
+  iconBefore?: string | null
+  iconAfter?: string | null
   iconClassName?: string
   /**
    * If true, we use the next/link (default behavior).
