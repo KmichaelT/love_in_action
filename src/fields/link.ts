@@ -110,6 +110,18 @@ export const link: LinkType = ({
       required: true,
     },
     {
+      name: 'section',
+      type: 'text', // or 'text' if you have dynamic options
+      admin: {
+        condition: (_, siblingData) => siblingData?.type === 'reference',
+        components: {
+          Field: {
+            path: '@/components/AdminDashboard/SectionSelect',
+          }
+        },
+      },
+    },
+    {
       name: 'url',
       type: 'text',
       admin: {

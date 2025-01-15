@@ -16,6 +16,7 @@ const turnstileProtectedRoute = (routeHandler: (req: Request, params: ParamsProm
     if (TURNSTILE_PROTECTED_SLUGS.includes(slug[0])) {
       const turnstileToken = req.headers.get('cf-turnstile-token')
       if (!turnstileToken) {
+        console.error('No turnstile token provided')
         return new Response(JSON.stringify({ errors: [{ message: 'Bot protection could not verify that you are a real human. Turnstile token is required.' }], status: 400 }), { status: 400 })
       }
       const turnstileResponse = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
@@ -37,6 +38,6 @@ const turnstileProtectedRoute = (routeHandler: (req: Request, params: ParamsProm
 
 export const GET = REST_GET(config);
 export const OPTIONS = REST_OPTIONS(config);
-export const POST = turnstileProtectedRoute(REST_POST(config))
-export const DELETE = turnstileProtectedRoute(REST_DELETE(config))
-export const PATCH = turnstileProtectedRoute(REST_PATCH(config));
+export const POST = turnstileProtectedRoute(REST_POST(config));
+export const DELETE = REST_DELETE(config);
+export const PATCH = REST_PATCH(config);

@@ -13,7 +13,7 @@ import {
   UnorderedListFeature,
 } from '@payloadcms/richtext-lexical'
 import { Block } from 'payload'
-import { designVersionDescription } from '@/components/DesignVersionDescription'
+import { designVersionDescription } from '@/components/AdminDashboard/DesignVersionDescription'
 import { backgroundColor } from '@/fields/color'
 
 export const allFeatureDesignVersions = [

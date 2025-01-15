@@ -149,7 +149,7 @@ export const RenderBlocks: React.FC<{
 
             if (Block) {
               return (
-                <div key={index} className={className}>
+                <div key={index} className={className} id={block.id || undefined}>
                   <Block {...block} />
                 </div>
               )

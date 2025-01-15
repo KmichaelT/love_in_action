@@ -16,6 +16,7 @@ type CMSLinkType = {
     relationTo: 'pages' | 'posts'
     value: Page | Post | string | number
   } | null
+  section?: string | null
   size?: ButtonProps['size'] | null
   type?: 'custom' | 'reference' | null
   url?: string | null
@@ -31,6 +32,7 @@ type CMSLinkType = {
 }
 
 export const CMSLink: React.FC<CMSLinkType> = (props) => {
+  console.dir(props, { depth: 1 })
   const {
     type,
     appearance = 'inline',
@@ -39,6 +41,7 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
     label,
     newTab,
     reference,
+    section,
     size: sizeFromProps,
     url,
     iconBefore,
@@ -47,10 +50,15 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
     withAnchor = true,
   } = props
 
-  const href =
+  let href =
     type === 'reference' && typeof reference?.value === 'object' && reference.value.slug
       ? `${reference?.relationTo !== 'pages' ? `/${reference?.relationTo}` : ''}/${reference.value.slug}`
       : url
+
+  if (type === 'reference' && section) {
+    href += `#${section}`
+  }
+
 
   if (!href) return null
 
