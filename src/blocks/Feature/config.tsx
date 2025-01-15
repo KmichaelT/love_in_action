@@ -2,7 +2,6 @@ import { icon } from '@/components/Icon/config'
 import { linkGroup } from '@/fields/linkGroup'
 import { link } from '@/fields/link'
 
-
 import {
   FixedToolbarFeature,
   HeadingFeature,
@@ -150,7 +149,9 @@ export const FeatureBlock: Block = {
       localized: true,
       admin: {
         condition: (_, { designVersion } = {}) =>
-          ['FEATURE1', 'FEATURE2', 'FEATURE3', 'FEATURE4', 'FEATURE5', 'FEATURE6'].includes(designVersion),
+          ['FEATURE1', 'FEATURE2', 'FEATURE3', 'FEATURE4', 'FEATURE5', 'FEATURE6'].includes(
+            designVersion,
+          ),
       },
     },
     {
@@ -159,7 +160,7 @@ export const FeatureBlock: Block = {
       localized: true,
       admin: {
         condition: (_, { designVersion } = {}) =>
-          ['FEATURE99', 'FEATURE103'].includes(designVersion),
+          ['FEATURE99', 'FEATURE103', 'FEATURE25'].includes(designVersion),
       },
     },
     {
@@ -266,26 +267,20 @@ export const FeatureBlock: Block = {
     },
 
     designVersionDescription(
-      "description3",
-      (_, { designVersion } = {}) =>
-        [
-          'FEATURE3',
-        ].includes(designVersion),
+      'description3',
+      (_, { designVersion } = {}) => ['FEATURE3'].includes(designVersion),
       {
-        en: "You have feature 3 selected",
-        de: "Du hast feature 3 ausgewählt",
-      }
+        en: 'You have feature 3 selected',
+        de: 'Du hast feature 3 ausgewählt',
+      },
     ),
     designVersionDescription(
-      "description91",
-      (_, { designVersion } = {}) =>
-        [
-          'FEATURE91',
-        ].includes(designVersion),
+      'description91',
+      (_, { designVersion } = {}) => ['FEATURE91'].includes(designVersion),
       {
-        en: "You need to have exactly two USPs for FEATURE 91 block to work",
-        de: "Du musst genau zwei USPs haben, damit dieser Block funktioniert",
-      }
+        en: 'You need to have exactly two USPs for FEATURE 91 block to work',
+        de: 'Du musst genau zwei USPs haben, damit dieser Block funktioniert',
+      },
     ),
 
     {
@@ -359,7 +354,7 @@ export const FeatureBlock: Block = {
               const designVersion = data.layout.find(
                 (block) => block.blockType === 'feature',
               ).designVersion
-              return ['FEATURE117'].includes(designVersion)
+              return ['FEATURE50', 'FEATURE117', 'FEATURE53'].includes(designVersion)
             },
           },
         },
@@ -367,6 +362,25 @@ export const FeatureBlock: Block = {
           name: 'richText',
           type: 'richText',
           localized: true,
+          admin: {
+            condition: (data, siblingData) => {
+              // Get all feature blocks
+              const featureBlocks = data.layout?.filter(
+                (block) => block.blockType === 'feature'
+              ) || []
+
+              // Find the feature block that contains our current USP
+              const currentFeatureBlock = featureBlocks.find(block => 
+                block.USPs?.some(usp => 
+                  // Compare USP fields to identify the current one
+                  usp.tagline === siblingData.tagline &&
+                  usp.image === siblingData.image
+                )
+              )
+
+              return !currentFeatureBlock || !['FEATURE53'].includes(currentFeatureBlock.designVersion)
+            },
+          },
           editor: lexicalEditor({
             features: ({ rootFeatures }) => {
               return [
@@ -390,16 +404,47 @@ export const FeatureBlock: Block = {
           type: 'array',
           admin: {
             description: 'USPs can feature 1 or many features, with icon and richText',
-            condition: (data, _) => {
-              const designVersion = data.layout.find(
-                (block) => block.blockType === 'feature',
-              ).designVersion
-              return ['FEATURE19', 'FEATURE22', 'FEATURE25', 'FEATURE91'].includes(designVersion)
+            condition: (data, siblingData) => {
+              // Get all feature blocks
+              const featureBlocks = data.layout?.filter(
+                (block) => block.blockType === 'feature'
+              ) || []
+
+              // Find the feature block that contains our current USP
+              const currentFeatureBlock = featureBlocks.find(block => 
+                block.USPs?.some(usp => 
+                  // Compare USP fields to identify the current one
+                  usp.tagline === siblingData.tagline &&
+                  usp.image === siblingData.image
+                )
+              )
+
+              return currentFeatureBlock && ['FEATURE19', 'FEATURE22', 'FEATURE25', 'FEATURE91'].includes(currentFeatureBlock.designVersion)
             },
           },
           fields: [
             {
               ...icon,
+              admin: {
+                condition: (data, siblingData) => {
+                  // Get all feature blocks
+                  const featureBlocks = data.layout?.filter(
+                    (block) => block.blockType === 'feature'
+                  ) || []
+
+                  // Find the feature block that contains our current USP
+                  const currentFeatureBlock = featureBlocks.find(block => 
+                    block.USPs?.some(usp => 
+                      // Compare USP fields to identify the current one
+                      usp.tagline === siblingData.tagline &&
+                      usp.image === siblingData.image
+                    )
+                  )
+
+                  // Show icon for all features except feature25
+                  return currentFeatureBlock && !['FEATURE25'].includes(currentFeatureBlock.designVersion)
+                },
+              },
             },
             {
               name: 'richText',
@@ -452,7 +497,9 @@ export const FeatureBlock: Block = {
               ).designVersion
               return [
                 'FEATURE3',
+                'FEATURE50',
                 'FEATURE51',
+                'FEATURE53',
                 'FEATURE102',
                 'FEATURE66',
                 'FEATURE70',
