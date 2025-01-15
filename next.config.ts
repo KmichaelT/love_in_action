@@ -24,27 +24,27 @@ const nextConfig: NextConfig = {
     ],
   },
   reactStrictMode: true,
-  redirects: async () => {
-    return [
-      {
-        destination: '/ie-incompatible.html',
-        has: [
-          {
-            type: 'header',
-            key: 'user-agent',
-            value: '(.*Trident.*)', // all ie browsers
-          },
-        ],
-        permanent: false,
-        source: '/:path((?!ie-incompatible.html$).*)', // all pages except the incompatibility page
-      },
-      // {
-      //   source: '/:locale/home',
-      //   destination: `/:locale`,
-      //   permanent: true,
-      // },
-    ]
-  },
+  // redirects: async () => {
+  //   return [
+  //     {
+  //       destination: '/ie-incompatible.html',
+  //       has: [
+  //         {
+  //           type: 'header',
+  //           key: 'user-agent',
+  //           value: '(.*Trident.*)', // all ie browsers
+  //         },
+  //       ],
+  //       permanent: false,
+  //       source: '/:path((?!ie-incompatible.html$).*)', // all pages except the incompatibility page
+  //     },
+  //     // {
+  //     //   source: '/:locale/home',
+  //     //   destination: `/:locale`,
+  //     //   permanent: true,
+  //     // },
+  //   ]
+  // },
   rewrites: async () => {
     const { locales, defaultLocale } = localization;
     const nonDefaultLocales = locales.filter(locale => locale !== defaultLocale);
