@@ -45,38 +45,49 @@ const nextConfig: NextConfig = {
   //     // },
   //   ]
   // },
-  rewrites: async () => {
-    const { locales, defaultLocale } = localization;
-    const nonDefaultLocales = locales.filter(locale => locale !== defaultLocale);
-    const protectedPath = [...nonDefaultLocales, 'home', 'api', 'admin', '_next'];
-    if (nonDefaultLocales.length > 0) {
-      return [
-        {
-          source: '/',
-          destination: `/${defaultLocale}/home`,
-        },
-        {
-          source: `/:locale(${nonDefaultLocales.join('|')})`,
-          destination: `/:locale/home`,
-        },
-        {
-          source: `/:path((?!${protectedPath.join('|')}).*)`,
-          destination: `/${defaultLocale}/:path`,
-        },
-      ]
-    } else {
-      return [
-        {
-          source: '/',
-          destination: `/${defaultLocale}/home`,
-        },
-        {
-          source: `/:path.*`,
-          destination: `/${defaultLocale}/:path`,
-        },
-      ]
-    }
-  },
+  // rewrites: async () => {
+  //   const { locales, defaultLocale } = localization;
+  //   const nonDefaultLocales = locales.filter(locale => locale !== defaultLocale);
+  //   const protectedPath = [...nonDefaultLocales, 'home', 'api', 'admin', '_next'];
+  //   if (nonDefaultLocales.length > 0) {
+  //     return [
+  //       // /*  
+  //       // / --> /en/home 
+  //       // */
+  //       // {
+  //       //   source: '/',
+  //       //   destination: `/${defaultLocale}/home`,
+  //       // },
+  //       // /*
+  //       // /(de|es) --> /(de|es)/home
+  //       // */
+  //       // {
+  //       //   source: `/:locale(${nonDefaultLocales.join('|')})`,
+  //       //   destination: `/:locale/home`,
+  //       // },
+
+
+  //       /*
+  //       /:xyz(!de|es) --> /en/:xyz
+  //       */
+  //       {
+  //         source: `/:path((?!${protectedPath.join('|')}).*)`,
+  //         destination: `/${defaultLocale}/:path`,
+  //       },
+  //     ]
+  //   } else {
+  //     return [
+  //       {
+  //         source: '/',
+  //         destination: `/${defaultLocale}/home`,
+  //       },
+  //       {
+  //         source: `/:path.*`,
+  //         destination: `/${defaultLocale}/:path`,
+  //       },
+  //     ]
+  //   }
+  // },
   poweredByHeader: false,
 
 }

@@ -2,6 +2,7 @@ import { LocalizationConfig } from "payload";
 
 // You need to restart the development server after changing this file
 export const locales = ['en', 'de'] as const;
+export type Locale = typeof locales[number];
 
 const localization: LocalizationConfig = {
   locales: [...locales],
