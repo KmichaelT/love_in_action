@@ -27,6 +27,7 @@ const SectionSelect: React.FC<CustomSelectProps> = ({ path, options }) => {
     if (!initialRender) {
       setValue("")
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formState?.reference?.value])
 
   if (!formState?.reference?.value) {

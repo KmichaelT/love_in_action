@@ -6,6 +6,11 @@ import localization from './src/localization.config'
 export const NEXT_PUBLIC_SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000')
 
 const nextConfig: NextConfig = {
+  experimental: {
+    staticGenerationRetryCount: 1,
+    staticGenerationMaxConcurrency: 8,
+    staticGenerationMinPagesPerWorker: 25,
+  },
   images: {
     remotePatterns: [
       ...[new URL(NEXT_PUBLIC_SERVER_URL)].map((item) => {
