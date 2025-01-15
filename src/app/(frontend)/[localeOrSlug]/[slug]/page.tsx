@@ -95,7 +95,7 @@ export default async function Page(props: Args) {
 
   let page: PageType | null
 
-  page = await queryPageByParams({
+  page = await queryPageBySlug({
     slug,
     locale
   })
@@ -120,14 +120,14 @@ export default async function Page(props: Args) {
 
 export async function generateMetadata(props: Args): Promise<Metadata> {
   const { locale, slug } = await resolveParams(props);
-  const page = await queryPageByParams({
+  const page = await queryPageBySlug({
     slug,
     locale
   })
   return generateMeta({ doc: page })
 }
 
-const queryPageByParams = cache(async ({ slug, locale }: { slug: string, locale: string }) => {
+const queryPageBySlug = cache(async ({ slug, locale }: { slug: string, locale: string }) => {
   const { isEnabled: draft } = await draftMode()
 
   const payload = await getPayload({ config: configPromise })
