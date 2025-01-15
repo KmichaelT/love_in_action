@@ -13,6 +13,7 @@ import { RenderHero } from '@/heros/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { notFound } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -50,7 +51,7 @@ type Args = {
 }
 
 export default async function Page({ params: paramsPromise }: Args) {
-  const { slug = 'home', locale } = await paramsPromise
+  const { slug = "home", locale } = await paramsPromise
   const url = '/' + slug
 
   let page: PageType | null
