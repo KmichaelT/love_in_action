@@ -39,11 +39,6 @@ const nextConfig: NextConfig = {
         source: '/:path((?!ie-incompatible.html$).*)', // all pages except the incompatibility page
       },
       {
-        source: '/home',
-        destination: `/`,
-        permanent: true,
-      },
-      {
         source: '/:locale/home',
         destination: `/:locale`,
         permanent: true,
@@ -53,7 +48,7 @@ const nextConfig: NextConfig = {
   rewrites: async () => {
     const { locales, defaultLocale } = localization;
     const nonDefaultLocales = locales.filter(locale => locale !== defaultLocale);
-    const protectedPath = [...nonDefaultLocales, 'api', 'admin', '_next'];
+    const protectedPath = [...nonDefaultLocales, 'home', 'api', 'admin', '_next'];
     if (nonDefaultLocales.length > 0) {
       return [
         {
