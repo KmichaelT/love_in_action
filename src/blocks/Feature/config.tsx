@@ -159,7 +159,7 @@ export const FeatureBlock: Block = {
       localized: true,
       admin: {
         condition: (_, { designVersion } = {}) =>
-          ['FEATURE99', 'FEATURE103'].includes(designVersion),
+          ['FEATURE99', 'FEATURE103', 'FEATURE25'].includes(designVersion),
       },
     },
     {
@@ -390,16 +390,47 @@ export const FeatureBlock: Block = {
           type: 'array',
           admin: {
             description: 'USPs can feature 1 or many features, with icon and richText',
-            condition: (data, _) => {
-              const designVersion = data.layout.find(
-                (block) => block.blockType === 'feature',
-              ).designVersion
-              return ['FEATURE19', 'FEATURE22', 'FEATURE25', 'FEATURE91'].includes(designVersion)
+            condition: (data, siblingData) => {
+              // Get all feature blocks
+              const featureBlocks = data.layout?.filter(
+                (block) => block.blockType === 'feature'
+              ) || []
+
+              // Find the feature block that contains our current USP
+              const currentFeatureBlock = featureBlocks.find(block => 
+                block.USPs?.some(usp => 
+                  // Compare USP fields to identify the current one
+                  usp.tagline === siblingData.tagline &&
+                  usp.image === siblingData.image
+                )
+              )
+
+              return currentFeatureBlock && ['FEATURE19', 'FEATURE22', 'FEATURE25', 'FEATURE91'].includes(currentFeatureBlock.designVersion)
             },
           },
           fields: [
             {
               ...icon,
+              admin: {
+                condition: (data, siblingData) => {
+                  // Get all feature blocks
+                  const featureBlocks = data.layout?.filter(
+                    (block) => block.blockType === 'feature'
+                  ) || []
+
+                  // Find the feature block that contains our current USP
+                  const currentFeatureBlock = featureBlocks.find(block => 
+                    block.USPs?.some(usp => 
+                      // Compare USP fields to identify the current one
+                      usp.tagline === siblingData.tagline &&
+                      usp.image === siblingData.image
+                    )
+                  )
+
+                  // Show icon for all features except feature25
+                  return currentFeatureBlock && !['FEATURE25'].includes(currentFeatureBlock.designVersion)
+                },
+              },
             },
             {
               name: 'richText',
