@@ -1,10 +1,9 @@
 "use client"
 import * as React from 'react';
-import { SelectInput, useAuth, useField, useFormFields, useWatchForm } from '@payloadcms/ui';
-import { useEffect, useRef, useState } from 'react';
+import { SelectInput, useField } from '@payloadcms/ui';
 import * as lucide from "lucide-react";
 import { Icon } from '@/components/Icon';
-import { Field, OptionObject } from 'payload';
+import { OptionObject } from 'payload';
 
 export type OptionsData = Record<string, {
   label: string;

@@ -1,7 +1,7 @@
 "use client"
 import * as React from 'react';
-import { SelectInput, useAuth, useField, useFormFields, useWatchForm } from '@payloadcms/ui';
-import { useEffect, useRef, useState } from 'react';
+import { SelectInput, useField, useWatchForm } from '@payloadcms/ui';
+import { useEffect, useState } from 'react';
 
 export type OptionsData = Record<string, {
   label: string;
