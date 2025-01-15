@@ -74,8 +74,6 @@ export async function GET(
       return new Response('You are not allowed to preview this page', { status: 403 })
     }
 
-    console.log("locale", locale, "collection", collection, "slug", slug, "path", path)
-
     // Verify the given slug exists
     try {
       const docs = await payload.find({
@@ -89,8 +87,6 @@ export async function GET(
           },
         },
       })
-
-      console.log("docs", docs)
 
       if (!docs.docs.length) {
         return new Response('Document not found', { status: 404 })

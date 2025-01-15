@@ -32,7 +32,6 @@ type CMSLinkType = {
 }
 
 export const CMSLink: React.FC<CMSLinkType> = (props) => {
-  console.dir(props, { depth: 1 })
   const {
     type,
     appearance = 'inline',

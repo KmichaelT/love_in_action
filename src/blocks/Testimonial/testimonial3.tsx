@@ -3,7 +3,6 @@ import RichText from '@/components/RichText';
 import { TestimonialBlock } from '@/payload-types';
 
 const Testimonial3: React.FC<TestimonialBlock> = ({ headline, link, tagline, testimonial }) => {
-  console.log(testimonial)
   return (
     <section className="py-32">
       <div className="container">

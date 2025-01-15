@@ -23,7 +23,6 @@ type CustomSelectProps = {
 const keys = Object.keys(lucide).filter((v) => !["default", "icons"].includes(v) && !v.startsWith("Lucide") && !v.endsWith("Icon"));
 
 const IconSelect: React.FC<CustomSelectProps> = (props) => {
-  console.dir(props, { depth: 1 })
   const { path, field } = props;
   const { value, setValue, } = useField<string>({ path })
 
