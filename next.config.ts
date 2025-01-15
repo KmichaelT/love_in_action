@@ -38,11 +38,11 @@ const nextConfig: NextConfig = {
         permanent: false,
         source: '/:path((?!ie-incompatible.html$).*)', // all pages except the incompatibility page
       },
-      {
-        source: '/:locale/home',
-        destination: `/:locale`,
-        permanent: true,
-      },
+      // {
+      //   source: '/:locale/home',
+      //   destination: `/:locale`,
+      //   permanent: true,
+      // },
     ]
   },
   rewrites: async () => {
