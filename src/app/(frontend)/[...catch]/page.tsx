@@ -1,21 +1,10 @@
-import Link from 'next/link'
-import React from 'react'
+import { notFound } from 'next/navigation';
 
-import { Button } from '@/components/ui/button'
+// TODO: Check if this page is cached and will bloat the cache. Maybe redirects are better
+// For the moment we add force-dynamic and hope it will avoid caching
+export const dynamic = 'force-dynamic';
 
 export default function NotFound() {
-  return (
-    <div className="container py-28">
-      <div className="prose max-w-none">
-        <h1 style={{ marginBottom: 0 }}>404</h1>
-        <p className="mb-4">This page could not be found.</p>
-        <span className='text-sm text-gray-500'>
-          (catch)
-        </span>
-      </div>
-      <Button asChild variant="default">
-        <Link href="/">Go home</Link>
-      </Button>
-    </div>
-  )
+  console.warn('catch all route triggered not found');
+  notFound();
 }
