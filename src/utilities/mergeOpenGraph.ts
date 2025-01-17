@@ -4,21 +4,15 @@ import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
 const defaultOpenGraph: Metadata['openGraph'] = {
   type: 'website',
   description: 'An open-source website built with Payload and Next.js.',
-  images: [
-    {
-      url: NEXT_PUBLIC_SERVER_URL
-        ? `${NEXT_PUBLIC_SERVER_URL}/website-template-OG.webp`
-        : '/website-template-OG.webp',
-    },
-  ],
   siteName: 'Payload Website Template',
   title: 'Payload Website Template',
 }
 
 export const mergeOpenGraph = (og?: Metadata['openGraph']): Metadata['openGraph'] => {
-  return {
-    ...defaultOpenGraph,
-    ...og,
-    images: og?.images ? og.images : defaultOpenGraph.images,
+  const mergedOG = { ...defaultOpenGraph, ...og }
+  // Prevent setting images: undefined, as this would prevent next.js from setting the automatically generated image url
+  if (!mergedOG.images) {
+    delete mergedOG.images
   }
+  return mergedOG
 }

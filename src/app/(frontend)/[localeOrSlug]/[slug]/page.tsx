@@ -43,14 +43,14 @@ export async function generateStaticParams() {
   return params
 }
 
-type Args = {
+export type Args = {
   params: Promise<{
     slug?: string
-    localeOrSlug: string
+    localeOrSlug?: string
   }>
 }
 
-async function resolveParams(props: Args) {
+export async function resolveParams(props: Args) {
   const { slug: slugRaw, localeOrSlug } = await props.params;
   // We do not want to serve under default locale. Default locale should run directly under /
   if (localeOrSlug === localization.defaultLocale) {
@@ -124,10 +124,10 @@ export async function generateMetadata(props: Args): Promise<Metadata> {
     slug,
     locale
   })
-  return generateMeta({ doc: page })
+  return generateMeta({ doc: page, slug })
 }
 
-const queryPageBySlug = cache(async ({ slug, locale }: { slug: string, locale: string }) => {
+export const queryPageBySlug = cache(async ({ slug, locale }: { slug: string, locale: string }) => {
   const { isEnabled: draft } = await draftMode()
 
   const payload = await getPayload({ config: configPromise })
