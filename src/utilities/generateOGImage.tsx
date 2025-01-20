@@ -24,12 +24,11 @@ export default async function generateOGImage(props: Args) {
    * opengraph-image on root layer is behaviour differently than page.tsx.. props.params is undefined
    * so we have to add it manually
    */
-  let props2 = props
-  if (!props2.params) {
-    props2 = {
-      ...props,
-      params: Promise.resolve({}),
-    }
+  const props2: Args = {
+    params: props?.params || Promise.resolve({
+      slug: undefined,
+      localeOrSlug: undefined
+    }),
   }
 
   const { locale, slug } = await resolveParams(props2)
