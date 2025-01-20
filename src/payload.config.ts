@@ -32,6 +32,7 @@ import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
 import Users from './collections/Users'
+import Roles from './collections/Roles'
 import { seedHandler } from './endpoints/seedHandler'
 import { Footer } from './globals/Footer/config'
 import { Header } from './globals/Header/config'
@@ -44,6 +45,8 @@ import { searchFields } from '@/search/fieldOverrides'
 import { beforeSyncWithSearch } from '@/search/beforeSync'
 import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
 import localization from './localization.config'
+import { initializeRoles } from './utilities/initRoles'
+import { isAdminHidden } from './access/isAdmin'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -56,13 +59,20 @@ const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
   return doc?.slug ? `${NEXT_PUBLIC_SERVER_URL!}/${doc.slug}` : NEXT_PUBLIC_SERVER_URL!
 }
 
+/**
+ * Only show the google login button if the client id and secret are set
+ */
+const googleAuthActive = !!(
+  process.env.GOOGLE_LOGIN_CLIENT_ID && process.env.GOOGLE_LOGIN_CLIENT_SECRET
+)
+
 export default buildConfig({
   admin: {
     components: {
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below and the import `BeforeLogin` statement on line 15.
       beforeLogin: ['@/components/AdminDashboard/BeforeLogin'],
-      afterLogin: ['@/components/AdminDashboard/LoginButton'],
+      afterLogin: googleAuthActive ? ['@/components/AdminDashboard/LoginButton'] : [],
       // The `BeforeDashboard` component renders the 'welcome' block that you see after logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below and the import `BeforeDashboard` statement on line 15.
       beforeDashboard: ['@/components/AdminDashboard/BeforeDashboard'],
@@ -137,7 +147,7 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.MONGODB_URI || '',
   }),
-  collections: [Pages, Posts, Media, Categories, Users],
+  collections: [Pages, Posts, Media, Categories, Users, Roles],
   cors: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
   csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
   endpoints: [
@@ -205,11 +215,22 @@ export default buildConfig({
           })
         },
       },
+      formSubmissionOverrides: {
+        admin: {
+          description: {
+            de: 'Formularübermittlungen, die von Formularen im Frontend gesammelt wurden',
+            en: 'Form submissions that got collected by forms in the frontend',
+          },
+        },
+      },
     }),
     searchPlugin({
       collections: ['pages'],
       beforeSync: beforeSyncWithSearch,
       searchOverrides: {
+        admin: {
+          hidden: isAdminHidden,
+        },
         fields: ({ defaultFields }) => {
           return [...defaultFields, ...searchFields]
         },
@@ -222,11 +243,11 @@ export default buildConfig({
       token: process.env.BLOB_READ_WRITE_TOKEN || '',
     }),
     OAuth2Plugin({
-      enabled: true,
+      enabled: googleAuthActive,
       strategyName: 'google',
       useEmailAsIdentity: true,
       serverURL: NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
-      authCollection: 'users', // assuming you already have a users collection with auth enabled
+      authCollection: 'users',
       clientId: process.env.GOOGLE_LOGIN_CLIENT_ID || '',
       clientSecret: process.env.GOOGLE_LOGIN_CLIENT_SECRET || '',
       tokenEndpoint: 'https://oauth2.googleapis.com/token',
@@ -244,11 +265,20 @@ export default buildConfig({
         if (!user.email_verified) {
           throw new Error('Email not verified')
         }
-        // currently, we just allow users with trieb.work domain to login. We need to add different user groups before we can allow other domains
-        if (!user.email.endsWith('@trieb.work')) {
+        /**
+         * Set your own allowed email domains here if needed to limit access
+         * to payload for specific email domains
+         */
+        const allowedDomains = process.env.ALLOWED_EMAIL_DOMAINS?.split(',')
+        if (allowedDomains && !allowedDomains.includes(user.email.split('@')[1])) {
           throw new Error('Email domain not allowed')
         }
-        return { email: user.email, sub: user.sub, name: user.name }
+
+        return {
+          email: user.email,
+          sub: user.sub,
+          name: user.name,
+        }
       },
       successRedirect: (req) => {
         return '/admin'
@@ -263,6 +293,12 @@ export default buildConfig({
   sharp,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
+  },
+  onInit: async (payload) => {
+    /**
+     * Add the default roles if needed on system startup
+     */
+    await initializeRoles(payload)
   },
   // Enable localization for the website
   localization,
