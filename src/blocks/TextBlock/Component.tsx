@@ -8,7 +8,7 @@ export const TextBlock: React.FC<TextBlockProps> = (props) => {
 
   return (
     <div className="container my-16">
-      <div className="max-w-3xl mx-auto">
+      <div className="w-full">
         {content && <RichText content={content} />}
         <div className="flex flex-col gap-2 sm:flex-row">
           {Array.isArray(links) &&

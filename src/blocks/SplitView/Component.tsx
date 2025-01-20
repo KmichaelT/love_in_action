@@ -23,7 +23,7 @@ export const SplitViewBlock: React.FC<Props> = (props) => {
 
   return (
     <section className="w-full py-16 overflow-x-hidden">
-      <div className="container px-4 md:px-6">
+      <div className="container">
         <div className="grid grid-cols-12 gap-4 md:gap-8">
           {columns.map((column, index) => {
             /**
