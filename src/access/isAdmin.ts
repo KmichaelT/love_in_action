@@ -13,22 +13,14 @@ const checkAdminRole = (user: User | null): boolean => {
 }
 
 export const isAdmin: Access = ({ req: { user } }) => {
-  return checkAdminRole(user);
+  return checkAdminRole(user as User | null);
 }
 
 export const isAdminFieldLevel: FieldAccess = ({ req: { user } }) => {
-  return checkAdminRole(user);
+  return checkAdminRole(user as User | null);
 }
 
-type AdminUIArgs = {
-  user: User | null;
-}
-
-/**
- * Function to hide admin UI elements from non-admin users
- * Returns true to hide the element from non-admins
- * Returns false to show the element to admins
- */
-export const isAdminHidden = (args: AdminUIArgs): boolean => {
-  return !checkAdminRole(args.user);
+// For Payload admin UI and frontend components
+export const isAdminHidden = ({ user }: { user: User }): boolean => {
+  return !checkAdminRole(user);
 }

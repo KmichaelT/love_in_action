@@ -68,14 +68,16 @@ const googleAuthActive = !!(
 
 export default buildConfig({
   admin: {
+    autoLogin: process.env.NEXT_PUBLIC_ENABLE_AUTOLOGIN === 'true' ? {
+      email: 'test@trieb.work',
+      password: 'test1234',
+    } : false,
     components: {
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below and the import `BeforeLogin` statement on line 15.
       beforeLogin: ['@/components/AdminDashboard/BeforeLogin'],
       afterLogin: googleAuthActive ? ['@/components/AdminDashboard/LoginButton'] : [],
-      // The `BeforeDashboard` component renders the 'welcome' block that you see after logging into your admin panel.
-      // Feel free to delete this at any time. Simply remove the line below and the import `BeforeDashboard` statement on line 15.
-      beforeDashboard: ['@/components/AdminDashboard/BeforeDashboard'],
+      afterDashboard: ['@/components/AdminDashboard/BackupDashboard'],
     },
     importMap: {
       baseDir: path.resolve(dirname),

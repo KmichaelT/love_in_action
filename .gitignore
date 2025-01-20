@@ -13,5 +13,4 @@ tsconfig.tsbuildinfo
 .env*.local
 
 dump
-backup
 src/payload-types.ts

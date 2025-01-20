@@ -1,0 +1,48 @@
+@import '~@payloadcms/ui/scss';
+
+.backup-dashboard {
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  margin-bottom: base(1.5);
+  display: flex;
+  flex-direction: column;
+  gap: base(0.2);
+
+  .backup-item {
+    margin-bottom: base(1);
+    display: flex;
+    flex-direction: row;
+    gap: base(0.5);
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: #f5f5f5;
+    padding: 0 20px;
+    border-radius: base(0.2);
+    .right{
+      display: flex;
+      flex-direction: row;
+      gap: base(0.5);
+      align-items: center;
+    }
+  }
+
+  .btn-red {
+    background-color: red;
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+
+  .make-backup-container {
+    display: flex;
+    flex-direction: row;
+    gap: base(0.2);
+    align-items: center;
+
+    .text {
+      margin-left: 10px;
+    }
+  }
+}
