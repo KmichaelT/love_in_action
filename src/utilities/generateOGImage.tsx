@@ -1,7 +1,8 @@
 import { ImageResponse } from 'next/og'
 import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
 import { loadGoogleFont } from './loadGoogleFont'
-import { Args, queryPageBySlug, resolveParams } from '@/app/(frontend)/[localeOrSlug]/[slug]/page'
+import { Args, queryPageBySlug } from '@/app/(frontend)/[localeOrSlug]/[slug]/page'
+import { resolveParams } from '@/utilities/resolveParams'
 
 export const size = {
   width: 1200,
@@ -13,7 +14,7 @@ export const alt = 'PayBlocks'
 const defaultTitle = 'PayBlocks'
 
 export default async function generateOGImage(props: Args) {
-  
+
   /**
    * opengraph-image on root layer is behaviour differently than page.tsx.. props.params is undefined
    * so we have to add it manually
@@ -26,7 +27,7 @@ export default async function generateOGImage(props: Args) {
     }
   }
 
-  const { locale, slug } = await resolveParams(props2)
+  const { locale, slug } = resolveParams(await props2.params)
   try {
     // Get the title from Payload if slug is provided
     let title = defaultTitle

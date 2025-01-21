@@ -13,7 +13,7 @@ import { RenderHero } from '@/heros/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { notFound } from 'next/navigation'
-import localization, { Locale, locales } from '@/localization.config'
+import { resolveParams } from '@/utilities/resolveParams'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -43,53 +43,17 @@ export async function generateStaticParams() {
   return params
 }
 
-export type Args = {
-  params: Promise<{
-    slug?: string
-    localeOrSlug?: string
-  }>
+type Params = {
+  slug?: string
+  localeOrSlug?: string
 }
 
-export async function resolveParams(props: Args) {
-  const { slug: slugRaw, localeOrSlug } = await props.params;
-  // We do not want to serve under default locale. Default locale should run directly under /
-  if (localeOrSlug === localization.defaultLocale) {
-    notFound();
-  }
-
-  let locale: Locale = localization.defaultLocale as Locale;
-  let slug: string = "home";
-
-  if (locales.includes(localeOrSlug as Locale)) {
-    // localeOrSlug is a locale
-    locale = localeOrSlug as Locale;
-    if (slugRaw === "home") {
-      // We do not want to serve under /de/home. This route should be served directly under /de
-      notFound();
-    }
-    // If no slug is provided, we want to serve page saved under slug "home" under /de url
-    slug = slugRaw || "home";
-  } else {
-    // localeOrSlug is a slug
-    if (localeOrSlug === "home") {
-      // We do not want to serve under /home. This route should be served directly under /
-      notFound();
-    }
-    // If localeOrSlug is a slug, then slugRaw has to be empty
-    if (slugRaw) {
-      notFound();
-    }
-
-    // If localeOrSlug is not a locale, we want to serve page with default locale
-    locale = localization.defaultLocale as Locale;
-    // If no slug is provided, we want to serve page saved under slug "home" under / url
-    slug = localeOrSlug || "home";
-  }
-  return { locale, slug }
+export type Args = {
+  params: Promise<Params>
 }
 
 export default async function Page(props: Args) {
-  const { locale, slug } = await resolveParams(props);
+  const { locale, slug } = resolveParams(await props.params);
 
   const url = '/' + slug
 
@@ -119,7 +83,7 @@ export default async function Page(props: Args) {
 }
 
 export async function generateMetadata(props: Args): Promise<Metadata> {
-  const { locale, slug } = await resolveParams(props);
+  const { locale, slug } = resolveParams(await props.params);
   const page = await queryPageBySlug({
     slug,
     locale
