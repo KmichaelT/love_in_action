@@ -16,7 +16,6 @@ import { draftMode } from 'next/headers'
 import './globals.css'
 import { ThemeConfig } from '@/globals/ThemeConfig/Component'
 import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
-import { HtmlLangSetterClient } from '@/components/HtmlLangSetter/index.client'
 
 // Change fonts by changing class Geist_Mono or Geist. 
 // No change in tailwind.config.mjs needed (Because it's already synced via --font-mono and --font-sans variables). Just make sure, that these variables stay.
@@ -51,8 +50,6 @@ export default async function RootLayout({ children, params }: { children: React
             }}
           />
           <LivePreviewListener />
-          <HtmlLangSetterClient />
-
           <Header />
           {children}
           <Footer />
