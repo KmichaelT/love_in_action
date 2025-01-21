@@ -1,8 +1,15 @@
 import { ImageResponse } from 'next/og'
-import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
-import { loadGoogleFont } from './loadGoogleFont'
 import { Args, queryPageBySlug } from '@/app/(frontend)/[localeOrSlug]/[slug]/page'
 import { resolveParams } from '@/utilities/resolveParams'
+import { join } from 'node:path'
+import { readFile } from 'node:fs/promises'
+import { loadGoogleFont } from './loadGoogleFont'
+
+
+/**
+ * OG Image generation. PayloadCMS can'T be run on edge routes, so prevent setting the open graph routes to edge.
+ * We are reading the default OG Image from the public directory
+ */
 
 export const size = {
   width: 1200,
@@ -14,17 +21,15 @@ export const alt = 'PayBlocks'
 const defaultTitle = 'PayBlocks'
 
 export default async function generateOGImage(props: Args) {
-
   /**
    * opengraph-image on root layer is behaviour differently than page.tsx.. props.params is undefined
    * so we have to add it manually
    */
-  let props2 = props
-  if (!props2.params) {
-    props2 = {
-      ...props,
-      params: Promise.resolve({}),
-    }
+  const props2: Args = {
+    params: props?.params || Promise.resolve({
+      slug: undefined,
+      localeOrSlug: undefined
+    }),
   }
 
   const { locale, slug } = resolveParams(await props2.params)
@@ -36,9 +41,9 @@ export default async function generateOGImage(props: Args) {
       title = page.meta?.title || page.title || defaultTitle
     }
 
-    // Load the background image. Replace with your own background image
-    const backgroundImageUrl = `${NEXT_PUBLIC_SERVER_URL}/payblocksdefaultogbackground.png`
-    const backgroundImageData = await fetch(backgroundImageUrl).then((res) => res.arrayBuffer())
+    // Load the background image from public directory
+    const backgroundImage = await readFile(join(process.cwd(), 'public', 'payblocksdefaultogbackground.png'))
+    const backgroundImageSrc = Uint8Array.from(backgroundImage).buffer
 
     // Load the font
     const fontData = await loadGoogleFont('Inter', title)
@@ -58,8 +63,10 @@ export default async function generateOGImage(props: Args) {
         >
           {/* Background image */}
           <img
-            src={backgroundImageData as unknown as string}
+            src={backgroundImageSrc as unknown as string}
             alt="Background"
+            width={size.width}
+            height={size.height}
             style={{
               position: 'absolute',
               top: 0,
@@ -78,7 +85,7 @@ export default async function generateOGImage(props: Args) {
               justifyContent: 'center',
               padding: '60px',
               maxWidth: '70%',
-              minHeight: '200px', // Approximately 3 lines of text plus padding
+              minHeight: '200px',
             }}
           >
             <h1
@@ -104,13 +111,12 @@ export default async function generateOGImage(props: Args) {
             name: 'Inter',
             data: fontData,
             style: 'normal',
-            weight: 600,
           },
         ],
-      },
+      }
     )
-  } catch (e) {
-    console.error('Error generating OG image:', e)
+  } catch (error) {
+    console.error('Error generating OG image:', error)
     return new Response('Failed to generate image', { status: 500 })
   }
 }
