@@ -4,11 +4,16 @@ import { LocalizationConfig } from "payload";
 export const locales = ['en', 'de'] as const;
 export type Locale = typeof locales[number];
 
-const localization: LocalizationConfig = {
+export const localization: LocalizationConfig = {
   locales: [...locales],
   defaultLocale: 'en',
   fallback: true,
 } as const;
+
+export const localeLabels: Record<Locale, string> = {
+  en: "🇬🇧",
+  de: "🇩🇪",
+}
 
 export default localization;
 

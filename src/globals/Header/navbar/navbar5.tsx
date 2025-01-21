@@ -26,6 +26,7 @@ import type { Header as HeaderType } from '@/payload-types'
 
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import Link from 'next/link'
+import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 
 const Navbar5: React.FC<{ header: HeaderType }> = ({ header }) => {
   return (
@@ -98,6 +99,7 @@ const Navbar5: React.FC<{ header: HeaderType }> = ({ header }) => {
           {/* Right Button Group */}
           <div className="hidden lg:flex gap-2">
             {header?.buttons?.map((btn) => <CMSLink key={btn.id} {...btn.link} />)}
+            <LanguageSwitcher />
           </div>
 
           {/* Mobile Menu Button */}

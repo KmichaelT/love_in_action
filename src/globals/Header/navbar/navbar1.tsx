@@ -29,6 +29,7 @@ import { cn } from '@/utilities/cn';
 import { Media } from '@/components/Media';
 import { CMSLink } from '@/components/Link';
 import { Icon } from '@/components/Icon';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 
 export const Navbar1: React.FC<{ header: HeaderType }> = ({ header }) => {
   return (
@@ -67,7 +68,7 @@ export const Navbar1: React.FC<{ header: HeaderType }> = ({ header }) => {
                           </NavigationMenuTrigger>
                           <NavigationMenuContent>
                             <ul className="w-80 p-3">
-                              <NavigationMenuLink>
+                              <NavigationMenuLink asChild>
                                 {item.subitems.map((subitem) => (
                                   <li key={subitem.id}>
                                     <CMSLink
@@ -103,6 +104,7 @@ export const Navbar1: React.FC<{ header: HeaderType }> = ({ header }) => {
           {/* Right Button Group */}
           <div className="flex gap-2">
             {header?.buttons?.map((btn) => <CMSLink key={btn.id} {...btn.link} />)}
+            <LanguageSwitcher />
           </div>
         </nav>
 
