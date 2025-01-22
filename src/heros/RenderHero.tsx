@@ -44,6 +44,7 @@ import Hero51 from '@/heros/PageHero/hero51';
 import Hero53 from '@/heros/PageHero/hero53';
 import Hero55 from '@/heros/PageHero/hero55';
 import Hero57 from '@/heros/PageHero/hero57';
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
 const heroes = {
   1: Hero1,
@@ -90,8 +91,8 @@ const heroes = {
   57: Hero57,
 }
 
-export const RenderHero: React.FC<Page['hero']> = (props) => {
-  const { designVersion } = props || {}
+export const RenderHero: React.FC<Page['hero'] & { publicContext: PublicContextProps }> = (props) => {
+  const { designVersion, publicContext } = props || {}
 
   if (!designVersion || designVersion === 'none') return null
 
@@ -99,5 +100,5 @@ export const RenderHero: React.FC<Page['hero']> = (props) => {
 
   if (!HeroToRender) return null
 
-  return <HeroToRender {...props} />
+  return <HeroToRender {...props} publicContext={publicContext} />
 }

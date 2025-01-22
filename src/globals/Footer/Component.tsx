@@ -12,29 +12,30 @@ import Footer5 from './footer/footer5'
 import Footer6 from './footer/footer6'
 import Footer7 from './footer/footer7'
 import Footer8 from './footer/footer8'
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
-export async function Footer() {
+export async function Footer({ publicContext }: { publicContext: PublicContextProps }) {
   const footer: Footer = await getCachedGlobal('footer', 2)()
 
   const footerType = footer.designVersion
 
   switch (footerType) {
     case '1':
-      return <Footer1 footer={footer} />
+      return <Footer1 footer={footer} publicContext={publicContext} />
     case '2':
-      return <Footer2 footer={footer} />
+      return <Footer2 footer={footer} publicContext={publicContext} />
     case '3':
-      return <Footer3 footer={footer} />
+      return <Footer3 footer={footer} publicContext={publicContext} />
     case '4':
-      return <Footer4 footer={footer} />
+      return <Footer4 footer={footer} publicContext={publicContext} />
     case '5':
-      return <Footer5 footer={footer} />
+      return <Footer5 footer={footer} publicContext={publicContext} />
     case '6':
-      return <Footer6 footer={footer} />
+      return <Footer6 footer={footer} publicContext={publicContext} />
     case '7':
-      return <Footer7 footer={footer} />
+      return <Footer7 footer={footer} publicContext={publicContext} />
     case '8':
-      return <Footer8 footer={footer} />
+      return <Footer8 footer={footer} publicContext={publicContext} />
   }
 
   return null;
@@ -57,7 +58,7 @@ export async function Footer() {
   //         <ThemeSelector />
   //         <nav className="flex flex-col md:flex-row gap-4">
   //           {navItems.map(({ link }, i) => {
-  //             return <CMSLink className="text-white" key={i} {...link} />
+  //             return <CMSLink publicContext={publicContext} className="text-white" key={i} {...link} />
   //           })}
   //         </nav>
   //       </div>

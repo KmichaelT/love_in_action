@@ -56,10 +56,10 @@ type SplitOptions = {
  *     <div>
  *       <div className="header">
  *         <Icon />
- *         <RichText content={firstNode} />
+ *         <RichText publicContext={publicContext} content={firstNode} />
  *       </div>
  *       <div className="content">
- *         <RichText content={rest} />
+ *         <RichText publicContext={publicContext} content={rest} />
  *       </div>
  *     </div>
  *   );
@@ -83,8 +83,8 @@ export const splitRichText = <T extends { root?: { children?: any[] } }>(
   let splitIndex = 0;
   if (takeFirst && splitTypes.length > 0) {
     // Find the first node that matches any of the split types
-    splitIndex = children.findIndex((node) => 
-      (node.type && splitTypes.includes(node.type)) || 
+    splitIndex = children.findIndex((node) =>
+      (node.type && splitTypes.includes(node.type)) ||
       (node.tag && splitTypes.includes(node.tag))
     );
     if (splitIndex === -1) splitIndex = 0;

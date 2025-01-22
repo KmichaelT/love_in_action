@@ -18,6 +18,7 @@ import { cn } from '@/utilities/cn';
 import RichText from '@/components/RichText';
 import { TestimonialBlock } from '@/payload-types';
 import { CMSLink } from '@/components/Link';
+import { PublicContextProps } from '@/utilities/publicContextProps';
 
 const testimonials = [
   {
@@ -78,13 +79,13 @@ const testimonials = [
   },
 ];
 
-const Testimonial1: React.FC<TestimonialBlock> = ({ headline, link, tagline, testimonial }) => {
+const Testimonial1: React.FC<TestimonialBlock & { publicContext: PublicContextProps }> = ({ headline, link, tagline, testimonial, publicContext }) => {
   return (
     <section className="mb-32 border-b pt-32">
       <div className="container">
         <div className="flex flex-col items-center gap-6">
           {tagline && <Badge variant={'outline'}>{tagline}</Badge>}
-          {headline && <RichText
+          {headline && <RichText publicContext={publicContext}
             content={headline}
             withWrapper={false}
             overrideStyle={{
@@ -95,7 +96,7 @@ const Testimonial1: React.FC<TestimonialBlock> = ({ headline, link, tagline, tes
             }}
           />}
           {link && (<div className="flex w-full flex-col justify-center gap-4 sm:flex-row">
-            <CMSLink className="w-full sm:w-auto" {...link} />
+            <CMSLink publicContext={publicContext} className="w-full sm:w-auto" {...link} />
           </div>)}
           <div className="mt-6 block lg:mt-14 lg:hidden">
             <Carousel opts={{}} className="w-full max-w-[264px] sm:max-w-md">

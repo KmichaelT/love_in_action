@@ -5,6 +5,7 @@ import configPromise from '@payload-config'
 import { del, list, put } from '@vercel/blob';
 import https from 'https';
 import { revalidatePath } from 'next/cache';
+import { ObjectId } from 'mongodb';
 
 const BACKUPS_TO_KEEP = Number(process.env.BACKUPS_TO_KEEP) || 10;
 
@@ -59,7 +60,8 @@ export async function restoreBackup(downloadUrl: string) {
       const indexes = await collection.indexes();
       const uniqueIndexes = indexes.filter(idx => idx.unique).flatMap((idx) => Object.keys(idx.key))
       const res = await collection.bulkWrite(collectionData.map(doc => {
-        const { _id, ...updateData } = doc;
+        // const { _id, ...updateData } = doc;
+        doc._id = new ObjectId(doc._id as string)
         return {
           updateOne: {
             filter: uniqueIndexes.length > 0 ? {
@@ -68,7 +70,7 @@ export async function restoreBackup(downloadUrl: string) {
                 ...uniqueIndexes.map(field => ({ [field]: doc[field] }))
               ]
             } : { _id: doc._id },
-            update: { $set: updateData },
+            update: { $set: doc },
             upsert: true
           }
         }
@@ -105,4 +107,12 @@ export async function createBackup(cron: boolean = false) {
   await put(name, JSON.stringify(allData), { access: 'public' });
   revalidatePath('/admin');
   console.log("Backup created", name);
+}
+export async function listBackups() {
+  "use server"
+  const { blobs } = await list({
+    prefix: 'backups/',
+    limit: 1000,
+  });
+  return blobs;
 }

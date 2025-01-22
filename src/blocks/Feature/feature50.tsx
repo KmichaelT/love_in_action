@@ -5,19 +5,20 @@ import { FeatureBlock } from '@/payload-types'
 import RichText from '@/components/RichText'
 import { CMSLink } from '@/components/Link'
 import { Media } from '@/components/Media'
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
 /**
  * A repeating pattern of three feature cards
  * @param param0
  * @returns
  */
-const Feature50: React.FC<FeatureBlock> = ({ richText, links, USPs }) => {
+const Feature50: React.FC<FeatureBlock & { publicContext: PublicContextProps }> = ({ richText, links, USPs, publicContext }) => {
   return (
     <section className="py-32">
       <div className="container">
         <div className="mx-auto flex max-w-screen-md flex-col items-center gap-6">
           {richText && (
-            <RichText
+            <RichText publicContext={publicContext}
               content={richText}
               withWrapper={false}
               overrideStyle={{
@@ -29,7 +30,7 @@ const Feature50: React.FC<FeatureBlock> = ({ richText, links, USPs }) => {
           )}
           {Array.isArray(links) &&
             links.length > 0 &&
-            links.map(({ link }, i) => <CMSLink key={i} {...link} size={'lg'} />)}
+            links.map(({ link }, i) => <CMSLink publicContext={publicContext} key={i} {...link} size={'lg'} />)}
         </div>
         <div className="mx-auto mt-20 flex max-w-screen-lg grid-cols-1 flex-col gap-6 lg:grid lg:grid-cols-7">
           {USPs?.map(({ richText, link, image, tagline }, index) => {
@@ -49,7 +50,7 @@ const Feature50: React.FC<FeatureBlock> = ({ richText, links, USPs }) => {
                         <div className="mb-4 text-xs text-muted-foreground">{tagline}</div>
                       )}
                       {richText && (
-                        <RichText
+                        <RichText publicContext={publicContext}
                           content={richText}
                           withWrapper={false}
                           overrideStyle={{
@@ -62,6 +63,7 @@ const Feature50: React.FC<FeatureBlock> = ({ richText, links, USPs }) => {
                     {link && (
                       <div className="mt-6 sm:mt-8">
                         <CMSLink
+                          publicContext={publicContext}
                           {...link}
                           iconClassName='ml-1 h-4'
                           className="mt-6 sm:mt-8"
@@ -99,7 +101,7 @@ const Feature50: React.FC<FeatureBlock> = ({ richText, links, USPs }) => {
                   <div className="relative z-10 p-8 lg:p-12">
                     {tagline && <div className="mb-4 text-xs text-muted-foreground">{tagline}</div>}
                     {richText && (
-                      <RichText
+                      <RichText publicContext={publicContext}
                         content={richText}
                         withWrapper={false}
                         overrideStyle={{
@@ -138,7 +140,7 @@ const Feature50: React.FC<FeatureBlock> = ({ richText, links, USPs }) => {
                         <div className="mb-4 text-xs text-muted-foreground">{tagline}</div>
                       )}
                       {richText && (
-                        <RichText
+                        <RichText publicContext={publicContext}
                           content={richText}
                           withWrapper={false}
                           overrideStyle={{
@@ -149,6 +151,7 @@ const Feature50: React.FC<FeatureBlock> = ({ richText, links, USPs }) => {
                     </div>
                     {link && (
                       <CMSLink
+                        publicContext={publicContext}
                         {...link}
                         iconClassName='ml-1 h-4'
                         className="mt-6 sm:mt-8"

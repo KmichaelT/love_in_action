@@ -1,4 +1,3 @@
-"use client"
 import { Button, type ButtonProps } from '@/components/ui/button'
 import { cn } from 'src/utilities/cn'
 import Link from 'next/link'
@@ -7,8 +6,7 @@ import React from 'react'
 import type { Page, Post } from '@/payload-types'
 import { Icon } from '@/components/Icon'
 import localization from '@/localization.config'
-import { resolveParams } from '@/utilities/resolveParams'
-import { useParams } from 'next/navigation'
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
 type CMSLinkType = {
   appearance?: 'inline' | ButtonProps['variant']
@@ -33,6 +31,7 @@ type CMSLinkType = {
    * another <a> element
    */
   withAnchor?: boolean
+  publicContext: PublicContextProps
 }
 
 export const CMSLink: React.FC<CMSLinkType> = (props) => {
@@ -51,10 +50,11 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
     iconAfter,
     iconClassName,
     withAnchor = true,
+    publicContext,
   } = props
 
-  const params = useParams();
-  const { locale } = resolveParams(params);
+  console.log("publicContext", publicContext, url, reference?.value?.slug)
+  const locale = publicContext?.locale || localization.defaultLocale;
 
   let href =
     type === 'reference' && typeof reference?.value === 'object' && reference.value.slug

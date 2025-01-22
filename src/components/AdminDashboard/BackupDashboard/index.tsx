@@ -1,7 +1,7 @@
 import './index.scss'
 import { del, list } from '@vercel/blob';
 import { revalidatePath } from 'next/cache';
-import { createBackup, restoreBackup } from './actions';
+import { createBackup, listBackups, restoreBackup } from './actions';
 import { User } from 'payload'
 
 import { Button, Popup, Collapsible } from '@payloadcms/ui'
@@ -14,7 +14,7 @@ interface BackupDashboardProps {
 const BeforeDashboard: React.FC<BackupDashboardProps> = async ({ user }) => {
 
   if (!user) return;
-  
+
   if (isAdminHidden({ user })) {
     return;
   }
@@ -22,10 +22,7 @@ const BeforeDashboard: React.FC<BackupDashboardProps> = async ({ user }) => {
   if (!process.env.MONGODB_URI || !process.env.BLOB_READ_WRITE_TOKEN) {
     return;
   }
-  const { blobs } = await list({
-    prefix: 'backups/',
-    limit: 1000,
-  });
+  const blobs = await listBackups();
   return (
     <div className="backup-dashboard">
       <h2>Backups</h2>

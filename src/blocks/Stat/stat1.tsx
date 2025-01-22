@@ -1,11 +1,12 @@
 import RichText from "@/components/RichText";
 import { StatBlock } from "@/payload-types";
+import { PublicContextProps } from '@/utilities/publicContextProps';
 
-const Stat1: React.FC<StatBlock> = ({ headline, stats }) => {
+const Stat1: React.FC<StatBlock & { publicContext: PublicContextProps }> = ({ headline, stats, publicContext }) => {
   return (
     <section className="py-32">
       <div className="container">
-        {headline && <RichText
+        {headline && <RichText publicContext={publicContext}
           content={headline}
           withWrapper={false}
           overrideStyle={{
@@ -18,7 +19,7 @@ const Stat1: React.FC<StatBlock> = ({ headline, stats }) => {
         <div className="grid gap-10 pt-9 md:grid-cols-3 lg:gap-0 lg:pt-20">
           {stats?.map(({ title, counter, description, id }) => (
             <div className="text-center" key={id}>
-              {description && (<RichText
+              {description && (<RichText publicContext={publicContext}
                 content={description}
                 withWrapper={false}
                 overrideStyle={{

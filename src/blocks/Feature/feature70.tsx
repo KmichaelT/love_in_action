@@ -15,8 +15,9 @@ import { splitRichText } from '@/utilities/richtext';
 import { CMSLink } from '@/components/Link';
 import { Media } from '@/components/Media';
 
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
-const Feature70: React.FC<FeatureBlock> = ({ USPs, richText }) => {
+const Feature70: React.FC<FeatureBlock & { publicContext: PublicContextProps }> = ({ USPs, richText, publicContext }) => {
   const [selection, setSelection] = useState(0);
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   useEffect(() => {
@@ -66,7 +67,7 @@ const Feature70: React.FC<FeatureBlock> = ({ USPs, richText }) => {
           </div>
           <div className="flex shrink-0 flex-col md:w-1/2 md:pr-8 lg:pl-24 lg:text-left 2xl:pl-32">
             {richText && (
-              <RichText
+              <RichText publicContext={publicContext}
                 withWrapper={false}
                 content={richText}
                 overrideStyle={{
@@ -106,7 +107,7 @@ const Feature70: React.FC<FeatureBlock> = ({ USPs, richText }) => {
                       </div>
                     </div>
                     <div className="hidden text-sm font-medium group-data-[open]:block">
-                      <RichText
+                      <RichText publicContext={publicContext}
                         withWrapper={false}
                         content={rest}
                         overrideStyle={{
@@ -115,6 +116,7 @@ const Feature70: React.FC<FeatureBlock> = ({ USPs, richText }) => {
                       />
                       {usp.links?.map((link) => (
                         <CMSLink
+                          publicContext={publicContext}
                           key={link.id}
                           {...link.link}
                           className="group/link flex items-center pb-3 text-sm text-accent-foreground"

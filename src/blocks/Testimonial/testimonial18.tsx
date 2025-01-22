@@ -2,8 +2,9 @@ import { Avatar, AvatarImage } from '@/components/ui/avatar'
 import { Star, Zap } from 'lucide-react'
 import { TestimonialBlock } from '@/payload-types';
 import RichText from '@/components/RichText';
+import { PublicContextProps } from '@/utilities/publicContextProps';
 
-const Testimonial18: React.FC<TestimonialBlock> = ({ headline, link, tagline, testimonial }) => {
+const Testimonial18: React.FC<TestimonialBlock & { publicContext: PublicContextProps }> = ({ headline, link, tagline, testimonial, publicContext }) => {
     return (
         <section className='py-32'>
             <div className='container'>
@@ -12,7 +13,7 @@ const Testimonial18: React.FC<TestimonialBlock> = ({ headline, link, tagline, te
                         <Zap className='h-6 w-auto fill-primary' />
                         Rated 5 stars by 1000+ clients
                     </div>
-                    {headline && <RichText
+                    {headline && <RichText publicContext={publicContext}
                         content={headline}
                         withWrapper={false}
                         overrideStyle={{

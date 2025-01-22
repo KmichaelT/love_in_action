@@ -30,14 +30,15 @@ import { Media } from '@/components/Media';
 import { CMSLink } from '@/components/Link';
 import { Icon } from '@/components/Icon';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
-export const Navbar1: React.FC<{ header: HeaderType }> = ({ header }) => {
+export const Navbar1: React.FC<{ header: HeaderType, publicContext: PublicContextProps }> = ({ header, publicContext }) => {
   return (
-    <section className="py-32">
+    <section className="py-32 z-50">
       <div className="container">
         {/* Desktop Navigation */}
-        <nav className="hidden justify-between lg:flex">
-          <div className="flex items-center gap-6">
+        <nav className="hidden justify-between lg:flex z-50">
+          <div className="flex items-center gap-6 z-50">
             <div className="flex items-center gap-2">
               <Media resource={header.logo} priority />
             </div>
@@ -49,7 +50,7 @@ export const Navbar1: React.FC<{ header: HeaderType }> = ({ header }) => {
                     if (item.blockType === "link") {
                       // Single Nav Link
                       return (
-                        <CMSLink key={item.id} {...item.link}
+                        <CMSLink publicContext={publicContext} key={item.id} {...item.link}
                           className={cn(
                             'text-muted-foreground',
                             navigationMenuTriggerStyle,
@@ -72,6 +73,7 @@ export const Navbar1: React.FC<{ header: HeaderType }> = ({ header }) => {
                                 {item.subitems.map((subitem) => (
                                   <li key={subitem.id}>
                                     <CMSLink
+                                      publicContext={publicContext}
                                       className={cn('flex select-none gap-4 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',)}
                                       {...subitem.link}
                                       label=""
@@ -102,9 +104,9 @@ export const Navbar1: React.FC<{ header: HeaderType }> = ({ header }) => {
             </div>
           </div>
           {/* Right Button Group */}
-          <div className="flex gap-2">
-            {header?.buttons?.map((btn) => <CMSLink key={btn.id} {...btn.link} />)}
-            <LanguageSwitcher />
+          <div className="flex gap-2 z-50">
+            {header?.buttons?.map((btn) => <CMSLink publicContext={publicContext} key={btn.id} {...btn.link} />)}
+            <LanguageSwitcher publicContext={publicContext} />
           </div>
         </nav>
 
@@ -134,7 +136,7 @@ export const Navbar1: React.FC<{ header: HeaderType }> = ({ header }) => {
                       if (item.blockType === "link") {
                         // Single Nav Link
                         return (
-                          <CMSLink key={item.id} {...item.link}
+                          <CMSLink publicContext={publicContext} key={item.id} {...item.link}
                             className="font-semibold"
                           />
                         )
@@ -148,6 +150,7 @@ export const Navbar1: React.FC<{ header: HeaderType }> = ({ header }) => {
                             <AccordionContent className="mt-2">
                               {item.subitems.map((subitem) => (
                                 <CMSLink
+                                  publicContext={publicContext}
                                   key={subitem.id}
                                   className={cn('flex select-none gap-4 rounded-md p-3 leading-none outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',)}
                                   {...subitem.link}
@@ -236,7 +239,7 @@ export const Navbar1: React.FC<{ header: HeaderType }> = ({ header }) => {
                     ...
                   </div> */}
                   <div className="mt-2 flex flex-col gap-3">
-                    {header?.buttons?.map((btn) => <CMSLink key={btn.id} {...btn.link} />)}
+                    {header?.buttons?.map((btn) => <CMSLink publicContext={publicContext} key={btn.id} {...btn.link} />)}
                   </div>
                 </div>
               </SheetContent>

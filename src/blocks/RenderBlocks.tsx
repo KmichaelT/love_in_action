@@ -16,6 +16,7 @@ import { SplitViewBlock } from './SplitView/Component'
 import { TextBlock } from './TextBlock/Component'
 import { MediaBlock } from './MediaBlock/Component'
 import customBlocks from '@/blocks/CustomBlock'
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
 const blockComponents: Partial<Record<Page['layout'][0]['blockType'], React.FC<any>>> = {
   archive: ArchiveBlock,
@@ -36,10 +37,13 @@ const blockComponents: Partial<Record<Page['layout'][0]['blockType'], React.FC<a
 
 export const RenderBlocks: React.FC<{
   blocks: Page['layout'][0][]
+  publicContext: PublicContextProps
 }> = (props) => {
-  const { blocks } = props
+  const { blocks, publicContext } = props
 
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
+
+  console.log("RenderBlocks publicContext", publicContext)
 
   if (hasBlocks) {
     return (
@@ -150,7 +154,7 @@ export const RenderBlocks: React.FC<{
             if (Block) {
               return (
                 <div key={index} className={className} id={block.id || undefined}>
-                  <Block {...block} />
+                  <Block {...block} publicContext={publicContext} />
                 </div>
               )
             }

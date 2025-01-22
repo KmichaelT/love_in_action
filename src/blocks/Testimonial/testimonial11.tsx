@@ -4,14 +4,15 @@ import { Stars } from '@/components/uiCustom/stars';
 import { Media } from '@/components/Media';
 import RichText from '@/components/RichText';
 import { CMSLink } from '@/components/Link';
+import { PublicContextProps } from '@/utilities/publicContextProps';
 
-const Testimonial11: React.FC<TestimonialBlock> = ({ headline, link, tagline, testimonial }) => {
+const Testimonial11: React.FC<TestimonialBlock & { publicContext: PublicContextProps }> = ({ headline, link, tagline, testimonial, publicContext }) => {
   return (
     <section className="relative bg-accent bg-[linear-gradient(hsl(from_var(--accent)_h_s_l)_0%,hsl(from_var(--background)_h_s_l)_100%)] py-32 sm:py-0">
       <div className="container sm:py-32">
         <div className="flex flex-col items-start gap-12 sm:flex-row sm:items-center sm:justify-between sm:gap-32">
           <div className="flex flex-1 flex-col items-start text-left">
-            {headline && <RichText
+            {headline && <RichText publicContext={publicContext}
               content={headline}
               withWrapper={false}
               overrideStyle={{
@@ -21,7 +22,7 @@ const Testimonial11: React.FC<TestimonialBlock> = ({ headline, link, tagline, te
                 p: 'mb-8 max-w-3xl text-muted-foreground lg:text-xl',
               }}
             />}
-            {link && <CMSLink {...link} />}
+            {link && <CMSLink publicContext={publicContext} {...link} />}
           </div>
           <div className="block shrink-0 flex-row gap-12 sm:flex sm:flex-col lg:flex-row lg:gap-24">
             {testimonial?.[0] && (<div className="mb-8 mr-8 inline-block sm:mb-0 sm:mr-0">
@@ -69,7 +70,7 @@ const Testimonial11: React.FC<TestimonialBlock> = ({ headline, link, tagline, te
               className="mb-4 inline-block w-full rounded-lg border border-border bg-background p-6 lg:mb-6"
             >
               <div className="flex flex-col">
-                {t.text && <RichText
+                {t.text && <RichText publicContext={publicContext}
                   content={t.text}
                   withWrapper={false}
                   overrideStyle={{

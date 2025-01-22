@@ -1,46 +1,17 @@
-"use client"
-
-import { locales, localeLabels, localization } from "@/localization.config";
-import { resolveParams } from "@/utilities/resolveParams";
-import { ChevronDown, LucideLanguages } from "lucide-react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-
-
-import { useParams, useSearchParams, usePathname } from "next/navigation";
+import localization, { locales, localeLabels } from "@/localization.config";
+import { Check, LucideLanguages } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
 import Link from "next/link";
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
-export const LanguageSwitcher: React.FC = () => {
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  console.log("pathname", pathname)
-
-
-  if (locales.length < 2) return null;
-  const sp = searchParams.toString();
-  // const fullPath = typeof window === "undefined" ? pathname + (sp ? `?${sp}` : "") : window.location.href.replace(window.location.origin, "");
-  const fullPath = pathname + (sp ? `?${sp}` : "");
-  const localeRegex = new RegExp(`^\/${localization.locales.join("|")}`);
-  const normalizedPath = fullPath.replace(localeRegex, "").replace("//", "/");
-  const prefixedPath = normalizedPath.startsWith('/') ? normalizedPath : `/${normalizedPath}`;
-  console.log("prefixedPath", fullPath, normalizedPath, prefixedPath)
-
-
-
-
+export const LanguageSwitcher: React.FC<{ publicContext: PublicContextProps }> = ({ publicContext }) => {
+  const { slug, locale: currentLocale } = publicContext;
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -51,14 +22,21 @@ export const LanguageSwitcher: React.FC = () => {
           <NavigationMenuContent>
             <ul className="p-3">
               {locales.map((locale) => {
-                const href = locale === localization.defaultLocale ? prefixedPath : `/${locale}${prefixedPath}`;
-                return (
-                  // <NavigationMenuLink asChild key={locale} >
-                  <Link key={locale} href={href} lang={locale} className="w-16 p-2 hover:text-accent-foreground hover:bg-card rounded-md flex">
-                    {localeLabels[locale]} {locale.toUpperCase()}
-                  </Link>
-                  // </NavigationMenuLink>
-                )
+                const langPrefix = locale === localization.defaultLocale ? "" : `/${locale}`;
+                const href = (slug === "home" ? langPrefix : `${langPrefix}/${slug}`) || "/";
+                if (currentLocale === locale) {
+                  return (
+                    <span key={locale} className="w-[85px] mb-1 p-2 text-accent-foreground bg-card rounded-md flex items-center justify-start">
+                      {localeLabels[locale]} {locale.toUpperCase()} <Check className="w-4 h-4 ml-2" />
+                    </span>
+                  )
+                } else {
+                  return (
+                    <Link key={locale} href={href} lang={locale} className="w-[85px] mb-1 p-2 hover:text-accent-foreground hover:bg-card rounded-md flex items-center justify-start">
+                      {localeLabels[locale]} {locale.toUpperCase()}
+                    </Link>
+                  )
+                }
               })}
             </ul>
           </NavigationMenuContent>

@@ -3,7 +3,7 @@
  * 
  * @example
  * // With wrapper div (for standalone content sections)
- * <RichText
+ * <RichText publicContext={publicContext}
  *   withWrapper={true}
  *   content={content}
  *   className="my-4"
@@ -12,7 +12,7 @@
  * />
  * 
  * // Without wrapper (for nested content inside other components)
- * <RichText
+ * <RichText publicContext={publicContext}
  *   withWrapper={false}
  *   content={content}
  * />
@@ -22,12 +22,14 @@ import { cn } from '@/utilities/cn'
 import React from 'react'
 
 import { OverrideStyle, serializeLexical } from './serialize'
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
 type BaseRichTextProps = {
   /** Raw content object from Lexical editor */
   content: Record<string, any>
   /** Optional style overrides for specific elements */
   overrideStyle?: OverrideStyle
+  publicContext: PublicContextProps
 }
 
 type WithWrapperProps = BaseRichTextProps & {
@@ -57,9 +59,10 @@ const RichText: React.FC<RichTextProps> = (props) => {
     !Array.isArray(props.content) &&
     typeof props.content === 'object' &&
     'root' in props.content &&
-    serializeLexical({ 
-      nodes: props.content?.root?.children, 
-      overrideStyle: props.overrideStyle 
+    serializeLexical({
+      nodes: props.content?.root?.children,
+      overrideStyle: props.overrideStyle,
+      publicContext: props.publicContext
     })
 
   if (!props.withWrapper) {

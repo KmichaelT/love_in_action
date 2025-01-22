@@ -2,10 +2,11 @@ import { Footer } from '@/payload-types';
 import { Media } from "@/components/Media";
 import { CMSLink } from '@/components/Link';
 import { SocialIcon } from '@/components/SocialIcon';
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
 
 
-const Footer7: React.FC<{ footer: Footer }> = ({ footer }) => {
+const Footer7: React.FC<{ footer: Footer, publicContext: PublicContextProps }> = ({ footer, publicContext }) => {
   return (
     <section className="py-32">
       <div className="container">
@@ -45,7 +46,7 @@ const Footer7: React.FC<{ footer: Footer }> = ({ footer }) => {
                         key={linkIdx}
                         className="font-medium hover:text-primary"
                       >
-                        <CMSLink {...link.link} />
+                        <CMSLink publicContext={publicContext} {...link.link} />
                       </li>
                     ))}
                   </ul>
@@ -58,7 +59,7 @@ const Footer7: React.FC<{ footer: Footer }> = ({ footer }) => {
             <ul className="flex justify-center gap-4 lg:justify-start">
               {footer.legalLinks?.map((item, index) => (
                 <li key={index} className="hover:text-primary">
-                  <CMSLink {...item.link} />
+                  <CMSLink publicContext={publicContext} {...item.link} />
                 </li>
               ))}
             </ul>

@@ -7,13 +7,14 @@ import {
 } from '@/components/ui/accordion';
 import { FaqBlock } from '@/payload-types';
 import FaqStructuredData from '@/blocks/Faq/FaqStructuredData';
+import { PublicContextProps } from '@/utilities/publicContextProps';
 
-const Faq1: React.FC<FaqBlock> = ({ headline, faqs, calloutText, calloutLink }) => {
+const Faq1: React.FC<FaqBlock & { publicContext: PublicContextProps }> = ({ headline, faqs, calloutText, calloutLink, publicContext }) => {
   return (
     <section className="py-32">
       <FaqStructuredData faqs={faqs} />
       <div className="container">
-        {headline && <RichText
+        {headline && <RichText publicContext={publicContext}
           content={headline}
           withWrapper={false}
           overrideStyle={{
@@ -30,7 +31,7 @@ const Faq1: React.FC<FaqBlock> = ({ headline, faqs, calloutText, calloutLink }) 
                 {question}
               </AccordionTrigger>
               {answer && <AccordionContent>
-                <RichText
+                <RichText publicContext={publicContext}
                   content={answer}
                   withWrapper={false}
                 />

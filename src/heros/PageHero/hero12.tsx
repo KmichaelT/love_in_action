@@ -7,8 +7,9 @@ import { Hero } from '@/payload-types';
 import RichText from '@/components/RichText';
 import { CMSLink } from '@/components/Link';
 import { Media } from '@/components/Media';
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
-const Hero12: React.FC<Hero> = ({tagline, richText, links, badge, icons, images}) => {
+const Hero12: React.FC<Hero & { publicContext: PublicContextProps }> = ({ tagline, richText, links, badge, icons, images, publicContext }) => {
   return (
     <section className="relative overflow-hidden py-32">
       <div className="container">
@@ -491,13 +492,13 @@ const Hero12: React.FC<Hero> = ({tagline, richText, links, badge, icons, images}
             )}
             <Badge variant="outline">{badge}</Badge>
             <div>
-              {richText && <RichText content={richText} overrideStyle={{h1: "mb-6 text-pretty text-2xl font-bold lg:text-5xl", h2: "mb-6 text-pretty text-2xl font-bold lg:text-5xl", p: "text-muted-foreground lg:text-xl" }} />}
+              {richText && <RichText publicContext={publicContext} content={richText} overrideStyle={{ h1: "mb-6 text-pretty text-2xl font-bold lg:text-5xl", h2: "mb-6 text-pretty text-2xl font-bold lg:text-5xl", p: "text-muted-foreground lg:text-xl" }} />}
             </div>
             {Array.isArray(links) && links.length > 0 && (
               <div className="flex w-full flex-col justify-center gap-2 sm:flex-row">
                 {links.map(({ link }, i) => {
                   return (
-                    <CMSLink className="w-full sm:w-auto" key={i} {...link} />
+                    <CMSLink publicContext={publicContext} className="w-full sm:w-auto" key={i} {...link} />
                   );
                 })}
               </div>
@@ -516,9 +517,9 @@ const Hero12: React.FC<Hero> = ({tagline, richText, links, badge, icons, images}
                     )}
                   >
                     <div className="flex items-center justify-center">
-                      <Media 
-                        priority 
-                        resource={icon} 
+                      <Media
+                        priority
+                        resource={icon}
                         imgClassName='h-6 w-auto grayscale opacity-70 transition-all duration-200 group-hover:grayscale-0 group-hover:opacity-100'
                       />
                     </div>

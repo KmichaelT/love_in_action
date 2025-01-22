@@ -2,13 +2,14 @@ import { CMSLink } from '@/components/Link';
 import { Media } from '@/components/Media';
 import RichText from '@/components/RichText';
 import type { AboutBlock, Media as MediaType } from '@/payload-types';
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
-const About4: React.FC<AboutBlock> = ({ headline, text1, text2, text3, counter, images, link, logos }) => {
+const About4: React.FC<AboutBlock & { publicContext: PublicContextProps }> = ({ headline, text1, text2, text3, counter, images, link, logos, publicContext }) => {
   return (
     <section className="py-32">
       <div className="container">
         <div className="mx-auto flex max-w-screen-md flex-col gap-8 pb-28 text-center">
-          {headline && <RichText
+          {headline && <RichText publicContext={publicContext}
             content={headline}
             withWrapper={false}
             overrideStyle={{
@@ -26,7 +27,7 @@ const About4: React.FC<AboutBlock> = ({ headline, text1, text2, text3, counter, 
         </div>
         <div className="mx-auto grid max-w-screen-lg gap-28 py-28 md:grid-cols-2">
           <div>
-            {text1 && <RichText
+            {text1 && <RichText publicContext={publicContext}
               content={text1}
               withWrapper={false}
               overrideStyle={{
@@ -38,7 +39,7 @@ const About4: React.FC<AboutBlock> = ({ headline, text1, text2, text3, counter, 
             />}
           </div>
           <div>
-            {text2 && <RichText
+            {text2 && <RichText publicContext={publicContext}
               content={text2}
               withWrapper={false}
               overrideStyle={{
@@ -51,7 +52,7 @@ const About4: React.FC<AboutBlock> = ({ headline, text1, text2, text3, counter, 
           </div>
         </div>
         <div className="mx-auto flex max-w-screen-lg flex-col items-center justify-between gap-8 rounded-2xl bg-muted/50 p-14 text-center md:flex-row md:text-left">
-          {text3 && <RichText
+          {text3 && <RichText publicContext={publicContext}
             content={text3}
             withWrapper={false}
             overrideStyle={{
@@ -60,7 +61,7 @@ const About4: React.FC<AboutBlock> = ({ headline, text1, text2, text3, counter, 
               p: 'text-xl font-medium leading-8 text-muted-foreground',
             }}
           />}
-          {link && <CMSLink className="w-full md:w-fit" {...link} />}
+          {link && <CMSLink publicContext={publicContext} className="w-full md:w-fit" {...link} />}
         </div>
       </div>
     </section>

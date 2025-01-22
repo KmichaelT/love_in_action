@@ -26,7 +26,7 @@ const Contact1: React.FC<ContactBlock> = ({ headlineAndDescription, form, contac
       <div className="container grid w-full grid-cols-1 gap-x-32 overflow-hidden lg:grid-cols-2">
         <div className="w-full pb-10 md:space-y-10 md:pb-0">
           <div className="space-y-4 md:max-w-[40rem]">
-            {headlineAndDescription && <RichText
+            {headlineAndDescription && <RichText publicContext={publicContext}
               content={headlineAndDescription}
               withWrapper={false}
               overrideStyle={{

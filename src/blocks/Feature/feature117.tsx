@@ -3,13 +3,14 @@ import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 import { FeatureBlock } from '@/payload-types'
 import { ChevronRight, Zap } from 'lucide-react'
+import { PublicContextProps } from '@/utilities/publicContextProps';
 
-const Feature117: React.FC<FeatureBlock> = ({ richText, USPs }) => {
+const Feature117: React.FC<FeatureBlock & { publicContext: PublicContextProps }> = ({ richText, USPs, publicContext }) => {
   return (
     <section className="py-32">
       <div className="container">
         {richText && (
-          <RichText
+          <RichText publicContext={publicContext}
             withWrapper={false}
             overrideStyle={{
               h1: 'mb-4 text-center text-4xl font-semibold',
@@ -40,7 +41,7 @@ const Feature117: React.FC<FeatureBlock> = ({ richText, USPs }) => {
                 </span>
                 <div className="flex flex-col gap-5 text-background">
                   {richText && (
-                    <RichText
+                    <RichText publicContext={publicContext}
                       withWrapper={false}
                       overrideStyle={{
                         h4: 'text-2xl font-semibold lg:text-3xl',

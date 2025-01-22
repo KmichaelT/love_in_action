@@ -1,12 +1,32 @@
 import { HeaderClient } from './Component.client'
 import { getCachedGlobal } from '@/utilities/getGlobals'
-import React from 'react'
+import React, { ReactElement } from 'react'
 
 import type { Header } from '@/payload-types'
 import { DataFromGlobalSlug } from 'payload'
+import Navbar5 from './navbar/navbar5'
+import { Navbar1 } from './navbar/navbar1'
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
-export async function Header() {
+export async function Header({ publicContext }: { publicContext: PublicContextProps }) {
   const header = (await getCachedGlobal('header', 1)() as DataFromGlobalSlug<"header">)
 
-  return <HeaderClient header={header} />
+  let navbarComponent: ReactElement;
+  switch (header.designVersion) {
+    case '1': {
+      navbarComponent = <Navbar1 header={header} publicContext={publicContext} />
+      break;
+    }
+    case '5': {
+      navbarComponent = <Navbar5 header={header} publicContext={publicContext} />
+      break;
+    }
+  }
+
+  return (
+    <>
+      {navbarComponent}
+      <HeaderClient />
+    </>
+  );
 }

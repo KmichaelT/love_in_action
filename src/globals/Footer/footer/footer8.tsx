@@ -7,8 +7,9 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Footer } from '@/payload-types';
 import { CMSLink } from '@/components/Link';
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
-const Footer8: React.FC<{ footer: Footer }> = ({ footer }) => {
+const Footer8: React.FC<{ footer: Footer, publicContext: PublicContextProps }> = ({ footer, publicContext }) => {
   return (
     <section className="py-32">
       <div className="container">
@@ -60,7 +61,7 @@ const Footer8: React.FC<{ footer: Footer }> = ({ footer }) => {
                       key={linkIdx}
                       className="font-medium hover:text-primary"
                     >
-                      <CMSLink {...link.link} />
+                      <CMSLink publicContext={publicContext} {...link.link} />
                     </li>
                   ))}
                 </ul>

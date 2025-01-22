@@ -3,10 +3,10 @@ import { Input } from '@/components/ui/input';
 import { Footer } from '@/payload-types';
 import { Media } from "@/components/Media";
 import { CMSLink } from '@/components/Link';
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
 
-
-const Footer6: React.FC<{ footer: Footer }> = ({ footer }) => {
+const Footer6: React.FC<{ footer: Footer, publicContext: PublicContextProps }> = ({ footer, publicContext }) => {
   return (
     <footer className="py-16">
       <div className="container">
@@ -23,7 +23,7 @@ const Footer6: React.FC<{ footer: Footer }> = ({ footer }) => {
               <h3 className="text-xl font-bold">Company Name</h3>
             </div>
             <p className="text-base font-medium text-muted-foreground">
-            {footer.subline && footer.subline}
+              {footer.subline && footer.subline}
             </p>
           </div>
           <div className="flex flex-col items-start gap-x-20 gap-y-14 xl:flex-row">
@@ -36,7 +36,7 @@ const Footer6: React.FC<{ footer: Footer }> = ({ footer }) => {
                   <ul className="space-y-2 text-base font-medium text-muted-foreground">
                     {section.subNavItems && section.subNavItems.map((link) => (
                       <li key={link.link.label}>
-                        <CMSLink {...link.link} className="whitespace-nowrap text-base hover:text-accent-foreground" />
+                        <CMSLink publicContext={publicContext} {...link.link} className="whitespace-nowrap text-base hover:text-accent-foreground" />
                       </li>
                     ))}
                   </ul>
@@ -67,7 +67,7 @@ const Footer6: React.FC<{ footer: Footer }> = ({ footer }) => {
           </div>
           <div className="flex flex-col items-start gap-4 text-xs text-muted-foreground sm:text-sm md:flex-row lg:items-center">
             {footer.legalLinks?.map((item, index) => (
-              <CMSLink key={index} {...item.link} className="hover:text-accent-foreground" />
+              <CMSLink publicContext={publicContext} key={index} {...item.link} className="hover:text-accent-foreground" />
             ))}
           </div>
         </div>

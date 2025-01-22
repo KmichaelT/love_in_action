@@ -1,14 +1,15 @@
 import { Media } from "@/components/Media";
 import RichText from "@/components/RichText";
 import { FeatureBlock } from "@/payload-types";
+import { PublicContextProps } from '@/utilities/publicContextProps';
 
-const Feature102: React.FC<FeatureBlock> = ({ USPs, richText }) => {
+const Feature102: React.FC<FeatureBlock & { publicContext: PublicContextProps }> = ({ USPs, richText, publicContext }) => {
   return (
     <section className="py-32">
       <div className="container">
         <div className="mx-auto flex max-w-screen-md flex-col justify-center gap-7 md:text-center">
           {richText && (
-            <RichText
+            <RichText publicContext={publicContext}
               withWrapper={false}
               content={richText}
               overrideStyle={{
@@ -60,7 +61,7 @@ const Feature102: React.FC<FeatureBlock> = ({ USPs, richText }) => {
 
                   <div className="flex flex-col justify-center gap-5 px-0 min-[960px]:gap-6 min-[960px]:p-4">
                     {usp.richText && (
-                      <RichText
+                      <RichText publicContext={publicContext}
                         withWrapper={false}
                         content={usp.richText}
                         overrideStyle={{

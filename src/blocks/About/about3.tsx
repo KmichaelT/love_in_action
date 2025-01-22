@@ -2,13 +2,14 @@ import { CMSLink } from '@/components/Link';
 import { Media } from '@/components/Media';
 import RichText from '@/components/RichText';
 import type { AboutBlock, Media as MediaType } from '@/payload-types';
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
-const About3: React.FC<AboutBlock> = ({ headline, text1, text2, text3, counter, images, link, logos }) => {
+const About3: React.FC<AboutBlock & { publicContext: PublicContextProps }> = ({ headline, text1, text2, text3, counter, images, link, logos, publicContext }) => {
   return (
     <section className="py-32">
       <div className="container">
         <div className="mb-14 grid gap-5 text-center md:grid-cols-2 md:text-left">
-          {headline && <RichText
+          {headline && <RichText publicContext={publicContext}
             content={headline}
             withWrapper={false}
             overrideStyle={{
@@ -25,7 +26,7 @@ const About3: React.FC<AboutBlock> = ({ headline, text1, text2, text3, counter, 
             <div className="flex flex-col justify-between gap-6 rounded-xl bg-muted p-7 md:w-1/2 lg:w-auto">
               {typeof images?.[1] === 'object' && <Media key={images[1].id} imgClassName="mr-auto h-12" resource={images[1]} />}
               <div>
-                {text1 && <RichText
+                {text1 && <RichText publicContext={publicContext}
                   content={text1}
                   withWrapper={false}
                   overrideStyle={{
@@ -36,7 +37,7 @@ const About3: React.FC<AboutBlock> = ({ headline, text1, text2, text3, counter, 
                   }}
                 />}
               </div>
-              {link && <CMSLink className="mr-auto" {...link} />}
+              {link && <CMSLink publicContext={publicContext} className="mr-auto" {...link} />}
             </div>
             {typeof images?.[2] === 'object' && <Media key={images[2].id} imgClassName="grow basis-0 rounded-xl object-cover md:w-1/2 lg:min-h-0 lg:w-auto" resource={images[2]} />}
           </div>
@@ -47,7 +48,7 @@ const About3: React.FC<AboutBlock> = ({ headline, text1, text2, text3, counter, 
             {Array.isArray(logos) && logos.map((logo: MediaType) => (
               <div key={logo.id} className="flex items-center gap-3">
                 <Media key={logo.id} imgClassName="h-8 w-auto md:h-12" resource={logo} />
-                {logo.caption && <RichText
+                {logo.caption && <RichText publicContext={publicContext}
                   content={logo.caption}
                   withWrapper={false}
                   overrideStyle={{
@@ -60,7 +61,7 @@ const About3: React.FC<AboutBlock> = ({ headline, text1, text2, text3, counter, 
         </div>
         <div className="relative overflow-hidden rounded-xl bg-muted p-10 md:p-16">
           <div className="flex flex-col gap-4 text-center md:text-left">
-            {text2 && <RichText
+            {text2 && <RichText publicContext={publicContext}
               content={text2}
               withWrapper={false}
               overrideStyle={{

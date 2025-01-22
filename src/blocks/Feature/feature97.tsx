@@ -4,16 +4,17 @@ import { FeatureBlock } from '@/payload-types';
 import RichText from '@/components/RichText';
 import { CMSLink } from '@/components/Link';
 import { Icon } from '@/components/Icon'
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
-const Feature97: React.FC<FeatureBlock> = ({ richText, image, links, icon, tagline, USPs }) => {
+const Feature97: React.FC<FeatureBlock & { publicContext: PublicContextProps }> = ({ richText, image, links, icon, tagline, USPs, publicContext }) => {
   return (
     <section className="py-32">
       <div className="container">
         <div className="mx-auto flex max-w-xl flex-col gap-6 text-center">
-          {richText && <RichText content={richText} withWrapper={false} overrideStyle={{h2: "text-4xl font-semibold", p: "text-lg"}} />}
+          {richText && <RichText publicContext={publicContext} content={richText} withWrapper={false} overrideStyle={{ h2: "text-4xl font-semibold", p: "text-lg" }} />}
           <div className="flex flex-col justify-center gap-2 sm:flex-row">
             {Array.isArray(links) && links.length > 0 && links.map(({ link }, i) => (
-              <CMSLink key={i} {...link} size={'lg'} />
+              <CMSLink publicContext={publicContext} key={i} {...link} size={'lg'} />
             ))}
           </div>
         </div>
@@ -22,7 +23,7 @@ const Feature97: React.FC<FeatureBlock> = ({ richText, image, links, icon, tagli
             <div key={index} className="text-center">
               {uspIcon && <Icon icon={uspIcon} className="mx-auto h-auto w-7" />}
               {richText && (
-                <RichText
+                <RichText publicContext={publicContext}
                   content={richText}
                   withWrapper={false}
                   overrideStyle={{
