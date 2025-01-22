@@ -4,11 +4,11 @@ import { CMSLink } from '@/components/Link'
 import type { TextBlock as TextBlockProps } from '@/payload-types'
 import { PublicContextProps } from '@/utilities/publicContextProps'
 
-export const TextBlock: React.FC<TextBlockProps & { publicContext: PublicContextProps }> = (props) => {
-  const { content, links, publicContext } = props
+export const TextBlock: React.FC<TextBlockProps & { publicContext: PublicContextProps, disableContainer?: boolean }> = (props) => {
+  const { content, links, publicContext, disableContainer } = props
 
   return (
-    <div className="container my-16">
+    <div className={!disableContainer ? 'container' : ''}>
       <div className="w-full">
         {content && <RichText publicContext={publicContext} content={content} />}
         <div className="flex flex-col gap-2 sm:flex-row">

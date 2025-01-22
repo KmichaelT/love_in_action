@@ -38,8 +38,9 @@ const blockComponents: Partial<Record<Page['layout'][0]['blockType'], React.FC<a
 export const RenderBlocks: React.FC<{
   blocks: Page['layout'][0][]
   publicContext: PublicContextProps
+  disableContainer?: boolean
 }> = (props) => {
-  const { blocks, publicContext } = props
+  const { blocks, publicContext, disableContainer } = props
 
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
 
@@ -152,7 +153,7 @@ export const RenderBlocks: React.FC<{
             if (Block) {
               return (
                 <div key={index} className={className} id={block.id || undefined}>
-                  <Block {...block} publicContext={publicContext} />
+                  <Block {...block} publicContext={publicContext} disableContainer={disableContainer} />
                 </div>
               )
             }
