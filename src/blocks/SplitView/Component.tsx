@@ -33,7 +33,7 @@ export const SplitViewBlock: React.FC<Props> = (props) => {
             const size = (column as any)?.size || 'half'
             return (
               <div key={index} className={cn('col-span-12', colsSpanClasses[size])}>
-                <RenderBlocks blocks={[column]} />
+                <RenderBlocks blocks={[column]} disableContainer={true} />
               </div>
             )
           })}
