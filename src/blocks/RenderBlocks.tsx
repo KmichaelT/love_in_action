@@ -43,8 +43,6 @@ export const RenderBlocks: React.FC<{
 
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
 
-  console.log("RenderBlocks publicContext", publicContext)
-
   if (hasBlocks) {
     return (
       <Fragment>

@@ -53,7 +53,6 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
     publicContext,
   } = props
 
-  console.log("publicContext", publicContext, url, reference?.value?.slug)
   const locale = publicContext?.locale || localization.defaultLocale;
 
   let href =
