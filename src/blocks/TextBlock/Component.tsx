@@ -3,11 +3,15 @@ import RichText from '@/components/RichText'
 import { CMSLink } from '@/components/Link'
 import type { TextBlock as TextBlockProps } from '@/payload-types'
 
-export const TextBlock: React.FC<TextBlockProps> = (props) => {
-  const { content, links } = props
+interface Props extends TextBlockProps {
+  disableContainer?: boolean
+}
+
+export const TextBlock: React.FC<Props> = (props) => {
+  const { content, links, disableContainer } = props
 
   return (
-    <div className="container my-16">
+    <div className={!disableContainer ? 'container' : ''}>
       <div className="w-full">
         {content && <RichText content={content} />}
         <div className="flex flex-col gap-2 sm:flex-row">
