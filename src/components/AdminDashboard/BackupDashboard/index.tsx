@@ -39,6 +39,19 @@ const BeforeDashboard: React.FC<BackupDashboardProps> = async ({ user, i18n, sea
   const showOtherDb = searchParams.showOtherDb === 'true';
   const showOtherHostname = searchParams.showOtherHostname === 'true';
 
+  const countOtherDb = blobs.filter((blob) => {
+    const { dbName } = transformBlobName(blob.pathname);
+    const { hostname: currentDbHostname, pathname: currentDbPathname } = new URL(process.env.MONGODB_URI!);
+    const currentDbName = currentDbHostname + currentDbPathname;
+    return currentDbName !== dbName;
+  }).length;
+
+  const countOtherHostname = blobs.filter((blob) => {
+    const { hostname } = transformBlobName(blob.pathname);
+    const { hostname: currentHostname } = new URL(process.env.NEXT_PUBLIC_SERVER_URL!) || process.env.VERCEL_URL!;
+    return currentHostname !== hostname;
+  }).length;
+
   return (
     <div className="backup-dashboard">
       <h2>Backups</h2>
@@ -46,18 +59,20 @@ const BeforeDashboard: React.FC<BackupDashboardProps> = async ({ user, i18n, sea
       <Collapsible initCollapsed={true}>
 
         <div className='backup-filter-group'>
-          <Link className="btn btn--icon-style-without-border btn--size-medium btn--withoutPopup btn--style-primary btn--withoutPopup" href={{
+          {countOtherDb > 0 && <Link className="btn btn--icon-style-without-border btn--size-medium btn--withoutPopup btn--style-primary btn--withoutPopup" href={{
             search: new URLSearchParams({
               ...searchParams,
               showOtherDb: showOtherDb ? 'false' : 'true',
             }).toString(),
-          }}>{showOtherDb ? 'Hide other DBs' : 'Show other DBs'}</Link>
-          <Link className="btn btn--icon-style-without-border btn--size-medium btn--withoutPopup btn--style-primary btn--withoutPopup" href={{
+          }}>{showOtherDb ? 'Hide other DBs' : 'Show other DBs'}</Link>}
+
+
+          {countOtherHostname > 0 && <Link className="btn btn--icon-style-without-border btn--size-medium btn--withoutPopup btn--style-primary btn--withoutPopup" href={{
             search: new URLSearchParams({
               ...searchParams,
               showOtherHostname: showOtherHostname ? 'false' : 'true',
             }).toString(),
-          }}>{showOtherHostname ? 'Hide other Hostnames' : 'Show other Hostnames'}</Link>
+          }}>{showOtherHostname ? 'Hide other Hostnames' : 'Show other Hostnames'}</Link>}
         </div>
 
 
@@ -72,7 +87,6 @@ const BeforeDashboard: React.FC<BackupDashboardProps> = async ({ user, i18n, sea
 
           if (!(showOtherDb || isCurrentDb)) return;
           if (!(showOtherHostname || isCurrentHostname)) return;
-
 
           return (
             <div key={blob.pathname} className='backup-item'>
