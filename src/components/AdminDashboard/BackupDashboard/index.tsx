@@ -16,16 +16,6 @@ interface BackupDashboardProps {
   searchParams: Record<string, string>
 }
 
-function transformBlobName(blobName: string) {
-  const [type = "", dbName = "", hostname = "", date = ""] = blobName.split('-');
-  return {
-    type,
-    date,
-    dbName,
-    hostname
-  }
-}
-
 const BeforeDashboard: React.FC<BackupDashboardProps> = async ({ user, i18n, searchParams }) => {
   if (!user) return;
 

@@ -4,7 +4,7 @@ import configPromise from '@payload-config'
 import { del, list, put } from '@vercel/blob';
 import { revalidatePath } from 'next/cache';
 import { ObjectId } from 'mongodb';
-import { getCurrentHostname } from './utils';
+import { createBlobName, getCurrentHostname } from './utils';
 import { getCurrentDbName } from './utils';
 
 const BACKUPS_TO_KEEP = Number(process.env.BACKUPS_TO_KEEP) || 10;
@@ -79,7 +79,7 @@ export async function createBackup(cron: boolean = false) {
   for (const collection of collections) {
     allData[collection.name] = await db.collection(collection.name).find({}).toArray();
   }
-  const name = `backups/${cron ? 'cron' : 'manual'}-${currentDbName}-${currentHostname}-${Date.now()}.json`;
+  const name = `backups/${createBlobName(cron ? 'cron' : 'manual', currentDbName, currentHostname, Date.now().toString())}`;
   await put(name, JSON.stringify(allData), { access: 'public' });
   revalidatePath('/admin');
   console.log("Backup created", name);

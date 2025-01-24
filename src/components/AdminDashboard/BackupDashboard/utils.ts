@@ -14,3 +14,19 @@ export function getCurrentHostname() {
     return process.env.VERCEL_URL! || "none";
   }
 }
+
+const SEPARATOR = '---';
+
+export function transformBlobName(blobName: string) {
+  const [type = "", dbName = "", hostname = "", date = ""] = (blobName.replace('.json', '')).split(SEPARATOR);
+  return {
+    type,
+    date,
+    dbName,
+    hostname
+  }
+}
+
+export function createBlobName(type: string, dbName: string, hostname: string, date: string) {
+  return `${type}${SEPARATOR}${dbName}${SEPARATOR}${hostname}${SEPARATOR}${date}.json`;
+}
