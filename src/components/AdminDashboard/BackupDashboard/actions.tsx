@@ -4,12 +4,15 @@ import { getPayload } from 'payload';
 import configPromise from '@payload-config'
 import { del, list, put } from '@vercel/blob';
 import { revalidatePath } from 'next/cache';
-import { ObjectId } from 'mongodb';
+import { MongoClient, ObjectId } from 'mongodb';
 
 const BACKUPS_TO_KEEP = Number(process.env.BACKUPS_TO_KEEP) || 10;
 
 export async function getDb() {
   const payload = await getPayload({ config: configPromise });
+  if (payload.db.name !== "mongoose") {
+    throw new Error("Backup failed: Not a mongoose database adapter");
+  }
   const db = payload.db.connection.db;
   if (!db) {
     console.error("Backup failed: Database not initialized");
@@ -52,8 +55,9 @@ export async function restoreBackup(downloadUrl: string) {
 }
 
 export async function createBackup(cron: boolean = false) {
-  "use server"
-  console.log("Creating backup");
+  const { hostname, pathname } = new URL(process.env.MONGODB_URI!);
+  const dbName = hostname + pathname;
+
   if (cron) {
     const { blobs } = await list({
       prefix: 'backups/cron-',
@@ -74,7 +78,7 @@ export async function createBackup(cron: boolean = false) {
   for (const collection of collections) {
     allData[collection.name] = await db.collection(collection.name).find({}).toArray();
   }
-  const name = `backups/${cron ? 'cron-' : ''}backup-${Date.now()}.json`;
+  const name = `backups/${cron ? 'cron' : 'manual'}-${dbName}-${new URL(process.env.NEXT_PUBLIC_SERVER_URL! || process.env.VERCEL_URL!).hostname}-${Date.now()}.json`;
   await put(name, JSON.stringify(allData), { access: 'public' });
   revalidatePath('/admin');
   console.log("Backup created", name);
