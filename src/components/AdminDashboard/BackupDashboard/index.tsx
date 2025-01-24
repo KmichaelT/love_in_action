@@ -8,7 +8,7 @@ import { Button, Popup, Collapsible } from '@payloadcms/ui'
 import { isAdminHidden } from '@/access/isAdmin';
 import { I18n } from '@payloadcms/translations';
 import Link from 'next/link';
-import { getCurrentDbName, getCurrentHostname } from './utils';
+import { getCurrentDbName, getCurrentHostname, transformBlobName } from './utils';
 
 interface BackupDashboardProps {
   user: User | null,
