@@ -1,7 +1,7 @@
 import './index.scss'
 import { del } from '@vercel/blob';
 import { revalidatePath } from 'next/cache';
-import { createBackup, listBackups, restoreBackup } from './actions';
+import { createBackup, getCurrentHostname, getCurrentDbName, listBackups, restoreBackup } from './actions';
 import { User } from 'payload'
 
 import { Button, Popup, Collapsible } from '@payloadcms/ui'
@@ -40,9 +40,8 @@ const BeforeDashboard: React.FC<BackupDashboardProps> = async ({ user, i18n, sea
   const showOtherHostname = searchParams.showOtherHostname === 'true';
 
 
-  const currentHostname = process.env.NEXT_PUBLIC_SERVER_URL ? new URL(process.env.NEXT_PUBLIC_SERVER_URL).hostname : process.env.VERCEL_URL!;
-  const { hostname: currentDbHostname, pathname: currentDbPathname } = new URL(process.env.MONGODB_URI!);
-  const currentDbName = currentDbHostname + currentDbPathname;
+  const currentHostname = getCurrentHostname();
+  const currentDbName = getCurrentDbName();
 
   const countOtherDb = blobs.filter((blob) => {
     const { dbName } = transformBlobName(blob.pathname);

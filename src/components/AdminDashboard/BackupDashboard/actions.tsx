@@ -4,7 +4,7 @@ import { getPayload } from 'payload';
 import configPromise from '@payload-config'
 import { del, list, put } from '@vercel/blob';
 import { revalidatePath } from 'next/cache';
-import { MongoClient, ObjectId } from 'mongodb';
+import { ObjectId } from 'mongodb';
 
 const BACKUPS_TO_KEEP = Number(process.env.BACKUPS_TO_KEEP) || 10;
 
@@ -19,6 +19,15 @@ export async function getDb() {
     throw new Error("Backup failed: Database not initialized");
   }
   return db!
+}
+
+export function getCurrentDbName() {
+  const { hostname, pathname } = new URL(process.env.MONGODB_URI!);
+  return hostname + pathname;
+}
+
+export function getCurrentHostname() {
+  return process.env.NEXT_PUBLIC_SERVER_URL ? new URL(process.env.NEXT_PUBLIC_SERVER_URL).hostname : process.env.VERCEL_URL!;
 }
 
 export async function restoreBackup(downloadUrl: string) {
@@ -55,8 +64,8 @@ export async function restoreBackup(downloadUrl: string) {
 }
 
 export async function createBackup(cron: boolean = false) {
-  const { hostname, pathname } = new URL(process.env.MONGODB_URI!);
-  const dbName = hostname + pathname;
+  const currentHostname = getCurrentHostname();
+  const currentDbName = getCurrentDbName();
 
   if (cron) {
     const { blobs } = await list({
@@ -78,7 +87,7 @@ export async function createBackup(cron: boolean = false) {
   for (const collection of collections) {
     allData[collection.name] = await db.collection(collection.name).find({}).toArray();
   }
-  const name = `backups/${cron ? 'cron' : 'manual'}-${dbName}-${new URL(process.env.NEXT_PUBLIC_SERVER_URL! || process.env.VERCEL_URL!).hostname}-${Date.now()}.json`;
+  const name = `backups/${cron ? 'cron' : 'manual'}-${currentDbName}-${currentHostname}-${Date.now()}.json`;
   await put(name, JSON.stringify(allData), { access: 'public' });
   revalidatePath('/admin');
   console.log("Backup created", name);
