@@ -40,7 +40,7 @@ const BeforeDashboard: React.FC<BackupDashboardProps> = async ({ user, i18n, sea
   const showOtherHostname = searchParams.showOtherHostname === 'true';
 
 
-  const { hostname: currentHostname } = process.env.NEXT_PUBLIC_SERVER_URL ? new URL(process.env.NEXT_PUBLIC_SERVER_URL) : new URL(process.env.VERCEL_URL!);
+  const currentHostname = process.env.NEXT_PUBLIC_SERVER_URL ? new URL(process.env.NEXT_PUBLIC_SERVER_URL).hostname : process.env.VERCEL_URL!;
   const { hostname: currentDbHostname, pathname: currentDbPathname } = new URL(process.env.MONGODB_URI!);
   const currentDbName = currentDbHostname + currentDbPathname;
 
