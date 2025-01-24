@@ -1,13 +1,14 @@
 import './index.scss'
 import { del } from '@vercel/blob';
 import { revalidatePath } from 'next/cache';
-import { createBackup, getCurrentHostname, getCurrentDbName, listBackups, restoreBackup } from './actions';
+import { createBackup, listBackups, restoreBackup } from './actions';
 import { User } from 'payload'
 
 import { Button, Popup, Collapsible } from '@payloadcms/ui'
 import { isAdminHidden } from '@/access/isAdmin';
 import { I18n } from '@payloadcms/translations';
 import Link from 'next/link';
+import { getCurrentDbName, getCurrentHostname } from './utils';
 
 interface BackupDashboardProps {
   user: User | null,

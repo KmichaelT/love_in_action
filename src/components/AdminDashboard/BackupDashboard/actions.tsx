@@ -1,10 +1,11 @@
 "use server"
-import './index.scss'
 import { getPayload } from 'payload';
 import configPromise from '@payload-config'
 import { del, list, put } from '@vercel/blob';
 import { revalidatePath } from 'next/cache';
 import { ObjectId } from 'mongodb';
+import { getCurrentHostname } from './utils';
+import { getCurrentDbName } from './utils';
 
 const BACKUPS_TO_KEEP = Number(process.env.BACKUPS_TO_KEEP) || 10;
 
@@ -19,23 +20,6 @@ export async function getDb() {
     throw new Error("Backup failed: Database not initialized");
   }
   return db!
-}
-
-export function getCurrentDbName() {
-  try {
-    const { hostname, pathname } = new URL(process.env.MONGODB_URI!);
-    return hostname + pathname;
-  } catch (e) {
-    return "none";
-  }
-}
-
-export function getCurrentHostname() {
-  try {
-    return process.env.NEXT_PUBLIC_SERVER_URL ? new URL(process.env.NEXT_PUBLIC_SERVER_URL).hostname : process.env.VERCEL_URL!;
-  } catch (e) {
-    return process.env.VERCEL_URL! || "none";
-  }
 }
 
 export async function restoreBackup(downloadUrl: string) {
