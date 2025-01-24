@@ -39,16 +39,18 @@ const BeforeDashboard: React.FC<BackupDashboardProps> = async ({ user, i18n, sea
   const showOtherDb = searchParams.showOtherDb === 'true';
   const showOtherHostname = searchParams.showOtherHostname === 'true';
 
+
+  const { hostname: currentHostname } = process.env.NEXT_PUBLIC_SERVER_URL ? new URL(process.env.NEXT_PUBLIC_SERVER_URL) : new URL(process.env.VERCEL_URL!);
+  const { hostname: currentDbHostname, pathname: currentDbPathname } = new URL(process.env.MONGODB_URI!);
+  const currentDbName = currentDbHostname + currentDbPathname;
+
   const countOtherDb = blobs.filter((blob) => {
     const { dbName } = transformBlobName(blob.pathname);
-    const { hostname: currentDbHostname, pathname: currentDbPathname } = new URL(process.env.MONGODB_URI!);
-    const currentDbName = currentDbHostname + currentDbPathname;
     return currentDbName !== dbName;
   }).length;
 
   const countOtherHostname = blobs.filter((blob) => {
     const { hostname } = transformBlobName(blob.pathname);
-    const { hostname: currentHostname } = new URL(process.env.NEXT_PUBLIC_SERVER_URL!) || process.env.VERCEL_URL!;
     return currentHostname !== hostname;
   }).length;
 
@@ -78,9 +80,6 @@ const BeforeDashboard: React.FC<BackupDashboardProps> = async ({ user, i18n, sea
 
         {blobs.map((blob) => {
           const { type, dbName, hostname } = transformBlobName(blob.pathname);
-          const { hostname: currentHostname } = new URL(process.env.NEXT_PUBLIC_SERVER_URL! || process.env.VERCEL_URL!);
-          const { hostname: currentDbHostname, pathname: currentDbPathname } = new URL(process.env.MONGODB_URI!);
-          const currentDbName = currentDbHostname + currentDbPathname;
 
           const isCurrentDb = currentDbName === dbName;
           const isCurrentHostname = currentHostname === hostname;
