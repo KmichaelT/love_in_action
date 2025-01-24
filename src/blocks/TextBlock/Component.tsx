@@ -11,7 +11,7 @@ export const TextBlock: React.FC<Props> = (props) => {
   const { content, links, disableContainer } = props
 
   return (
-    <div className={!disableContainer ? 'container' : ''}>
+    <div className={!disableContainer ? 'container py-32' : ''}>
       <div className="w-full">
         {content && <RichText content={content} />}
         <div className="flex flex-col gap-2 sm:flex-row">
