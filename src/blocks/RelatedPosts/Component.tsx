@@ -5,6 +5,7 @@ import RichText from '@/components/RichText'
 import type { Post } from '@/payload-types'
 
 import { Card } from '../../components/Card'
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
 export type RelatedPostsProps = {
   className?: string
@@ -12,12 +13,12 @@ export type RelatedPostsProps = {
   introContent?: any
 }
 
-export const RelatedPosts: React.FC<RelatedPostsProps> = (props) => {
-  const { className, docs, introContent } = props
+export const RelatedPosts: React.FC<RelatedPostsProps & { publicContext: PublicContextProps }> = (props) => {
+  const { className, docs, introContent, publicContext } = props
 
   return (
     <div className={clsx('container', className)}>
-      {introContent && <RichText content={introContent} enableGutter={false} />}
+      {introContent && <RichText publicContext={publicContext} content={introContent} enableGutter={false} />}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 items-stretch">
         {docs?.map((doc, index) => {

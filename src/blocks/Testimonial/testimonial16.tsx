@@ -7,6 +7,7 @@ import { Separator } from '@/components/ui/separator';
 import { cn } from '@/utilities/cn';
 import { TestimonialBlock } from '@/payload-types';
 import RichText from '@/components/RichText';
+import { PublicContextProps } from '@/utilities/publicContextProps';
 
 const tweets = [
   {
@@ -211,14 +212,14 @@ const tweets = [
   },
 ];
 
-const Testimonial16: React.FC<TestimonialBlock> = ({ headline, link, tagline, testimonial }) => {
+const Testimonial16: React.FC<TestimonialBlock & { publicContext: PublicContextProps }> = ({ headline, link, tagline, testimonial, publicContext }) => {
   const [expandedTweetId, setExpandedTweetId] = useState<number | null>(null);
 
   return (
     <section className="py-32">
       <div className="container">
         <div className="grid gap-8 lg:grid-cols-2">
-          {headline && <RichText
+          {headline && <RichText publicContext={publicContext}
             content={headline}
             withWrapper={false}
             overrideStyle={{

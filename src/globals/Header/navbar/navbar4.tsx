@@ -536,7 +536,7 @@ const topicGroups = [
 ];
 
 const SolutionsMenu = () => (
-  <div className="grid gap-8 sm:grid-cols-2">
+  <div className="grid gap-8 sm:grid-cols-2 z-50">
     <NavigationMenuLink
       href="#"
       className="group relative flex h-full overflow-hidden rounded-lg bg-primary px-0 pt-8 text-primary-foreground lg:rounded-xl lg:px-6"

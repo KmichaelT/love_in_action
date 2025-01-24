@@ -10,15 +10,16 @@ import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { FaqBlock } from '@/payload-types'
 import RichText from '@/components/RichText'
+import { PublicContextProps } from '@/utilities/publicContextProps';
 
-const Faq4: React.FC<FaqBlock> = ({ headline, badge, faqs }) => {
+const Faq4: React.FC<FaqBlock & { publicContext: PublicContextProps }> = ({ headline, badge, faqs, publicContext }) => {
   return (
     <section className="py-32">
       <div className="container">
         <div>
           <Badge className="text-xs font-medium">{badge}</Badge>
           {headline && (
-            <RichText
+            <RichText publicContext={publicContext}
               content={headline}
               overrideStyle={{
                 h1: 'mt-4 text-4xl font-semibold',
@@ -31,14 +32,14 @@ const Faq4: React.FC<FaqBlock> = ({ headline, badge, faqs }) => {
         </div>
         <div className="mt-12">
           <Accordion type="single" collapsible>
-            {faqs?.map(({question, answer, id}, index) => (
+            {faqs?.map(({ question, answer, id }, index) => (
               <AccordionItem key={id} value={`item-${index}`} className="border-b-0">
                 <AccordionTrigger className="hover:text-foreground/60 hover:no-underline text-left">
                   {question}
                 </AccordionTrigger>
                 {answer && (
                   <AccordionContent>
-                    <RichText
+                    <RichText publicContext={publicContext}
                       content={answer}
                       overrideStyle={{
                         p: '',

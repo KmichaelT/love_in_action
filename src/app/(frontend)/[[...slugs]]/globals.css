@@ -32,6 +32,9 @@ html[data-theme='light'] {
   opacity: initial;
 }
 
+a {
+  cursor: pointer;
+}
 
 .magicpattern { 
   width: 100%;

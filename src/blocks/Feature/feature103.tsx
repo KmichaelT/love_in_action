@@ -3,12 +3,13 @@ import { ArrowRight } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { FeatureBlock } from '@/payload-types'
 import RichText from '@/components/RichText'
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
 /**
  * https://www.shadcnblocks.com/block/feature103/
  * @returns
  */
-const Feature103: React.FC<FeatureBlock> = ({ tagline, USPs, richText }) => {
+const Feature103: React.FC<FeatureBlock & { publicContext: PublicContextProps }> = ({ tagline, USPs, richText, publicContext }) => {
   return (
     <section className="py-32">
       <div className="container">
@@ -19,7 +20,7 @@ const Feature103: React.FC<FeatureBlock> = ({ tagline, USPs, richText }) => {
             </Badge>
           )}
           {richText && (
-            <RichText
+            <RichText publicContext={publicContext}
               content={richText}
               withWrapper={false}
               overrideStyle={{ h2: 'text-2xl md:text-4xl' }}
@@ -34,7 +35,7 @@ const Feature103: React.FC<FeatureBlock> = ({ tagline, USPs, richText }) => {
               className="flex flex-col rounded-xl border p-6 hover:border-primary relative"
             >
               {usp.richText && (
-                <RichText
+                <RichText publicContext={publicContext}
                   content={usp.richText}
                   withWrapper={false}
                   overrideStyle={{

@@ -4,8 +4,9 @@ import { Media } from '@/components/Media';
 import { splitRichText } from '@/utilities/richtext';
 import RichText from '@/components/RichText';
 import { CMSLink } from '@/components/Link';
+import { PublicContextProps } from '@/utilities/publicContextProps';
 
-const Testimonial2: React.FC<TestimonialBlock> = ({ headline, link, tagline, testimonial }) => {
+const Testimonial2: React.FC<TestimonialBlock & { publicContext: PublicContextProps }> = ({ headline, link, tagline, testimonial, publicContext }) => {
   const { firstNode, rest } = splitRichText(headline, {
     splitOn: ['p'],
     takeFirst: true
@@ -17,7 +18,7 @@ const Testimonial2: React.FC<TestimonialBlock> = ({ headline, link, tagline, tes
           <div className="text-3xl font-bold md:text-5xl lg:text-7xl">
             <div className="flex flex-wrap items-center justify-center">
               {firstNode && (
-                <RichText content={firstNode} withWrapper={false} overrideStyle={{ p: '' }} />
+                <RichText publicContext={publicContext} content={firstNode} withWrapper={false} overrideStyle={{ p: '' }} />
               )}
               <span className="mx-4 inline-flex items-center -space-x-4">
                 {testimonial && testimonial.map((t) =>
@@ -34,12 +35,12 @@ const Testimonial2: React.FC<TestimonialBlock> = ({ headline, link, tagline, tes
                 )}
               </span>
               {rest && (
-                <RichText content={rest} withWrapper={false} overrideStyle={{ p: '' }} />
+                <RichText publicContext={publicContext} content={rest} withWrapper={false} overrideStyle={{ p: '' }} />
               )}
             </div>
           </div>
           {link && (
-            <CMSLink {...link} className="mt-10" />
+            <CMSLink publicContext={publicContext} {...link} className="mt-10" />
           )}
         </div>
       </div>

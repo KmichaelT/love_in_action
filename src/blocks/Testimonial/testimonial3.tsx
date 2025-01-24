@@ -1,8 +1,9 @@
 import { Media } from '@/components/Media';
 import RichText from '@/components/RichText';
 import { TestimonialBlock } from '@/payload-types';
+import { PublicContextProps } from '@/utilities/publicContextProps';
 
-const Testimonial3: React.FC<TestimonialBlock> = ({ headline, link, tagline, testimonial }) => {
+const Testimonial3: React.FC<TestimonialBlock & { publicContext: PublicContextProps }> = ({ headline, link, tagline, testimonial, publicContext }) => {
   return (
     <section className="py-32">
       <div className="container">
@@ -10,7 +11,7 @@ const Testimonial3: React.FC<TestimonialBlock> = ({ headline, link, tagline, tes
           {Array.isArray(testimonial) && testimonial.length > 0 && (
             <>
               {testimonial[0].text && (
-                <RichText
+                <RichText publicContext={publicContext}
                   content={testimonial[0].text}
                   withWrapper={false}
                   overrideStyle={{

@@ -4,8 +4,9 @@ import RichText from '@/components/RichText';
 import { Page } from '@/payload-types';
 import { Media } from '@/components/Media';
 import { Icon } from '@/components/Icon';
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
-export const Hero2: React.FC<Page['hero']> = ({ links, images, badgeIcon, badge, richText }) => {
+export const Hero2: React.FC<Page['hero'] & { publicContext: PublicContextProps }> = ({ links, images, badgeIcon, badge, richText, publicContext }) => {
   return (
     <section className="py-32">
       <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
@@ -22,7 +23,7 @@ export const Hero2: React.FC<Page['hero']> = ({ links, images, badgeIcon, badge,
           {badge && <Badge variant="outline">
             {badge} {badgeIcon && <Icon icon={badgeIcon} className="ml-2 size-4" />}
           </Badge>}
-          {richText && <RichText
+          {richText && <RichText publicContext={publicContext}
             className="flex flex-col items-center text-center lg:max-w-3xl lg:items-start lg:text-left"
             content={richText}
             enableGutter={false}
@@ -35,7 +36,7 @@ export const Hero2: React.FC<Page['hero']> = ({ links, images, badgeIcon, badge,
             <div className="flex w-full flex-col justify-center gap-2 sm:flex-row lg:justify-start">
               {links.map(({ link }, i) => {
                 return (
-                  <CMSLink className="w-full sm:w-auto" key={i} {...link} />
+                  <CMSLink publicContext={publicContext} className="w-full sm:w-auto" key={i} {...link} />
                 )
               })}
             </div>

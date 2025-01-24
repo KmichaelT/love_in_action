@@ -17,15 +17,16 @@ import {
 } from './nodeFormat'
 import type { Page } from '@/payload-types'
 import { cn } from '@/utilities/cn'
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
 export type NodeTypes =
   | DefaultNodeTypes
   | SerializedBlockNode<
-      | Extract<Page['layout'][0], { blockType: 'cta' }>
-      | Extract<Page['layout'][0], { blockType: 'mediaBlock' }>
-      | BannerBlockProps
-      | CodeBlockProps
-    >
+    | Extract<Page['layout'][0], { blockType: 'cta' }>
+    | Extract<Page['layout'][0], { blockType: 'mediaBlock' }>
+    | BannerBlockProps
+    | CodeBlockProps
+  >
 
 export type OverrideStyle = Partial<Record<'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'li', string>>
 
@@ -34,7 +35,7 @@ type Props = {
   overrideStyle?: OverrideStyle
 }
 
-export function serializeLexical({ nodes, overrideStyle }: Props): JSX.Element {
+export function serializeLexical({ nodes, overrideStyle, publicContext }: Props & { publicContext: PublicContextProps }): JSX.Element {
   const defaultStyles: OverrideStyle = {
     h1: 'mb-4 text-4xl font-semibold md:text-5xl',
     h2: 'mb-4 text-3xl font-semibold',
@@ -104,7 +105,7 @@ export function serializeLexical({ nodes, overrideStyle }: Props): JSX.Element {
                 }
               }
             }
-            return serializeLexical({ nodes: node.children as NodeTypes[], overrideStyle: mergedStyles })
+            return serializeLexical({ nodes: node.children as NodeTypes[], overrideStyle: mergedStyles, publicContext })
           }
         }
 
@@ -135,7 +136,7 @@ export function serializeLexical({ nodes, overrideStyle }: Props): JSX.Element {
             //     />
             //   )
             case 'banner':
-              return <BannerBlock className="col-start-2 mb-4" key={index} {...block} />
+              return <BannerBlock className="col-start-2 mb-4" key={index} {...block} publicContext={publicContext} />
             case 'code':
               return <CodeBlock className="col-start-2" key={index} {...block} />
             default:
@@ -233,6 +234,7 @@ export function serializeLexical({ nodes, overrideStyle }: Props): JSX.Element {
 
               return (
                 <CMSLink
+                  publicContext={publicContext}
                   key={index}
                   newTab={Boolean(fields?.newTab)}
                   reference={fields.doc as any}

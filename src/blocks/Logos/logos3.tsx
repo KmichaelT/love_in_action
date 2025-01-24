@@ -14,12 +14,13 @@ import {
 import type { LogosBlock, Media as MediaType } from '@/payload-types';
 import RichText from '@/components/RichText';
 import { Media } from '@/components/Media';
+import { PublicContextProps } from '@/utilities/publicContextProps';
 
-const Logos3: React.FC<LogosBlock> = ({ richText, logos }) => {
+const Logos3: React.FC<LogosBlock & { publicContext: PublicContextProps }> = ({ richText, logos, publicContext }) => {
   return (
     <section className="py-32">
       <div className="container flex flex-col items-center text-center">
-        {richText && <RichText
+        {richText && <RichText publicContext={publicContext}
           content={richText}
           withWrapper={false}
           overrideStyle={{

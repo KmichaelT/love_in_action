@@ -2,9 +2,11 @@ import { cn } from 'src/utilities/cn'
 import React from 'react'
 import type { SplitViewBlock as SplitViewBlockProps } from '@/payload-types'
 import { RenderBlocks } from '../RenderBlocks'
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
 type Props = {
   columns: SplitViewBlockProps['columns']
+  publicContext: PublicContextProps
 }
 
 const colsSpanClasses = {
@@ -17,7 +19,7 @@ const colsSpanClasses = {
  * Enable columns for a split view with subcomponent blocks
  */
 export const SplitViewBlock: React.FC<Props> = (props) => {
-  const { columns } = props
+  const { columns, publicContext } = props
 
   if (!columns?.length) return null
 
@@ -33,7 +35,7 @@ export const SplitViewBlock: React.FC<Props> = (props) => {
             const size = (column as any)?.size || 'half'
             return (
               <div key={index} className={cn('col-span-12', colsSpanClasses[size])}>
-                <RenderBlocks blocks={[column]} disableContainer={true} />
+                <RenderBlocks blocks={[column]} publicContext={publicContext} disableContainer={true} />
               </div>
             )
           })}

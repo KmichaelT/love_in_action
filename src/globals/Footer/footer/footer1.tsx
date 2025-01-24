@@ -11,9 +11,9 @@ import { Separator } from '@/components/ui/separator';
 import { Footer } from '@/payload-types';
 import { Media } from '@/components/Media';
 import { CMSLink } from '@/components/Link';
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
-
-const Footer1: React.FC<{ footer: Footer }> = ({ footer }) => {
+const Footer1: React.FC<{ footer: Footer, publicContext: PublicContextProps }> = ({ footer, publicContext }) => {
   return (
     <section className="py-32">
       <div className="container">
@@ -55,7 +55,7 @@ const Footer1: React.FC<{ footer: Footer }> = ({ footer }) => {
                       key={subitem.id}
                       className="font-medium hover:text-primary"
                     >
-                      <CMSLink {...subitem.link} />
+                      <CMSLink publicContext={publicContext} {...subitem.link} />
                     </li>
                   ))}
                 </ul>

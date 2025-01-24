@@ -8,6 +8,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import RichText from '@/components/RichText';
+import { PublicContextProps } from '@/utilities/publicContextProps';
 
 const testimonials = [
   {
@@ -54,13 +55,13 @@ const testimonials = [
   },
 ];
 
-const Testimonial6: React.FC<TestimonialBlock> = ({ headline, link, tagline, testimonial }) => {
+const Testimonial6: React.FC<TestimonialBlock & { publicContext: PublicContextProps }> = ({ headline, link, tagline, testimonial, publicContext }) => {
   return (
     <section className="py-32">
       <div className="container">
         <Carousel className="w-full">
           <div className="mb-8 flex justify-between px-1 lg:mb-12">
-            {headline && <RichText
+            {headline && <RichText publicContext={publicContext}
               content={headline}
               withWrapper={false}
               overrideStyle={{

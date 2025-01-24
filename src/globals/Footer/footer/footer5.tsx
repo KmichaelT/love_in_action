@@ -9,9 +9,9 @@ import {
   FaTwitter,
 } from 'react-icons/fa';
 import { CMSLink } from '@/components/Link';
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
-
-const Footer5: React.FC<{ footer: Footer }> = ({ footer }) => {
+const Footer5: React.FC<{ footer: Footer, publicContext: PublicContextProps }> = ({ footer, publicContext }) => {
   return (
     <section className="py-32">
       <div className="container">
@@ -26,7 +26,7 @@ const Footer5: React.FC<{ footer: Footer }> = ({ footer }) => {
                       key={linkIdx}
                       className="font-medium hover:text-primary"
                     >
-                      <CMSLink {...link.link} />
+                      <CMSLink publicContext={publicContext} {...link.link} />
                     </li>
                   ))}
                 </ul>

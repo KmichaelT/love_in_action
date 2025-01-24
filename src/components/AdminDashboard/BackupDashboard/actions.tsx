@@ -3,8 +3,8 @@ import './index.scss'
 import { getPayload } from 'payload';
 import configPromise from '@payload-config'
 import { del, list, put } from '@vercel/blob';
-import https from 'https';
 import { revalidatePath } from 'next/cache';
+import { ObjectId } from 'mongodb';
 
 const BACKUPS_TO_KEEP = Number(process.env.BACKUPS_TO_KEEP) || 10;
 
@@ -18,48 +18,21 @@ export async function getDb() {
   return db!
 }
 
-function downloadAndParseJSON(url) {
-  return new Promise((resolve, reject) => {
-    https.get(url, (response) => {
-      if (response.statusCode !== 200) {
-        reject(new Error(`Failed to download: ${response.statusCode}`));
-        return;
-      }
-
-      let data = '';
-
-      response.on('data', (chunk) => {
-        data += chunk;
-      });
-
-      response.on('end', () => {
-        try {
-          const jsonObject = JSON.parse(data);
-          resolve(jsonObject);
-        } catch (error) {
-          reject(new Error('Failed to parse JSON: ' + error.message));
-        }
-      });
-    }).on('error', (err) => {
-      reject(err);
-    });
-  });
-}
-
 export async function restoreBackup(downloadUrl: string) {
   "use server"
   const db = await getDb();
-  const data = await downloadAndParseJSON(downloadUrl) as Record<string, { _id?: any, email?: string }[]>
-  console.log("data", data)
-  for (const collectionName of Object.keys(data)) {
-    const collectionData = data[collectionName]
+  const data = await fetch(downloadUrl);
+  const json = await data.json() as Record<string, { _id?: any, email?: string }[]>;
+  for (const collectionName of Object.keys(json)) {
+    const collectionData = json[collectionName]
     if (collectionData.length > 0) {
       console.log("Restoring collection", collectionName)
       const collection = db.collection(collectionName);
       const indexes = await collection.indexes();
       const uniqueIndexes = indexes.filter(idx => idx.unique).flatMap((idx) => Object.keys(idx.key))
       const res = await collection.bulkWrite(collectionData.map(doc => {
-        const { _id, ...updateData } = doc;
+        // const { _id, ...updateData } = doc;
+        doc._id = new ObjectId(doc._id as string)
         return {
           updateOne: {
             filter: uniqueIndexes.length > 0 ? {
@@ -68,7 +41,7 @@ export async function restoreBackup(downloadUrl: string) {
                 ...uniqueIndexes.map(field => ({ [field]: doc[field] }))
               ]
             } : { _id: doc._id },
-            update: { $set: updateData },
+            update: { $set: doc },
             upsert: true
           }
         }
@@ -105,4 +78,12 @@ export async function createBackup(cron: boolean = false) {
   await put(name, JSON.stringify(allData), { access: 'public' });
   revalidatePath('/admin');
   console.log("Backup created", name);
+}
+export async function listBackups() {
+  "use server"
+  const { blobs } = await list({
+    prefix: 'backups/',
+    limit: 1000,
+  });
+  return blobs;
 }

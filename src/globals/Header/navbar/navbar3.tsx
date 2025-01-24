@@ -142,7 +142,7 @@ export const Navbar3: React.FC<{ header: HeaderType }> = ({ header }) => {
     'platform' | 'usecases' | 'developers' | 'resources' | null
   >(null);
   return (
-    <div className="fixed inset-x-0 top-0 z-20 bg-background">
+    <div className="fixed inset-x-0 top-0 z-50 bg-background">
       <div className="container">
         <NavigationMenu className="min-w-full">
           <div className="flex w-full items-center justify-between gap-12 py-4">

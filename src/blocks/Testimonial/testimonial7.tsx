@@ -14,6 +14,7 @@ import {
 import { TestimonialBlock } from '@/payload-types';
 import RichText from '@/components/RichText';
 import { CMSLink } from '@/components/Link';
+import { PublicContextProps } from '@/utilities/publicContextProps';
 
 
 const testimonials1 = [
@@ -105,7 +106,7 @@ const testimonials2 = [
   },
 ];
 
-const Testimonial7: React.FC<TestimonialBlock> = ({ headline, link, tagline, testimonial }) => {
+const Testimonial7: React.FC<TestimonialBlock & { publicContext: PublicContextProps }> = ({ headline, link, tagline, testimonial, publicContext }) => {
   const plugin1 = useRef(
     AutoScroll({
       startDelay: 500,
@@ -123,7 +124,7 @@ const Testimonial7: React.FC<TestimonialBlock> = ({ headline, link, tagline, tes
   return (
     <section className="py-32">
       <div className="container flex flex-col items-center gap-6">
-        {headline && <RichText
+        {headline && <RichText publicContext={publicContext}
           content={headline}
           withWrapper={false}
           overrideStyle={{
@@ -134,7 +135,7 @@ const Testimonial7: React.FC<TestimonialBlock> = ({ headline, link, tagline, tes
           }}
         />}
         {link && (
-          <CMSLink {...link} className="mt-6" />
+          <CMSLink publicContext={publicContext} {...link} className="mt-6" />
         )}
       </div>
       <div className="lg:container">

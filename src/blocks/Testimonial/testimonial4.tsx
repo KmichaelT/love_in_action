@@ -3,8 +3,9 @@ import RichText from '@/components/RichText';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { TestimonialBlock } from '@/payload-types';
+import { PublicContextProps } from '@/utilities/publicContextProps';
 
-const Testimonial4: React.FC<TestimonialBlock> = ({ headline, link, tagline, testimonial }) => {
+const Testimonial4: React.FC<TestimonialBlock & { publicContext: PublicContextProps }> = ({ headline, link, tagline, testimonial, publicContext }) => {
   return (
     <section className="py-32">
       <div className="container">
@@ -19,7 +20,7 @@ const Testimonial4: React.FC<TestimonialBlock> = ({ headline, link, tagline, tes
                 <Card className="col-span-2 flex items-center justify-center p-6">
                   <div className="flex flex-col gap-4">
                     {testimonial[0].text && (
-                      <RichText
+                      <RichText publicContext={publicContext}
                         content={testimonial[0].text}
                         withWrapper={false}
                         overrideStyle={{
@@ -40,8 +41,8 @@ const Testimonial4: React.FC<TestimonialBlock> = ({ headline, link, tagline, tes
             {Array.isArray(testimonial) && testimonial.length > 1 && testimonial[1] && (
               <Card>
                 <CardContent className="px-6 pt-6 leading-7 text-foreground/70">
-                  {testimonial[1].text && (
-                    <RichText
+                  {testimonial[1]?.text && (
+                    <RichText publicContext={publicContext}
                       content={testimonial[1].text}
                       withWrapper={false}
                       overrideStyle={{ p: '' }}
@@ -70,7 +71,7 @@ const Testimonial4: React.FC<TestimonialBlock> = ({ headline, link, tagline, tes
               <Card>
                 <CardContent className="px-6 pt-6 leading-7 text-foreground/70">
                   {testimonial[2].text && (
-                    <RichText
+                    <RichText publicContext={publicContext}
                       content={testimonial[2].text}
                       withWrapper={false}
                       overrideStyle={{ p: '' }}
@@ -101,7 +102,7 @@ const Testimonial4: React.FC<TestimonialBlock> = ({ headline, link, tagline, tes
               <Card>
                 <CardContent className="px-6 pt-6 leading-7 text-foreground/70">
                   {testimonial[3].text && (
-                    <RichText
+                    <RichText publicContext={publicContext}
                       content={testimonial[3].text}
                       withWrapper={false}
                       overrideStyle={{ p: '' }}

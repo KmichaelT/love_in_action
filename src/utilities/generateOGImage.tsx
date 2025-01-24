@@ -1,12 +1,14 @@
 import { ImageResponse } from 'next/og'
+import { Args } from '@/app/(frontend)/[[...slugs]]/page'
+import { queryPageBySlug } from '@/app/(frontend)/[[...slugs]]/data'
 import { join } from 'node:path'
 import { readFile } from 'node:fs/promises'
-import { Args, queryPageBySlug, resolveParams } from '@/app/(frontend)/[localeOrSlug]/[slug]/page'
 import { loadGoogleFont } from './loadGoogleFont'
+import { resolveSlugs } from './resolveSlugs'
 
 
 /**
- * OG Image generation. PayloadCMS can'T be run on edge routes, so prevent setting the open graph routes to edge. 
+ * OG Image generation. PayloadCMS can'T be run on edge routes, so prevent setting the open graph routes to edge.
  * We are reading the default OG Image from the public directory
  */
 
@@ -20,18 +22,8 @@ export const alt = 'PayBlocks'
 const defaultTitle = 'PayBlocks'
 
 export default async function generateOGImage(props: Args) {
-  /**
-   * opengraph-image on root layer is behaviour differently than page.tsx.. props.params is undefined
-   * so we have to add it manually
-   */
-  const props2: Args = {
-    params: props?.params || Promise.resolve({
-      slug: undefined,
-      localeOrSlug: undefined
-    }),
-  }
-
-  const { locale, slug } = await resolveParams(props2)
+  const { slugs } = await props.params;
+  const { locale, slug } = resolveSlugs(slugs || []);
   try {
     // Get the title from Payload if slug is provided
     let title = defaultTitle

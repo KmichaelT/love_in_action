@@ -4,7 +4,9 @@ import Link from 'next/link'
 import React from 'react'
 
 import type { Page, Post } from '@/payload-types'
-import { Icon, IconType } from '@/components/Icon'
+import { Icon } from '@/components/Icon'
+import localization from '@/localization.config'
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
 type CMSLinkType = {
   appearance?: 'inline' | ButtonProps['variant']
@@ -29,6 +31,7 @@ type CMSLinkType = {
    * another <a> element
    */
   withAnchor?: boolean
+  publicContext: PublicContextProps
 }
 
 export const CMSLink: React.FC<CMSLinkType> = (props) => {
@@ -47,11 +50,17 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
     iconAfter,
     iconClassName,
     withAnchor = true,
+    publicContext,
   } = props
+
+  const locale = publicContext?.locale || localization.defaultLocale;
 
   let href =
     type === 'reference' && typeof reference?.value === 'object' && reference.value.slug
-      ? `${reference?.relationTo !== 'pages' ? `/${reference?.relationTo}` : ''}/${reference.value.slug}`
+      ? `${locale !== localization.defaultLocale ? `/${locale}` : ''
+      }${reference?.relationTo !== 'pages' ? `/${reference?.relationTo}` : ''
+      }/${reference.value.slug === 'home' ? '' : reference.value.slug
+      }`
       : url
 
   if (type === 'reference' && section) {

@@ -7,8 +7,9 @@ import { Icon } from '@/components/Icon';
 import RichText from '@/components/RichText';
 import { splitRichText } from '@/utilities/richtext';
 import { Media } from '@/components/Media';
+import { PublicContextProps } from '@/utilities/publicContextProps';
 
-const Cta1: React.FC<CtaBlock> = ({ icon, richText, image }) => {
+const Cta1: React.FC<CtaBlock & { publicContext: PublicContextProps }> = ({ icon, richText, image, publicContext }) => {
   const { firstNode, rest } = splitRichText(richText, {
     splitOn: ['h2', 'h3', 'h4'],
     takeFirst: true
@@ -21,17 +22,17 @@ const Cta1: React.FC<CtaBlock> = ({ icon, richText, image }) => {
           <div className="p-6 md:max-w-96">
             <div className="mb-2 flex items-center gap-2">
               <span className="flex size-7 items-center justify-center rounded-full bg-muted">
-                {icon && <Icon icon={icon} className="size-4" strokeWidth={1.5} /> }
+                {icon && <Icon icon={icon} className="size-4" strokeWidth={1.5} />}
               </span>
               {firstNode && (
                 <div className="[&_h1]:text-2xl [&_h1]:font-bold [&_h2]:text-2xl [&_h2]:font-bold [&_h3]:text-2xl [&_h3]:font-bold [&_h4]:text-2xl [&_h4]:font-bold">
-                  <RichText content={firstNode} withWrapper={false} />
+                  <RichText publicContext={publicContext} content={firstNode} withWrapper={false} />
                 </div>
               )}
             </div>
             {rest && (
               <div className="[&_p]:text-muted-foreground">
-                <RichText content={rest} withWrapper={false} />
+                <RichText publicContext={publicContext} content={rest} withWrapper={false} />
               </div>
             )}
             <Button className="mt-8">
@@ -39,7 +40,7 @@ const Cta1: React.FC<CtaBlock> = ({ icon, richText, image }) => {
             </Button>
           </div>
           {image && (
-            <Media 
+            <Media
               resource={image}
               htmlElement={null}
               className="aspect-video object-cover md:max-w-96"

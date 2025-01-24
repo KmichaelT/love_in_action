@@ -11,8 +11,9 @@ import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 import { CMSLink } from '@/components/Link'
 
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
-const Gallery4: React.FC<GalleryBlock> = ({ richText, elements }) => {
+const Gallery4: React.FC<GalleryBlock & { publicContext: PublicContextProps }> = ({ richText, elements, publicContext }) => {
   const [carouselApi, setCarouselApi] = useState<CarouselApi>()
   const [canScrollPrev, setCanScrollPrev] = useState(false)
   const [canScrollNext, setCanScrollNext] = useState(false)
@@ -34,7 +35,7 @@ const Gallery4: React.FC<GalleryBlock> = ({ richText, elements }) => {
     <section className="py-32">
       <div className="container">
         <div className="mb-8 flex items-end justify-between md:mb-14 lg:mb-16">
-          {richText && <RichText
+          {richText && <RichText publicContext={publicContext}
             content={richText}
             withWrapper={true}
             overrideStyle={{
@@ -97,7 +98,7 @@ const Gallery4: React.FC<GalleryBlock> = ({ richText, elements }) => {
                       <div className="absolute inset-0 h-full bg-[linear-gradient(hsl(from_var(--primary)_h_s_l/0.2),hsl(from_var(--primary)_h_s_l/0.8)_100%)] mix-blend-multiply" />
                       <div className="absolute inset-x-0 bottom-0 flex flex-col items-start p-6 text-primary-foreground md:p-8">
                         {item.richText && (
-                          <RichText
+                          <RichText publicContext={publicContext}
                             content={item.richText}
                             overrideStyle={{
                               h3: 'mb-2 pt-4 text-xl font-semibold md:mb-3 md:pt-4 lg:pt-4',
@@ -108,6 +109,7 @@ const Gallery4: React.FC<GalleryBlock> = ({ richText, elements }) => {
                         )}
                         {item.link && (
                           <CMSLink
+                            publicContext={publicContext}
                             appearance="inline"
                             withAnchor={false}
                             {...item.link}

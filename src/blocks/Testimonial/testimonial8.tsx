@@ -8,6 +8,7 @@ import { Card } from '@/components/ui/card';
 import { cn } from '@/utilities/cn';
 import { TestimonialBlock } from '@/payload-types';
 import RichText from '@/components/RichText';
+import { PublicContextProps } from '@/utilities/publicContextProps';
 
 const testimonials = [
   {
@@ -68,13 +69,13 @@ const testimonials = [
   },
 ];
 
-const Testimonial8: React.FC<TestimonialBlock> = ({ headline, link, tagline, testimonial }) => {
+const Testimonial8: React.FC<TestimonialBlock & { publicContext: PublicContextProps }> = ({ headline, link, tagline, testimonial, publicContext }) => {
   return (
     <section className="py-32">
       <div className="container">
         <div className="flex flex-col items-center gap-6">
           <Badge variant={'outline'}>Testimonials</Badge>
-          {headline && <RichText
+          {headline && <RichText publicContext={publicContext}
             content={headline}
             withWrapper={false}
             overrideStyle={{

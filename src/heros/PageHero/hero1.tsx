@@ -7,9 +7,9 @@ import { CMSLink } from '@/components/Link'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 import { Icon } from '@/components/Icon';
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
-
-export const Hero1: React.FC<Page['hero']> = ({ links, badgeIcon, images, badge, richText }) => {
+export const Hero1: React.FC<Page['hero'] & { publicContext: PublicContextProps }> = ({ links, badgeIcon, images, badge, richText, publicContext }) => {
   return (
     <section className="py-32">
       <div className="container">
@@ -18,7 +18,7 @@ export const Hero1: React.FC<Page['hero']> = ({ links, badgeIcon, images, badge,
             {badge && <Badge variant="outline">
               {badge} {badgeIcon && <Icon icon={badgeIcon} className="ml-2 size-4" />}
             </Badge>}
-            {richText && <RichText className="flex flex-col items-center text-center lg:items-start lg:text-left" content={richText} enableGutter={false} overrideStyle={{
+            {richText && <RichText publicContext={publicContext} className="flex flex-col items-center text-center lg:items-start lg:text-left" content={richText} enableGutter={false} overrideStyle={{
               h1: "my-6 text-pretty text-4xl font-bold lg:text-6xl",
               p: "mb-8 max-w-xl text-muted-foreground lg:text-xl"
             }} />}
@@ -26,7 +26,7 @@ export const Hero1: React.FC<Page['hero']> = ({ links, badgeIcon, images, badge,
               <div className="flex w-full flex-col justify-center gap-2 sm:flex-row lg:justify-start">
                 {links.map(({ link }, i) => {
                   return (
-                    <CMSLink className="w-full sm:w-auto" key={i} {...link} />
+                    <CMSLink publicContext={publicContext} className="w-full sm:w-auto" key={i} {...link} />
                   )
                 })}
               </div>

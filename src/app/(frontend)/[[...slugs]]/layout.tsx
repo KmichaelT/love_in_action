@@ -16,6 +16,9 @@ import { draftMode } from 'next/headers'
 import './globals.css'
 import { ThemeConfig } from '@/globals/ThemeConfig/Component'
 import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
+import { resolveSlugs } from '@/utilities/resolveSlugs'
+import localization from '@/localization.config'
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
 // Change fonts by changing class Geist_Mono or Geist. 
 // No change in tailwind.config.mjs needed (Because it's already synced via --font-mono and --font-sans variables). Just make sure, that these variables stay.
@@ -31,11 +34,17 @@ export const metadata: Metadata = {
   // },
 }
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children, params }: { children: React.ReactNode, params: any }) {
+  const { slugs } = await params;
+  const slugData = resolveSlugs(slugs || []);
   const { isEnabled } = await draftMode()
-  // TODO: Add active locale to html lang attribute
+
+  const publicContext: PublicContextProps = {
+    ...slugData,
+  }
+
   return (
-    <html className={cn(mono.variable, sans.variable)} lang="en" suppressHydrationWarning>
+    <html className={cn(mono.variable, sans.variable)} lang={slugData.locale || localization.defaultLocale} suppressHydrationWarning>
       <head>
         <ThemeConfig />
         <InitTheme />
@@ -50,10 +59,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             }}
           />
           <LivePreviewListener />
-
-          <Header />
+          <Header publicContext={publicContext} />
           {children}
-          <Footer />
+          <Footer publicContext={publicContext} />
         </Providers>
       </body>
     </html>

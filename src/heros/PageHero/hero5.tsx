@@ -2,15 +2,16 @@ import { Page } from '@/payload-types';
 import RichText from '@/components/RichText';
 import { CMSLink } from '@/components/Link';
 import { Media } from '@/components/Media';
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
-export const Hero5: React.FC<Page['hero']> = ({ links, images, richText }) => {
+export const Hero5: React.FC<Page['hero'] & { publicContext: PublicContextProps }> = ({ links, images, richText, publicContext }) => {
   return (
     <section className="overflow-hidden py-32">
       <div className="container">
         <div className="flex flex-col items-center justify-between gap-20 lg:flex-row">
           <div className="flex flex-col items-center gap-6 text-center lg:items-start lg:text-left">
 
-            {richText && <RichText
+            {richText && <RichText publicContext={publicContext}
               className="flex flex-col items-center gap-6 text-center lg:items-start lg:text-left"
               content={richText}
               enableGutter={false}
@@ -25,7 +26,7 @@ export const Hero5: React.FC<Page['hero']> = ({ links, images, richText }) => {
               <div className="flex w-full justify-center lg:justify-start">
                 {links.map(({ link }, i) => {
                   return (
-                    <CMSLink className="w-full sm:w-auto" size={links.length === 1 ? 'lg' : undefined} key={i} {...link} />
+                    <CMSLink publicContext={publicContext} className="w-full sm:w-auto" size={links.length === 1 ? 'lg' : undefined} key={i} {...link} />
                   )
                 })}
               </div>

@@ -2,15 +2,16 @@ import RichText from '@/components/RichText';
 import type { LogosBlock, Media as MediaType } from '@/payload-types';
 import { Media } from '@/components/Media';
 import { CMSLink } from '@/components/Link';
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
-const Logos2: React.FC<LogosBlock> = ({ richText, link, logos }) => {
+const Logos2: React.FC<LogosBlock & { publicContext: PublicContextProps }> = ({ richText, link, logos, publicContext }) => {
   return (
     <section className="py-32">
       <div className="container">
         <div className="grid overflow-hidden rounded-xl border border-border md:grid-cols-2">
           <div className="my-auto px-6 py-10 sm:px-10 sm:py-12 lg:p-16">
             <div className="w-full md:max-w-md">
-              {richText && <RichText
+              {richText && <RichText publicContext={publicContext}
                 content={richText}
                 withWrapper={false}
                 overrideStyle={{
@@ -21,7 +22,7 @@ const Logos2: React.FC<LogosBlock> = ({ richText, link, logos }) => {
                 }}
               />
               }
-              {link && <CMSLink className="w-full md:w-fit" {...link} />}
+              {link && <CMSLink publicContext={publicContext} className="w-full md:w-fit" {...link} />}
             </div>
           </div>
           <div className="grid grid-cols-3 border-t border-border md:border-l md:border-t-0">

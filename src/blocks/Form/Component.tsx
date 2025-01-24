@@ -12,6 +12,7 @@ import { fields } from './fields'
 import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
 
 import Turnstile, { useTurnstile } from "react-turnstile";
+import { PublicContextProps } from '@/utilities/publicContextProps'
 
 export type Value = unknown
 
@@ -37,7 +38,7 @@ export type FormBlockType = {
 export const FormBlock: React.FC<
   {
     id?: string
-  } & FormBlockType
+  } & FormBlockType & { publicContext: PublicContextProps }
 > = (props) => {
   const {
     enableIntro,
@@ -45,6 +46,7 @@ export const FormBlock: React.FC<
     form: formFromProps,
     form: { id: formID, confirmationMessage, confirmationType, redirect, submitButtonLabel } = {},
     introContent,
+    publicContext
   } = props
 
   const formMethods = useForm({
@@ -140,10 +142,10 @@ export const FormBlock: React.FC<
 
   const form = (<FormProvider {...formMethods}>
     {enableIntro && introContent && !hasSubmitted && (
-      <RichText className="mb-8" content={introContent} enableGutter={false} />
+      <RichText publicContext={publicContext} className="mb-8" content={introContent} enableGutter={false} />
     )}
     {!isLoading && hasSubmitted && confirmationType === 'message' && (
-      <RichText content={confirmationMessage} />
+      <RichText publicContext={publicContext} content={confirmationMessage} />
     )}
     {isLoading && !hasSubmitted && <p>Loading, please wait...</p>}
     {error && <div>{`${error.status || '500'}: ${error.message || ''}`}</div>}

@@ -1,10 +1,10 @@
 import { CMSLink } from '@/components/Link';
 import { Media } from '@/components/Media';
 import RichText from '@/components/RichText';
-import { Button } from '@/components/ui/button';
 import { Page } from '@/payload-types';
+import { PublicContextProps } from '@/utilities/publicContextProps';
 
-export const Hero31: React.FC<Page['hero']> = ({ links, images, richText }) => {
+export const Hero31: React.FC<Page['hero'] & { publicContext: PublicContextProps }> = ({ links, images, richText, publicContext }) => {
   return (
     <section className="relative overflow-hidden py-32">
       <div className="absolute inset-0 overflow-hidden bg-muted">
@@ -84,7 +84,7 @@ export const Hero31: React.FC<Page['hero']> = ({ links, images, richText }) => {
       </div>
       <div className="container relative">
         <div className="flex flex-col items-center text-center">
-          {richText && <RichText
+          {richText && <RichText publicContext={publicContext}
             className="flex flex-col items-center text-center"
             content={richText}
             enableGutter={false}
@@ -98,7 +98,7 @@ export const Hero31: React.FC<Page['hero']> = ({ links, images, richText }) => {
             <div className="flex w-full flex-col justify-center gap-2 sm:flex-row">
               {links.map(({ link }, i) => {
                 return (
-                  <CMSLink className="w-full sm:w-auto" key={i} {...link} />
+                  <CMSLink publicContext={publicContext} className="w-full sm:w-auto" key={i} {...link} />
                 )
               })}
             </div>
