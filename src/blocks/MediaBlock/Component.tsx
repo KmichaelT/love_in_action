@@ -3,10 +3,10 @@ import { Media } from '@/components/Media'
 import type { Page } from '@/payload-types'
 import { cn } from '@/utilities/cn'
 
-type Props = Extract<Page['layout'][0], { blockType: 'mediaBlock' }>
+type Props = Extract<Page['layout'][0], { blockType: 'mediaBlock' }> & { disableContainer?: boolean}
 
 export const MediaBlock: React.FC<Props> = (props) => {
-  const { media, caption, aspectRatio } = props
+  const { media, caption, aspectRatio, disableContainer } = props
 
   const aspectRatioClasses = {
     '16/9': 'aspect-video',
@@ -16,7 +16,7 @@ export const MediaBlock: React.FC<Props> = (props) => {
   }
 
   return (
-    <div className="container my-16">
+    <div className={!disableContainer ? 'container my-16' : ''}>
       <div className="max-w-5xl mx-auto">
         <div className={cn(
           "relative overflow-hidden rounded-lg",
