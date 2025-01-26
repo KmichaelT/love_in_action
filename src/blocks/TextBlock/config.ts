@@ -4,6 +4,8 @@ import {
   AlignFeature,
   FixedToolbarFeature,
   InlineToolbarFeature,
+  OrderedListFeature,
+  UnorderedListFeature,
 } from '@payloadcms/richtext-lexical'
 
 import { linkGroup } from '@/fields/linkGroup'
@@ -27,6 +29,8 @@ export const TextBlock: Block = {
             AlignFeature(),
             FixedToolbarFeature(),
             InlineToolbarFeature(),
+            UnorderedListFeature(),
+            OrderedListFeature(),
           ]
         },
       }),
