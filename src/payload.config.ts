@@ -33,7 +33,6 @@ import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
 import Users from './collections/Users'
 import Roles from './collections/Roles'
-import { seedHandler } from './endpoints/seedHandler'
 import { Footer } from './globals/Footer/config'
 import { Header } from './globals/Header/config'
 import { ThemeConfig } from './globals/ThemeConfig/config'
@@ -73,8 +72,6 @@ export default buildConfig({
       password: 'test1234',
     } : false,
     components: {
-      // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
-      // Feel free to delete this at any time. Simply remove the line below and the import `BeforeLogin` statement on line 15.
       beforeLogin: ['@/components/AdminDashboard/BeforeLogin'],
       afterLogin: googleAuthActive ? ['@/components/AdminDashboard/LoginButton'] : [],
       afterDashboard: ['@/components/AdminDashboard/BackupDashboard'],
@@ -140,27 +137,12 @@ export default buildConfig({
       ]
     },
   }),
-  // db: postgresAdapter({
-  //   pool: {
-  //     connectionString: process.env.DATABASE_URL || '',
-
-  //   },
-  // }),
   db: mongooseAdapter({
     url: process.env.MONGODB_URI || '',
   }),
   collections: [Pages, Posts, Media, Categories, Users, Roles],
   cors: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
   csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
-  endpoints: [
-    // The seed endpoint is used to populate the database with some example data
-    // You should delete this endpoint before deploying your site to production
-    {
-      handler: seedHandler,
-      method: 'get',
-      path: '/seed',
-    },
-  ],
   globals: [ThemeConfig, Header, Footer],
   plugins: [
     redirectsPlugin({
@@ -272,7 +254,7 @@ export default buildConfig({
          * to payload for specific email domains
          */
         const allowedDomains = process.env.ALLOWED_EMAIL_DOMAINS?.split(',')
-        if (allowedDomains && !allowedDomains.includes(user.email.split('@')[1])) {
+        if (allowedDomains && !allowedDomains.includes(user.email.split('@')?.[1])) {
           throw new Error('Email domain not allowed')
         }
 
@@ -282,10 +264,10 @@ export default buildConfig({
           name: user.name,
         }
       },
-      successRedirect: (req) => {
+      successRedirect: (_) => {
         return '/admin'
       },
-      failureRedirect: (req, error) => {
+      failureRedirect: (_, error) => {
         console.error(error)
         return '/login'
       },

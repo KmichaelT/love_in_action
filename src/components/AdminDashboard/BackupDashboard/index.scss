@@ -42,6 +42,11 @@
     margin-bottom: 0;
   }
 
+  .btn-right {
+    margin-left: auto;
+    align-self: flex-end;
+  }
+
   .make-backup-container {
     display: flex;
     flex-direction: row;

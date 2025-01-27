@@ -224,15 +224,11 @@ That's it! The Docker instance will help you get up and running quickly while al
 
 ### Seed
 
-To seed the database with a few pages, posts, and projects you can click the 'seed database' link from the admin panel.
+To seed the database with a few pages, posts, and projects you can unfold Backups collapsible in the Admin panel home page and then click 'seed DB'.
 
-The seed script will also create a demo user for demonstration purposes only:
+> NOTICE: The Backup section is only available if you are logged in as an admin and if you have the `MONGODB_URI` and `BLOB_READ_WRITE_TOKEN` environment variables set and configured.
 
-- Demo Author
-  - Email: `demo-author@payloadcms.com`
-  - Password: `password`
-
-> NOTICE: seeding the database is destructive because it drops your current database to populate a fresh one from the seed template. Only run this command if you are starting a new project or can afford to lose your current data.
+> WARNING: seeding the database is destructive because it drops your current database to populate a fresh one from the seed template. Only run this command if you are starting a new project or can afford to lose your current data.
 
 ## Production
 

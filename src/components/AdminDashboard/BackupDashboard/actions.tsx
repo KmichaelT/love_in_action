@@ -22,12 +22,15 @@ export async function getDb() {
   return db!
 }
 
-export async function restoreBackup(downloadUrl: string) {
+export async function restoreBackup(downloadUrl: string, collectionBlacklist: string[] = []) {
   "use server"
   const db = await getDb();
   const data = await fetch(downloadUrl);
   const json = await data.json() as Record<string, { _id?: any, email?: string }[]>;
   for (const collectionName of Object.keys(json)) {
+    if (collectionBlacklist.includes(collectionName)) {
+      continue;
+    }
     const collectionData = json[collectionName]
     if (collectionData.length > 0) {
       console.log("Restoring collection", collectionName)

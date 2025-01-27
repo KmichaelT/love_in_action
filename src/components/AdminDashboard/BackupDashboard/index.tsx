@@ -16,7 +16,9 @@ interface BackupDashboardProps {
   searchParams: Record<string, string>
 }
 
-const BeforeDashboard: React.FC<BackupDashboardProps> = async ({ user, i18n, searchParams }) => {
+const SEED_DUMP_URL = 'https://nki0hmsryjcqaqtw.public.blob.vercel-storage.com/backups/cron-backup-1737774039239-XgTDnyBINssrxZm8OBAY3lBvj9AZCX.json';
+
+const BackupDashboard: React.FC<BackupDashboardProps> = async ({ user, i18n, searchParams }) => {
   if (!user) return;
 
   if (isAdminHidden({ user })) {
@@ -58,13 +60,32 @@ const BeforeDashboard: React.FC<BackupDashboardProps> = async ({ user, i18n, sea
             }).toString(),
           }}>{showOtherDb ? 'Hide other DBs' : 'Show other DBs'}</Link>}
 
-
           {countOtherHostname > 0 && <Link className="btn btn--icon-style-without-border btn--size-medium btn--withoutPopup btn--style-primary btn--withoutPopup" href={{
             search: new URLSearchParams({
               ...searchParams,
               showOtherHostname: showOtherHostname ? 'false' : 'true',
             }).toString(),
           }}>{showOtherHostname ? 'Hide other Hostnames' : 'Show other Hostnames'}</Link>}
+
+          <Popup
+            className='btn-right'
+            button={
+              <div className="btn btn--icon-style-without-border btn--size-medium btn--withoutPopup btn--style-primary btn--withoutPopup">
+                Seed DB
+              </div>
+            }
+          >
+            <div>
+              Seeding your DB will override some of your existing data. Are you sure you want to continue?
+            </div>
+            <Button className="btn-red" onClick={async () => {
+              "use server"
+              await restoreBackup(SEED_DUMP_URL, ['users', 'roles']);
+              revalidatePath('/admin');
+            }}>
+              Yes
+            </Button>
+          </Popup>
         </div>
 
 
@@ -93,14 +114,25 @@ const BeforeDashboard: React.FC<BackupDashboardProps> = async ({ user, i18n, sea
                   rel="noopener noreferrer">
                   Download Backup
                 </a>
-                <Button onClick={async () => {
-                  "use server"
-                  await restoreBackup(blob.downloadUrl);
-                  revalidatePath('/admin');
-                  return;
-                }}>
-                  Restore Backup
-                </Button>
+                <Popup
+                  className='btn-right'
+                  button={
+                    <div className="btn btn--icon-style-without-border btn--size-medium btn--withoutPopup btn--style-primary btn--withoutPopup">
+                      Restore Backup
+                    </div>
+                  }
+                >
+                  <div>
+                    Restoring this Backup will may override some of your newly created data. Are you sure you want to continue?
+                  </div>
+                  <Button className="btn-red" onClick={async () => {
+                    "use server"
+                    await restoreBackup(blob.downloadUrl);
+                    revalidatePath('/admin');
+                  }}>
+                    Yes
+                  </Button>
+                </Popup>
                 <Popup
                   button={
                     <div className="btn btn--icon-style-without-border btn--size-medium btn--withoutPopup btn--style-primary btn--withoutPopup">
@@ -136,4 +168,4 @@ const BeforeDashboard: React.FC<BackupDashboardProps> = async ({ user, i18n, sea
   )
 }
 
-export default BeforeDashboard
+export default BackupDashboard
