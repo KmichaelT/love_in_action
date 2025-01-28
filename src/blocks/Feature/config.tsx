@@ -149,7 +149,7 @@ export const FeatureBlock: Block = {
       localized: true,
       admin: {
         condition: (_, { designVersion } = {}) =>
-          ['FEATURE1', 'FEATURE2', 'FEATURE3', 'FEATURE4', 'FEATURE5', 'FEATURE6'].includes(
+          ['FEATURE1', 'FEATURE2', 'FEATURE3', 'FEATURE4', 'FEATURE5', 'FEATURE6', 'FEATURE126'].includes(
             designVersion,
           ),
       },
@@ -238,6 +238,7 @@ export const FeatureBlock: Block = {
               'FEATURE97',
               'FEATURE98',
               'FEATURE109',
+              'FEATURE126',
             ].includes(designVersion),
         },
       },
