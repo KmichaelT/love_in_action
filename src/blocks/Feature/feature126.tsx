@@ -10,64 +10,10 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
 import type { FeatureBlock, Media as MediaType } from '@/payload-types'
 import { PublicContextProps } from '@/utilities/publicContextProps'
 import { splitRichText } from '@/utilities/richtext'
-import { MoveRight } from 'lucide-react'
 import { useState } from 'react'
-
-interface ITabData {
-  id: number
-  title: string
-  imageSrc: string
-  description: string
-}
-
-// const tabsData: ITabData[] = [
-//     {
-//         id: 1,
-//         title: 'Performance',
-//         imageSrc: '/images/block/placeholder-1.svg',
-//         description:
-//             'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt, accusantium quam. Temporibus quae quos deserunt!',
-//     },
-//     {
-//         id: 2,
-//         title: 'Innovation',
-//         imageSrc: '/images/block/placeholder-2.svg',
-//         description:
-//             'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt, accusantium quam. Temporibus quae quos deserunt!',
-//     },
-//     {
-//         id: 3,
-//         title: 'Quality',
-//         imageSrc: '/images/block/placeholder-3.svg',
-//         description:
-//             'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt, accusantium quam. Temporibus quae quos deserunt!',
-//     },
-//     {
-//         id: 4,
-//         title: 'Accessibility',
-//         imageSrc: '/images/block/placeholder-4.svg',
-//         description:
-//             'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt, accusantium quam. Temporibus quae quos deserunt!',
-//     },
-//     {
-//         id: 5,
-//         title: 'Affordability',
-//         imageSrc: '/images/block/placeholder-5.svg',
-//         description:
-//             'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt, accusantium quam. Temporibus quae quos deserunt!',
-//     },
-//     {
-//         id: 6,
-//         title: 'Customer Support',
-//         imageSrc: '/images/block/placeholder-6.svg',
-//         description:
-//             'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt, accusantium quam. Temporibus quae quos deserunt!',
-//     },
-// ]
 
 const Feature126: React.FC<FeatureBlock & { publicContext: PublicContextProps }> = ({
   badge,
@@ -93,7 +39,7 @@ const Feature126: React.FC<FeatureBlock & { publicContext: PublicContextProps }>
   const [activeImage, setActiveImage] = useState<MediaType | null>(tabsData?.[0]?.image || null)
 
   if (!tabsData?.length || !activeTabId || !activeImage)
-    return <div className="text-red-500">You need to add USPs for the component to work</div>
+    return <div className="text-red-500">You need to add USPs for the component to work, all USPs need to have an image set as well</div>
 
   return (
     <section className="py-32">

@@ -351,12 +351,8 @@ export const FeatureBlock: Block = {
           type: 'text',
           localized: true,
           admin: {
-            condition: (data, _) => {
-              const designVersion = data.layout.find(
-                (block) => block.blockType === 'feature',
-              ).designVersion
-              return ['FEATURE50', 'FEATURE117', 'FEATURE53'].includes(designVersion)
-            },
+            // conditions on sibling fields are unfortunatly currently not possible in payload
+            
           },
         },
         {
@@ -364,23 +360,7 @@ export const FeatureBlock: Block = {
           type: 'richText',
           localized: true,
           admin: {
-            condition: (data, siblingData) => {
-              // Get all feature blocks
-              const featureBlocks = data.layout?.filter(
-                (block) => block.blockType === 'feature'
-              ) || []
-
-              // Find the feature block that contains our current USP
-              const currentFeatureBlock = featureBlocks.find(block => 
-                block.USPs?.some(usp => 
-                  // Compare USP fields to identify the current one
-                  usp.tagline === siblingData.tagline &&
-                  usp.image === siblingData.image
-                )
-              )
-
-              return !currentFeatureBlock || !['FEATURE53'].includes(currentFeatureBlock.designVersion)
-            },
+            
           },
           editor: lexicalEditor({
             features: ({ rootFeatures }) => {
@@ -508,6 +488,7 @@ export const FeatureBlock: Block = {
                 'FEATURE78',
                 'FEATURE81',
                 'FEATURE117',
+                'FEATURE126',
               ].includes(designVersion)
             },
           },
