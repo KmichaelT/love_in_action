@@ -47,6 +47,7 @@ import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
 import localization from './localization.config'
 import { initializeRoles } from './utilities/initRoles'
 import { isAdminHidden } from './access/isAdmin'
+import { PageConfig } from './globals/PageConfig/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -68,10 +69,13 @@ const googleAuthActive = !!(
 
 export default buildConfig({
   admin: {
-    autoLogin: process.env.NEXT_PUBLIC_ENABLE_AUTOLOGIN === 'true' ? {
-      email: 'test@trieb.work',
-      password: 'test1234',
-    } : false,
+    autoLogin:
+      process.env.NEXT_PUBLIC_ENABLE_AUTOLOGIN === 'true'
+        ? {
+            email: 'test@trieb.work',
+            password: 'test1234',
+          }
+        : false,
     components: {
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below and the import `BeforeLogin` statement on line 15.
@@ -161,7 +165,7 @@ export default buildConfig({
       path: '/seed',
     },
   ],
-  globals: [ThemeConfig, Header, Footer],
+  globals: [ThemeConfig, Header, Footer, PageConfig],
   plugins: [
     redirectsPlugin({
       collections: ['pages', 'posts'],
