@@ -1,5 +1,11 @@
 # payblocks
 
+## 1.0.3
+
+### Patch Changes
+
+- feb3a04: Fix version check
+
 ## 1.0.2
 
 ### Patch Changes
