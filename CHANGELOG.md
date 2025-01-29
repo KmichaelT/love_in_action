@@ -1,5 +1,11 @@
 # payblocks
 
+## 1.0.2
+
+### Patch Changes
+
+- 429ed8b: Adding github releases with zip and changelog
+
 ## 1.0.1
 
 ### Patch Changes
