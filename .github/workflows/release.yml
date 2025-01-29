@@ -50,7 +50,7 @@ jobs:
       - name: Check if `package.json` version changed
         id: version_check
         run: |
-          if git diff -G'"version":' package.json | grep '"version":'; then
+          if git diff origin/main...HEAD -- package.json | grep '"version":'; then
             echo "version_changed=true" >> $GITHUB_ENV
           else
             echo "version_changed=false" >> $GITHUB_ENV
