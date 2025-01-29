@@ -1,15 +1,19 @@
 "use server"
-import './index.scss'
 import { getPayload } from 'payload';
 import configPromise from '@payload-config'
 import { del, list, put } from '@vercel/blob';
 import { revalidatePath } from 'next/cache';
 import { ObjectId } from 'mongodb';
+import { createBlobName, getCurrentHostname } from './utils';
+import { getCurrentDbName } from './utils';
 
 const BACKUPS_TO_KEEP = Number(process.env.BACKUPS_TO_KEEP) || 10;
 
 export async function getDb() {
   const payload = await getPayload({ config: configPromise });
+  if (payload.db.name !== "mongoose") {
+    throw new Error("Backup failed: Not a mongoose database adapter");
+  }
   const db = payload.db.connection.db;
   if (!db) {
     console.error("Backup failed: Database not initialized");
@@ -18,12 +22,15 @@ export async function getDb() {
   return db!
 }
 
-export async function restoreBackup(downloadUrl: string) {
+export async function restoreBackup(downloadUrl: string, collectionBlacklist: string[] = []) {
   "use server"
   const db = await getDb();
   const data = await fetch(downloadUrl);
   const json = await data.json() as Record<string, { _id?: any, email?: string }[]>;
   for (const collectionName of Object.keys(json)) {
+    if (collectionBlacklist.includes(collectionName)) {
+      continue;
+    }
     const collectionData = json[collectionName]
     if (collectionData.length > 0) {
       console.log("Restoring collection", collectionName)
@@ -52,8 +59,9 @@ export async function restoreBackup(downloadUrl: string) {
 }
 
 export async function createBackup(cron: boolean = false) {
-  "use server"
-  console.log("Creating backup");
+  const currentHostname = getCurrentHostname();
+  const currentDbName = getCurrentDbName();
+
   if (cron) {
     const { blobs } = await list({
       prefix: 'backups/cron-',
@@ -74,7 +82,7 @@ export async function createBackup(cron: boolean = false) {
   for (const collection of collections) {
     allData[collection.name] = await db.collection(collection.name).find({}).toArray();
   }
-  const name = `backups/${cron ? 'cron-' : ''}backup-${Date.now()}.json`;
+  const name = `backups/${createBlobName(cron ? 'cron' : 'manual', currentDbName, currentHostname, Date.now().toString())}`;
   await put(name, JSON.stringify(allData), { access: 'public' });
   revalidatePath('/admin');
   console.log("Backup created", name);
