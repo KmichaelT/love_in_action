@@ -8,22 +8,8 @@ on:
 jobs:
   check-changeset:
     runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.pull_request.labels.*.name, 'no-changeset') }}  # Skip job if label is present
     steps:
-      - name: Check for PR labels
-        id: check_labels
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const response = await github.rest.issues.listLabelsOnIssue({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.pull_request.number,
-            });
-            const labels = response.data.map(label => label.name);
-            if (labels.includes('no-changeset')) {
-              console.log("Skipping changeset check due to 'no-changeset' label.");
-              process.exit(0);
-            }
               
       - name: Checkout code
         uses: actions/checkout@v4
