@@ -46,6 +46,7 @@ import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
 import localization from './localization.config'
 import { initializeRoles } from './utilities/initRoles'
 import { isAdminHidden } from './access/isAdmin'
+import { PageConfig } from './globals/PageConfig/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -67,10 +68,13 @@ const googleAuthActive = !!(
 
 export default buildConfig({
   admin: {
-    autoLogin: process.env.NEXT_PUBLIC_ENABLE_AUTOLOGIN === 'true' ? {
-      email: 'test@trieb.work',
-      password: 'test1234',
-    } : false,
+    autoLogin:
+      process.env.NEXT_PUBLIC_ENABLE_AUTOLOGIN === 'true'
+        ? {
+            email: 'test@trieb.work',
+            password: 'test1234',
+          }
+        : false,
     components: {
       beforeLogin: ['@/components/AdminDashboard/BeforeLogin'],
       afterLogin: googleAuthActive ? ['@/components/AdminDashboard/LoginButton'] : [],
@@ -143,7 +147,7 @@ export default buildConfig({
   collections: [Pages, Posts, Media, Categories, Users, Roles],
   cors: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
   csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
-  globals: [ThemeConfig, Header, Footer],
+  globals: [ThemeConfig, Header, Footer, PageConfig],
   plugins: [
     redirectsPlugin({
       collections: ['pages', 'posts'],

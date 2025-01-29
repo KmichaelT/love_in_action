@@ -5,9 +5,9 @@ import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
 
 export const generateMeta = async (args: { doc: Page | Post, slug: string }): Promise<Metadata> => {
   const { doc, slug } = args || {}
-  // TODO: build real url using slug and locale
+  
 
-  const ogImage =
+  const customOGImage =
     typeof doc?.meta?.image === 'object' &&
     doc.meta.image !== null &&
     'url' in doc.meta.image &&
@@ -16,20 +16,23 @@ export const generateMeta = async (args: { doc: Page | Post, slug: string }): Pr
   const title = doc?.meta?.title || doc?.title || 'PayBlocks'
   const description = doc?.meta?.description || ''
 
+  const defaultOGImage = `${NEXT_PUBLIC_SERVER_URL}/next/og?title=${title}`
+
   return {
     title: `${title}`,
     description,
     openGraph: mergeOpenGraph({
       title,
       description,
+      // TODO: build real url using slug and locale
       url: Array.isArray(doc?.slug) ? doc?.slug.join('/') : '/',
-      images: ogImage
+      images: customOGImage
       ? [
           {
-            url: ogImage,
+            url: customOGImage,
           },
         ]
-      : undefined,
+      : defaultOGImage,
     }),
   }
 }

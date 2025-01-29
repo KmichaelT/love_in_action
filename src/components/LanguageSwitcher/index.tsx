@@ -1,5 +1,5 @@
 import localization, { locales, localeLabels } from "@/localization.config";
-import { Check, LucideLanguages } from "lucide-react";
+import { Check, LucideLanguages, Globe } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -17,7 +17,8 @@ export const LanguageSwitcher: React.FC<{ publicContext: PublicContextProps }> =
       <NavigationMenuList>
         <NavigationMenuItem className="text-muted-foreground hover:bg-card hover:text-accent-foreground rounded-md">
           <NavigationMenuTrigger>
-            <LucideLanguages className={"mr-2 h-6"} />
+            <Globe className={"h-4"} />
+            {currentLocale.toUpperCase()}
           </NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="p-3">
@@ -27,13 +28,13 @@ export const LanguageSwitcher: React.FC<{ publicContext: PublicContextProps }> =
                 if (currentLocale === locale) {
                   return (
                     <span key={locale} className="w-[85px] mb-1 p-2 text-accent-foreground bg-card rounded-md flex items-center justify-start">
-                      {localeLabels[locale]} {locale.toUpperCase()} <Check className="w-4 h-4 ml-2" />
+                      {locale.toUpperCase()} <Check className="w-4 h-4 ml-2" />
                     </span>
                   )
                 } else {
                   return (
                     <Link key={locale} href={href} lang={locale} className="w-[85px] mb-1 p-2 hover:text-accent-foreground hover:bg-card rounded-md flex items-center justify-start">
-                      {localeLabels[locale]} {locale.toUpperCase()}
+                      {locale.toUpperCase()}
                     </Link>
                   )
                 }

@@ -1,11 +1,9 @@
 import { ImageResponse } from 'next/og'
-import { Args } from '@/app/(frontend)/[[...slugs]]/page'
-import { queryPageBySlug } from '@/app/(frontend)/[[...slugs]]/data'
-import { join } from 'node:path'
-import { readFile } from 'node:fs/promises'
 import { loadGoogleFont } from './loadGoogleFont'
-import { resolveSlugs } from './resolveSlugs'
-
+import { getCachedGlobal } from './getGlobals'
+import { DataFromGlobalSlug } from 'payload'
+import { Media } from '@/payload-types'
+import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
 
 /**
  * OG Image generation. PayloadCMS can'T be run on edge routes, so prevent setting the open graph routes to edge.
@@ -18,26 +16,44 @@ export const size = {
 }
 
 export const contentType = 'image/png'
-export const alt = 'PayBlocks'
-const defaultTitle = 'PayBlocks'
 
-export default async function generateOGImage(props: Args) {
-  const { slugs } = await props.params;
-  const { locale, slug } = resolveSlugs(slugs || []);
+/**
+ * Generates an Open Graph image with a background image and title.
+ *
+ * The background image is loaded from the public directory.
+ * The title is rendered with the font 'Inter', loaded from Google Fonts.
+ *
+ * @param {Object} options - Options for generating the image
+ * @param {string} [options.title] - Title to render on the image. Defaults to "PayBlocks".
+ * @returns {Promise<ImageResponse>} - A promise that resolves to an `ImageResponse` object.
+ */
+export default async function generateOGImage({ title }: { title?: string | null }) {
+
+  const pageConfig = (await getCachedGlobal("page-config", 3)() as DataFromGlobalSlug<"page-config">)
+
+  const backgroundImageUrl = (pageConfig.openGraph?.backgroundImage as Media)?.url
+
+  const pageTitle = title || pageConfig.defaultMeta.title
+
+  const textColor = pageConfig.openGraph?.textColor
+
+  if (!backgroundImageUrl) {
+    return new Response('No background image found', { status: 404 })
+  }
+
+  if (!textColor) {
+    return new Response('No text color found', { status: 404 })
+  }
+
+
+  const backgroundImage = `${NEXT_PUBLIC_SERVER_URL}${backgroundImageUrl}`
+
+
   try {
-    // Get the title from Payload if slug is provided
-    let title = defaultTitle
-    if (slug) {
-      const page = await queryPageBySlug({ slug, locale })
-      title = page.meta?.title || page.title || defaultTitle
-    }
-
-    // Load the background image from public directory
-    const backgroundImage = await readFile(join(process.cwd(), 'public', 'payblocksdefaultogbackground.png'))
-    const backgroundImageSrc = Uint8Array.from(backgroundImage).buffer
 
     // Load the font
-    const fontData = await loadGoogleFont('Inter', title)
+    const fontData = await loadGoogleFont('Inter', pageTitle)
+
 
     return new ImageResponse(
       (
@@ -54,7 +70,7 @@ export default async function generateOGImage(props: Args) {
         >
           {/* Background image */}
           <img
-            src={backgroundImageSrc as unknown as string}
+            src={backgroundImage}
             alt="Background"
             width={size.width}
             height={size.height}
@@ -84,13 +100,13 @@ export default async function generateOGImage(props: Args) {
                 fontSize: '48px',
                 lineHeight: '1.4',
                 fontWeight: '600',
-                color: 'black',
+                color: textColor,
                 textAlign: 'left',
                 margin: '0',
                 fontFamily: 'Inter',
               }}
             >
-              {title}
+              {pageTitle}
             </h1>
           </div>
         </div>
@@ -104,7 +120,7 @@ export default async function generateOGImage(props: Args) {
             style: 'normal',
           },
         ],
-      }
+      },
     )
   } catch (error) {
     console.error('Error generating OG image:', error)
