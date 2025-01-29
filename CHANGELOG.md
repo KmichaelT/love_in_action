@@ -1,5 +1,11 @@
 # payblocks
 
+## 1.0.6
+
+### Patch Changes
+
+- 5faf21e: fix if ci
+
 ## 1.0.5
 
 ### Patch Changes
