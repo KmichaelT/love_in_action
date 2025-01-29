@@ -28,7 +28,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2  # Ensure we can compare changes
+          fetch-depth: 0  # Ensure we have full history
 
       - name: Check for new changeset
         run: |
