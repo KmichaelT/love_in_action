@@ -172,7 +172,9 @@ export default buildConfig({
       },
     }),
     nestedDocsPlugin({
-      collections: ['categories'],
+      collections: ['categories', 'pages'],
+      // generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.slug}`, '') # TODO: use this as soon as multilevel slug is implemented
+      generateURL: (docs) => docs.reduce((url, doc) => `/${doc.slug}`, '')
     }),
     seoPlugin({
       generateTitle,

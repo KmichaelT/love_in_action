@@ -16,6 +16,7 @@ import { resolveSlugs } from '@/utilities/resolveSlugs'
 import localization, { locales } from '@/localization.config'
 import { queryPageBySlug } from './data'
 import { PublicContextProps } from '@/utilities/publicContextProps'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
 
 type Params = {
   slugs?: Array<string>
@@ -80,7 +81,7 @@ export default async function Page(props: Args) {
     return <PayloadRedirects url={url} />
   }
 
-  const { hero, layout } = page
+  const { hero, layout, breadcrumbs: breadcrumbData, enableBreadcrumbs } = page
 
   return (
     <article className="">
@@ -89,6 +90,7 @@ export default async function Page(props: Args) {
       <PayloadRedirects disableNotFound url={url} />
 
       <RenderHero {...hero} publicContext={publicContext} />
+      { enableBreadcrumbs && breadcrumbData && <Breadcrumbs items={breadcrumbData} /> }
       <RenderBlocks blocks={layout} publicContext={publicContext} />
     </article>
   )

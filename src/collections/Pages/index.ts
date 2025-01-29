@@ -153,7 +153,24 @@ export const Pages: CollectionConfig = {
         position: 'sidebar',
       },
     },
+
     ...slugField(),
+    {
+      name: 'enableBreadcrumbs',
+      type: 'checkbox',
+      defaultValue: false,
+      label: {
+        en: 'Breadcrumbs',
+        de: 'Breadcumbs'
+      },
+      admin: {
+        position: 'sidebar',
+        description: {
+          en: 'Enable breadcrumbs for the page',
+          de: 'Breadcumbs für die Seite aktivieren'
+        }
+      },
+    },
   ],
   hooks: {
     afterChange: [revalidatePage],
