@@ -57,12 +57,12 @@ jobs:
           fi
 
       - name: Extract Version from package.json
-        if: env.version_changed == 'true'
+        if: env.changeset_release == 'true' && github.ref_name == 'changeset-release/main'
         id: version
         run: echo "version=$(jq -r .version package.json)" >> $GITHUB_ENV
 
       - name: Extract Latest Changelog Entry
-        if: env.version_changed == 'true'
+        if: env.changeset_release == 'true' && github.ref_name == 'changeset-release/main'
         id: changelog
         run: |
           if [ -f "CHANGELOG.md" ]; then
@@ -76,12 +76,12 @@ jobs:
           fi
 
       - name: Create ZIP Archive
-        if: env.version_changed == 'true'
+        if: env.changeset_release == 'true' && github.ref_name == 'changeset-release/main'
         run: |
           zip -r release.zip . -x "*.git*" "node_modules/*" "*.DS_Store"
 
       - name: Create GitHub Release and Upload ZIP
-        if: env.version_changed == 'true'
+        if: env.changeset_release == 'true' && github.ref_name == 'changeset-release/main'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ env.version }}
