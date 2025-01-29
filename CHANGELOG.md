@@ -1,5 +1,12 @@
 # payblocks
 
+## 1.0.4
+
+### Patch Changes
+
+- f67d72c: fix changeset
+- 24b609f: fix changeset
+
 ## 1.0.3
 
 ### Patch Changes
