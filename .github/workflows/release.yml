@@ -23,6 +23,9 @@ jobs:
         with:
           node-version: 18
 
+      - name: Install pnpm  # ✅ Install pnpm before using it
+        run: npm install -g pnpm
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
