@@ -47,10 +47,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extract Version from package.json
+        if: steps.changesets.outputs.hasChangesets == 'false'
         id: version
         run: echo "version=$(jq -r .version package.json)" >> $GITHUB_ENV
 
       - name: Extract Latest Changelog Entry
+        if: steps.changesets.outputs.hasChangesets == 'false'
         id: changelog
         run: |
           if [ -f "CHANGELOG.md" ]; then
@@ -64,10 +66,12 @@ jobs:
           fi
 
       - name: Create ZIP Archive
+        if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
           zip -r release.zip . -x "*.git*" "node_modules/*" "*.DS_Store"
 
       - name: Create GitHub Release and Upload ZIP
+        if: steps.changesets.outputs.hasChangesets == 'false'
         uses: softprops/action-gh-release@v2
         if: github.ref == 'refs/heads/main'
         with:
