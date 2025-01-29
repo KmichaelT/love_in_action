@@ -23,13 +23,21 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install pnpm  # ✅ Install pnpm before using it
+      - name: Install pnpm
         run: npm install -g pnpm
+
+      - name: Restore pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Create release PR or version
+      - name: Create release PR
         uses: changesets/action@v1
         with:
           version: pnpm changeset version
@@ -38,25 +46,40 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Publish to npm (Optional)
-      #   if: github.ref == 'refs/heads/main'
-      #   run: pnpm publish --no-git-checks
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      
-      # - name: Create ZIP Archive
-      #   run: |
-      #     zip -r release.zip . -x "*.git*" "node_modules/*" "*.DS_Store"
+      - name: Extract Version from package.json
+        if: steps.changesets.outputs.hasChangesets == 'false'
+        id: version
+        run: echo "version=$(jq -r .version package.json)" >> $GITHUB_ENV
 
-      # - name: Create GitHub Release and Upload ZIP
-      #   uses: softprops/action-gh-release@v2
-      #   if: github.ref == 'refs/heads/main'
-      #   with:
-      #     tag_name: v${{ github.run_number }}
-      #     name: Release v${{ github.run_number }}
-      #     body: |
-      #       🚀 **New Release v${{ github.run_number }}**
-      #       - Auto-generated from main branch.
-      #     files: release.zip
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Extract Latest Changelog Entry
+        if: steps.changesets.outputs.hasChangesets == 'false'
+        id: changelog
+        run: |
+          if [ -f "CHANGELOG.md" ]; then
+            # Extract the latest changelog entry by finding the first ## header and stopping at the next ##
+            latest_changelog=$(awk '/^## /{if (p) exit; p=1} p' CHANGELOG.md)
+            echo "changelog<<EOF" >> $GITHUB_ENV
+            echo "$latest_changelog" >> $GITHUB_ENV
+            echo "EOF" >> $GITHUB_ENV
+          else
+            echo "changelog=No changelog available." >> $GITHUB_ENV
+          fi
+
+      - name: Create ZIP Archive
+        if: steps.changesets.outputs.hasChangesets == 'false'
+        run: |
+          zip -r release.zip . -x "*.git*" "node_modules/*" "*.DS_Store"
+
+      - name: Create GitHub Release and Upload ZIP
+        if: steps.changesets.outputs.hasChangesets == 'false'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ env.version }}
+          name: Release v${{ env.version }}
+          body: |
+            🚀 **New Release v${{ env.version }}**
+            
+            ${{ env.changelog }}
+          files: release.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
