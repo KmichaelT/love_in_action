@@ -1,5 +1,11 @@
 # payblocks
 
+## 1.0.10
+
+### Patch Changes
+
+- 675b3b5: a
+
 ## 1.0.9
 
 ### Patch Changes
