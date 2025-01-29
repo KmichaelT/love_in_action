@@ -1,6 +1,6 @@
 {
   "name": "payblocks",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A Website template for PayloadCMS, featurig shadcn/ui and shadcnblocks.",
   "license": "MIT",
   "type": "module",
