@@ -28,9 +28,10 @@ jobs:
 
           echo "Checking PR Title: $PR_TITLE"
           echo "Checking Commit Message: $COMMIT_MESSAGE"
-          echo "Checking Branch: $BRANCH_NAME"
+          echo "Checking Branch: $BRANCH_NAME_1"
+          echo "Checking Branch: $BRANCH_NAME_2"
 
-          if [[ "$BRANCH_NAME_1" == "changeset-release/main" ]] || [[ "$BRANCH_NAME_2" == "changeset-release/main" ]] || [[ "$PR_TITLE" == "chore: release new version" ]] || [[ "$COMMIT_MESSAGE" == *"chore(release): version packages"* ]]; then
+          if [[ "$BRANCH_NAME_1" == "changeset-release/main" ]] || [[ "$BRANCH_NAME_2" == "changeset-release/main" ]] || [[ "$PR_TITLE" == "chore: release new version" ]] || echo "$COMMIT_MESSAGE" | grep -q "chore: release new version"; then
             echo "changeset_release=true" >> $GITHUB_ENV
           else
             echo "changeset_release=false" >> $GITHUB_ENV
