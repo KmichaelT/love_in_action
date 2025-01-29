@@ -73,7 +73,6 @@ jobs:
       - name: Create GitHub Release and Upload ZIP
         if: steps.changesets.outputs.hasChangesets == 'false'
         uses: softprops/action-gh-release@v2
-        if: github.ref == 'refs/heads/main'
         with:
           tag_name: v${{ env.version }}
           name: Release v${{ env.version }}
