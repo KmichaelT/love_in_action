@@ -1,5 +1,11 @@
 # payblocks
 
+## 1.0.5
+
+### Patch Changes
+
+- 37f218b: check other stuff
+
 ## 1.0.4
 
 ### Patch Changes
