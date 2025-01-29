@@ -74,11 +74,24 @@ jobs:
           else
             echo "version_changed=false" >> $GITHUB_ENV
           fi
-          git diff origin/main...HEAD -- package.json
-          git diff origin/main...HEAD
+          echo 1
+          echo $(git diff origin/main...HEAD -- package.json | grep '"version":')
+          echo 2
+          echo $(git diff origin/main...HEAD -- package.json)
+          echo 3
+          echo $(git diff origin/main...HEAD)
+          echo 4
+          echo $(git diff HEAD)
+          echo 5
+          echo $(git diff --)
+          echo 6
           echo $GITHUB_ENV
-          echo $env.version_changed
-          echo $env.changeset_release
+          echo 7
+          echo ${{ env.version_changed }}
+          echo 8
+          echo ${{ env.changeset_release }}
+          echo 9
+          echo ${{ env.is_changeset_release }}
 
       - name: Extract Version from package.json
         if: env.version_changed == 'true' && env.changeset_release == 'true'
