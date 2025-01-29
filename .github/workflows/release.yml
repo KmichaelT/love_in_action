@@ -26,7 +26,6 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
-      
       - name: Restore pnpm cache
         uses: actions/cache@v3
         with:
@@ -51,12 +50,14 @@ jobs:
         id: version
         run: echo "version=$(jq -r .version package.json)" >> $GITHUB_ENV
 
-      - name: Read Changelog from Changesets
+      - name: Extract Latest Changelog Entry
         id: changelog
         run: |
-          if [ -f ".changeset/release.md" ]; then
+          if [ -f "CHANGELOG.md" ]; then
+            # Extract the latest changelog entry by finding the first ## header and stopping at the next ##
+            latest_changelog=$(awk '/^## /{if (p) exit; p=1} p' CHANGELOG.md)
             echo "changelog<<EOF" >> $GITHUB_ENV
-            cat .changeset/release.md >> $GITHUB_ENV
+            echo "$latest_changelog" >> $GITHUB_ENV
             echo "EOF" >> $GITHUB_ENV
           else
             echo "changelog=No changelog available." >> $GITHUB_ENV
@@ -66,16 +67,16 @@ jobs:
         run: |
           zip -r release.zip . -x "*.git*" "node_modules/*" "*.DS_Store"
 
-      - name: Create GitHub Release and Upload ZIP  # ✅ Use extracted version & changelog
+      - name: Create GitHub Release and Upload ZIP
         uses: softprops/action-gh-release@v2
         if: github.ref == 'refs/heads/main'
         with:
-          tag_name: v${{ env.version }}  # ✅ Uses extracted version for tag
-          name: Release v${{ env.version }}  # ✅ Uses extracted version for release name
+          tag_name: v${{ env.version }}
+          name: Release v${{ env.version }}
           body: |
             🚀 **New Release v${{ env.version }}**
             
-            ${{ env.changelog }}  # ✅ Uses extracted changelog from `.changeset/release.md`
+            ${{ env.changelog }}
           files: release.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
