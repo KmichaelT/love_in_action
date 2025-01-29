@@ -1,5 +1,12 @@
 # payblocks
 
+## 1.0.8
+
+### Patch Changes
+
+- 5cda8b4: asdf
+- a695cdb: asdf
+
 ## 1.0.7
 
 ### Patch Changes
