@@ -71,8 +71,10 @@ jobs:
         run: |
           if git diff origin/main...HEAD -- package.json | grep '"version":'; then
             echo "version_changed=true" >> $GITHUB_ENV
+            echo "DEBUG: version_changed=true"
           else
             echo "version_changed=false" >> $GITHUB_ENV
+            echo "DEBUG: version_changed=false"
           fi
           echo 1
           echo $(git diff origin/main...HEAD -- package.json | grep '"version":')
