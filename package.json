@@ -85,6 +85,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.12",
     "@next/eslint-plugin-next": "15.1.2",
     "@payloadcms/eslint-config": "^3.9.0",
     "@tailwindcss/typography": "^0.5.16",
