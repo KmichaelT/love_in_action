@@ -29,7 +29,6 @@ interface BreadcrumbProps {
 export function Breadcrumbs({ items, className, publicContext }: BreadcrumbProps) {
   if (!items?.length) return null
   const localePrefix = publicContext?.locale !== localization.defaultLocale ? `/${publicContext?.locale}` : '';
-  console.log("localePrefix", localePrefix)
   return (
     <div className="container my-12">
       <Breadcrumb>

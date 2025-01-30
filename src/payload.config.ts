@@ -47,7 +47,6 @@ import localization from './localization.config'
 import { initializeRoles } from './utilities/initRoles'
 import { isAdminHidden } from './access/isAdmin'
 import { PageConfig } from './globals/PageConfig/config'
-import { revalidatePath } from 'next/cache'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -57,6 +56,7 @@ const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
 }
 
 const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
+  // TODO: add multi slug
   return doc?.slug ? `${NEXT_PUBLIC_SERVER_URL!}/${doc.slug}` : NEXT_PUBLIC_SERVER_URL!
 }
 
@@ -176,12 +176,7 @@ export default buildConfig({
       collections: ['categories', 'pages'],
       // This function is executed on save of the page. If you change this function make
       // sure to re-save all pages to update there URLs
-      generateURL: (docs, lastDoc) => {
-        console.log("lastDoc", lastDoc.breadcrumbs)
-        const path = docs.reduce((url, doc) => `${url}/${doc.slug}`, '');
-        console.log("path", path)
-        return path;
-      },
+      generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.slug}`, '')
     }),
     seoPlugin({
       generateTitle,
