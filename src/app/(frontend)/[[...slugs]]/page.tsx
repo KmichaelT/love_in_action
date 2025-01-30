@@ -26,6 +26,10 @@ export type Args = {
   params: Promise<Params>
 }
 
+function generateUrl(locale: string, cleanSlugs: string[]) {
+  return locale !== localization.defaultLocale ? `/${locale}/` : '/' + cleanSlugs.join('/');
+}
+
 export async function generateStaticParams(): Promise<Array<Params>> {
   const payload = await getPayload({ config: configPromise })
   const pages = await payload.find({
@@ -42,7 +46,7 @@ export async function generateStaticParams(): Promise<Array<Params>> {
 
   return pages.docs.flatMap(({ slug }) => {
     return locales.map((locale) => {
-      // NOTE: order of array pushes matters here so be careful restructuring it
+      // order of array pushes matters here so be careful restructuring it
       const slugs: string[] = [];
       if (locale !== localization.defaultLocale) {
         slugs.push(locale);
@@ -61,19 +65,18 @@ export default async function Page(props: Args) {
   if (res.isNotFound) {
     notFound();
   }
-  const { locale, slug } = res;
+  const { locale, cleanSlugs } = res;
 
   const publicContext: PublicContextProps = {
     ...res,
   }
 
-
-  const url = '/' + slug
+  const url = generateUrl(locale, cleanSlugs);
 
   let page: PageType | null
 
   page = await queryPageBySlug({
-    slug,
+    cleanSlugs,
     locale
   })
 
@@ -90,7 +93,7 @@ export default async function Page(props: Args) {
       <PayloadRedirects disableNotFound url={url} />
 
       <RenderHero {...hero} publicContext={publicContext} />
-      { enableBreadcrumbs && breadcrumbData && <Breadcrumbs items={breadcrumbData} /> }
+      {enableBreadcrumbs && breadcrumbData && <Breadcrumbs items={breadcrumbData} publicContext={publicContext} />}
       <RenderBlocks blocks={layout} publicContext={publicContext} />
     </article>
   )
@@ -102,11 +105,12 @@ export async function generateMetadata(props: Args): Promise<Metadata> {
   if (res.isNotFound) {
     notFound();
   }
-  const { locale, slug } = res;
+  const { locale, cleanSlugs } = res;
 
   const page = await queryPageBySlug({
-    slug,
+    cleanSlugs,
     locale
   })
-  return generateMeta({ doc: page, slug })
+  const url = generateUrl(locale, cleanSlugs);
+  return generateMeta({ doc: page, url })
 }

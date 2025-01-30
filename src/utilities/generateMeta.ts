@@ -3,9 +3,9 @@ import type { Page, Post } from '../payload-types'
 import { mergeOpenGraph } from './mergeOpenGraph'
 import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
 
-export const generateMeta = async (args: { doc: Page | Post, slug: string }): Promise<Metadata> => {
-  const { doc, slug } = args || {}
-  
+export const generateMeta = async (args: { doc: Page | Post, url: string }): Promise<Metadata> => {
+  const { doc, url } = args || {}
+
 
   const customOGImage =
     typeof doc?.meta?.image === 'object' &&
@@ -24,15 +24,14 @@ export const generateMeta = async (args: { doc: Page | Post, slug: string }): Pr
     openGraph: mergeOpenGraph({
       title,
       description,
-      // TODO: build real url using slug and locale
-      url: Array.isArray(doc?.slug) ? doc?.slug.join('/') : '/',
+      url,
       images: customOGImage
-      ? [
+        ? [
           {
             url: customOGImage,
           },
         ]
-      : defaultOGImage,
+        : defaultOGImage,
     }),
   }
 }

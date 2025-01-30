@@ -47,6 +47,7 @@ import localization from './localization.config'
 import { initializeRoles } from './utilities/initRoles'
 import { isAdminHidden } from './access/isAdmin'
 import { PageConfig } from './globals/PageConfig/config'
+import { revalidatePath } from 'next/cache'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -71,9 +72,9 @@ export default buildConfig({
     autoLogin:
       process.env.NEXT_PUBLIC_ENABLE_AUTOLOGIN === 'true'
         ? {
-            email: 'test@trieb.work',
-            password: 'test1234',
-          }
+          email: 'test@trieb.work',
+          password: 'test1234',
+        }
         : false,
     components: {
       beforeLogin: ['@/components/AdminDashboard/BeforeLogin'],
@@ -173,8 +174,14 @@ export default buildConfig({
     }),
     nestedDocsPlugin({
       collections: ['categories', 'pages'],
-      // generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.slug}`, '') # TODO: use this as soon as multilevel slug is implemented
-      generateURL: (docs) => docs.reduce((url, doc) => `/${doc.slug}`, '')
+      // This function is executed on save of the page. If you change this function make
+      // sure to re-save all pages to update there URLs
+      generateURL: (docs, lastDoc) => {
+        console.log("lastDoc", lastDoc.breadcrumbs)
+        const path = docs.reduce((url, doc) => `${url}/${doc.slug}`, '');
+        console.log("path", path)
+        return path;
+      },
     }),
     seoPlugin({
       generateTitle,

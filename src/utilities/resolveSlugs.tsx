@@ -1,8 +1,9 @@
 import localization, { Locale, locales } from "@/localization.config";
 
-export function resolveSlugs(slugs: Array<string>): { isNotFound: true, locale: Locale, slug?: string } | { isNotFound: false, locale: Locale, slug: string } {
+export function resolveSlugs(slugs: Array<string>): { isNotFound: true, locale: Locale, cleanSlugs?: string[] } | { isNotFound: false, locale: Locale, cleanSlugs: string[] } {
   const localeOrSlug = slugs?.[0];
   const slugRaw = slugs?.[1];
+  const remainingSlugs = slugs?.slice(2);
 
   // We do not want to serve under default locale. Default locale should run directly under /
   if (localeOrSlug === localization.defaultLocale) {
@@ -10,7 +11,7 @@ export function resolveSlugs(slugs: Array<string>): { isNotFound: true, locale: 
   }
 
   let locale: Locale = localization.defaultLocale as Locale;
-  let slug: string = "home";
+  let firstSlug: string = "home";
   if (locales.includes(localeOrSlug as Locale)) {
     // localeOrSlug is a locale (default locale is already filtered out by the if statement above)
     locale = localeOrSlug as Locale;
@@ -19,7 +20,9 @@ export function resolveSlugs(slugs: Array<string>): { isNotFound: true, locale: 
       return { isNotFound: true, locale }
     }
     // If no slug is provided, we want to serve page saved under slug "home" under /de url
-    slug = slugRaw || "home";
+    firstSlug = slugRaw || "home";
+
+    return { locale, cleanSlugs: [firstSlug, ...remainingSlugs], isNotFound: false }
   } else {
     // If localeOrSlug is not a locale, we want to serve page with default locale
     locale = localization.defaultLocale as Locale;
@@ -28,13 +31,14 @@ export function resolveSlugs(slugs: Array<string>): { isNotFound: true, locale: 
       // We do not want to serve under /home. This route should be served directly under /
       return { isNotFound: true, locale }
     }
+    // If no slug is provided, we want to serve page saved under slug "home" under / url
+    firstSlug = localeOrSlug || "home";
+
     // If localeOrSlug is a slug, then slugRaw has to be empty
     if (slugRaw) {
-      return { isNotFound: true, locale }
+      return { locale, cleanSlugs: [firstSlug, slugRaw, ...remainingSlugs], isNotFound: false }
+    } else {
+      return { locale, cleanSlugs: [firstSlug, ...remainingSlugs], isNotFound: false }
     }
-    // If no slug is provided, we want to serve page saved under slug "home" under / url
-    slug = localeOrSlug || "home";
   }
-
-  return { locale, slug, isNotFound: false }
 }
