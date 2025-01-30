@@ -33,7 +33,7 @@ import {
 } from '@payloadcms/plugin-seo/fields'
 import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
 import { ContactBlock } from '@/blocks/Contact/config'
-import localization from '@/localization.config'
+import { Breadcrumb } from '@payloadcms/plugin-nested-docs/types'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -56,9 +56,10 @@ export const Pages: CollectionConfig = {
   admin: {
     defaultColumns: ['title', 'slug', 'updatedAt'],
     livePreview: {
-      url: ({ data, locale }, ...rest2) => {
+      url: ({ data, locale }) => {
         const path = generatePreviewPath({
           slug: typeof data?.slug === 'string' ? data.slug : '',
+          breadcrumbs: data?.breadcrumbs,
           collection: 'pages',
           locale: locale.code,
         })
@@ -69,6 +70,7 @@ export const Pages: CollectionConfig = {
     preview: (data, options) => {
       const path = generatePreviewPath({
         slug: typeof data?.slug === 'string' ? data.slug : '',
+        breadcrumbs: data?.breadcrumbs as Breadcrumb[],
         collection: 'pages',
         locale: options.locale
       })

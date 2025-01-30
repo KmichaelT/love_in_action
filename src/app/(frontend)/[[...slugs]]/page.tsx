@@ -17,6 +17,7 @@ import localization, { locales } from '@/localization.config'
 import { queryPageBySlug } from './data'
 import { PublicContextProps } from '@/utilities/publicContextProps'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
+import { Breadcrumb } from '@payloadcms/plugin-nested-docs/types'
 
 type Params = {
   slugs?: Array<string>
@@ -44,15 +45,23 @@ export async function generateStaticParams(): Promise<Array<Params>> {
     return []
   }
 
-  return pages.docs.flatMap(({ slug }) => {
+  return pages.docs.flatMap(({ slug, breadcrumbs }) => {
     return locales.map((locale) => {
       // order of array pushes matters here so be careful restructuring it
       const slugs: string[] = [];
       if (locale !== localization.defaultLocale) {
         slugs.push(locale);
       }
+
       if (slug !== 'home' && slug) {
-        slugs.push(slug);
+        // breadcrumb type is wrong here because it is not fetched localized. We therefore need to cast it to the correct type
+        const localBreadcrumb: Breadcrumb[] = breadcrumbs?.[locale] || breadcrumbs?.[localization.defaultLocale]
+        if (localBreadcrumb) {
+          const slugs = (localBreadcrumb || [])?.map((item) => item.url?.split('/').pop()).filter(Boolean) as string[];
+          slugs.concat(slugs);
+        } else {
+          slugs.push(slug);
+        }
       }
       return { slugs };
     })

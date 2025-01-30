@@ -12,3 +12,6 @@ Feat: multi-slug support in revalidatePage
 Fix: locales in revalidatePage
 Fix: breadcrumb locale
 Fix: breadcrumb next/link usage
+Feat: multi-slug support in lang switcher
+Feat: multi-slug support in generate static props
+Feat: multi-slug support in preview mode

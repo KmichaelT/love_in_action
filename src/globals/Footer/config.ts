@@ -18,6 +18,7 @@ export const Footer: GlobalConfig = {
       url: () => {
         const path = generatePreviewPath({
           slug: 'home',
+          breadcrumbs: undefined,
           collection: 'pages',
           locale: 'en',
         })
@@ -28,6 +29,7 @@ export const Footer: GlobalConfig = {
     preview: () => {
       const path = generatePreviewPath({
         slug: 'home',
+        breadcrumbs: undefined,
         collection: 'pages',
         locale: 'en',
       })

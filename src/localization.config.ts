@@ -11,8 +11,8 @@ export const localization: LocalizationConfig = {
 } as const;
 
 export const localeLabels: Record<Locale, string> = {
-  en: "🇬🇧",
-  de: "🇩🇪",
+  en: "EN",
+  de: "DE",
 }
 
 export default localization;

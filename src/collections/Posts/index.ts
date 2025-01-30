@@ -27,6 +27,7 @@ import {
 } from '@payloadcms/plugin-seo/fields'
 import { slugField } from '@/fields/slug'
 import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
+import { Breadcrumb } from '@payloadcms/plugin-nested-docs/types'
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -42,6 +43,7 @@ export const Posts: CollectionConfig = {
       url: ({ data }) => {
         const path = generatePreviewPath({
           slug: typeof data?.slug === 'string' ? data.slug : '',
+          breadcrumbs: data?.breadcrumbs,
           collection: 'posts',
           locale: data.locale.code,
         })
@@ -52,6 +54,7 @@ export const Posts: CollectionConfig = {
     preview: (data, options) => {
       const path = generatePreviewPath({
         slug: typeof data?.slug === 'string' ? data.slug : '',
+        breadcrumbs: data?.breadcrumbs as Breadcrumb[],
         collection: 'posts',
         locale: options.locale,
       })
