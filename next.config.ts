@@ -3,6 +3,7 @@ import type { NextConfig } from 'next'
 
 
 export const NEXT_PUBLIC_SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000')
+console.log("NEXT_PUBLIC_SERVER_URL", NEXT_PUBLIC_SERVER_URL, "Vercel URL", process.env.VERCEL_URL)
 
 const nextConfig: NextConfig = {
   experimental: {
