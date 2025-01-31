@@ -9,9 +9,8 @@ import { Button } from '@/components/ui/button'
 
 import { buildInitialFormState } from './buildInitialFormState'
 import { fields } from './fields'
-import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
 
-import Turnstile, { useTurnstile } from "react-turnstile";
+import Turnstile from "react-turnstile";
 import { PublicContextProps } from '@/utilities/publicContextProps'
 
 export type Value = unknown
@@ -89,7 +88,7 @@ export const FormBlock: React.FC<
         }, 1000)
 
         try {
-          const req = await fetch(`${NEXT_PUBLIC_SERVER_URL}/api/form-submissions`, {
+          const req = await fetch('/api/form-submissions', {
             body: JSON.stringify({
               form: formID,
               submissionData: dataToSend,

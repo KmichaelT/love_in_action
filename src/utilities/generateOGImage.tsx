@@ -3,7 +3,7 @@ import { loadGoogleFont } from './loadGoogleFont'
 import { getCachedGlobal } from './getGlobals'
 import { DataFromGlobalSlug } from 'payload'
 import { Media } from '@/payload-types'
-import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
+import { serverUrl as NEXT_PUBLIC_SERVER_URL } from '@/config/server'
 
 /**
  * OG Image generation. PayloadCMS can'T be run on edge routes, so prevent setting the open graph routes to edge.

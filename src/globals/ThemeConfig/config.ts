@@ -3,7 +3,7 @@ import type { GlobalConfig, TextFieldSingleValidation } from 'payload'
 import { revalidateThemeConfig } from './hooks/revalidateThemeConfig'
 import { generatePreviewPath } from '@/utilities/generatePreviewPath'
 import { revalidateTag } from 'next/cache'
-import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
+import { serverUrl as NEXT_PUBLIC_SERVER_URL } from '@/config/server'
 import { isAdminFieldLevel } from '@/access/isAdmin'
 
 const validateCssColor: TextFieldSingleValidation = (value: string) => {

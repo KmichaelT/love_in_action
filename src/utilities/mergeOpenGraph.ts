@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
+import { serverUrl as NEXT_PUBLIC_SERVER_URL } from '@/config/server'
 
 const defaultOpenGraph: Metadata['openGraph'] = {
   type: 'website',

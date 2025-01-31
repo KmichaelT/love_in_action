@@ -42,7 +42,7 @@ import { Page, Post } from 'src/payload-types'
 
 import { searchFields } from '@/search/fieldOverrides'
 import { beforeSyncWithSearch } from '@/search/beforeSync'
-import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
+import { serverUrl as NEXT_PUBLIC_SERVER_URL } from '@/config/server'
 import localization from './localization.config'
 import { initializeRoles } from './utilities/initRoles'
 import { isAdminHidden } from './access/isAdmin'

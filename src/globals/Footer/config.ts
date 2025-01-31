@@ -3,7 +3,7 @@ import type { GlobalConfig } from 'payload'
 import { link } from '@/fields/link'
 import { revalidateFooter } from './hooks/revalidateFooter'
 import { generatePreviewPath } from '@/utilities/generatePreviewPath'
-import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
+import { serverUrl as NEXT_PUBLIC_SERVER_URL } from '@/config/server'
 import { socialIcon } from '@/components/SocialIcon/config'
 import { backgroundColor } from '@/fields/color'
 

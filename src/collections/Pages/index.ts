@@ -31,7 +31,7 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
-import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
+import { serverUrl as NEXT_PUBLIC_SERVER_URL } from '@/config/server'
 import { ContactBlock } from '@/blocks/Contact/config'
 import { Breadcrumb } from '@payloadcms/plugin-nested-docs/types'
 

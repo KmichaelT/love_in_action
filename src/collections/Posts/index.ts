@@ -26,7 +26,7 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 import { slugField } from '@/fields/slug'
-import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
+import { serverUrl as NEXT_PUBLIC_SERVER_URL } from '@/config/server'
 import { Breadcrumb } from '@payloadcms/plugin-nested-docs/types'
 
 export const Posts: CollectionConfig = {

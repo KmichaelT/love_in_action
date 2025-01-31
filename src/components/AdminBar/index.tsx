@@ -9,7 +9,7 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 import './index.scss'
-import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
+import { serverUrl as NEXT_PUBLIC_SERVER_URL } from '@/config/server'
 import { ThemeColorHelper } from './ThemeColorHelper'
 
 const baseClass = 'admin-bar'

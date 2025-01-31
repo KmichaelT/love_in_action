@@ -9,7 +9,7 @@ import React from 'react'
 import type { Props as MediaProps } from '../types'
 
 import cssVariables from '@/cssVariables'
-import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
+import { serverUrl as NEXT_PUBLIC_SERVER_URL } from '@/config/server'
 
 const { breakpoints } = cssVariables
 

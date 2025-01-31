@@ -16,7 +16,7 @@ import { Analytics } from "@vercel/analytics/react"
 
 import './globals.css'
 import { ThemeConfig } from '@/globals/ThemeConfig/Component'
-import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
+import { serverUrl as NEXT_PUBLIC_SERVER_URL } from '@/config/server'
 import { resolveSlugs } from '@/utilities/resolveSlugs'
 import localization from '@/localization.config'
 import { PublicContextProps } from '@/utilities/publicContextProps'

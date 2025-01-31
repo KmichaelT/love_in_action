@@ -1,6 +1,6 @@
 'use client'
 import { RefreshRouteOnSave as PayloadLivePreview } from '@payloadcms/live-preview-react'
-import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
+import { serverUrl as NEXT_PUBLIC_SERVER_URL } from '@/config/server'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 

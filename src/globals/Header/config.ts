@@ -3,7 +3,7 @@ import type { GlobalConfig } from 'payload'
 import { revalidateHeader } from './hooks/revalidateHeader'
 import { navbar } from './navbar/navbar.config'
 import { generatePreviewPath } from '@/utilities/generatePreviewPath'
-import { NEXT_PUBLIC_SERVER_URL } from 'next.config'
+import { serverUrl as NEXT_PUBLIC_SERVER_URL } from '@/config/server'
 import { backgroundColor } from '@/fields/color'
 
 export const Header: GlobalConfig = {
