@@ -3,6 +3,7 @@ import type { Block, Field } from 'payload'
 import { TextBlock } from '../TextBlock/config'
 import { MediaBlock } from '../MediaBlock/config'
 import { backgroundColor } from '@/fields/color'
+import { FormBlock } from '../Form/config'
 
 const sizeField: Field =
 {
@@ -53,6 +54,7 @@ export const SplitViewBlock: Block = {
       blocks: [
         appendSizeFieldToBlock(TextBlock, sizeField),
         appendSizeFieldToBlock(MediaBlock, sizeField),
+        appendSizeFieldToBlock(FormBlock, sizeField),
       ],
     },
   ],

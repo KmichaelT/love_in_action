@@ -29,7 +29,7 @@ export type FormBlockType = {
   blockType?: 'formBlock'
   enableIntro: boolean
   form: FormType
-  withoutWrapper?: boolean
+  disableContainer?: boolean
   introContent?: {
     [k: string]: unknown
   }[]
@@ -42,7 +42,7 @@ export const FormBlock: React.FC<
 > = (props) => {
   const {
     enableIntro,
-    withoutWrapper,
+    disableContainer,
     form: formFromProps,
     form: { id: formID, confirmationMessage, confirmationType, redirect, submitButtonLabel } = {},
     introContent,
@@ -197,5 +197,5 @@ export const FormBlock: React.FC<
     )}
   </FormProvider>
   );
-  return withoutWrapper ? form : <div className="container lg:max-w-[48rem] pb-20">{form}</div>;
+  return disableContainer ? form : <div className="container lg:max-w-[48rem] pb-20">{form}</div>;
 }
