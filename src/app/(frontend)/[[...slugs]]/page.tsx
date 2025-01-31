@@ -17,6 +17,7 @@ import localization, { locales } from '@/localization.config'
 import { queryPageBySlug } from './data'
 import { PublicContextProps } from '@/utilities/publicContextProps'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
+import { Breadcrumb } from '@payloadcms/plugin-nested-docs/types'
 
 type Params = {
   slugs?: Array<string>
@@ -24,6 +25,10 @@ type Params = {
 
 export type Args = {
   params: Promise<Params>
+}
+
+function generateUrl(locale: string, cleanSlugs: string[]) {
+  return locale !== localization.defaultLocale ? `/${locale}/` : '/' + cleanSlugs.join('/');
 }
 
 export async function generateStaticParams(): Promise<Array<Params>> {
@@ -40,15 +45,23 @@ export async function generateStaticParams(): Promise<Array<Params>> {
     return []
   }
 
-  return pages.docs.flatMap(({ slug }) => {
+  return pages.docs.flatMap(({ slug, breadcrumbs }) => {
     return locales.map((locale) => {
-      // NOTE: order of array pushes matters here so be careful restructuring it
+      // order of array pushes matters here so be careful restructuring it
       const slugs: string[] = [];
       if (locale !== localization.defaultLocale) {
         slugs.push(locale);
       }
+
       if (slug !== 'home' && slug) {
-        slugs.push(slug);
+        // breadcrumb type is wrong here because it is not fetched localized. We therefore need to cast it to the correct type
+        const localBreadcrumb: Breadcrumb[] = breadcrumbs?.[locale] || breadcrumbs?.[localization.defaultLocale]
+        if (localBreadcrumb) {
+          const slugs = (localBreadcrumb || [])?.map((item) => item.url?.split('/').pop()).filter(Boolean) as string[];
+          slugs.concat(slugs);
+        } else {
+          slugs.push(slug);
+        }
       }
       return { slugs };
     })
@@ -61,19 +74,18 @@ export default async function Page(props: Args) {
   if (res.isNotFound) {
     notFound();
   }
-  const { locale, slug } = res;
+  const { locale, cleanSlugs } = res;
 
   const publicContext: PublicContextProps = {
     ...res,
   }
 
-
-  const url = '/' + slug
+  const url = generateUrl(locale, cleanSlugs);
 
   let page: PageType | null
 
   page = await queryPageBySlug({
-    slug,
+    cleanSlugs,
     locale
   })
 
@@ -90,7 +102,7 @@ export default async function Page(props: Args) {
       <PayloadRedirects disableNotFound url={url} />
 
       <RenderHero {...hero} publicContext={publicContext} />
-      { enableBreadcrumbs && breadcrumbData && <Breadcrumbs items={breadcrumbData} /> }
+      {enableBreadcrumbs && breadcrumbData && <Breadcrumbs items={breadcrumbData} publicContext={publicContext} />}
       <RenderBlocks blocks={layout} publicContext={publicContext} />
     </article>
   )
@@ -102,11 +114,12 @@ export async function generateMetadata(props: Args): Promise<Metadata> {
   if (res.isNotFound) {
     notFound();
   }
-  const { locale, slug } = res;
+  const { locale, cleanSlugs } = res;
 
   const page = await queryPageBySlug({
-    slug,
+    cleanSlugs,
     locale
   })
-  return generateMeta({ doc: page, slug })
+  const url = generateUrl(locale, cleanSlugs);
+  return generateMeta({ doc: page, url })
 }

@@ -9,32 +9,36 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
+import { PublicContextProps } from '@/utilities/publicContextProps'
+import localization from '@/localization.config'
+import Link from 'next/link'
 
 interface BreadcrumbProps {
   items?:
-    | {
-        doc?: (string | null) | Page
-        url?: string | null
-        label?: string | null
-        id?: string | null
-      }[]
-    | null
+  | {
+    doc?: (string | null) | Page
+    url?: string | null
+    label?: string | null
+    id?: string | null
+  }[]
+  | null
   className?: string
+  publicContext?: PublicContextProps
 }
 
-export function Breadcrumbs({ items, className }: BreadcrumbProps) {
+export function Breadcrumbs({ items, className, publicContext }: BreadcrumbProps) {
   if (!items?.length) return null
-
+  const localePrefix = publicContext?.locale !== localization.defaultLocale ? `/${publicContext?.locale}` : '';
   return (
     <div className="container my-12">
       <Breadcrumb>
         <BreadcrumbList className={cn('text-sm text-muted-foreground', className)}>
           <BreadcrumbItem>
             <BreadcrumbLink
-              href="/"
               className="hover:text-foreground transition-colors duration-200"
+              asChild
             >
-              Home
+              <Link href={localePrefix || '/'}>Home</Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           {items.map((item, index) => (
@@ -45,10 +49,10 @@ export function Breadcrumbs({ items, className }: BreadcrumbProps) {
                   <BreadcrumbPage className="font-medium">{item.label}</BreadcrumbPage>
                 ) : (
                   <BreadcrumbLink
-                    href={item.url || '#'}
                     className="hover:text-foreground transition-colors duration-200"
+                    asChild
                   >
-                    {item.label}
+                    <Link href={localePrefix + item.url || '#'}>{item.label}</Link>
                   </BreadcrumbLink>
                 )}
               </BreadcrumbItem>

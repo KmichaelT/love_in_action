@@ -1,5 +1,5 @@
 import localization, { locales, localeLabels } from "@/localization.config";
-import { Check, LucideLanguages, Globe } from "lucide-react";
+import { Check, Globe } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,30 +11,30 @@ import Link from "next/link";
 import { PublicContextProps } from '@/utilities/publicContextProps'
 
 export const LanguageSwitcher: React.FC<{ publicContext: PublicContextProps }> = ({ publicContext }) => {
-  const { slug, locale: currentLocale } = publicContext;
+  const { cleanSlugs, locale: currentLocale } = publicContext;
   return (
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem className="text-muted-foreground hover:bg-card hover:text-accent-foreground rounded-md">
           <NavigationMenuTrigger>
             <Globe className={"h-4"} />
-            {currentLocale.toUpperCase()}
+            {localeLabels[currentLocale]}
           </NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="p-3">
               {locales.map((locale) => {
                 const langPrefix = locale === localization.defaultLocale ? "" : `/${locale}`;
-                const href = (slug === "home" ? langPrefix : `${langPrefix}/${slug}`) || "/";
+                const href = (cleanSlugs?.[0] === "home" ? langPrefix : `${langPrefix}/${cleanSlugs?.join('/')}`) || "/";
                 if (currentLocale === locale) {
                   return (
                     <span key={locale} className="w-[85px] mb-1 p-2 text-accent-foreground bg-card rounded-md flex items-center justify-start">
-                      {locale.toUpperCase()} <Check className="w-4 h-4 ml-2" />
+                      {localeLabels[locale]} <Check className="w-4 h-4 ml-2" />
                     </span>
                   )
                 } else {
                   return (
                     <Link key={locale} href={href} lang={locale} className="w-[85px] mb-1 p-2 hover:text-accent-foreground hover:bg-card rounded-md flex items-center justify-start">
-                      {locale.toUpperCase()}
+                      {localeLabels[locale]}
                     </Link>
                   )
                 }

@@ -3,5 +3,5 @@
 export type PublicContextProps = {
   locale: string
   isNotFound: boolean
-  slug?: string
+  cleanSlugs?: string[]
 }

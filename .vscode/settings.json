@@ -7,6 +7,7 @@
     "lucide",
     "mongoexport",
     "mongoimport",
+    "payloadcms",
     "subline"
   ]
 }

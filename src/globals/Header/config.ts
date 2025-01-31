@@ -17,6 +17,7 @@ export const Header: GlobalConfig = {
       url: () => {
         const path = generatePreviewPath({
           slug: 'home',
+          breadcrumbs: undefined,
           collection: 'pages',
           locale: "en"
         })
@@ -27,6 +28,7 @@ export const Header: GlobalConfig = {
     preview: () => {
       const path = generatePreviewPath({
         slug: 'home',
+        breadcrumbs: undefined,
         collection: 'pages',
         locale: "en"
       })

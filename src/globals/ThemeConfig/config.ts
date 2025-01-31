@@ -34,6 +34,7 @@ export const ThemeConfig: GlobalConfig = {
       url: () => {
         const path = generatePreviewPath({
           slug: 'home',
+          breadcrumbs: undefined,
           collection: 'pages',
           locale: 'en',
         })
@@ -44,6 +45,7 @@ export const ThemeConfig: GlobalConfig = {
     preview: () => {
       const path = generatePreviewPath({
         slug: 'home',
+        breadcrumbs: undefined,
         collection: 'pages',
         locale: 'en',
       })

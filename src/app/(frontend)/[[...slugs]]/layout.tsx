@@ -12,6 +12,7 @@ import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
+import { Analytics } from "@vercel/analytics/react"
 
 import './globals.css'
 import { ThemeConfig } from '@/globals/ThemeConfig/Component'
@@ -59,6 +60,7 @@ export default async function RootLayout({ children, params }: { children: React
             }}
           />
           <LivePreviewListener />
+          <Analytics/>
           <Header publicContext={publicContext} />
           {children}
           <Footer publicContext={publicContext} />

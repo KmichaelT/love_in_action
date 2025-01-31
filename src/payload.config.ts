@@ -56,6 +56,7 @@ const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
 }
 
 const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
+  // TODO: add multi slug
   return doc?.slug ? `${NEXT_PUBLIC_SERVER_URL!}/${doc.slug}` : NEXT_PUBLIC_SERVER_URL!
 }
 
@@ -71,9 +72,9 @@ export default buildConfig({
     autoLogin:
       process.env.NEXT_PUBLIC_ENABLE_AUTOLOGIN === 'true'
         ? {
-            email: 'test@trieb.work',
-            password: 'test1234',
-          }
+          email: 'test@trieb.work',
+          password: 'test1234',
+        }
         : false,
     components: {
       beforeLogin: ['@/components/AdminDashboard/BeforeLogin'],
@@ -173,8 +174,9 @@ export default buildConfig({
     }),
     nestedDocsPlugin({
       collections: ['categories', 'pages'],
-      // generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.slug}`, '') # TODO: use this as soon as multilevel slug is implemented
-      generateURL: (docs) => docs.reduce((url, doc) => `/${doc.slug}`, '')
+      // This function is executed on save of the page. If you change this function make
+      // sure to re-save all pages to update there URLs
+      generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.slug}`, '')
     }),
     seoPlugin({
       generateTitle,
