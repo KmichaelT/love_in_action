@@ -22,27 +22,33 @@ import { PublicContextProps } from '@/utilities/publicContextProps'
 export type NodeTypes =
   | DefaultNodeTypes
   | SerializedBlockNode<
-    | Extract<Page['layout'][0], { blockType: 'cta' }>
-    | Extract<Page['layout'][0], { blockType: 'mediaBlock' }>
-    | BannerBlockProps
-    | CodeBlockProps
-  >
+      | Extract<Page['layout'][0], { blockType: 'cta' }>
+      | Extract<Page['layout'][0], { blockType: 'mediaBlock' }>
+      | BannerBlockProps
+      | CodeBlockProps
+    >
 
-export type OverrideStyle = Partial<Record<'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'li', string>>
+export type OverrideStyle = Partial<
+  Record<'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'li', string>
+>
 
 type Props = {
   nodes: NodeTypes[]
   overrideStyle?: OverrideStyle
 }
 
-export function serializeLexical({ nodes, overrideStyle, publicContext }: Props & { publicContext: PublicContextProps }): JSX.Element {
+export function serializeLexical({
+  nodes,
+  overrideStyle,
+  publicContext,
+}: Props & { publicContext: PublicContextProps }): JSX.Element {
   const defaultStyles: OverrideStyle = {
     h1: 'mb-4 text-4xl font-semibold md:text-5xl',
     h2: 'mb-4 text-3xl font-semibold',
     h3: 'mb-3 text-2xl font-semibold',
     h4: 'mb-2 text-xl font-semibold',
     p: 'text-lg mb-3',
-    li: 'text-lg'
+    li: 'text-lg',
   }
 
   const mergedStyles = { ...defaultStyles, ...overrideStyle }
@@ -53,7 +59,6 @@ export function serializeLexical({ nodes, overrideStyle, publicContext }: Props 
         if (node == null) {
           return null
         }
-
         if (node.type === 'text') {
           let text = <React.Fragment key={index}>{node.text}</React.Fragment>
           if (node.format & IS_BOLD) {
@@ -105,7 +110,11 @@ export function serializeLexical({ nodes, overrideStyle, publicContext }: Props 
                 }
               }
             }
-            return serializeLexical({ nodes: node.children as NodeTypes[], overrideStyle: mergedStyles, publicContext })
+            return serializeLexical({
+              nodes: node.children as NodeTypes[],
+              overrideStyle: mergedStyles,
+              publicContext,
+            })
           }
         }
 
@@ -136,7 +145,14 @@ export function serializeLexical({ nodes, overrideStyle, publicContext }: Props 
             //     />
             //   )
             case 'banner':
-              return <BannerBlock className="col-start-2 mb-4" key={index} {...block} publicContext={publicContext} />
+              return (
+                <BannerBlock
+                  className="col-start-2 mb-4"
+                  key={index}
+                  {...block}
+                  publicContext={publicContext}
+                />
+              )
             case 'code':
               return <CodeBlock className="col-start-2" key={index} {...block} />
             default:
@@ -157,9 +173,13 @@ export function serializeLexical({ nodes, overrideStyle, publicContext }: Props 
               } else if (node.format === 'right') {
                 className = cn(className, 'text-right')
               }
+              // Handle empty paragraphs for newlines
+              const children =
+                node.children && node.children.length > 0 ? serializedChildrenFn(node) : <br />
+
               return (
                 <p className={className} key={index}>
-                  {serializedChildren}
+                  {children}
                 </p>
               )
             }
