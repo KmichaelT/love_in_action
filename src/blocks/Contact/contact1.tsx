@@ -14,7 +14,7 @@ import { ContactBlock } from '@/payload-types';
 import RichText from '@/components/RichText';
 import { FormBlock, FormBlockType } from '../Form/Component';
 
-const Contact1: React.FC<ContactBlock> = ({ headlineAndDescription, form, contactBlocks, maps }) => {
+const Contact1: React.FC<ContactBlock> = ({ richText, form, contactBlocks, maps }) => {
   return (
     <section className="relative py-32">
       {/* Background gradients */}
