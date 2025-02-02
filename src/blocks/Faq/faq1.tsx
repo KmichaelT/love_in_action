@@ -34,6 +34,7 @@ const Faq1: React.FC<FaqBlock & { publicContext: PublicContextProps }> = ({ head
                 <RichText publicContext={publicContext}
                   content={answer}
                   withWrapper={false}
+                  overrideStyle={{ p: 'font-normal text-sm' }}
                 />
               </AccordionContent>}
             </AccordionItem>
