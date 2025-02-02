@@ -160,7 +160,7 @@ export default buildConfig({
               return {
                 ...field,
                 admin: {
-                  description: 'You will need to rebuild the website when changing this field.',
+                  description: 'Add new redirects here. The redirect will work immediately after saving. For example: /about or https://example.com/about',
                 },
               }
             }

@@ -38,7 +38,8 @@ export const queryPageBySlug = cache(async ({ cleanSlugs, locale }: { cleanSlugs
 
   // Check if URL path matches the actual parent structure
   // We remove the last item from cleanSlugs as it's the current page slug
-  if (JSON.stringify(parentPath) !== JSON.stringify(cleanSlugs)) {
+  // Don't check that for missing results, as we want to first check our redirects in that case
+  if (result.docs.length > 0 && JSON.stringify(parentPath) !== JSON.stringify(cleanSlugs)) {
     console.log("parent path does not match", parentPath, cleanSlugs);
     notFound();
   }
