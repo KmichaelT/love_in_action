@@ -64,9 +64,6 @@ export const FormBlock: React.FC<
   const [turnstileToken, setTurnstileToken] = useState<string | undefined>();
   const router = useRouter()
 
-  if (!formFromProps?.fields) return null
-
-
   const onSubmit = useCallback(
     (data: Data) => {
       let loadingTimerID: ReturnType<typeof setTimeout>
@@ -141,6 +138,8 @@ export const FormBlock: React.FC<
     },
     [router, formID, redirect, confirmationType, turnstileToken],
   )
+
+  if (!formFromProps?.fields) return null
 
   const form = (<FormProvider {...formMethods}>
     {enableIntro && introContent && !hasSubmitted && (
