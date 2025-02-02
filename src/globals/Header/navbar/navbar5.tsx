@@ -124,22 +124,23 @@ const Navbar5: React.FC<{ header: HeaderType, publicContext: PublicContextProps 
                   </SheetTitle>
                 </SheetHeader>
                 {/* Mobile Navigation Links */}
-                <div className="my-8 flex flex-col gap-4">
-                  <Accordion type="single" collapsible>
+                <div className="my-8 flex flex-col gap-6">
+                  <Accordion type="single" collapsible className="flex flex-col gap-4">
                     {header.items?.map((item) => {
                       if (item.blockType === "link") {
                         return (
-                          <CMSLink
-                            publicContext={publicContext}
-                            key={item.id}
-                            {...item.link}
-                            className="font-semibold"
-                          />
+                          <div key={item.id} className="flex flex-col">
+                            <CMSLink
+                              publicContext={publicContext}
+                              {...item.link}
+                              className="font-medium"
+                            />
+                          </div>
                         )
                       } else if (item.blockType === "sub") {
                         return (
                           <AccordionItem key={item.id} value={item.id || item.label} className="border-b-0">
-                            <AccordionTrigger className="mb-4 py-0 font-semibold hover:no-underline">
+                            <AccordionTrigger className="mb-4 py-0 font-medium hover:no-underline">
                               <span className='inline-flex'>
                                 {item.icon && <Icon className="mr-2 h-6" icon={item.icon} />}
                                 {item.label}
