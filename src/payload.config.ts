@@ -112,6 +112,7 @@ export default buildConfig({
   editor: lexicalEditor({
     features: () => {
       return [
+        HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
         FixedToolbarFeature(),
         UnderlineFeature(),
         BoldFeature(),
@@ -160,7 +161,7 @@ export default buildConfig({
               return {
                 ...field,
                 admin: {
-                  description: 'You will need to rebuild the website when changing this field.',
+                  description: 'Add new redirects here. The redirect will work immediately after saving. For example: /about or https://example.com/about',
                 },
               }
             }
