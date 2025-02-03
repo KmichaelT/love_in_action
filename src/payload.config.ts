@@ -12,6 +12,7 @@ import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
 import { redirectsPlugin } from '@payloadcms/plugin-redirects'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 import { searchPlugin } from '@payloadcms/plugin-search'
+import { resendAdapter } from '@payloadcms/email-resend'
 import {
   BoldFeature,
   FixedToolbarFeature,
@@ -72,9 +73,9 @@ export default buildConfig({
     autoLogin:
       process.env.NEXT_PUBLIC_ENABLE_AUTOLOGIN === 'true'
         ? {
-          email: 'test@trieb.work',
-          password: 'test1234',
-        }
+            email: 'test@trieb.work',
+            password: 'test1234',
+          }
         : false,
     components: {
       beforeLogin: ['@/components/AdminDashboard/BeforeLogin'],
@@ -176,7 +177,7 @@ export default buildConfig({
       collections: ['categories', 'pages'],
       // This function is executed on save of the page. If you change this function make
       // sure to re-save all pages to update there URLs
-      generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.slug}`, '')
+      generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.slug}`, ''),
     }),
     seoPlugin({
       generateTitle,
@@ -281,6 +282,14 @@ export default buildConfig({
       },
     }),
   ],
+  /**
+   * Use the Resend adapter or switch to your own email service here: https://payloadcms.com/docs/email/overview
+   */
+  email: resendAdapter({
+    defaultFromAddress: process.env.EMAIL_FROM_ADDRESS!,
+    defaultFromName: 'Payblocks Website',
+    apiKey: process.env.RESEND_API_KEY || '',
+  }),
   secret: process.env.PAYLOAD_SECRET!,
   sharp,
   typescript: {
