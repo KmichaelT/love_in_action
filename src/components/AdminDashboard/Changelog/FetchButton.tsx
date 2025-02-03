@@ -1,8 +1,9 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Button, useFormFields, useWatchForm, toast } from '@payloadcms/ui'
+import { Button, useFormFields, useWatchForm, toast, useDocumentInfo } from '@payloadcms/ui'
 import './index.scss'
+import { fetchGithubChangelogAction } from './actions'
 
 type Props = {
   path: string
@@ -10,24 +11,25 @@ type Props = {
 
 const FetchButton: React.FC<Props> = ({ path }) => {
   const [loading, setLoading] = useState(false)
-  const { getDataByPath } = useWatchForm()
-  
+  const { getDataByPath, dispatchFields } = useWatchForm()
+  const { id: pageId } = useDocumentInfo()
+
   // Get paths for data access
   const parentPath = path.split('.').slice(0, -1).join('.')
   const blockPath = parentPath.split('.').slice(0, -1).join('.')
   const entriesPath = `${blockPath}.entries`
-  
-  // Get form fields
-  const [{ fields }, dispatchFields] = useFormFields(state => ({
-    fields: state.fields,
-  }))
 
   const githubSettings: {
     repository?: string
     githubToken?: string
   } = getDataByPath(parentPath)
 
-  const entries = getDataByPath(entriesPath) || []
+  const entries: any[] = getDataByPath(entriesPath) || []
+
+  const entriesFields = useFormFields(([fields, dispatch]) => fields)
+
+  // Get the block id to hand it to the server action.
+  const blockId = (getDataByPath(blockPath) as any)?.id
 
   const handleFetch = async () => {
     if (!githubSettings?.repository) {
@@ -38,62 +40,19 @@ const FetchButton: React.FC<Props> = ({ path }) => {
     try {
       setLoading(true)
 
-      // Fetch releases from GitHub API
-      const headers: HeadersInit = {
-        'Accept': 'application/vnd.github.v3+json',
-      }
-      if (githubSettings.githubToken) {
-        headers['Authorization'] = `Bearer ${githubSettings.githubToken}`
+      if (!pageId || !blockId || typeof pageId !== 'string' || typeof blockId !== 'string') {
+        throw new Error('Page or block not found')
       }
 
-      const response = await fetch(
-        `https://api.github.com/repos/${githubSettings.repository}/releases`,
-        { headers }
-      )
+      // call the server action
+      const { success, status } = await fetchGithubChangelogAction(pageId, blockId)
 
-      if (!response.ok) {
-        throw new Error(`GitHub API error: ${response.statusText}`)
+      if (status === 'No new releases found') {
+        toast.info('No new releases found')
+        return
       }
 
-      const releases = await response.json()
-
-      // Get existing GitHub IDs to avoid duplicates
-      const existingGithubIds = new Set(
-        entries.map((entry: any) => entry.githubId).filter(Boolean)
-      )
-
-      // Convert GitHub releases to changelog entries
-      const newEntries = releases
-        .filter((release: any) => !existingGithubIds.has(release.id.toString()))
-        .map((release: any) => ({
-          title: release.name || `Release ${release.tag_name}`,
-          version: release.tag_name.replace(/^v/, ''),
-          date: release.published_at,
-          description: [
-            {
-              type: 'root',
-              children: [
-                {
-                  type: 'paragraph',
-                  children: [{ text: release.body || '' }],
-                },
-              ],
-            },
-          ],
-          githubId: release.id.toString(),
-        }))
-
-      if (newEntries.length > 0) {
-        // Update entries using dispatchFields
-        dispatchFields({
-          type: 'UPDATE',
-          path: entriesPath,
-          value: [...newEntries, ...entries],
-        })
-        toast.success(`Added ${newEntries.length} new releases`)
-      } else {
-        toast.success('No new releases found')
-      }
+      // TODO: make sure to rerender the block after server action succeeded (dont know how)
     } catch (err) {
       toast.error(err instanceof Error ? err.message : 'Failed to fetch changelog')
     } finally {

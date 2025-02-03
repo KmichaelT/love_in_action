@@ -1,5 +1,5 @@
 import encryptionHooks from '@/hooks/encryptionHook'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { lexicalEditor, OrderedListFeature, UnorderedListFeature } from '@payloadcms/richtext-lexical'
 import type { Block } from 'payload'
 
 export const ChangelogBlock: Block = {
@@ -92,7 +92,11 @@ export const ChangelogBlock: Block = {
           type: 'richText',
           editor: lexicalEditor({
             features: ({ rootFeatures }) => {
-              return [...rootFeatures]
+              return [
+                ...rootFeatures,
+                OrderedListFeature(),
+                UnorderedListFeature()
+              ]
             },
           }),
         },

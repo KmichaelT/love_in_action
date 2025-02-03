@@ -10,7 +10,7 @@ import { PublicContextProps } from '@/utilities/publicContextProps'
 const Changelog1: React.FC<Changelogblock & { publicContext: PublicContextProps }> = ({
   richText,
   publicContext,
-  entries
+  entries,
 }) => {
   return (
     <section className="py-32">
@@ -39,33 +39,41 @@ const Changelog1: React.FC<Changelogblock & { publicContext: PublicContextProps 
           </div>
         </div>
         <div className="mx-auto mt-20 max-w-screen-lg space-y-20 md:mt-40 md:space-y-32">
-          {entries && entries.map((entry) => (
-          <div key={entry.id} className="relative flex flex-col gap-5 md:flex-row md:gap-20">
-            <div className="top-28 flex h-min shrink-0 items-center gap-5 md:sticky">
-              <Badge variant="secondary">Version {entry.version}</Badge>
-              <span className="text-xs font-medium text-muted-foreground">{new Date(entry.date).toLocaleDateString()}</span>
-            </div>
-            <div>
-              <h2 className="mb-4 text-lg font-semibold md:text-2xl md:leading-5">
-                {entry.title}
-              </h2>
-              <p className="text-muted-foreground md:text-lg">
-                Here are the latest updates and improvements to our platform. We are always working
-                to improve our platform and your experience.
-              </p>
-              <ul className="ml-4 mt-5 space-y-2 text-muted-foreground md:text-lg">
-                <li className="list-disc">Added new feature to export data</li>
-                <li className="list-disc">Improved performance and speed</li>
-                <li className="list-disc">Fixed minor bugs and issues</li>
-                <li className="list-disc">Added new feature to import data</li>
-              </ul>
-              <img
-                src="https://shadcnblocks.com/images/block/placeholder-aspect-video-1.svg"
-                alt="placeholder"
-                className="mt-10 w-full rounded-lg object-cover"
-              />
-            </div>
-          </div>))}
+          {entries &&
+            entries.map((entry) => (
+              <div key={entry.id} className="relative flex flex-col gap-5 md:flex-row md:gap-20">
+                <div className="top-28 flex h-min shrink-0 items-center gap-5 md:sticky">
+                  <Badge variant="secondary">Version {entry.version}</Badge>
+                  <span className="text-xs font-medium text-muted-foreground">
+                    {new Date(entry.date).toLocaleDateString()}
+                  </span>
+                </div>
+                <div>
+                  <h2 className="mb-4 text-lg font-semibold md:text-2xl md:leading-5">
+                    {entry.title}
+                  </h2>
+                  {entry.description && (
+                    <RichText
+                      publicContext={publicContext}
+                      content={entry.description}
+                      withWrapper={false}
+                      overrideStyle={{
+                        p: 'text-muted-foreground mb-2',
+                        li: 'text-muted-foreground mb-2',
+                        h2: 'text-xl font-semibold text-muted-foreground mb-2',
+                        h3: 'text-base font-semibold md:text-xl text-muted-foreground mb-2',
+                        h4: 'text-base font-semibold md:text-xl text-muted-foreground mb-2',
+                      }}
+                    />
+                  )}
+                  <img
+                    src="https://shadcnblocks.com/images/block/placeholder-aspect-video-1.svg"
+                    alt="placeholder"
+                    className="mt-10 w-full rounded-lg object-cover"
+                  />
+                </div>
+              </div>
+            ))}
 
           {/* <div className="relative flex flex-col gap-5 md:flex-row md:gap-20">
             <div className="top-28 flex h-min shrink-0 items-center gap-5 md:sticky">

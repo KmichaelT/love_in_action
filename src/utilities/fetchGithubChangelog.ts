@@ -1,10 +1,11 @@
+import { Changelogblock } from '@/payload-types'
 import payload from 'payload'
 
 interface FetchGithubChangelogOptions {
   pageId: string
   blockPath: string
   repository: string
-  githubToken?: string
+  githubToken?: string | null
 }
 
 export const fetchGithubChangelog = async ({
@@ -22,23 +23,20 @@ export const fetchGithubChangelog = async ({
 
     // Find the changelog block using the path
     const pathParts = blockPath.split('.')
-    let block = page
+    let block: any = page
     for (const part of pathParts) {
       block = block[part]
     }
 
     // Fetch releases from GitHub API
     const headers: HeadersInit = {
-      'Accept': 'application/vnd.github.v3+json',
+      Accept: 'application/vnd.github.v3+json',
     }
     if (githubToken) {
       headers['Authorization'] = `Bearer ${githubToken}`
     }
 
-    const response = await fetch(
-      `https://api.github.com/repos/${repository}/releases`,
-      { headers }
-    )
+    const response = await fetch(`https://api.github.com/repos/${repository}/releases`, { headers })
 
     if (!response.ok) {
       throw new Error(`GitHub API error: ${response.statusText}`)
@@ -49,7 +47,7 @@ export const fetchGithubChangelog = async ({
     // Get existing entries and their GitHub IDs
     const existingEntries = block.entries || []
     const existingGithubIds = new Set(
-      existingEntries.map((entry: any) => entry.githubId).filter(Boolean)
+      existingEntries.map((entry: any) => entry.githubId).filter(Boolean),
     )
 
     // Convert GitHub releases to changelog entries
@@ -90,44 +88,6 @@ export const fetchGithubChangelog = async ({
     }
   } catch (error) {
     console.error(`Error fetching GitHub changelog: ${error}`)
-    throw error
-  }
-}
-
-// Function to be called by cron job
-export const cronFetchGithubChangelog = async (): Promise<void> => {
-  try {
-    // Get all changelog blocks with GitHub fetch enabled
-    const blocks = await payload.find({
-      collection: 'pages',
-      where: {
-        'layout.blockType': {
-          equals: 'changelog',
-        },
-        'layout.fetchFromGithub': {
-          equals: true,
-        },
-      },
-    })
-
-    for (const page of blocks.docs) {
-      const changelogBlocks = page.layout.filter(
-        (block: any) => block.blockType === 'changelog' && block.fetchFromGithub
-      )
-
-      for (const block of changelogBlocks) {
-        if (block.githubSettings?.repository) {
-          await fetchGithubChangelog({
-            pageId: page.id,
-            blockPath: `layout.${page.layout.indexOf(block)}`,
-            repository: block.githubSettings.repository,
-            githubToken: block.githubSettings.githubToken,
-          })
-        }
-      }
-    }
-  } catch (error) {
-    console.error(`Error in cron job fetching GitHub changelog: ${error.message}`)
     throw error
   }
 }
