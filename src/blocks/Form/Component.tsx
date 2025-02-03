@@ -49,7 +49,7 @@ export const FormBlock: React.FC<
   } = props
 
   const formMethods = useForm({
-    defaultValues: buildInitialFormState(formFromProps.fields),
+    defaultValues: buildInitialFormState(formFromProps?.fields),
   })
   const {
     control,
@@ -139,6 +139,8 @@ export const FormBlock: React.FC<
     [router, formID, redirect, confirmationType, turnstileToken],
   )
 
+  if (!formFromProps?.fields) return null
+
   const form = (<FormProvider {...formMethods}>
     {enableIntro && introContent && !hasSubmitted && (
       <RichText publicContext={publicContext} className="mb-8" content={introContent} enableGutter={false} />
@@ -177,7 +179,9 @@ export const FormBlock: React.FC<
           refreshExpired="auto"
           className='mb-4'
           fixedSize={true}
-          appearance="interaction-only"
+          // when rendering as interaction only, this component is still taking the space, which looks weird, 
+          // so be better keep it visible for now
+          // appearance="interaction-only"
           onSuccess={(token) => {
             setTurnstileToken(token);
           }}
