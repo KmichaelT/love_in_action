@@ -1,19 +1,24 @@
 import { Block } from 'payload'
-import { HeadingFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
+import {
+  HeadingFeature,
+  InlineToolbarFeature,
+  lexicalEditor,
+  OrderedListFeature,
+  ParagraphFeature,
+  UnorderedListFeature,
+} from '@payloadcms/richtext-lexical'
 import { FormBlock } from '../Form/config'
 import { backgroundColor } from '@/fields/color'
 
-
 export const allContactDesignVersions = ['CONTACT1', 'CONTACT2', 'CONTACT3', 'CONTACT4'] as const
 export type ContactDesignVersion = (typeof allContactDesignVersions)[number]
-
 
 export const ContactBlock: Block = {
   slug: 'contact',
   interfaceName: 'ContactBlock',
   labels: {
     singular: 'Contact',
-    plural: 'Contacts'
+    plural: 'Contacts',
   },
   fields: [
     backgroundColor,
@@ -25,13 +30,17 @@ export const ContactBlock: Block = {
       options: allContactDesignVersions.map((version) => ({ label: version, value: version })),
     },
     {
-      name: 'headlineAndDescription',
+      name: 'richText',
       type: 'richText',
       localized: true,
       editor: lexicalEditor({
         features: ({ rootFeatures }) => [
           ...rootFeatures,
           HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
+          InlineToolbarFeature(),
+          ParagraphFeature(),
+          OrderedListFeature(),
+          UnorderedListFeature(),
         ],
       }),
     },
@@ -41,17 +50,17 @@ export const ContactBlock: Block = {
       fields: [
         {
           name: 'icon',
-          type: 'text'
+          type: 'text',
         },
         {
           name: 'description',
           type: 'richText',
           localized: true,
           editor: lexicalEditor({
-            features: ({ rootFeatures }) => rootFeatures
+            features: ({ rootFeatures }) => rootFeatures,
           }),
-        }
-      ]
+        },
+      ],
     },
     {
       name: 'maps',
@@ -59,17 +68,16 @@ export const ContactBlock: Block = {
       fields: [
         {
           name: 'iframe',
-          type: 'text'
-        }
-      ]
+          type: 'text',
+        },
+      ],
     },
     {
       name: 'form',
+      label: 'Form',
       type: 'blocks',
-      blocks: [
-        FormBlock
-      ],
+      blocks: [FormBlock],
       maxRows: 1,
-    }
-  ]
+    },
+  ],
 }

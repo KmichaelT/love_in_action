@@ -18,6 +18,7 @@ import { MediaBlock } from './MediaBlock/Component'
 import { ChangelogBlock } from './Changelog/Component'
 import customBlocks from '@/blocks/CustomBlock'
 import { PublicContextProps } from '@/utilities/publicContextProps'
+import ContactBlock from './Contact/Component'
 
 const blockComponents: Partial<Record<Page['layout'][0]['blockType'], React.FC<any>>> = {
   archive: ArchiveBlock,
@@ -34,6 +35,7 @@ const blockComponents: Partial<Record<Page['layout'][0]['blockType'], React.FC<a
   text: TextBlock,
   mediaBlock: MediaBlock,
   changelog: ChangelogBlock,
+  contact: ContactBlock,
   ...customBlocks
 }
 
