@@ -89,9 +89,9 @@ export default async function Page(props: Args) {
     locale
   })
 
-  if (!page) {
-    return <PayloadRedirects url={url} />
-  }
+  // if (!page) {
+  //   return <PayloadRedirects url={url} />
+  // }
 
   const { hero, layout, breadcrumbs: breadcrumbData, enableBreadcrumbs } = page
 
@@ -99,7 +99,7 @@ export default async function Page(props: Args) {
     <article className="">
       <PageClient />
       {/* Allows redirects for valid pages too */}
-      <PayloadRedirects disableNotFound url={url} />
+      {/* <PayloadRedirects disableNotFound url={url} /> */}
 
       <RenderHero {...hero} publicContext={publicContext} />
       {enableBreadcrumbs && breadcrumbData && <Breadcrumbs items={breadcrumbData} publicContext={publicContext} />}
