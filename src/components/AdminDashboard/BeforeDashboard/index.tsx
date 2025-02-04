@@ -1,6 +1,6 @@
 import './index.scss'
 import { revalidatePath } from 'next/cache';
-import { restoreBackup } from './actions';
+import { restoreBackup } from '../BackupDashboard/actions';
 import { User } from 'payload'
 
 import { Button, Popup } from '@payloadcms/ui'
