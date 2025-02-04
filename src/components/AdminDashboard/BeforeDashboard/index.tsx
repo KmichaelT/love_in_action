@@ -1,0 +1,58 @@
+import './index.scss'
+import { revalidatePath } from 'next/cache';
+import { restoreBackup } from './actions';
+import { User } from 'payload'
+
+import { Button, Popup } from '@payloadcms/ui'
+import { isAdminHidden } from '@/access/isAdmin';
+
+
+const SEED_DUMP_URL = 'https://raw.githubusercontent.com/trieb-work/payload-starter-seed/refs/heads/main/payblocks-initial-page-seed.json';
+
+const BackupDashboard: React.FC = async ({ user }: { user: User | null, }) => {
+  if (!user) return;
+
+  if (isAdminHidden({ user })) {
+    return;
+  }
+
+  return (
+    <div className="backup-dashboard-2">
+      <h2>Welcome to the Payblocks starter</h2>
+
+      <p>
+        Payblocks is a comprehensive website builder toolkit that combines PayloadCMS's powerful content management
+        capabilities with shadcn/ui's modern components and shadcnblocks.com's extensive block library.
+        Visit the <a href="https://payblocks.trieb.work/docs">documentation</a> to guide you through setting up,
+        configuring, and extending your PayBlocks project.
+      </p>
+
+      {process.env.MONGODB_URI && <span>
+        <Popup
+          className='btn-inline btn-right'
+          button={
+            <div className="btn btn--icon-style-without-border btn--size-medium btn--withoutPopup btn--style-primary btn--withoutPopup">
+              Seed DB
+            </div>
+          }
+        >
+          <div>
+            Warning: Seeding will overwrite your existing database content.
+            <br />
+            This is safe if you've only created a user account so far. Do you want to proceed?
+          </div>
+          <Button className="btn-red" onClick={async () => {
+            "use server"
+            await restoreBackup(SEED_DUMP_URL, ['users', 'roles']);
+            revalidatePath('/admin');
+          }}>
+            Yes
+          </Button>
+        </Popup>
+        Seed your DB now to get a first preview how your project could look like with some example pages.
+      </span>}
+    </div>
+  )
+}
+
+export default BackupDashboard

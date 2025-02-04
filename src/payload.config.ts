@@ -73,13 +73,14 @@ export default buildConfig({
     autoLogin:
       process.env.NEXT_PUBLIC_ENABLE_AUTOLOGIN === 'true'
         ? {
-            email: 'test@trieb.work',
-            password: 'test1234',
-          }
+          email: 'test@trieb.work',
+          password: 'test1234',
+        }
         : false,
     components: {
       beforeLogin: ['@/components/AdminDashboard/BeforeLogin'],
       afterLogin: googleAuthActive ? ['@/components/AdminDashboard/LoginButton'] : [],
+      beforeDashboard: ['@/components/AdminDashboard/BeforeDashboard'],
       afterDashboard: ['@/components/AdminDashboard/BackupDashboard'],
     },
     importMap: {
