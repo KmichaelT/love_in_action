@@ -21,8 +21,8 @@ const BackupDashboard: React.FC = async ({ user }: { user: User | null, }) => {
       <h2>Welcome to the Payblocks starter</h2>
 
       <p>
-        Payblocks is a comprehensive website builder toolkit that combines PayloadCMS's powerful content management
-        capabilities with shadcn/ui's modern components and shadcnblocks.com's extensive block library.
+        Payblocks is a comprehensive website builder toolkit that combines PayloadCMS&apos;s powerful content management
+        capabilities with shadcn/ui&apos;s modern components and shadcnblocks.com&apos;s extensive block library.
         Visit the <a href="https://payblocks.trieb.work/docs">documentation</a> to guide you through setting up,
         configuring, and extending your PayBlocks project.
       </p>
@@ -39,7 +39,7 @@ const BackupDashboard: React.FC = async ({ user }: { user: User | null, }) => {
           <div>
             Warning: Seeding will overwrite your existing database content.
             <br />
-            This is safe if you've only created a user account so far. Do you want to proceed?
+            This is safe if you&apos;ve only created a user account so far. Do you want to proceed?
           </div>
           <Button className="btn-red" onClick={async () => {
             "use server"
