@@ -48,7 +48,7 @@ const BackupDashboard: React.FC<BackupDashboardProps> = async ({ user, i18n, sea
 
   return (
     <div className="backup-dashboard">
-      <h2>Backups</h2>
+      <h2>Backups <span className='experimental'>(experimental)</span></h2>
 
       <Collapsible initCollapsed={true}>
 
@@ -66,26 +66,6 @@ const BackupDashboard: React.FC<BackupDashboardProps> = async ({ user, i18n, sea
               showOtherHostname: showOtherHostname ? 'false' : 'true',
             }).toString(),
           }}>{showOtherHostname ? 'Hide other Hostnames' : 'Show other Hostnames'}</Link>}
-
-          <Popup
-            className='btn-right'
-            button={
-              <div className="btn btn--icon-style-without-border btn--size-medium btn--withoutPopup btn--style-primary btn--withoutPopup">
-                Seed DB
-              </div>
-            }
-          >
-            <div>
-              Seeding your DB will override some of your existing data. Are you sure you want to continue?
-            </div>
-            <Button className="btn-red" onClick={async () => {
-              "use server"
-              await restoreBackup(SEED_DUMP_URL, ['users', 'roles']);
-              revalidatePath('/admin');
-            }}>
-              Yes
-            </Button>
-          </Popup>
         </div>
 
 
