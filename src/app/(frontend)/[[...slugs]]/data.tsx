@@ -2,7 +2,6 @@ import { cache } from "react";
 import { draftMode } from "next/headers";
 import { Config } from "@/payload-types";
 import { LocalizationConfig } from "payload";
-import { notFound } from "next/navigation";
 import { getPayload } from "payload";
 import configPromise from '@payload-config'
 
@@ -15,8 +14,8 @@ export const queryPageBySlug = cache(async ({ cleanSlugs, locale }: { cleanSlugs
   // Check if locale is supported
   const { locales } = payload.config.localization as LocalizationConfig;
   if (!locales.map((locale) => locale.code).includes(locale)) {
-    console.log("locale is not supported", locale, locales)
-    notFound();
+    // locale is not supported
+    return null;
   }
 
   const result = await payload.find({
@@ -40,8 +39,8 @@ export const queryPageBySlug = cache(async ({ cleanSlugs, locale }: { cleanSlugs
   // We remove the last item from cleanSlugs as it's the current page slug
   // Don't check that for missing results, as we want to first check our redirects in that case
   if (result.docs.length > 0 && JSON.stringify(parentPath) !== JSON.stringify(cleanSlugs)) {
-    console.log("parent path does not match", parentPath, cleanSlugs);
-    notFound();
+    // parent path does not match
+    return null;
   }
 
   return result.docs?.[0] || null
