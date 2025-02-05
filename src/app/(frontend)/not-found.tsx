@@ -2,54 +2,33 @@ import type { Metadata } from 'next'
 
 import { Geist_Mono, Geist } from 'next/font/google'
 import React from 'react'
-import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
-import { serverUrl as NEXT_PUBLIC_SERVER_URL } from '@/config/server'
-
 import { cn } from 'src/utilities/cn'
-import { AdminBar } from '@/components/AdminBar'
 import { Footer } from '@/globals/Footer/Component'
 import { Header } from '@/globals/Header/Component'
-// import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
-import { draftMode } from 'next/headers'
 import { Analytics } from "@vercel/analytics/react"
 
 import { ThemeConfig } from '@/globals/ThemeConfig/Component'
-import { resolveSlugs } from '@/utilities/resolveSlugs'
 import localization from '@/localization.config'
 import { PublicContextProps } from '@/utilities/publicContextProps'
-
-import './globals.css'
-import { LivePreviewListener } from '@/components/LivePreviewListener'
-
+import './[[...slugs]]/globals.css'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 
 // Change fonts by changing class Geist_Mono or Geist. 
 // No change in tailwind.config.mjs needed (Because it's already synced via --font-mono and --font-sans variables). Just make sure, that these variables stay.
 const mono = Geist_Mono({ subsets: ['latin'], variable: '--font-mono' })
 const sans = Geist({ subsets: ['latin'], variable: '--font-sans' })
 
-export const metadata: Metadata = {
-  metadataBase: new URL(NEXT_PUBLIC_SERVER_URL || 'https://trieb.work'),
-  openGraph: mergeOpenGraph(),
-  // twitter: {
-  //   card: 'summary_large_image',
-  //   creator: '@payloadcms',
-  // },
-}
-
-export default async function RootLayout({ children, params }: { children: React.ReactNode, params: any }) {
-  const paramsR = await params;
-  const { slugs } = paramsR;
-  const slugData = resolveSlugs(slugs || []);
-  const { isEnabled } = await draftMode()
-
+export default function NotFound() {
   const publicContext: PublicContextProps = {
-    ...slugData,
-  }
-
+    isNotFound: true,
+    locale: localization.defaultLocale,
+    cleanSlugs: [],
+  };
   return (
-    <html className={cn(mono.variable, sans.variable)} lang={slugData.locale || localization.defaultLocale} suppressHydrationWarning>
+    <html className={cn(mono.variable, sans.variable)} lang={localization.defaultLocale} suppressHydrationWarning>
       <head>
         <ThemeConfig />
         <InitTheme />
@@ -58,15 +37,17 @@ export default async function RootLayout({ children, params }: { children: React
       </head>
       <body>
         <Providers>
-          <AdminBar
-            adminBarProps={{
-              preview: isEnabled,
-            }}
-          />
-          <LivePreviewListener />
           <Analytics />
           <Header publicContext={publicContext} />
-          {children}
+          <div className="container py-28" key='not-found'>
+            <div className="prose max-w-none">
+              <h1 className='mb-0'>404</h1>
+              <p className="mb-4">This page could not be found.</p>
+            </div>
+            <Button asChild variant="default">
+              <Link href="/">Go home</Link>
+            </Button>
+          </div>
           <Footer publicContext={publicContext} />
         </Providers>
       </body>
