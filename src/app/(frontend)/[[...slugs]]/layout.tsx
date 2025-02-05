@@ -1,25 +1,27 @@
 import type { Metadata } from 'next'
 
-import { cn } from 'src/utilities/cn'
 import { Geist_Mono, Geist } from 'next/font/google'
 import React from 'react'
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
+import { serverUrl as NEXT_PUBLIC_SERVER_URL } from '@/config/server'
 
+import { cn } from 'src/utilities/cn'
 import { AdminBar } from '@/components/AdminBar'
 import { Footer } from '@/globals/Footer/Component'
 import { Header } from '@/globals/Header/Component'
-import { LivePreviewListener } from '@/components/LivePreviewListener'
+// import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
-import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
 import { Analytics } from "@vercel/analytics/react"
 
-import './globals.css'
 import { ThemeConfig } from '@/globals/ThemeConfig/Component'
-import { serverUrl as NEXT_PUBLIC_SERVER_URL } from '@/config/server'
 import { resolveSlugs } from '@/utilities/resolveSlugs'
 import localization from '@/localization.config'
 import { PublicContextProps } from '@/utilities/publicContextProps'
+
+import './globals.css'
+
 
 // Change fonts by changing class Geist_Mono or Geist. 
 // No change in tailwind.config.mjs needed (Because it's already synced via --font-mono and --font-sans variables). Just make sure, that these variables stay.
@@ -59,8 +61,11 @@ export default async function RootLayout({ children, params }: { children: React
               preview: isEnabled,
             }}
           />
-          <LivePreviewListener />
-          <Analytics/>
+          {/* 
+            Currently the LivePreviewListener is breaking the 404 page and results in a refresh loop.
+            <LivePreviewListener />
+           */}
+          <Analytics />
           <Header publicContext={publicContext} />
           {children}
           <Footer publicContext={publicContext} />
