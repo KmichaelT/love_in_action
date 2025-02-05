@@ -81,7 +81,6 @@ export default async function Page(props: Args) {
   }
 
   const url = generateUrl(locale, cleanSlugs);
-  console.log('url', url);
 
   let page: PageType | null
 
