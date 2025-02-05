@@ -9,7 +9,7 @@ import { cn } from 'src/utilities/cn'
 import { AdminBar } from '@/components/AdminBar'
 import { Footer } from '@/globals/Footer/Component'
 import { Header } from '@/globals/Header/Component'
-// import { LivePreviewListener } from '@/components/LivePreviewListener'
+import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
 import { draftMode } from 'next/headers'
@@ -21,7 +21,6 @@ import localization from '@/localization.config'
 import { PublicContextProps } from '@/utilities/publicContextProps'
 
 import './globals.css'
-import { LivePreviewListener } from '@/components/LivePreviewListener'
 
 
 // Change fonts by changing class Geist_Mono or Geist. 
