@@ -28,7 +28,7 @@ export type Args = {
 }
 
 function generateUrl(locale: string, cleanSlugs: string[]) {
-  return locale !== localization.defaultLocale ? `/${locale}/` : '/' + cleanSlugs.join('/');
+  return locale !== localization.defaultLocale ? `/${locale}/` : '/' + cleanSlugs.join('/')
 }
 
 export async function generateStaticParams(): Promise<Array<Params>> {
@@ -36,9 +36,12 @@ export async function generateStaticParams(): Promise<Array<Params>> {
   const pages = await payload.find({
     collection: 'pages',
     draft: false,
-    limit: 1000,
+    /**
+     * More pages increase the build time.
+     */
+    limit: 10,
     locale: 'all',
-    overrideAccess: true,
+    overrideAccess: false,
   })
 
   if (pages.docs.length === 0) {
@@ -48,45 +51,49 @@ export async function generateStaticParams(): Promise<Array<Params>> {
   const slugArrays = pages.docs.flatMap(({ slug, breadcrumbs }) => {
     return locales.map((locale) => {
       // order of array pushes matters here so be careful restructuring it
-      let slugs: string[] = [];
+      let slugs: string[] = []
       if (locale !== localization.defaultLocale) {
-        slugs.push(locale);
+        slugs.push(locale)
       }
 
       if (slug !== 'home' && slug) {
         // breadcrumb type is wrong here because it is not fetched localized. We therefore need to cast it to the correct type
-        const localBreadcrumb: Breadcrumb[] = breadcrumbs?.[locale] || breadcrumbs?.[localization.defaultLocale]
+        const localBreadcrumb: Breadcrumb[] =
+          breadcrumbs?.[locale] || breadcrumbs?.[localization.defaultLocale]
         if (localBreadcrumb) {
-          slugs = slugs.concat(localBreadcrumb[localBreadcrumb.length - 1].url?.split('/').filter(Boolean) || []);
+          slugs = slugs.concat(
+            localBreadcrumb[localBreadcrumb.length - 1].url?.split('/').filter(Boolean) || [],
+          )
         } else {
-          slugs.push(slug);
+          slugs.push(slug)
         }
-      } slugs
-      return { slugs };
+      }
+      slugs
+      return { slugs }
     })
   })
   return slugArrays
 }
 
 export default async function Page(props: Args) {
-  const { slugs } = await props.params;
-  const res = resolveSlugs(slugs || []);
+  const { slugs } = await props.params
+  const res = resolveSlugs(slugs || [])
   if (res.isNotFound) {
-    notFound();
+    notFound()
   }
-  const { locale, cleanSlugs } = res;
+  const { locale, cleanSlugs } = res
 
   const publicContext: PublicContextProps = {
     ...res,
   }
 
-  const url = generateUrl(locale, cleanSlugs);
+  const url = generateUrl(locale, cleanSlugs)
 
   let page: PageType | null
 
   page = await queryPageBySlug({
     cleanSlugs,
-    locale
+    locale,
   })
 
   if (!page) {
@@ -101,25 +108,27 @@ export default async function Page(props: Args) {
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />
       <RenderHero {...hero} publicContext={publicContext} />
-      {enableBreadcrumbs && breadcrumbData && <Breadcrumbs items={breadcrumbData} publicContext={publicContext} />}
+      {enableBreadcrumbs && breadcrumbData && (
+        <Breadcrumbs items={breadcrumbData} publicContext={publicContext} />
+      )}
       <RenderBlocks blocks={layout} publicContext={publicContext} />
     </article>
   )
 }
 
 export async function generateMetadata(props: Args): Promise<Metadata> {
-  const { slugs } = await props.params;
-  const res = resolveSlugs(slugs || []);
+  const { slugs } = await props.params
+  const res = resolveSlugs(slugs || [])
   if (res.isNotFound) {
-    notFound();
+    notFound()
   }
-  const { locale, cleanSlugs } = res;
+  const { locale, cleanSlugs } = res
 
   const page = await queryPageBySlug({
     cleanSlugs,
-    locale
+    locale,
   })
-  const url = generateUrl(locale, cleanSlugs);
+  const url = generateUrl(locale, cleanSlugs)
   if (page) {
     return generateMeta({ doc: page, url })
   }
