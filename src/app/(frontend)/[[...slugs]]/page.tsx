@@ -38,17 +38,17 @@ export async function generateStaticParams(): Promise<Array<Params>> {
     draft: false,
     limit: 1000,
     locale: 'all',
-    overrideAccess: false,
+    overrideAccess: true,
   })
 
   if (pages.docs.length === 0) {
     return []
   }
 
-  return pages.docs.flatMap(({ slug, breadcrumbs }) => {
+  const slugArrays = pages.docs.flatMap(({ slug, breadcrumbs }) => {
     return locales.map((locale) => {
       // order of array pushes matters here so be careful restructuring it
-      const slugs: string[] = [];
+      let slugs: string[] = [];
       if (locale !== localization.defaultLocale) {
         slugs.push(locale);
       }
@@ -57,15 +57,15 @@ export async function generateStaticParams(): Promise<Array<Params>> {
         // breadcrumb type is wrong here because it is not fetched localized. We therefore need to cast it to the correct type
         const localBreadcrumb: Breadcrumb[] = breadcrumbs?.[locale] || breadcrumbs?.[localization.defaultLocale]
         if (localBreadcrumb) {
-          const slugs = (localBreadcrumb || [])?.map((item) => item.url?.split('/').pop()).filter(Boolean) as string[];
-          slugs.concat(slugs);
+          slugs = slugs.concat(localBreadcrumb[localBreadcrumb.length - 1].url?.split('/').filter(Boolean) || []);
         } else {
           slugs.push(slug);
         }
-      }
+      } slugs
       return { slugs };
     })
   })
+  return slugArrays
 }
 
 export default async function Page(props: Args) {
@@ -81,6 +81,7 @@ export default async function Page(props: Args) {
   }
 
   const url = generateUrl(locale, cleanSlugs);
+  console.log('url', url);
 
   let page: PageType | null
 
@@ -89,9 +90,9 @@ export default async function Page(props: Args) {
     locale
   })
 
-  // if (!page) {
-  //   return <PayloadRedirects url={url} />
-  // }
+  if (!page) {
+    return <PayloadRedirects url={url} />
+  }
 
   const { hero, layout, breadcrumbs: breadcrumbData, enableBreadcrumbs } = page
 
@@ -99,8 +100,7 @@ export default async function Page(props: Args) {
     <article className="">
       <PageClient />
       {/* Allows redirects for valid pages too */}
-      {/* <PayloadRedirects disableNotFound url={url} /> */}
-
+      <PayloadRedirects disableNotFound url={url} />
       <RenderHero {...hero} publicContext={publicContext} />
       {enableBreadcrumbs && breadcrumbData && <Breadcrumbs items={breadcrumbData} publicContext={publicContext} />}
       <RenderBlocks blocks={layout} publicContext={publicContext} />
@@ -121,5 +121,8 @@ export async function generateMetadata(props: Args): Promise<Metadata> {
     locale
   })
   const url = generateUrl(locale, cleanSlugs);
-  return generateMeta({ doc: page, url })
+  if (page) {
+    return generateMeta({ doc: page, url })
+  }
+  return {}
 }
