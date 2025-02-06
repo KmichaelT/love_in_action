@@ -38,36 +38,19 @@ This project transforms the traditional PayloadCMS starter into a feature-rich w
 
 ## Quick Start
 
-To spin up this example locally, follow these steps:
-
-### Clone
-
-If you have not done so already, you need to have standalone copy of this repo on your machine. If you've already cloned this repo, skip to [Development](#development).
-
-#### Method 1 (recommended)
-
-Go to Payload Cloud and [clone this template](https://payloadcms.com/new/clone/website). This will create a new repository on your GitHub account with this template's code which you can then clone to your own machine.
-
-#### Method 2
-
-Use the `create-payload-app` CLI to clone this template directly to your machine:
-
-    npx create-payload-app@beta my-project -t website
-
-#### Method 3
-
-Use the `git` CLI to clone this template directly to your machine:
-
-    git clone -n --depth=1 --filter=tree:0 https://github.com/payloadcms/payload my-project && cd my-project && git sparse-checkout set --no-cone templates/website && git checkout && rm -rf .git && git init && git add . && git mv -f templates/website/{.,}* . && git add . && git commit -m "Initial commit"
+To spin up this project locally, follow these steps:
 
 ### Development
 
-1. First [clone the repo](#clone) if you have not done so already
-1. `cd my-project && cp .env.example .env` to copy the example environment variables
+1. First clone the repo or download the zip file if you have not done so already
+1. `cd payload-starter && cp .env.example .env` to copy the example environment variables
+1. Create a local or [cloud mongodb database/cluster](https://www.mongodb.com/de-de/cloud/atlas/register) and fill in the `MONGODB_URI` in the `.env` file. Make sure to also include the database name in the connection URL (For example `payload-template-website` as in .env.example)
 1. `pnpm install && pnpm dev` to install dependencies and start the dev server
-1. open `http://localhost:3000` to open the app in your browser
+1. Visit `http://localhost:3000` to open the app in your browser. If your DB was empty you should see a not found page.
+1. Visit `http://localhost:3000/admin` to open the admin panel in your browser. On first login, you will be asked to create an admin user.
+1. Optional: Seed the database with a few pages by clicking on the "Seed DB" button in the Admin panel home page.
 
-That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user. Then check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
+That's it! Changes made in `./src` will be reflected in your app. Check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
 
 ## How it works
 
@@ -224,9 +207,9 @@ That's it! The Docker instance will help you get up and running quickly while al
 
 ### Seed
 
-To seed the database with a few pages, posts, and projects you can unfold Backups collapsible in the Admin panel home page and then click 'seed DB'.
+To seed the database with a few pages, posts, and projects you can click on the "Seed DB" button in the Admin panel home page.
 
-> NOTICE: The Backup section is only available if you are logged in as an admin and if you have the `MONGODB_URI` and `BLOB_READ_WRITE_TOKEN` environment variables set and configured.
+> NOTICE: The Backup section and Seed DB button is only available if you are logged in as an admin and if you have the `MONGODB_URI` environment variable set and configured.
 
 > WARNING: seeding the database is destructive because it drops your current database to populate a fresh one from the seed template. Only run this command if you are starting a new project or can afford to lose your current data.
 
