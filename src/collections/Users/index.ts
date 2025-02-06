@@ -37,16 +37,15 @@ const Users: CollectionConfig = {
               limit: 0,
             })
 
-            // Determine which role to assign
-            const isAdmin = totalDocs === 0 || (
-              data.email && 
-              process.env.ALLOWED_EMAIL_DOMAINS?.split(',')
-                .includes(data.email.split('@')[1])
-            )
+            // Determine which role to assign. First user should be admin
+            const isAdmin =
+              totalDocs === 0 ||
+              (data.email &&
+                process.env.ALLOWED_EMAIL_DOMAINS?.split(',').includes(data.email.split('@')[1]))
 
             // Find the appropriate role
             const role = await findRole(req.payload, isAdmin ? 'admin' : 'editor')
-            
+
             if (role?.id) {
               req.payload.logger.info(`Assigning ${role.name} role to new user`)
               return {
@@ -57,11 +56,11 @@ const Users: CollectionConfig = {
               req.payload.logger.error('No suitable role found for user')
             }
           } catch (error) {
-            req.payload.logger.error('Error in beforeValidate hook:', error)
+            req.payload.logger.error(`Error in beforeValidate hook: ${error}`)
           }
         }
         return data
-      }
+      },
     ],
   },
   fields: [
@@ -85,8 +84,17 @@ const Users: CollectionConfig = {
         description: {
           en: 'User roles. Admin has full access. Editor is the most common role, with limited access. First user is always admin.',
           de: 'Benutzerrollen. Admin hat vollständigen Zugriff. Editor ist der allgemeine Benutzer, mit begrenztem Zugriff. Erster Benutzer ist immer Admin.',
-        }
+        },
       },
+    },
+    {
+      name: 'sub',
+      type: 'text',
+      admin: {
+        description: 'This is the Oauth2 sub field',
+        hidden: true,
+      },
+      index: true,
     },
   ],
   timestamps: true,

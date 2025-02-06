@@ -243,6 +243,7 @@ export default buildConfig({
       serverURL: NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
       authCollection: 'users',
       clientId: process.env.GOOGLE_LOGIN_CLIENT_ID || '',
+      subFieldName: 'sub',
       clientSecret: process.env.GOOGLE_LOGIN_CLIENT_SECRET || '',
       tokenEndpoint: 'https://oauth2.googleapis.com/token',
       scopes: [
