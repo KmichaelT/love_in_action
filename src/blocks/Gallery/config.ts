@@ -8,11 +8,11 @@ import { link } from '@/fields/link'
 import { backgroundColor } from '@/fields/color'
 
 export const allGalleryDesignVersions = [
-  'GALLERY1',
-  'GALLERY2',
-  'GALLERY3',
+  // 'GALLERY1',
+  // 'GALLERY2',
+  // 'GALLERY3',
   'GALLERY4',
-  'GALLERY5',
+  // 'GALLERY5',
   'GALLERY6',
 ] as const
 
@@ -21,6 +21,8 @@ export const allGalleryDesignVersions = [
  * mutable copy of allGalleryDesignVersions as payload needs this type
  */
 const galleryDesignVersions: string[] = [...allGalleryDesignVersions]
+
+export type GalleryDesignVersion = (typeof allGalleryDesignVersions)[number]
 
 export const Gallery: Block = {
   slug: 'gallery',
@@ -53,7 +55,7 @@ export const Gallery: Block = {
       localized: true,
       admin: {
         description: 'Optional heading and description for the gallery',
-        condition: (_, { designVersion } = {}) => !["GALLERY1"].includes(designVersion),
+        condition: (_, { designVersion = "" } = {}) => !["GALLERY1"].includes(designVersion),
       },
       editor: lexicalEditor({
         features: ({ defaultFeatures }) => [
@@ -68,7 +70,7 @@ export const Gallery: Block = {
       type: "text",
       localized: true,
       admin: {
-        condition: (_, { designVersion } = {}) => ["GALLERY6"].includes(designVersion),
+        condition: (_, { designVersion = "" } = {}) => ["GALLERY6"].includes(designVersion),
       },
     },
     link({
@@ -88,7 +90,7 @@ export const Gallery: Block = {
       minRows: 1,
       admin: {
         description: 'Add images to the gallery',
-        condition: (_, { designVersion } = {}) => galleryDesignVersions.includes(designVersion),
+        condition: (_, { designVersion = "" } = {}) => galleryDesignVersions.includes(designVersion),
       },
       fields: [
         {

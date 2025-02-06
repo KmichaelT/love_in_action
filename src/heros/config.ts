@@ -64,48 +64,174 @@ export const hero: Field = {
           label: 'no Hero',
           value: 'none',
         },
-        '1',
-        '2',
-        '3',
-        '4',
-        '5',
-        '6',
-        '7',
-        '8',
-        '9',
-        '10',
-        '11',
-        '12',
-        '13',
-        '14',
-        '15',
-        '16',
-        '18',
-        '20',
-        '21',
-        '24',
-        '25',
-        '26',
-        '27',
-        '28',
-        '29',
-        '30',
-        '31',
-        '32',
-        '33',
-        '34',
-        '35',
-        '36',
-        '37',
-        '38',
-        '39',
-        '40',
-        '45',
-        '50',
-        '51',
-        '53',
-        '55',
-        '57',
+        {
+          label: 'HERO1',
+          value: '1',
+        },
+        {
+          label: 'HERO2',
+          value: '2',
+        },
+        {
+          label: 'HERO3',
+          value: '3',
+        },
+        {
+          label: 'HERO4',
+          value: '4',
+        },
+        {
+          label: 'HERO5',
+          value: '5',
+        },
+        {
+          label: 'HERO6',
+          value: '6',
+        },
+        // {
+        //   label: 'HERO7',
+        //   value: '7',
+        // },
+        // {
+        //   label: 'HERO8',
+        //   value: '8',
+        // },
+        // {
+        //   label: 'HERO9',
+        //   value: '9',
+        // },
+        // {
+        //   label: 'HERO10',
+        //   value: '10',
+        // },
+        // {
+        //   label: 'HERO11',
+        //   value: '11',
+        // },
+        {
+          label: 'HERO12',
+          value: '12',
+        },
+        // {
+        //   label: 'HERO13',
+        //   value: '13',
+        // },
+        // {
+        //   label: 'HERO14',
+        //   value: '14',
+        // },
+        // {
+        //   label: 'HERO15',
+        //   value: '15',
+        // },
+        // {
+        //   label: 'HERO16',
+        //   value: '16',
+        // },
+        // {
+        //   label: 'HERO18',
+        //   value: '18',
+        // },
+        // {
+        //   label: 'HERO20',
+        //   value: '20',
+        // },
+        // {
+        //   label: 'HERO21',
+        //   value: '21',
+        // },
+        // {
+        //   label: 'HERO24',
+        //   value: '24',
+        // },
+        // {
+        //   label: 'HERO25',
+        //   value: '25',
+        // },
+        // {
+        //   label: 'HERO26',
+        //   value: '26',
+        // },
+        // {
+        //   label: 'HERO27',
+        //   value: '27',
+        // },
+        // {
+        //   label: 'HERO28',
+        //   value: '28',
+        // },
+        // {
+        //   label: 'HERO29',
+        //   value: '29',
+        // },
+        // {
+        //   label: 'HERO30',
+        //   value: '30',
+        // },
+        {
+          label: 'HERO31',
+          value: '31',
+        },
+        // {
+        //   label: 'HERO32',
+        //   value: '32',
+        // },
+        // {
+        //   label: 'HERO33',
+        //   value: '33',
+        // },
+        // {
+        //   label: 'HERO34',
+        //   value: '34',
+        // },
+        // {
+        //   label: 'HERO35',
+        //   value: '35',
+        // },
+        // {
+        //   label: 'HERO36',
+        //   value: '36',
+        // },
+        // {
+        //   label: 'HERO37',
+        //   value: '37',
+        // },
+        // {
+        //   label: 'HERO38',
+        //   value: '38',
+        // },
+        // {
+        //   label: 'HERO39',
+        //   value: '39',
+        // },
+        // {
+        //   label: 'HERO40',
+        //   value: '40',
+        // },
+        // {
+        //   label: 'HERO45',
+        //   value: '45',
+        // },
+        // {
+        //   label: 'HERO50',
+        //   value: '50',
+        // },
+        // {
+        //   label: 'HERO51',
+        //   value: '51',
+        // },
+        // {
+        //   label: 'HERO53',
+        //   value: '53',
+        // },
+        // {
+        //   label: 'HERO55',
+        //   value: '55',
+        // },
+        // {
+        //   label: 'HERO57',
+        //   value: '57',
+        // },
       ],
       defaultValue: '1',
       required: true,
@@ -115,7 +241,7 @@ export const hero: Field = {
       type: 'text',
       localized: true,
       admin: {
-        condition: (_, { designVersion } = {}) =>
+        condition: (_, { designVersion = "" } = {}) =>
           ['1', '2', '3', '4', '5', '6', '12'].includes(designVersion),
       },
     },
@@ -123,7 +249,7 @@ export const hero: Field = {
       ...icon,
       name: 'badgeIcon',
       admin: {
-        condition: (_, { designVersion } = {}) =>
+        condition: (_, { designVersion = "" } = {}) =>
           ['1', '2', '3', '4', '5', '6'].includes(designVersion),
       },
     },
@@ -132,7 +258,7 @@ export const hero: Field = {
       type: 'text',
       localized: true,
       admin: {
-        condition: (_, { designVersion } = {}) =>
+        condition: (_, { designVersion = "" } = {}) =>
           ['3', '27', '26', '55', '21', '53', '12', '51', '57'].includes(designVersion),
       },
     },
@@ -152,7 +278,7 @@ export const hero: Field = {
       type: 'richText',
       localized: true,
       admin: {
-        condition: (_, { designVersion } = {}) =>
+        condition: (_, { designVersion = "" } = {}) =>
           ['1', '2', '3', '4', '5', '6', '12'].includes(designVersion),
       },
       editor: lexicalEditor({
@@ -171,7 +297,7 @@ export const hero: Field = {
       overrides: {
         maxRows: 2,
         admin: {
-          condition: (_, { designVersion } = {}) =>
+          condition: (_, { designVersion = "" } = {}) =>
             ['1', '2', '3', '4', '5', '6', '12'].includes(designVersion),
         },
       },
@@ -180,7 +306,7 @@ export const hero: Field = {
       name: 'images',
       type: 'upload',
       admin: {
-        condition: (_, { designVersion } = {}) =>
+        condition: (_, { designVersion = "" } = {}) =>
           ['1', '2', '3', '4', '5', '6', '12', '31', '37', '38', '18'].includes(designVersion),
       },
       relationTo: 'media',
@@ -191,7 +317,7 @@ export const hero: Field = {
       name: 'icons',
       type: 'upload',
       admin: {
-        condition: (_, { designVersion } = {}) =>
+        condition: (_, { designVersion = "" } = {}) =>
           ['3', '53', '28', '32', '12', '51', '57', '50', '18'].includes(designVersion),
       },
       relationTo: 'media',
@@ -202,7 +328,7 @@ export const hero: Field = {
       name: 'USPs',
       type: 'group',
       admin: {
-        condition: (_, { designVersion } = {}) => ['24', '25', '20', '45'].includes(designVersion),
+        condition: (_, { designVersion = "" } = {}) => ['24', '25', '20', '45'].includes(designVersion),
       },
       fields: [
         {
@@ -232,7 +358,7 @@ export const hero: Field = {
       name: 'pricing',
       type: 'group',
       admin: {
-        condition: (_, { designVersion } = {}) => ['33'].includes(designVersion),
+        condition: (_, { designVersion = "" } = {}) => ['33'].includes(designVersion),
       },
       fields: [
         {
@@ -258,7 +384,7 @@ export const hero: Field = {
       max: 5,
       min: 1,
       admin: {
-        condition: (_, { designVersion } = {}) => ['3', '4', '7', '15'].includes(designVersion),
+        condition: (_, { designVersion = "" } = {}) => ['3', '4', '7', '15'].includes(designVersion),
       },
     },
     ...customHeroFields

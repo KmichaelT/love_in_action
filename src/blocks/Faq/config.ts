@@ -7,7 +7,13 @@ import {
 } from '@payloadcms/richtext-lexical'
 import { Block } from 'payload'
 
-export const allFaqDesignVersions = ['FAQ1', 'FAQ2', 'FAQ3', 'FAQ4', 'FAQ5'] as const
+export const allFaqDesignVersions = [
+  // 'FAQ1',
+  'FAQ2',
+  'FAQ3',
+  // 'FAQ4',
+  'FAQ5',
+] as const
 
 export type FaqDesignVersion = (typeof allFaqDesignVersions)[number]
 

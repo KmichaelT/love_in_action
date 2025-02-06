@@ -5,11 +5,11 @@ import Gallery4 from '@/blocks/Gallery/gallery4'
 import Gallery5 from '@/blocks/Gallery/gallery5'
 import Gallery6 from '@/blocks/Gallery/gallery6'
 import { Page } from '@/payload-types'
-import { allGalleryDesignVersions } from './config'
+import { GalleryDesignVersion } from './config'
 
-type GalleryDesignVersion = typeof allGalleryDesignVersions[number]
+type Gallery<T extends string = string> = Required<Record<GalleryDesignVersion, React.FC<any>>> & Record<T, React.FC<any>>;
 
-const galleries: Record<GalleryDesignVersion, React.FC<any>> = {
+const galleries: Gallery = {
   GALLERY1: Gallery1,
   GALLERY2: Gallery2,
   GALLERY3: Gallery3,

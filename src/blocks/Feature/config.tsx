@@ -154,7 +154,7 @@ export const FeatureBlock: Block = {
       type: 'text',
       localized: true,
       admin: {
-        condition: (_, { designVersion } = {}) =>
+        condition: (_, { designVersion = "" } = {}) =>
           ['FEATURE1', 'FEATURE2', 'FEATURE3', 'FEATURE4', 'FEATURE5', 'FEATURE6', 'FEATURE126'].includes(
             designVersion,
           ),
@@ -165,14 +165,14 @@ export const FeatureBlock: Block = {
       type: 'text',
       localized: true,
       admin: {
-        condition: (_, { designVersion } = {}) =>
+        condition: (_, { designVersion = "" } = {}) =>
           ['FEATURE99', 'FEATURE103', 'FEATURE25'].includes(designVersion),
       },
     },
     {
       ...icon,
       admin: {
-        condition: (_, { designVersion } = {}) =>
+        condition: (_, { designVersion = "" } = {}) =>
           [
             'FEATURE1',
             'FEATURE2',
@@ -190,7 +190,7 @@ export const FeatureBlock: Block = {
       type: 'richText',
       localized: true,
       admin: {
-        condition: (_, { designVersion } = {}) =>
+        condition: (_, { designVersion = "" } = {}) =>
           ![
             'FEATURE14',
             'FEATURE28',
@@ -224,7 +224,7 @@ export const FeatureBlock: Block = {
       overrides: {
         maxRows: 2,
         admin: {
-          condition: (_, { designVersion } = {}) =>
+          condition: (_, { designVersion = "" } = {}) =>
             [
               'FEATURE1',
               'FEATURE2',
@@ -256,7 +256,7 @@ export const FeatureBlock: Block = {
       name: 'image',
       type: 'upload',
       admin: {
-        condition: (_, { designVersion } = {}) =>
+        condition: (_, { designVersion = "" } = {}) =>
           [
             'FEATURE1',
             'FEATURE95',
@@ -294,7 +294,7 @@ export const FeatureBlock: Block = {
       name: 'USPs',
       type: 'array',
       admin: {
-        condition: (_, { designVersion } = {}) =>
+        condition: (_, { designVersion = "" } = {}) =>
           ![
             'FEATURE1',
             'FEATURE2',

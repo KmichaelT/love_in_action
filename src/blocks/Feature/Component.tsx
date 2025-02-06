@@ -104,9 +104,9 @@ import { Page } from '@/payload-types'
 import { FeatureDesignVersion } from './config'
 
 // Enforce required features but allow additional ones
-type FeatureRecord<T extends string = string> = Required<Record<FeatureDesignVersion, React.FC<any>>> & Record<T, React.FC<any>>;
+type Feature<T extends string = string> = Required<Record<FeatureDesignVersion, React.FC<any>>> & Record<T, React.FC<any>>;
 
-const features: FeatureRecord = {
+const features: Feature = {
   FEATURE1: Feature1,
   FEATURE2: Feature2,
   FEATURE3: Feature3,
