@@ -5,11 +5,13 @@ import { navbar } from './navbar/navbar.config'
 import { generatePreviewPath } from '@/utilities/generatePreviewPath'
 import { serverUrl as NEXT_PUBLIC_SERVER_URL } from '@/config/server'
 import { backgroundColor } from '@/fields/color'
+import { authenticated } from '@/access/authenticated'
 
 export const Header: GlobalConfig = {
   slug: 'header',
   access: {
     read: () => true,
+    update: authenticated,
   },
   admin: {
     description: 'Theme configuration (For live preview config has to be saved)',
