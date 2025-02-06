@@ -30,6 +30,7 @@ import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { PublicContextProps } from '@/utilities/publicContextProps'
 
 const Navbar5: React.FC<{ header: HeaderType, publicContext: PublicContextProps }> = ({ header, publicContext }) => {
+
   return (
     <section className="py-4 z-50">
       <div className="container">
@@ -71,15 +72,13 @@ const Navbar5: React.FC<{ header: HeaderType, publicContext: PublicContextProps 
                               <li>
                                 <CMSLink
                                   publicContext={publicContext}
-                                  className={cn(
-                                    'flex select-none gap-4 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
-                                  )}
+                                  className="flex select-none gap-4 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                                   {...subitem.link}
                                   label=""
                                   iconBefore={undefined}
                                   iconAfter={undefined}
                                 >
-                                  {subitem.link.iconBefore && <Icon icon={subitem.link.iconBefore} />}
+                                  {subitem.link.iconBefore && <Icon icon={subitem.link.iconBefore} className="size-5 shrink-0" />}
                                   <div>
                                     <div className="text-sm font-semibold">{subitem.link.label}</div>
                                     <p className="text-sm leading-snug text-muted-foreground">
