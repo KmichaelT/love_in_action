@@ -44,10 +44,10 @@ To spin up this project locally, follow these steps:
 
 1. First clone the repo or download the zip file if you have not done so already
 1. `cd payload-starter && cp .env.example .env` to copy the example environment variables
-1. Create a local or [cloud mongodb database/cluster](https://www.mongodb.com/de-de/cloud/atlas/register) and fill in the `MONGODB_URI` in the `.env` file. 
+1. Create a local or [cloud mongodb database/cluster](https://www.mongodb.com/de-de/cloud/atlas/register) and fill in the `MONGODB_URI` in the `.env` file. Make sure to also include the database name in the connection URL (For example `payload-template-website` as in .env.example)
 1. `pnpm install && pnpm dev` to install dependencies and start the dev server
-1. visit `http://localhost:3000` to open the app in your browser
-1. visit `http://localhost:3000/admin` to open the admin panel in your browser. On first login, you will be asked to create an admin user.
+1. Visit `http://localhost:3000` to open the app in your browser. If your DB was empty you should see a not found page.
+1. Visit `http://localhost:3000/admin` to open the admin panel in your browser. On first login, you will be asked to create an admin user.
 1. Optional: Seed the database with a few pages by clicking on the "Seed DB" button in the Admin panel home page.
 
 That's it! Changes made in `./src` will be reflected in your app. Check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
