@@ -1,6 +1,6 @@
 import type { User } from 'payload'
 
-export const checkRole = (allRoles: string[] = [], user?: User): boolean => {
+export const checkRole = (allRoles: string[] = [], user?: User | null): boolean => {
   if (!user?.roles) return false
 
   const userRoles = user.roles.map(role => {
