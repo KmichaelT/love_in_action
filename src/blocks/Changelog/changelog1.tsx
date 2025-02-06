@@ -6,11 +6,13 @@ import { Input } from '@/components/ui/input'
 import { Changelogblock } from '@/payload-types'
 import RichText from '@/components/RichText'
 import { PublicContextProps } from '@/utilities/publicContextProps'
+import { Media } from '@/components/Media'
 
 const Changelog1: React.FC<Changelogblock & { publicContext: PublicContextProps }> = ({
   richText,
   publicContext,
   entries,
+  tagline,
 }) => {
   return (
     <section className="py-32">
@@ -31,17 +33,20 @@ const Changelog1: React.FC<Changelogblock & { publicContext: PublicContextProps 
             <Input type="email" placeholder="abc@example.com" />
             <Button type="submit">Subscribe</Button>
           </div> */}
-          <div className="mx-auto flex w-fit items-center rounded-lg border px-3 py-2.5 text-xs">
-            <span className="text-muted-foreground">New features and improvements!</span>
-            <a className="ml-2 flex items-center font-semibold hover:underline" href="#">
-              v1.2.1 <Zap className="h-3.5" />
-            </a>
-          </div>
+          {tagline && (
+            <div className="mx-auto flex w-fit items-center rounded-lg border px-3 py-2.5 text-xs">
+              <span className="text-muted-foreground">{tagline}</span>
+              <a className="ml-2 flex items-center font-semibold hover:underline" href={`#${entries?.[0]?.id}`}>
+                {entries?.[0]?.version ? `v${entries?.[0]?.version}` : ''}
+                <Zap className="h-3.5" />
+              </a>
+            </div>
+          )}
         </div>
         <div className="mx-auto mt-20 max-w-screen-lg space-y-20 md:mt-40 md:space-y-32">
           {entries &&
             entries.map((entry) => (
-              <div key={entry.id} className="relative flex flex-col gap-5 md:flex-row md:gap-20">
+              <div id={entry.id as string} key={entry.id} className="relative flex flex-col gap-5 md:flex-row md:gap-20">
                 <div className="top-28 flex h-min shrink-0 items-center gap-5 md:sticky">
                   <Badge variant="secondary">Version {entry.version}</Badge>
                   <span className="text-xs font-medium text-muted-foreground">
@@ -58,45 +63,20 @@ const Changelog1: React.FC<Changelogblock & { publicContext: PublicContextProps 
                       content={entry.description}
                       withWrapper={false}
                       overrideStyle={{
-                        p: 'text-muted-foreground mb-2',
-                        li: 'text-muted-foreground mb-2',
-                        h2: 'text-xl font-semibold text-muted-foreground mb-2',
-                        h3: 'text-base font-semibold md:text-xl text-muted-foreground mb-2',
-                        h4: 'text-base font-semibold md:text-xl text-muted-foreground mb-2',
+                        p: 'text-muted-foreground mb-2 md:text-lg',
+                        li: 'text-muted-foreground md:text-lg',
+                        h2: 'text-xl font-semibold text-muted-foreground mb-2 mt-4',
+                        h3: 'text-base font-semibold md:text-xl text-muted-foreground mb-2 mt-3',
+                        h4: 'text-base font-semibold md:text-xl text-muted-foreground mb-2 mt-2',
                       }}
                     />
                   )}
-                  <img
-                    src="https://shadcnblocks.com/images/block/placeholder-aspect-video-1.svg"
-                    alt="placeholder"
-                    className="mt-10 w-full rounded-lg object-cover"
-                  />
+                  {
+                    entry.image && <Media imgClassName="mt-10 w-full rounded-lg object-cover" resource={entry.image} />
+                  }
                 </div>
               </div>
             ))}
-
-          {/* <div className="relative flex flex-col gap-5 md:flex-row md:gap-20">
-            <div className="top-28 flex h-min shrink-0 items-center gap-5 md:sticky">
-              <Badge variant="secondary">Version 1.0.0</Badge>
-              <span className="text-xs font-medium text-muted-foreground">31 August 2024</span>
-            </div>
-            <div>
-              <h2 className="mb-4 text-lg font-semibold md:text-2xl md:leading-5">
-                First version of our platform
-              </h2>
-              <p className="text-muted-foreground md:text-lg">
-                Introducing a new platform to help you manage your projects and tasks. We are
-                excited to launch our platform and help you get started. We are always working to
-                improve our platform and your experience.
-              </p>
-
-              <img
-                src="https://shadcnblocks.com/images/block/placeholder-aspect-video-1.svg"
-                alt="placeholder"
-                className="mt-10 w-full rounded-lg object-cover"
-              />
-            </div>
-          </div> */}
         </div>
       </div>
     </section>

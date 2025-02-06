@@ -10,6 +10,7 @@ import {
 } from '@payloadcms/richtext-lexical'
 import { createHeadlessEditor } from '@payloadcms/richtext-lexical/lexical/headless'
 import { getEnabledNodes, sanitizeServerEditorConfig } from '@payloadcms/richtext-lexical'
+import { revalidatePath } from 'next/cache'
 
 export async function fetchGithubChangelogAction(pageId: string, blockId: string) {
   try {
@@ -91,6 +92,8 @@ export async function fetchGithubChangelogAction(pageId: string, blockId: string
             $convertFromMarkdownString(
               release.body,
               yourSanitizedEditorConfig.features.markdownTransformers,
+              undefined,
+              true,
             )
           },
           { discrete: true },
@@ -126,6 +129,9 @@ export async function fetchGithubChangelogAction(pageId: string, blockId: string
           }),
         },
       })
+
+      revalidatePath('/admin');
+
     } else {
       payload.logger.info('No new releases found')
       return { success: true, status: 'No new releases found' }

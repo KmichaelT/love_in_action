@@ -16,6 +16,17 @@ export const ChangelogBlock: Block = {
       options: [{ label: 'Changelog 1', value: 'CHANGELOG1' }],
     },
     {
+      name: 'tagline',
+      type: 'text',
+      localized: true,
+      admin: {
+        description: {
+          en: 'Add a tagline underneath the intro text',
+          de: 'Überschrift unterhalb des Intro-Texts hinzu',
+        },
+      },
+    },
+    {
       name: 'richText',
       type: 'richText',
       localized: true,
@@ -28,8 +39,8 @@ export const ChangelogBlock: Block = {
     {
       name: 'fetchFromGithub',
       label: {
-        en: 'Automatically fetch changelog updates from GitHub',
-        de: 'Automatisch Changelog-Aktualisierung von GitHub abrufen',
+        en: 'Automatically fetch changelog updates from GitHub (this feature is not yet implemented)',
+        de: 'Automatisch Changelog-Aktualisierung von GitHub abrufen (diese Funktion ist noch nicht implementiert)',
       },
       type: 'checkbox',
     },
@@ -75,6 +86,12 @@ export const ChangelogBlock: Block = {
       label: {
         en: 'Changelog entries',
         de: 'Changelog-Einträge',
+      },
+      admin: {
+        description: {
+          en: 'Add changelog entries. Entries coming from Github won\'t be overwritten when the data is updated manually.',
+          de: 'Changelog-Einträge hinzufügen',
+        }
       },
       type: 'array',
       fields: [
