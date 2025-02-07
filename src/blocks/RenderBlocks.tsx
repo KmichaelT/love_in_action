@@ -15,6 +15,7 @@ import { StatBlock } from './Stat/Component'
 import { SplitViewBlock } from './SplitView/Component'
 import { TextBlock } from './TextBlock/Component'
 import { MediaBlock } from './MediaBlock/Component'
+import { ChangelogBlock } from './Changelog/Component'
 import customBlocks from '@/blocks/CustomBlock'
 import { PublicContextProps } from '@/utilities/publicContextProps'
 import ContactBlock from './Contact/Component'
@@ -33,6 +34,7 @@ const blockComponents: Partial<Record<Page['layout'][0]['blockType'], React.FC<a
   splitView: SplitViewBlock,
   text: TextBlock,
   mediaBlock: MediaBlock,
+  changelog: ChangelogBlock,
   contact: ContactBlock,
   ...customBlocks
 }

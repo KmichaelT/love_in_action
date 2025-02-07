@@ -114,6 +114,7 @@ export default buildConfig({
   editor: lexicalEditor({
     features: () => {
       return [
+        HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
         FixedToolbarFeature(),
         UnderlineFeature(),
         BoldFeature(),

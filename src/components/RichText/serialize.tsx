@@ -205,7 +205,7 @@ export function serializeLexical({
               return (
                 <Tag
                   className={cn(
-                    'col-start-2 pl-4',
+                    'col-start-2 ps-7 mb-2 mt-4 space-y-3', 
                     // Add specific styling based on list type
                     node.listType === 'bullet' ? 'list-disc' : 'list-decimal',
                   )}

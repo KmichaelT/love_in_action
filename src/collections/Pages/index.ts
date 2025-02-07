@@ -18,6 +18,7 @@ import { TextBlock } from '@/blocks/TextBlock/config'
 import { MediaBlock } from '@/blocks/MediaBlock/config'
 import { hero } from '@/heros/config'
 import { CustomBlock } from '@/blocks/CustomBlock/config'
+import { ChangelogBlock } from '@/blocks/Changelog/config'
 
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '@/hooks/populatePublishedAt'
@@ -113,6 +114,7 @@ export const Pages: CollectionConfig = {
                 TextBlock,
                 MediaBlock,
                 CustomBlock,
+                ChangelogBlock,
               ],
               required: true,
             },
