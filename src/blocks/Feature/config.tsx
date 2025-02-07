@@ -142,12 +142,12 @@ export const FeatureBlock: Block = {
       options: mutableFeatureDesignVersions,
       defaultValue: 'FEATURE1',
       required: true,
-      admin: {
-        description: {
-          en: 'Choose your block design version. Naming and grouping is the same as here: https://www.shadcnblocks.com/blocks. If you want to use a block that is not integrated yet in the CMS, check out the docs: TODO add link for docs of how to add data/cms binding to existing blocks',
-          de: 'Wählen Sie die Hintergrundfarbe für diese Sektion. Bei einem leeren Feld wird die Standardfarbe verwendet.'
-        }
-      }
+      // admin: {
+      //   description: {
+      //     en: 'Choose your block design version. Naming and grouping is the same as here: https://www.shadcnblocks.com/blocks. If you want to use a block that is not integrated yet in the CMS, check out the docs: TODO add link for docs of how to add data/cms binding to existing blocks',
+      //     de: 'Wählen Sie die Hintergrundfarbe für diese Sektion. Bei einem leeren Feld wird die Standardfarbe verwendet.'
+      //   }
+      // }
     },
     {
       name: 'badge',
