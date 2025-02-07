@@ -1,6 +1,8 @@
 import type { CollectionConfig } from 'payload'
 import { authenticated } from '@/access/authenticated'
-import { isAdminFieldLevel } from '@/access/isAdmin'
+import { isAdmin, isAdminFieldLevel } from '@/access/isAdmin'
+import { isAdminOrCreatedBy } from '@/access/isAdminOrCreatedBy'
+import { checkRole } from '@/utilities/checkRole'
 
 async function findRole(payload: any, slug: string) {
   const { docs } = await payload.find({
@@ -22,10 +24,14 @@ const Users: CollectionConfig = {
     useAsTitle: 'name',
   },
   access: {
-    create: () => true,
+    create: isAdmin,
     read: authenticated,
-    update: authenticated,
-    delete: authenticated,
+    update: isAdminOrCreatedBy,
+    delete: isAdminOrCreatedBy,
+    /**
+     * Limit the access to the admin dashboard here
+     */
+    admin: ({ req: { user } }) => checkRole(['admin', 'editor'], user),
   },
   hooks: {
     beforeValidate: [
@@ -95,6 +101,9 @@ const Users: CollectionConfig = {
         hidden: true,
       },
       index: true,
+      access: {
+        update: isAdminFieldLevel,
+      },
     },
   ],
   timestamps: true,

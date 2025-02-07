@@ -1,26 +1,15 @@
-import { Access, FieldAccess, User } from "payload";
-
-// Helper function to check if user has admin role
-const checkAdminRole = (user: User | null): boolean => {
-  if (!user?.roles || !Array.isArray(user.roles)) return false;
-  
-  return user.roles.some(role => {
-    if (typeof role === 'object' && role !== null) {
-      return role.slug === 'admin';
-    }
-    return false;
-  });
-}
+import { checkRole } from '@/utilities/checkRole'
+import { Access, FieldAccess, User } from 'payload'
 
 export const isAdmin: Access = ({ req: { user } }) => {
-  return checkAdminRole(user as User | null);
+  return checkRole(['admin'], user)
 }
 
 export const isAdminFieldLevel: FieldAccess = ({ req: { user } }) => {
-  return checkAdminRole(user as User | null);
+  return checkRole(['admin'], user)
 }
 
 // For Payload admin UI and frontend components
 export const isAdminHidden = ({ user }: { user: User }): boolean => {
-  return !checkAdminRole(user);
+  return !checkRole(['admin'], user);
 }

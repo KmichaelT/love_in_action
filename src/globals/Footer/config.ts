@@ -6,11 +6,13 @@ import { generatePreviewPath } from '@/utilities/generatePreviewPath'
 import { serverUrl as NEXT_PUBLIC_SERVER_URL } from '@/config/server'
 import { socialIcon } from '@/components/SocialIcon/config'
 import { backgroundColor } from '@/fields/color'
+import { authenticated } from '@/access/authenticated'
 
 export const Footer: GlobalConfig = {
   slug: 'footer',
   access: {
     read: () => true,
+    update: authenticated
   },
   admin: {
     description: 'Theme configuration (For live preview config has to be saved)',
