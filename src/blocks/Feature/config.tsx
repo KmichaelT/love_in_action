@@ -163,8 +163,7 @@ export const FeatureBlock: Block = {
           ['FEATURE99', 'FEATURE103', 'FEATURE25'].includes(designVersion),
       },
     },
-    {
-      ...icon,
+    icon({
       admin: {
         condition: (_, { designVersion } = {}) =>
           [
@@ -178,7 +177,7 @@ export const FeatureBlock: Block = {
             'FEATURE7',
           ].includes(designVersion),
       },
-    },
+    }),
     {
       name: 'richText',
       type: 'richText',
@@ -306,8 +305,7 @@ export const FeatureBlock: Block = {
           ].includes(designVersion),
       },
       fields: [
-        {
-          ...icon,
+        icon({
           label: 'Icon',
           name: 'uspIcon',
           admin: {
@@ -342,7 +340,7 @@ export const FeatureBlock: Block = {
               ].includes(designVersion)
             },
           },
-        },
+        }),
         /**
          * Single tagline per USP, for example for feature117
          */
@@ -352,7 +350,7 @@ export const FeatureBlock: Block = {
           localized: true,
           admin: {
             // conditions on sibling fields are unfortunatly currently not possible in payload
-            
+
           },
         },
         {
@@ -360,7 +358,7 @@ export const FeatureBlock: Block = {
           type: 'richText',
           localized: true,
           admin: {
-            
+
           },
           editor: lexicalEditor({
             features: ({ rootFeatures }) => {
@@ -392,8 +390,8 @@ export const FeatureBlock: Block = {
               ) || []
 
               // Find the feature block that contains our current USP
-              const currentFeatureBlock = featureBlocks.find(block => 
-                block.USPs?.some(usp => 
+              const currentFeatureBlock = featureBlocks.find(block =>
+                block.USPs?.some(usp =>
                   // Compare USP fields to identify the current one
                   usp.tagline === siblingData.tagline &&
                   usp.image === siblingData.image
@@ -404,8 +402,7 @@ export const FeatureBlock: Block = {
             },
           },
           fields: [
-            {
-              ...icon,
+            icon({
               admin: {
                 condition: (data, siblingData) => {
                   // Get all feature blocks
@@ -414,8 +411,8 @@ export const FeatureBlock: Block = {
                   ) || []
 
                   // Find the feature block that contains our current USP
-                  const currentFeatureBlock = featureBlocks.find(block => 
-                    block.USPs?.some(usp => 
+                  const currentFeatureBlock = featureBlocks.find(block =>
+                    block.USPs?.some(usp =>
                       // Compare USP fields to identify the current one
                       usp.tagline === siblingData.tagline &&
                       usp.image === siblingData.image
@@ -426,7 +423,7 @@ export const FeatureBlock: Block = {
                   return currentFeatureBlock && !['FEATURE25'].includes(currentFeatureBlock.designVersion)
                 },
               },
-            },
+            }),
             {
               name: 'richText',
               type: 'richText',

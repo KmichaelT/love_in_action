@@ -55,13 +55,12 @@ export const CtaBlock: Block = {
           ['CTA3', 'CTA4', 'CTA7', 'CTA13', 'CTA15'].includes(designVersion),
       },
     },
-    {
-      ...icon,
+    icon({
       admin: {
         condition: (_, { designVersion } = {}) =>
           ['CTA1', 'CTA6', 'CTA7', 'CTA13', 'CTA15'].includes(designVersion),
       },
-    },
+    }),
     {
       name: 'richText',
       type: 'richText',

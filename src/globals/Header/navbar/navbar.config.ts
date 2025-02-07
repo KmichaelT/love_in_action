@@ -15,7 +15,7 @@ export const navbar: Field[] = [
           singular: "Sub Navigation Menu"
         },
         fields: [
-          icon,
+          icon(),
           {
             type: "text",
             name: "label",

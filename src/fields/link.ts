@@ -166,14 +166,12 @@ export const link: LinkType = ({
     linkResult.fields.push({
       type: 'row',
       fields: [
-        {
-          ...icon,
+        icon({
           name: 'iconBefore',
-        },
-        {
-          ...icon,
+        }),
+        icon({
           name: 'iconAfter',
-        },
+        }),
       ],
     })
   }

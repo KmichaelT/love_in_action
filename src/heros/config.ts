@@ -119,14 +119,13 @@ export const hero: Field = {
           ['1', '2', '3', '4', '5', '6', '12'].includes(designVersion),
       },
     },
-    {
-      ...icon,
+    icon({
       name: 'badgeIcon',
       admin: {
         condition: (_, { designVersion } = {}) =>
           ['1', '2', '3', '4', '5', '6'].includes(designVersion),
-      },
-    },
+      }
+    }),
     {
       name: 'tagline',
       type: 'text',
