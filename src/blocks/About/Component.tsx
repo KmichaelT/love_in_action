@@ -6,9 +6,8 @@ import About3 from '@/blocks/About/about3'
 import About4 from '@/blocks/About/about4'
 import About5 from '@/blocks/About/about5'
 
-type About = {
-  [key in AboutDesignVersion]: React.FC
-}
+// Enforce required features but allow additional ones
+type About<T extends string = string> = Required<Record<AboutDesignVersion, React.FC<any>>> & Record<T, React.FC<any>>;
 
 const about: About = {
   ABOUT1: About1,

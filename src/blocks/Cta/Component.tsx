@@ -12,14 +12,11 @@ import Cta15 from '@/blocks/Cta/cta15'
 import Cta16 from '@/blocks/Cta/cta16'
 import Cta17 from '@/blocks/Cta/cta17'
 
-import { Page } from '@/payload-types'
 import { CtaDesignVersion } from './config'
 
-type Ctas = {
-  [key in CtaDesignVersion]: React.FC
-}
+type Cta<T extends string = string> = Required<Record<CtaDesignVersion, React.FC<any>>> & Record<T, React.FC<any>>;
 
-const ctas: Ctas = {
+const ctas: Cta = {
   CTA1: Cta1,
   CTA3: Cta3,
   CTA4: Cta4,

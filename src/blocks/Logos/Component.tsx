@@ -3,9 +3,7 @@ import Logos3 from '@/blocks/Logos/logos3'
 
 import { LogosDesignVersion } from './config'
 
-type Logos = {
-  [key in LogosDesignVersion]: React.FC
-}
+type Logos<T extends string = string> = Required<Record<LogosDesignVersion, React.FC<any>>> & Record<T, React.FC<any>>;
 
 const Logos: Logos = {
   LOGOS2: Logos2,

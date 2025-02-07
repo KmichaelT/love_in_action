@@ -12,11 +12,11 @@ import { Block } from 'payload'
 // About5: headline richText, text1 richText, text2 richText, 6 images, logos, counter: { value, title, optional description }
 
 export const allAboutDesignVersions = [
-  'ABOUT1',
-  'ABOUT2',
+  // 'ABOUT1',
+  // 'ABOUT2',
   'ABOUT3',
   'ABOUT4',
-  'ABOUT5',
+  // 'ABOUT5',
 ] as const
 
 export type AboutDesignVersion = typeof allAboutDesignVersions[number]

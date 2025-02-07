@@ -11,7 +11,12 @@ import { FormBlock } from '../Form/config'
 import { backgroundColor } from '@/fields/color'
 import { icon } from '@/components/Icon/config'
 
-export const allContactDesignVersions = ['CONTACT1', 'CONTACT2', 'CONTACT3', 'CONTACT4'] as const
+export const allContactDesignVersions = [
+  // 'CONTACT1',
+  'CONTACT2',
+  // 'CONTACT3',
+  // 'CONTACT4'
+] as const
 export type ContactDesignVersion = (typeof allContactDesignVersions)[number]
 
 export const ContactBlock: Block = {
