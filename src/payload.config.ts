@@ -70,13 +70,6 @@ const googleAuthActive = !!(
 
 export default buildConfig({
   admin: {
-    autoLogin:
-      process.env.NEXT_PUBLIC_ENABLE_AUTOLOGIN === 'true'
-        ? {
-          email: 'test@trieb.work',
-          password: 'test1234',
-        }
-        : false,
     components: {
       beforeLogin: ['@/components/AdminDashboard/BeforeLogin'],
       afterLogin: googleAuthActive ? ['@/components/AdminDashboard/LoginButton'] : [],

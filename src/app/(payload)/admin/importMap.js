@@ -1,5 +1,5 @@
-import { default as default_bc962d55f0af68ec096c47ac2954eebd } from '@/components/AdminDashboard/SectionSelect'
 import { default as default_9d2d71c3c9804a7eac9f5a33fe39c4ed } from '@/components/AdminDashboard/IconSelect'
+import { default as default_bc962d55f0af68ec096c47ac2954eebd } from '@/components/AdminDashboard/SectionSelect'
 import { RscEntryLexicalCell as RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e } from '@payloadcms/richtext-lexical/rsc'
 import { RscEntryLexicalField as RscEntryLexicalField_44fe37237e0ebf4470c9990d8cb7b07e } from '@payloadcms/richtext-lexical/rsc'
 import { InlineToolbarFeatureClient as InlineToolbarFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
@@ -40,8 +40,8 @@ import { default as default_2f704de5e6c59b8917a26e353bdf0747 } from '@/component
 import { default as default_5abc63c3cf3fe7a656266cc0318fce13 } from '@/components/AdminDashboard/BeforeLogin'
 
 export const importMap = {
-  "@/components/AdminDashboard/SectionSelect#default": default_bc962d55f0af68ec096c47ac2954eebd,
   "@/components/AdminDashboard/IconSelect#default": default_9d2d71c3c9804a7eac9f5a33fe39c4ed,
+  "@/components/AdminDashboard/SectionSelect#default": default_bc962d55f0af68ec096c47ac2954eebd,
   "@payloadcms/richtext-lexical/rsc#RscEntryLexicalCell": RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e,
   "@payloadcms/richtext-lexical/rsc#RscEntryLexicalField": RscEntryLexicalField_44fe37237e0ebf4470c9990d8cb7b07e,
   "@payloadcms/richtext-lexical/client#InlineToolbarFeatureClient": InlineToolbarFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
