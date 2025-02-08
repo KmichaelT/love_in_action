@@ -24,7 +24,7 @@ export const contentType = 'image/png'
  * The title is rendered with the font 'Inter', loaded from Google Fonts.
  *
  * @param {Object} options - Options for generating the image
- * @param {string} [options.title] - Title to render on the image. Defaults to "PayBlocks".
+ * @param {string} [options.title] - Title to render on the image. Defaults to "Payblocks".
  * @returns {Promise<ImageResponse>} - A promise that resolves to an `ImageResponse` object.
  */
 export default async function generateOGImage({ title }: { title?: string | null }) {

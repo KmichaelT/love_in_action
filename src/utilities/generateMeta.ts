@@ -13,7 +13,7 @@ export const generateMeta = async (args: { doc: Page | Post, url: string }): Pro
     'url' in doc.meta.image &&
     `${NEXT_PUBLIC_SERVER_URL}${doc.meta.image.url}`
 
-  const title = doc?.meta?.title || doc?.title || 'PayBlocks'
+  const title = doc?.meta?.title || doc?.title || 'Payblocks'
   const description = doc?.meta?.description || ''
 
   const defaultOGImage = `${NEXT_PUBLIC_SERVER_URL}/next/og?title=${title}`

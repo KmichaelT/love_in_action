@@ -24,7 +24,7 @@ const BackupDashboard: React.FC = async ({ user }: { user: User | null, }) => {
         Payblocks is a comprehensive website builder toolkit that combines PayloadCMS&apos;s powerful content management
         capabilities with shadcn/ui&apos;s modern components and shadcnblocks.com&apos;s extensive block library.
         Visit the <a href="https://payblocks.trieb.work/docs">documentation</a> to guide you through setting up,
-        configuring, and extending your PayBlocks project.
+        configuring, and extending your Payblocks project.
       </p>
 
       {process.env.MONGODB_URI && <span>

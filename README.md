@@ -1,8 +1,8 @@
-# PayBlocks
+# Payblocks
 
-PayBlocks is a powerful website builder that combines the best of two worlds: PayloadCMS's robust content management capabilities and shadcnblocks' extensive UI component library. The name "PayBlocks" reflects this fusion - "Pay" from PayloadCMS and "Blocks" from shadcnblocks.
+Payblocks is a powerful website builder that combines the best of two worlds: PayloadCMS's robust content management capabilities and shadcnblocks' extensive UI component library. The name "Payblocks" reflects this fusion - "Pay" from PayloadCMS and "Blocks" from shadcnblocks.
 
-This project transforms the traditional PayloadCMS starter into a feature-rich website builder with a beautiful, modern UI and an extensive collection of pre-built components. Whether you're building a corporate website, a portfolio, or a complex web application, PayBlocks provides all the building blocks you need.
+This project transforms the traditional PayloadCMS starter into a feature-rich website builder with a beautiful, modern UI and an extensive collection of pre-built components. Whether you're building a corporate website, a portfolio, or a complex web application, Payblocks provides all the building blocks you need.
 
 ## ✨ Key Features
 
@@ -172,7 +172,7 @@ To spin up this example locally, follow the [Quick Start](#quick-start). Then [S
 
 ### Customizing Fonts
 
-PayBlocks uses the Geist font family by default, but you can easily customize the fonts to match your brand. The fonts are configured in two places:
+Payblocks uses the Geist font family by default, but you can easily customize the fonts to match your brand. The fonts are configured in two places:
 
 1. **Frontend Layout (`src/app/(frontend)/layout.tsx`):**
    - Import your desired fonts from `next/font/google` or any other font source
