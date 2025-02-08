@@ -26,11 +26,13 @@ import type { Header as HeaderType } from '@/payload-types'
 
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import Link from 'next/link'
-import { LanguageSwitcher } from '@/components/LanguageSwitcher'
+import { LanguageSwitcher, LanguageSwitcherMobile } from '@/components/LanguageSwitcher'
 import { PublicContextProps } from '@/utilities/publicContextProps'
 
-const Navbar5: React.FC<{ header: HeaderType, publicContext: PublicContextProps }> = ({ header, publicContext }) => {
-
+const Navbar5: React.FC<{ header: HeaderType; publicContext: PublicContextProps }> = ({
+  header,
+  publicContext,
+}) => {
   return (
     <section className="py-4 z-50">
       <div className="container">
@@ -43,7 +45,7 @@ const Navbar5: React.FC<{ header: HeaderType, publicContext: PublicContextProps 
           <NavigationMenu className="hidden lg:block z-50">
             <NavigationMenuList>
               {header.items?.map((item) => {
-                if (item.blockType === "link") {
+                if (item.blockType === 'link') {
                   return (
                     <CMSLink
                       publicContext={publicContext}
@@ -58,7 +60,7 @@ const Navbar5: React.FC<{ header: HeaderType, publicContext: PublicContextProps 
                       )}
                     />
                   )
-                } else if (item.blockType === "sub") {
+                } else if (item.blockType === 'sub') {
                   return (
                     <NavigationMenuItem key={item.id} className="text-muted-foreground">
                       <NavigationMenuTrigger className="bg-transparent">
@@ -78,9 +80,16 @@ const Navbar5: React.FC<{ header: HeaderType, publicContext: PublicContextProps 
                                   iconBefore={undefined}
                                   iconAfter={undefined}
                                 >
-                                  {subitem.link.iconBefore && <Icon icon={subitem.link.iconBefore} className="size-5 shrink-0" />}
+                                  {subitem.link.iconBefore && (
+                                    <Icon
+                                      icon={subitem.link.iconBefore}
+                                      className="size-5 shrink-0"
+                                    />
+                                  )}
                                   <div>
-                                    <div className="text-sm font-semibold">{subitem.link.label}</div>
+                                    <div className="text-sm font-semibold">
+                                      {subitem.link.label}
+                                    </div>
                                     <p className="text-sm leading-snug text-muted-foreground">
                                       {subitem.Description}
                                     </p>
@@ -100,7 +109,9 @@ const Navbar5: React.FC<{ header: HeaderType, publicContext: PublicContextProps 
 
           {/* Right Button Group */}
           <div className="hidden lg:flex gap-2 z-50">
-            {header?.buttons?.map((btn) => <CMSLink publicContext={publicContext} key={btn.id} {...btn.link} />)}
+            {header?.buttons?.map((btn) => (
+              <CMSLink publicContext={publicContext} key={btn.id} {...btn.link} />
+            ))}
             <LanguageSwitcher publicContext={publicContext} />
           </div>
 
@@ -117,7 +128,12 @@ const Navbar5: React.FC<{ header: HeaderType, publicContext: PublicContextProps 
                   <SheetTitle>
                     <div className="flex items-center">
                       <Link href="/">
-                        <Media resource={header.logo} priority className="h-9" imgClassName="h-full w-auto" />
+                        <Media
+                          resource={header.logo}
+                          priority
+                          className="h-9"
+                          imgClassName="h-full w-auto"
+                        />
                       </Link>
                     </div>
                   </SheetTitle>
@@ -126,7 +142,7 @@ const Navbar5: React.FC<{ header: HeaderType, publicContext: PublicContextProps 
                 <div className="my-8 flex flex-col gap-6">
                   <Accordion type="single" collapsible className="flex flex-col gap-4">
                     {header.items?.map((item) => {
-                      if (item.blockType === "link") {
+                      if (item.blockType === 'link') {
                         return (
                           <div key={item.id} className="flex flex-col">
                             <CMSLink
@@ -136,11 +152,15 @@ const Navbar5: React.FC<{ header: HeaderType, publicContext: PublicContextProps 
                             />
                           </div>
                         )
-                      } else if (item.blockType === "sub") {
+                      } else if (item.blockType === 'sub') {
                         return (
-                          <AccordionItem key={item.id} value={item.id || item.label} className="border-b-0">
+                          <AccordionItem
+                            key={item.id}
+                            value={item.id || item.label}
+                            className="border-b-0"
+                          >
                             <AccordionTrigger className="mb-4 py-0 font-medium hover:no-underline">
-                              <span className='inline-flex'>
+                              <span className="inline-flex">
                                 {item.icon && <Icon className="mr-2 h-6" icon={item.icon} />}
                                 {item.label}
                               </span>
@@ -158,9 +178,13 @@ const Navbar5: React.FC<{ header: HeaderType, publicContext: PublicContextProps 
                                   iconBefore={undefined}
                                   iconAfter={undefined}
                                 >
-                                  {subitem.link.iconBefore && <Icon icon={subitem.link.iconBefore} />}
+                                  {subitem.link.iconBefore && (
+                                    <Icon icon={subitem.link.iconBefore} />
+                                  )}
                                   <div>
-                                    <div className="text-sm font-semibold">{subitem.link.label}</div>
+                                    <div className="text-sm font-semibold">
+                                      {subitem.link.label}
+                                    </div>
                                     <p className="text-sm leading-snug text-muted-foreground">
                                       {subitem.Description}
                                     </p>
@@ -172,11 +196,14 @@ const Navbar5: React.FC<{ header: HeaderType, publicContext: PublicContextProps 
                         )
                       }
                     })}
+                    <LanguageSwitcherMobile publicContext={publicContext} />
                   </Accordion>
                 </div>
                 {/* Mobile Buttons */}
                 <div className="flex flex-col gap-2">
-                  {header?.buttons?.map((btn) => <CMSLink publicContext={publicContext} key={btn.id} {...btn.link} />)}
+                  {header?.buttons?.map((btn) => (
+                    <CMSLink publicContext={publicContext} key={btn.id} {...btn.link} />
+                  ))}
                 </div>
               </SheetContent>
             </Sheet>

@@ -29,7 +29,7 @@ import { cn } from '@/utilities/cn';
 import { Media } from '@/components/Media';
 import { CMSLink } from '@/components/Link';
 import { Icon } from '@/components/Icon';
-import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { LanguageSwitcher, LanguageSwitcherMobile } from '@/components/LanguageSwitcher';
 import { PublicContextProps } from '@/utilities/publicContextProps'
 
 export const Navbar1: React.FC<{ header: HeaderType, publicContext: PublicContextProps }> = ({ header, publicContext }) => {
@@ -132,6 +132,7 @@ export const Navbar1: React.FC<{ header: HeaderType, publicContext: PublicContex
                 {/* Link Group */}
                 <div className="my-8 flex flex-col gap-4">
                   <Accordion type="single" collapsible>
+                    <LanguageSwitcherMobile publicContext={publicContext} />
                     {header.items?.map((item) => {
                       if (item.blockType === "link") {
                         // Single Nav Link

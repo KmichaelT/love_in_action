@@ -1,5 +1,5 @@
 import localization, { locales, localeLabels } from "@/localization.config";
-import { Check, Globe } from "lucide-react";
+import { Check, Globe, Icon } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -9,6 +9,9 @@ import {
 } from "@/components/ui/navigation-menu"
 import Link from "next/link";
 import { PublicContextProps } from '@/utilities/publicContextProps'
+import { cn } from "@/utilities";
+import { AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
+import { CMSLink } from "../Link";
 
 export const LanguageSwitcher: React.FC<{ publicContext: PublicContextProps }> = ({ publicContext }) => {
   const { cleanSlugs, locale: currentLocale } = publicContext;
@@ -44,5 +47,38 @@ export const LanguageSwitcher: React.FC<{ publicContext: PublicContextProps }> =
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
+  );
+};
+
+export const LanguageSwitcherMobile: React.FC<{ publicContext: PublicContextProps }> = ({ publicContext }) => {
+  const { cleanSlugs, locale: currentLocale } = publicContext;
+  return (
+    <AccordionItem value="language-switcher" className="border-b-0">
+      <AccordionTrigger className="py-0 font-medium hover:no-underline">
+        <span className='inline-flex items-center justify-start'>
+          <Globe className={"h-4 -ml-1"} />
+          {localeLabels[currentLocale]}
+        </span>
+      </AccordionTrigger>
+      <AccordionContent className="mt-2">
+        {locales.map((locale) => {
+          const langPrefix = locale === localization.defaultLocale ? "" : `/${locale}`;
+          const href = (cleanSlugs?.[0] === "home" ? langPrefix : `${langPrefix}/${cleanSlugs?.join('/')}`) || "/";
+          if (currentLocale === locale) {
+            return (
+              <span key={locale} className="text-sm font-semibold flex select-none gap-4 rounded-md p-3 leading-none outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                {localeLabels[locale]} <Check className="w-4 h-4 ml-2" />
+              </span>
+            )
+          } else {
+            return (
+              <Link key={locale} href={href} lang={locale} className="text-sm font-semibold flex select-none gap-4 rounded-md p-3 leading-none outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                {localeLabels[locale]}
+              </Link>
+            )
+          }
+        })}
+      </AccordionContent>
+    </AccordionItem>
   );
 };
