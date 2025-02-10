@@ -1,5 +1,23 @@
 # payblocks
 
+## 1.4.0
+
+### Minor Changes
+
+- b5f7bb4: Minor cleanup for users collection / access functions and making sure, that editor users can't edit other users.
+- 8509792: Adding changelog1 including functionality to fetch changelog items from github.
+- c305e1e: Adding FAQ5 and fixing the selection of faqs in the admin ui
+- 0be7bd1: Remove not implemented blocks from dropdown
+- df2be8a: Add language switcher to mobile navi 1 and 5
+- d301083: Add demo login user credentials
+
+### Patch Changes
+
+- a221118: Fix backups: move from json to bson. Sorting backups by uploadedAt.
+- d4b3feb: make the initial user / role creation more solid, printing the error logs better and giving payload more time to initialise the database before role creation and retry one time on failure
+- 26918cb: improve docs and move them to the shadcndocs project
+- 7d51afd: Fix icon usage and making it more safe to use for the future
+
 ## 1.3.0
 
 ### Minor Changes
