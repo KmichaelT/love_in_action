@@ -79,7 +79,7 @@ export const allFeatureDesignVersions = [
   // 'FEATURE67',
   // 'FEATURE68',
   // 'FEATURE69',
-  // 'FEATURE70',
+  'FEATURE70',
   // 'FEATURE71',
   'FEATURE72',
   // 'FEATURE73',
