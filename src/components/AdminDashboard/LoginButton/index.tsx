@@ -9,6 +9,7 @@ const LoginButton = () => {
     <Link
       href="/api/users/oauth/authorize"
       className="login-button btn btn--style-secondary btn--size-large btn--icon-style-without-border"
+      prefetch={false}
     >
       <FcGoogle className="login-button__icon" />
       Sign in with Google
