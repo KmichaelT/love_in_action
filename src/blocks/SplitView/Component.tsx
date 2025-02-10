@@ -34,7 +34,7 @@ export const SplitViewBlock: React.FC<Props> = (props) => {
              */
             const size = (column as any)?.size || 'half'
             return (
-              <div key={index} className={cn('col-span-12', colsSpanClasses[size])}>
+              <div key={index} className={cn('col-span-12', colsSpanClasses[size], 'flex items-center')}>
                 <RenderBlocks blocks={[column]} publicContext={publicContext} disableContainer={true} />
               </div>
             )

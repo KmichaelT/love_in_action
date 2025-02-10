@@ -39,9 +39,13 @@ export async function generateStaticParams(): Promise<Array<Params>> {
     /**
      * More pages increase the build time.
      */
-    limit: 10,
+    limit: 100,
     locale: 'all',
     overrideAccess: false,
+    select: {
+      slug: true,
+      breadcrumbs: true,
+    }
   })
 
   if (pages.docs.length === 0) {
