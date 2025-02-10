@@ -7,8 +7,8 @@ import { User } from 'payload'
 import { Button, Popup, Collapsible } from '@payloadcms/ui'
 import { isAdminHidden } from '@/access/isAdmin';
 import { I18n } from '@payloadcms/translations';
-import Link from 'next/link';
 import { getCurrentDbName, getCurrentHostname, transformBlobName } from './utils';
+import { FilterControls } from './index.client';
 
 interface BackupDashboardProps {
   user: User | null,
@@ -16,7 +16,6 @@ interface BackupDashboardProps {
   searchParams: Record<string, string>
 }
 
-const SEED_DUMP_URL = 'https://nki0hmsryjcqaqtw.public.blob.vercel-storage.com/backups/cron-backup-1737774039239-XgTDnyBINssrxZm8OBAY3lBvj9AZCX.json';
 
 const BackupDashboard: React.FC<BackupDashboardProps> = async ({ user, i18n, searchParams }) => {
   if (!user) return;
@@ -29,6 +28,7 @@ const BackupDashboard: React.FC<BackupDashboardProps> = async ({ user, i18n, sea
     return;
   }
   const blobs = await listBackups();
+  const sortedBlobs = [...blobs].sort((a, b) => new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime());
   const showOtherDb = searchParams.showOtherDb === 'true';
   const showOtherHostname = searchParams.showOtherHostname === 'true';
 
@@ -36,12 +36,12 @@ const BackupDashboard: React.FC<BackupDashboardProps> = async ({ user, i18n, sea
   const currentHostname = getCurrentHostname();
   const currentDbName = getCurrentDbName();
 
-  const countOtherDb = blobs.filter((blob) => {
+  const countOtherDb = sortedBlobs.filter((blob) => {
     const { dbName } = transformBlobName(blob.pathname);
     return currentDbName !== dbName;
   }).length;
 
-  const countOtherHostname = blobs.filter((blob) => {
+  const countOtherHostname = sortedBlobs.filter((blob) => {
     const { hostname } = transformBlobName(blob.pathname);
     return currentHostname !== hostname;
   }).length;
@@ -51,25 +51,14 @@ const BackupDashboard: React.FC<BackupDashboardProps> = async ({ user, i18n, sea
       <h2>Backups <span className='experimental'>(experimental)</span></h2>
 
       <Collapsible initCollapsed={true}>
+        <FilterControls
+          countOtherDb={countOtherDb}
+          countOtherHostname={countOtherHostname}
+          showOtherDb={showOtherDb}
+          showOtherHostname={showOtherHostname}
+        />
 
-        <div className='backup-filter-group'>
-          {countOtherDb > 0 && <Link className="btn btn--icon-style-without-border btn--size-medium btn--withoutPopup btn--style-primary btn--withoutPopup" href={{
-            search: new URLSearchParams({
-              ...searchParams,
-              showOtherDb: showOtherDb ? 'false' : 'true',
-            }).toString(),
-          }}>{showOtherDb ? 'Hide other DBs' : 'Show other DBs'}</Link>}
-
-          {countOtherHostname > 0 && <Link className="btn btn--icon-style-without-border btn--size-medium btn--withoutPopup btn--style-primary btn--withoutPopup" href={{
-            search: new URLSearchParams({
-              ...searchParams,
-              showOtherHostname: showOtherHostname ? 'false' : 'true',
-            }).toString(),
-          }}>{showOtherHostname ? 'Hide other Hostnames' : 'Show other Hostnames'}</Link>}
-        </div>
-
-
-        {blobs.map((blob) => {
+        {sortedBlobs.map((blob) => {
           const { type, dbName, hostname } = transformBlobName(blob.pathname);
 
           const isCurrentDb = currentDbName === dbName;

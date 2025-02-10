@@ -6,6 +6,8 @@ import { revalidatePath } from 'next/cache';
 import { ObjectId } from 'mongodb';
 import { createBlobName, getCurrentHostname } from './utils';
 import { getCurrentDbName } from './utils';
+import { redirect } from 'next/navigation';
+import { EJSON } from 'bson';
 
 const BACKUPS_TO_KEEP = Number(process.env.BACKUPS_TO_KEEP) || 10;
 
@@ -22,11 +24,11 @@ export async function getDb() {
   return db!
 }
 
-export async function restoreBackup(downloadUrl: string, collectionBlacklist: string[] = []) {
+export async function restoreBackup(downloadUrl: string, collectionBlacklist: string[] = [], mergeData = false) {
   "use server"
   const db = await getDb();
   const data = await fetch(downloadUrl);
-  const json = await data.json() as Record<string, { _id?: any, email?: string }[]>;
+  const json = EJSON.parse(await data.text()) as Record<string, { _id?: any }[]>;
   for (const collectionName of Object.keys(json)) {
     if (collectionBlacklist.includes(collectionName)) {
       continue;
@@ -37,9 +39,10 @@ export async function restoreBackup(downloadUrl: string, collectionBlacklist: st
       const collection = db.collection(collectionName);
       const indexes = await collection.indexes();
       const uniqueIndexes = indexes.filter(idx => idx.unique).flatMap((idx) => Object.keys(idx.key))
+      if (!mergeData) {
+        await collection.deleteMany({});
+      }
       const res = await collection.bulkWrite(collectionData.map(doc => {
-        // const { _id, ...updateData } = doc;
-        doc._id = new ObjectId(doc._id as string)
         return {
           updateOne: {
             filter: uniqueIndexes.length > 0 ? {
@@ -56,6 +59,8 @@ export async function restoreBackup(downloadUrl: string, collectionBlacklist: st
       console.log("Restoring done", res)
     }
   }
+  revalidatePath('/admin');
+  redirect('/admin/logout');
 }
 
 export async function createBackup(cron: boolean = false) {
@@ -83,7 +88,7 @@ export async function createBackup(cron: boolean = false) {
     allData[collection.name] = await db.collection(collection.name).find({}).toArray();
   }
   const name = `backups/${createBlobName(cron ? 'cron' : 'manual', currentDbName, currentHostname, Date.now().toString())}`;
-  await put(name, JSON.stringify(allData), { access: 'public' });
+  await put(name, EJSON.stringify(allData), { access: 'public' });
   revalidatePath('/admin');
   console.log("Backup created", name);
 }
