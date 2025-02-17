@@ -1,13 +1,13 @@
 import './index.scss'
 import { revalidatePath } from 'next/cache';
-import { restoreBackup } from '../BackupDashboard/actions';
+import { restoreBackup, restoreSeedMedia } from '../BackupDashboard/actions';
 import { User } from 'payload'
 
 import { Button, Popup } from '@payloadcms/ui'
 import { isAdminHidden } from '@/access/isAdmin';
+import { serverConfig } from '@/config/server';
 
-
-const SEED_DUMP_URL = 'https://raw.githubusercontent.com/trieb-work/payload-starter-seed/refs/heads/main/payblocks-initial-page-seed.json';
+const SEED_DUMP_URL = serverConfig.serverUrl + '/seed/demo-payblocks---demo-payblocks.trieb.work---1739813600714.json';
 
 const BackupDashboard: React.FC = async ({ user }: { user: User | null, }) => {
   if (!user) return;
@@ -43,6 +43,7 @@ const BackupDashboard: React.FC = async ({ user }: { user: User | null, }) => {
           </div>
           <Button className="btn-red" onClick={async () => {
             "use server"
+            await restoreSeedMedia();
             await restoreBackup(SEED_DUMP_URL, ['users', 'roles']);
             revalidatePath('/admin');
           }}>

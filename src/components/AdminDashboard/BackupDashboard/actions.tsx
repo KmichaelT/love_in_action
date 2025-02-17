@@ -2,12 +2,14 @@
 import { getPayload } from 'payload';
 import configPromise from '@payload-config'
 import { del, list, put } from '@vercel/blob';
-import { revalidatePath } from 'next/cache';
-import { ObjectId } from 'mongodb';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { createBlobName, getCurrentHostname } from './utils';
 import { getCurrentDbName } from './utils';
 import { redirect } from 'next/navigation';
 import { EJSON } from 'bson';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { revalidateFooter } from '@/globals/Footer/hooks/revalidateFooter';
 
 const BACKUPS_TO_KEEP = Number(process.env.BACKUPS_TO_KEEP) || 10;
 
@@ -58,10 +60,46 @@ export async function restoreBackup(downloadUrl: string, collectionBlacklist: st
       }));
       console.log("Restoring done", res)
     }
+
+    if (collectionName === "pages" && (collectionData as any)?.slug) {
+      Object.values((collectionData as any).breadcrumbs).map((b: { url: string }[]) => (b[b.length - 1]?.url)).forEach((path) => {
+        console.log("revalidate path", path);
+        revalidatePath(path)
+      })
+    }
   }
+  revalidateTag('global_footer')
+  revalidateTag('global_header')
+  revalidateTag('global_page-config')
+  revalidateTag('global_pageConfig')
+  revalidateTag('global_theme-Config')
+  revalidateTag('global_themeConfig')
   revalidatePath('/admin');
   redirect('/admin/logout');
 }
+
+export async function restoreSeedMedia() {
+  "use server"
+  const files = await fs.readdir(path.join(process.cwd(), 'public/seed/media'));
+  for (const file of files) {
+    const data = await fs.readFile(path.join(process.cwd(), 'public/seed/media', file));
+    if (process.env.BLOB_READ_WRITE_TOKEN) {
+      // Upload file to vercel blob storage
+      const blob = await put(file, data, { access: 'public', addRandomSuffix: false });
+      console.log("Restored seed media to vercel blob storage", file, blob);
+    } else {
+      // Copy file to public media directory
+      const folderPath = path.join(process.cwd(), 'public/media');
+      const publicPath = path.join(folderPath, file);
+      await fs.mkdir(folderPath, { recursive: true });
+      await fs.writeFile(publicPath, data);
+      console.log("Restored seed media to public directory", file, publicPath);
+    }
+  }
+  console.log("Restored all files");
+  return files;
+}
+
 
 export async function createBackup(cron: boolean = false) {
   const currentHostname = getCurrentHostname();
