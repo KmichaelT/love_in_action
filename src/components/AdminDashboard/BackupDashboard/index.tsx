@@ -31,6 +31,7 @@ const BackupDashboard: React.FC<BackupDashboardProps> = async ({ user, i18n, sea
   const sortedBlobs = [...blobs].sort((a, b) => new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime());
   const showOtherDb = searchParams.showOtherDb === 'true';
   const showOtherHostname = searchParams.showOtherHostname === 'true';
+  const includeMedia = searchParams.includeMedia === 'true';
 
 
   const currentHostname = getCurrentHostname();
@@ -56,6 +57,7 @@ const BackupDashboard: React.FC<BackupDashboardProps> = async ({ user, i18n, sea
           countOtherHostname={countOtherHostname}
           showOtherDb={showOtherDb}
           showOtherHostname={showOtherHostname}
+          includeMedia={includeMedia}
         />
 
         {sortedBlobs.map((blob) => {
@@ -127,7 +129,7 @@ const BackupDashboard: React.FC<BackupDashboardProps> = async ({ user, i18n, sea
         <div className="make-backup-container">
           <Button onClick={async () => {
             "use server"
-            await createBackup();
+            await createBackup(false, includeMedia);
             revalidatePath('/admin');
           }}>Create manual Backup</Button>
           <span className='text'>Manual backups will not get automatically deleted</span>
