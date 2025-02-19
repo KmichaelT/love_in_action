@@ -1,11 +1,13 @@
 import './index.scss'
 import { revalidatePath } from 'next/cache';
 import { restoreBackup, restoreSeedMedia } from '../BackupDashboard/actions';
-import { User } from 'payload'
+import { getPayload, User } from 'payload'
 
 import { Button, Popup } from '@payloadcms/ui'
 import { isAdminHidden } from '@/access/isAdmin';
 import { serverConfig } from '@/config/server';
+import configPromise from '@payload-config'
+
 
 const SEED_DUMP_URL = serverConfig.serverUrl + '/seed/demo-payblocks---demo-payblocks.trieb.work---1739813600714.json';
 
@@ -15,6 +17,22 @@ const BackupDashboard: React.FC = async ({ user }: { user: User | null, }) => {
   if (isAdminHidden({ user })) {
     return;
   }
+
+
+  // Check if example-contact-page was created by some previous seeding. If so, do not show the seeding button. anymore
+  const payload = await getPayload({ config: configPromise })
+  const pages = await payload.find({
+    collection: 'pages',
+    draft: false,
+    limit: 1,
+    overrideAccess: false,
+    where: {
+      slug: {
+        equals: 'example-contact-page',
+      },
+    },
+  })
+  const showSeeding = pages.totalDocs === 0
 
   return (
     <div className="backup-dashboard-2">
@@ -27,7 +45,7 @@ const BackupDashboard: React.FC = async ({ user }: { user: User | null, }) => {
         configuring, and extending your Payblocks project.
       </p>
 
-      {process.env.MONGODB_URI && <span>
+      {process.env.MONGODB_URI && showSeeding && <span>
         <Popup
           className='btn-inline btn-right'
           button={
