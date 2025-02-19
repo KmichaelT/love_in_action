@@ -1,5 +1,17 @@
 # payblocks
 
+## 1.5.0
+
+### Minor Changes
+
+- df51984: Move dump file to public folder and adapt to new backup version. Also add media seeding.
+- 4f859d5: update seed description and remove NEXT_PUBLIC_DEMO_DASHBOARD_CREDENTIALS from .env.example
+- 9db5bfa: Add functionality to backup media files
+
+### Patch Changes
+
+- 1040aef: patching static params for more efficient fetching and fixing split view item positioning to be centered
+
 ## 1.4.0
 
 ### Minor Changes
