@@ -22,13 +22,6 @@ const SEPARATOR = '---';
 export function transformBlobName(blobName: string) {
   const fileType: "json" | "tar.gz" | "na" = blobName.endsWith("json") ? 'json' : (blobName.endsWith("tar.gz") ? 'tar.gz' : 'na')
   const [type = "", dbName = "", hostname = "", date = ""] = (blobName.replace('.json', '').replace('.tar.gz', '').replace("backups/", '')).split(SEPARATOR);
-  console.log("test", {
-    fileType,
-    type,
-    date,
-    dbName: decodeURIComponent(dbName),
-    hostname: decodeURIComponent(hostname),
-  })
   return {
     fileType,
     type,
