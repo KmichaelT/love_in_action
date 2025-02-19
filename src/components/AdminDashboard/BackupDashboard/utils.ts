@@ -1,3 +1,5 @@
+import { CodeSquare } from "lucide-react";
+
 export function getCurrentDbName() {
   try {
     const { hostname, pathname } = new URL(process.env.MONGODB_URI!);
@@ -18,15 +20,17 @@ export function getCurrentHostname() {
 const SEPARATOR = '---';
 
 export function transformBlobName(blobName: string) {
-  const [type = "", dbName = "", hostname = "", date = ""] = (blobName.replace('.json', '')).split(SEPARATOR);
+  const fileType: "json" | "tar.gz" | "na" = blobName.endsWith("json") ? 'json' : (blobName.endsWith("tar.gz") ? 'tar.gz' : 'na')
+  const [type = "", dbName = "", hostname = "", date = ""] = (blobName.replace('.json', '').replace('.tar.gz', '').replace("backups/", '')).split(SEPARATOR);
   return {
+    fileType,
     type,
     date,
-    dbName,
-    hostname
+    dbName: decodeURIComponent(dbName),
+    hostname: decodeURIComponent(hostname),
   }
 }
 
-export function createBlobName(type: string, dbName: string, hostname: string, date: string) {
-  return `${type}${SEPARATOR}${dbName}${SEPARATOR}${hostname}${SEPARATOR}${date}.json`;
+export function createBlobName(type: string, dbName: string, hostname: string, date: string, fileType: 'json' | 'tar.gz') {
+  return `${type}${SEPARATOR}${encodeURIComponent(dbName)}${SEPARATOR}${encodeURIComponent(hostname)}${SEPARATOR}${date}.${fileType}`;
 }

@@ -7,6 +7,7 @@ interface FilterControlsProps {
   countOtherHostname: number
   showOtherDb: boolean
   showOtherHostname: boolean
+  includeMedia: boolean
 }
 
 export const FilterControls: React.FC<FilterControlsProps> = ({
@@ -14,6 +15,7 @@ export const FilterControls: React.FC<FilterControlsProps> = ({
   countOtherHostname,
   showOtherDb,
   showOtherHostname,
+  includeMedia,
 }) => {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -28,6 +30,24 @@ export const FilterControls: React.FC<FilterControlsProps> = ({
 
   return (
     <div className='backup-filter-group'>
+      <div className="field-type checkbox">
+        <input
+          id="includeMedia"
+          type="checkbox"
+          className="checkbox-input__input"
+          checked={includeMedia}
+          onChange={(e) => {
+            updateSearchParams('includeMedia', e.target.checked)
+          }}
+        />
+        <label
+          htmlFor="includeMedia"
+          className="field-label"
+        >
+          Include Media files in Backup
+        </label>
+      </div>
+
       {countOtherDb > 0 && (
         <div className="field-type checkbox">
           <input

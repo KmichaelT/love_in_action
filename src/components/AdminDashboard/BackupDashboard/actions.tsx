@@ -9,9 +9,12 @@ import { redirect } from 'next/navigation';
 import { EJSON } from 'bson';
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { revalidateFooter } from '@/globals/Footer/hooks/revalidateFooter';
+import zlib from 'node:zlib';
+import tar from 'tar-stream';
+import { Readable } from 'node:stream';
 
 const BACKUPS_TO_KEEP = Number(process.env.BACKUPS_TO_KEEP) || 10;
+const COLLECTION_FILE_NAME = 'collections.json';
 
 export async function getDb() {
   const payload = await getPayload({ config: configPromise });
@@ -26,16 +29,85 @@ export async function getDb() {
   return db!
 }
 
+/**
+ * Creates a gzipped tar archive from multiple file buffers
+ * @param {Array} files - Array of objects { name: 'filename.txt', content: Buffer }
+ * @returns {Promise<Buffer>} - The gzipped tar archive as a buffer
+ */
+function createTarGzip(files: { name: string, content: Buffer }[]) {
+  return new Promise<Buffer>((resolve, reject) => {
+    const pack = tar.pack(); // Create a tar stream
+    const gzip = zlib.createGzip();
+    const chunks: Buffer[] = [];
+
+    // Add each file to the tar archive
+    files.forEach(({ name, content }) => {
+      pack.entry({ name }, content);
+    });
+
+    pack.finalize(); // Finalize tar archive
+
+    // Pipe the tar archive through gzip
+    const compressedStream = pack.pipe(gzip);
+
+    compressedStream.on('data', (chunk: Buffer) => chunks.push(chunk));
+    compressedStream.on('end', () => resolve(Buffer.concat(chunks)));
+    compressedStream.on('error', reject);
+  });
+}
+
+function resolveTarGzip(fileBuffer: Buffer) {
+  return new Promise<{ name: string, content: Buffer }[]>((resolve, reject) => {
+    const gunzip = zlib.createGunzip();
+    const extract = tar.extract();
+
+    const files: { name: string, content: Buffer }[] = [];
+
+    extract.on('entry', (header, stream, next) => {
+      const chunks: Buffer[] = [];
+      stream.on('data', (chunk) => chunks.push(chunk));
+      stream.on('end', () => {
+        files.push({
+          name: header.name,
+          content: Buffer.concat(chunks)
+        });
+        next();
+      });
+      stream.resume();
+    });
+    extract.on('finish', () => {
+      resolve(files);
+    });
+    extract.on('error', reject);
+
+    const stream = Readable.from(fileBuffer);
+    stream.pipe(gunzip).pipe(extract);
+  });
+}
+
 export async function restoreBackup(downloadUrl: string, collectionBlacklist: string[] = [], mergeData = false) {
   "use server"
   const db = await getDb();
   const data = await fetch(downloadUrl);
-  const json = EJSON.parse(await data.text()) as Record<string, { _id?: any }[]>;
-  for (const collectionName of Object.keys(json)) {
+  let collections: Record<string, { _id?: any }[]> = {};
+  if (downloadUrl.split("?")?.[0]?.endsWith(".json")) {
+    collections = EJSON.parse(await data.text());
+  } else if (downloadUrl.split("?")?.[0]?.endsWith(".gz")) {
+    const files = await resolveTarGzip(Buffer.from(await data.arrayBuffer()));
+    collections = EJSON.parse(files.find((file) => file.name === COLLECTION_FILE_NAME)?.content?.toString() || "{}");
+    const medias = files.filter((file) => file.name !== COLLECTION_FILE_NAME);
+    console.log("Restored medias", await Promise.all(medias.map((media) => {
+      return put(media.name, media.content, { access: 'public', addRandomSuffix: false });
+    })))
+  } else {
+    throw new Error(`File type of backup ${downloadUrl} not supported`);
+  }
+
+  for (const collectionName of Object.keys(collections)) {
     if (collectionBlacklist.includes(collectionName)) {
       continue;
     }
-    const collectionData = json[collectionName]
+    const collectionData = collections[collectionName]
     if (collectionData.length > 0) {
       console.log("Restoring collection", collectionName)
       const collection = db.collection(collectionName);
@@ -101,7 +173,23 @@ export async function restoreSeedMedia() {
 }
 
 
-export async function createBackup(cron: boolean = false) {
+export async function createMediaBackupFile(collectionBackupFile: string, mediaCollection: { filename: string }[]): Promise<Buffer> {
+  const mediaFiles = (await Promise.all(mediaCollection.map(async (media) => {
+    const matchingFiles = await list({ limit: 2, prefix: media.filename });
+    const blob = matchingFiles.blobs.find((blob) => blob.pathname === media.filename);
+    if (!blob) {
+      console.warn("Backup: File was in collection but not in blob storage", media.filename);
+      return undefined;
+    }
+    const data = await fetch(blob.downloadUrl);
+    return ({ name: media.filename, content: Buffer.from(await data.arrayBuffer()) })
+  })))
+  return await createTarGzip([
+    { name: COLLECTION_FILE_NAME, content: Buffer.from(collectionBackupFile) },
+    ...mediaFiles.filter(Boolean) as { name: string, content: Buffer }[],
+  ])
+}
+export async function createBackup(cron: boolean = false, includeMedia: boolean = false) {
   const currentHostname = getCurrentHostname();
   const currentDbName = getCurrentDbName();
 
@@ -125,8 +213,10 @@ export async function createBackup(cron: boolean = false) {
   for (const collection of collections) {
     allData[collection.name] = await db.collection(collection.name).find({}).toArray();
   }
-  const name = `backups/${createBlobName(cron ? 'cron' : 'manual', currentDbName, currentHostname, Date.now().toString())}`;
-  await put(name, EJSON.stringify(allData), { access: 'public' });
+  const collectionBackupFile = EJSON.stringify(allData);
+  const backupFile = includeMedia ? await createMediaBackupFile(collectionBackupFile, allData?.['media'] || []) : collectionBackupFile;
+  const name = `backups/${createBlobName(cron ? 'cron' : 'manual', currentDbName, currentHostname, Date.now().toString(), includeMedia ? 'tar.gz' : 'json')}`;
+  await put(name, backupFile, { access: 'public' });
   revalidatePath('/admin');
   console.log("Backup created", name);
 }
