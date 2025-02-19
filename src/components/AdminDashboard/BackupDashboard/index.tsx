@@ -61,7 +61,7 @@ const BackupDashboard: React.FC<BackupDashboardProps> = async ({ user, i18n, sea
         />
 
         {sortedBlobs.map((blob) => {
-          const { type, dbName, hostname } = transformBlobName(blob.pathname);
+          const { type, dbName, hostname, fileType } = transformBlobName(blob.pathname);
 
           const isCurrentDb = currentDbName === dbName;
           const isCurrentHostname = currentHostname === hostname;
@@ -75,7 +75,8 @@ const BackupDashboard: React.FC<BackupDashboardProps> = async ({ user, i18n, sea
                 <span>{new Date(blob.uploadedAt).toLocaleString(i18n?.language || 'en')}: {type === 'cron' ? 'Cron Backup' : 'Manual Backup'}, </span>
                 <span className={isCurrentDb ? '' : 'red-text'}>DB: {dbName || 'Unknown'}, </span>
                 <span className={isCurrentHostname ? '' : 'red-text'}>Host: {hostname || 'Unknown'}, </span>
-                <span>({blob.size} bytes)</span>
+                <span>{fileType === "json" ? 'Collections only' : 'Collections & Media'}, </span>
+                <span>{blob.size} bytes</span>
               </p>
               <div className='right'>
                 <a

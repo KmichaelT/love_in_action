@@ -11,8 +11,10 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import zlib from 'node:zlib';
 import tar from 'tar-stream';
+import { Readable } from 'node:stream';
 
 const BACKUPS_TO_KEEP = Number(process.env.BACKUPS_TO_KEEP) || 10;
+const COLLECTION_FILE_NAME = 'collections.json';
 
 export async function getDb() {
   const payload = await getPayload({ config: configPromise });
@@ -54,16 +56,58 @@ function createTarGzip(files: { name: string, content: Buffer }[]) {
   });
 }
 
+function resolveTarGzip(fileBuffer: Buffer) {
+  return new Promise<{ name: string, content: Buffer }[]>((resolve, reject) => {
+    const gunzip = zlib.createGunzip();
+    const extract = tar.extract();
+
+    const files: { name: string, content: Buffer }[] = [];
+
+    extract.on('entry', (header, stream, next) => {
+      const chunks: Buffer[] = [];
+      stream.on('data', (chunk) => chunks.push(chunk));
+      stream.on('end', () => {
+        files.push({
+          name: header.name,
+          content: Buffer.concat(chunks)
+        });
+        next();
+      });
+      stream.resume();
+    });
+    extract.on('finish', () => {
+      resolve(files);
+    });
+    extract.on('error', reject);
+
+    const stream = Readable.from(fileBuffer);
+    stream.pipe(gunzip).pipe(extract);
+  });
+}
+
 export async function restoreBackup(downloadUrl: string, collectionBlacklist: string[] = [], mergeData = false) {
   "use server"
   const db = await getDb();
   const data = await fetch(downloadUrl);
-  const json = EJSON.parse(await data.text()) as Record<string, { _id?: any }[]>;
-  for (const collectionName of Object.keys(json)) {
+  let collections: Record<string, { _id?: any }[]> = {};
+  if (downloadUrl.split("?")?.[0]?.endsWith(".json")) {
+    collections = EJSON.parse(await data.text());
+  } else if (downloadUrl.split("?")?.[0]?.endsWith(".gz")) {
+    const files = await resolveTarGzip(Buffer.from(await data.arrayBuffer()));
+    collections = EJSON.parse(files.find((file) => file.name === COLLECTION_FILE_NAME)?.content?.toString() || "{}");
+    const medias = files.filter((file) => file.name !== COLLECTION_FILE_NAME);
+    console.log("Restored medias", await Promise.all(medias.map((media) => {
+      return put(media.name, media.content, { access: 'public', addRandomSuffix: false });
+    })))
+  } else {
+    throw new Error(`File type of backup ${downloadUrl} not supported`);
+  }
+
+  for (const collectionName of Object.keys(collections)) {
     if (collectionBlacklist.includes(collectionName)) {
       continue;
     }
-    const collectionData = json[collectionName]
+    const collectionData = collections[collectionName]
     if (collectionData.length > 0) {
       console.log("Restoring collection", collectionName)
       const collection = db.collection(collectionName);
@@ -141,7 +185,7 @@ export async function createMediaBackupFile(collectionBackupFile: string, mediaC
     return ({ name: media.filename, content: Buffer.from(await data.arrayBuffer()) })
   })))
   return await createTarGzip([
-    { name: 'collections.json', content: Buffer.from(collectionBackupFile) },
+    { name: COLLECTION_FILE_NAME, content: Buffer.from(collectionBackupFile) },
     ...mediaFiles.filter(Boolean) as { name: string, content: Buffer }[],
   ])
 }

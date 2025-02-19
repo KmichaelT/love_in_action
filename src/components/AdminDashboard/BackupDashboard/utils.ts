@@ -18,7 +18,7 @@ export function getCurrentHostname() {
 const SEPARATOR = '---';
 
 export function transformBlobName(blobName: string) {
-  const fileType = blobName.includes("json") ? 'json' : (blobName.includes("tar.gz") ? 'tar.gz' : 'na')
+  const fileType: "json" | "tar.gz" | "na" = blobName.endsWith("json") ? 'json' : (blobName.endsWith("tar.gz") ? 'tar.gz' : 'na')
   const [type = "", dbName = "", hostname = "", date = ""] = (blobName.replace('.json', '').replace('.tar.gz', '')).split(SEPARATOR);
   return {
     fileType,

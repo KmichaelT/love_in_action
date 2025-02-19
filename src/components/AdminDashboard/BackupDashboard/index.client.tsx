@@ -44,7 +44,7 @@ export const FilterControls: React.FC<FilterControlsProps> = ({
           htmlFor="includeMedia"
           className="field-label"
         >
-          Include Media
+          Include Media files in Backup
         </label>
       </div>
 
