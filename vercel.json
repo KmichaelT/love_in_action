@@ -1,8 +1,9 @@
 {
-  "crons": [
-    {
-      "path": "/next/backup",
-      "schedule": "0 3 * * *"
-    }
-  ]
+  // "crons": [
+  //   {
+  //     "path": "/next/backup",
+  //     "schedule": "0 3 * * *"
+  //   }
+  // ]
+  "crons": []
 }
