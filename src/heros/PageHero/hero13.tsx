@@ -126,18 +126,6 @@ export const Hero13: React.FC<Page['hero'] & { publicContext: PublicContextProps
       <section className="py-16">
         <div className="container">
           <div className="flex flex-col items-center gap-6 border-y py-14 text-center md:py-20">
-              <q className="block max-w-4xl text-2xl font-medium lg:text-3xl">
-                &ldquo;Dear children, let&apos;s not merely say that we <span className="font-extrabold text-primary bg-blue-100 px-1 rounded">love each other</span>; let us show the truth <span className="font-extrabold text-primary bg-blue-100 px-1 rounded">by our actions</span>.&rdquo;
-              </q>
-            <div className="flex flex-col items-center gap-2 sm:flex-row">
-              <p className="font-medium">1 John 3:18</p>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="py-16">
-        <div className="container">
-          <div className="flex flex-col items-center gap-6 border-y py-14 text-center md:py-20">
             <q className="block max-w-4xl text-2xl font-medium lg:text-3xl">
               &ldquo;Dear children, let&apos;s not merely say that we <span className="font-extrabold text-primary bg-blue-100 px-1 rounded">love each other</span>; let us show the truth <span className="font-extrabold text-primary bg-blue-100 px-1 rounded">by our actions</span>.&rdquo;
             </q>
