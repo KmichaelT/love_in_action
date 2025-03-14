@@ -1,5 +1,11 @@
 # payblocks
 
+## 1.5.1
+
+### Patch Changes
+
+- 1fdbf1e: upgrading all packages, next, payload and deps to the most recent version
+
 ## 1.5.0
 
 ### Minor Changes
