@@ -89,8 +89,11 @@ export default {
         }
       },
       fontFamily: {
+        headingBlack: ["var(--font-heading-black)", ...fontFamily.sans],
+        headingBold: ["var(--font-heading-bold)", ...fontFamily.sans],
+        body: ["var(--font-body)", ...fontFamily.sans],
         mono: ["var(--font-mono)", "SFMono-Regular", ...fontFamily.mono],
-        sans: ["var(--font-sans)", "DM Sans", "Inter Variable", "Inter", ...fontFamily.sans]
+        sans: ["var(--font-body)", "DM Sans", "Inter Variable", "Inter", ...fontFamily.sans]
       },
       keyframes: {
         'accordion-down': {

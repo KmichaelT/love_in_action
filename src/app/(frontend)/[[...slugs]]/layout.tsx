@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { Geist_Mono, Geist } from 'next/font/google'
+import { specifyBlack, specifyBold, specifyMedium } from '@/fonts'
 import React from 'react'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { serverUrl as NEXT_PUBLIC_SERVER_URL } from '@/config/server'
@@ -20,13 +20,9 @@ import { resolveSlugs } from '@/utilities/resolveSlugs'
 import localization from '@/localization.config'
 import { PublicContextProps } from '@/utilities/publicContextProps'
 
-import './globals.css'
+import './globals.css' 
 
-
-// Change fonts by changing class Geist_Mono or Geist. 
-// No change in tailwind.config.mjs needed (Because it's already synced via --font-mono and --font-sans variables). Just make sure, that these variables stay.
-const mono = Geist_Mono({ subsets: ['latin'], variable: '--font-mono' })
-const sans = Geist({ subsets: ['latin'], variable: '--font-sans' })
+// Custom fonts are defined in the fonts.ts file
 
 export const metadata: Metadata = {
   metadataBase: new URL(NEXT_PUBLIC_SERVER_URL || 'https://trieb.work'),
@@ -48,12 +44,23 @@ export default async function RootLayout({ children, params }: { children: React
   }
 
   return (
-    <html className={cn(mono.variable, sans.variable)} lang={slugData.locale || localization.defaultLocale} suppressHydrationWarning>
+    <html
+      lang={slugData.locale || localization.defaultLocale}
+      data-theme="light"
+      suppressHydrationWarning
+      className={cn(
+        specifyBlack.variable,
+        specifyBold.variable, 
+        specifyMedium.variable,
+        'test-styles-loaded' // Add test class to check if styles are applied
+      )}
+    >
       <head>
         <ThemeConfig />
         <InitTheme />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
+
       </head>
       <body>
         <Providers>

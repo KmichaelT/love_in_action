@@ -5,50 +5,95 @@ import type { ThemeConfig } from '@/payload-types'
 export async function ThemeConfig() {
   const themeConfig: ThemeConfig = await getCachedGlobal('themeConfig', 2)()
 
+  // Define our new color scheme
+  const newColors = {
+    radius: '0.775rem',
+    
+    background: 'hsl(0, 0%, 100%)',
+    foreground: '#26446d',
+    card: 'hsl(240, 5%, 96%)',
+    'card-foreground': 'hsl(222.2, 84%, 4.9%)',
+    
+    popover: 'hsl(0, 0%, 100%)',
+    'popover-foreground': 'hsl(222.2, 84%, 4.9%)',
+    
+    primary: '#3165b0',
+    'primary-foreground': 'hsl(210, 40%, 98%)',
+    
+    secondary: 'hsl(210, 40%, 96.1%)',
+    'secondary-foreground': 'hsl(222.2, 47.4%, 11.2%)',
+    
+    muted: 'hsl(210, 40%, 96.1%)',
+    'muted-foreground': 'hsl(215.4, 16.3%, 46.9%)',
+    
+    accent: '#f0f7ff',
+    'accent-foreground': 'hsl(222.2, 47.4%, 11.2%)',
+    
+    destructive: 'hsl(0, 84.2%, 60.2%)',
+    'destructive-foreground': 'hsl(210, 40%, 98%)',
+    
+    border: 'hsl(240, 6%, 90%)',
+    input: 'hsl(214.3, 31.8%, 91.4%)',
+    ring: 'hsl(222.2, 84%, 4.9%)',
+    
+    success: 'hsl(196, 52%, 74%)',
+    warning: 'hsl(34, 89%, 85%)',
+    error: 'hsl(10, 100%, 86%)',
+    
+    'chart-1': 'hsl(12, 76%, 61%)',
+    'chart-2': 'hsl(173, 58%, 39%)',
+    'chart-3': 'hsl(197, 37%, 24%)',
+    'chart-4': 'hsl(43, 74%, 66%)',
+    'chart-5': 'hsl(27, 87%, 67%)',
+    
+    muted2: 'hsl(0, 0%, 91%)',
+    'muted2-foreground': 'hsl(240, 3.8%, 46.1%)'
+  }
+
   return <style id="theme-config" dangerouslySetInnerHTML={{
     __html: `
 :root { 
-  --radius: ${themeConfig.radius};
+  --radius: ${newColors.radius};
 
-  --background: ${themeConfig.regularColors?.background};
-  --foreground: ${themeConfig.regularColors?.foreground};
-  --card: ${themeConfig.regularColors?.card};
-  --card-foreground: ${themeConfig.regularColors?.['card-foreground']};
+  --background: ${newColors.background};
+  --foreground: ${newColors.foreground};
+  --card: ${newColors.card};
+  --card-foreground: ${newColors['card-foreground']};
 
-  --popover: ${themeConfig.regularColors?.popover};
-  --popover-foreground: ${themeConfig.regularColors?.['popover-foreground']};
+  --popover: ${newColors.popover};
+  --popover-foreground: ${newColors['popover-foreground']};
 
-  --primary: ${themeConfig.regularColors?.primary};
-  --primary-foreground: ${themeConfig.regularColors?.['primary-foreground']};
+  --primary: ${newColors.primary};
+  --primary-foreground: ${newColors['primary-foreground']};
 
-  --secondary: ${themeConfig.regularColors?.secondary};
-  --secondary-foreground: ${themeConfig.regularColors?.['secondary-foreground']};
+  --secondary: ${newColors.secondary};
+  --secondary-foreground: ${newColors['secondary-foreground']};
 
-  --muted: ${themeConfig.regularColors?.muted};
-  --muted-foreground: ${themeConfig.regularColors?.['muted-foreground']};
+  --muted: ${newColors.muted};
+  --muted-foreground: ${newColors['muted-foreground']};
 
-  --accent: ${themeConfig.regularColors?.accent};
-  --accent-foreground: ${themeConfig.regularColors?.['accent-foreground']};
+  --accent: ${newColors.accent};
+  --accent-foreground: ${newColors['accent-foreground']};
 
-  --destructive: ${themeConfig.regularColors?.destructive};
-  --destructive-foreground: ${themeConfig.regularColors?.['destructive-foreground']};
+  --destructive: ${newColors.destructive};
+  --destructive-foreground: ${newColors['destructive-foreground']};
 
-  --border: ${themeConfig.regularColors?.border};
-  --input: ${themeConfig.regularColors?.input};
-  --ring: ${themeConfig.regularColors?.ring};
+  --border: ${newColors.border};
+  --input: ${newColors.input};
+  --ring: ${newColors.ring};
 
-  --success: ${themeConfig.regularColors?.success};
-  --warning: ${themeConfig.regularColors?.warning};
-  --error: ${themeConfig.regularColors?.error};
+  --success: ${newColors.success};
+  --warning: ${newColors.warning};
+  --error: ${newColors.error};
 
-  --chart-1: ${themeConfig.regularColors?.['chart-1']};
-  --chart-2: ${themeConfig.regularColors?.['chart-2']};
-  --chart-3: ${themeConfig.regularColors?.['chart-3']};
-  --chart-4: ${themeConfig.regularColors?.['chart-4']};
-  --chart-5: ${themeConfig.regularColors?.['chart-5']};
+  --chart-1: ${newColors['chart-1']};
+  --chart-2: ${newColors['chart-2']};
+  --chart-3: ${newColors['chart-3']};
+  --chart-4: ${newColors['chart-4']};
+  --chart-5: ${newColors['chart-5']};
 
-  --muted2: ${themeConfig.regularColors?.muted2};
-  --muted2-foreground: ${themeConfig.regularColors?.['muted2-foreground']};
+  --muted2: ${newColors.muted2};
+  --muted2-foreground: ${newColors['muted2-foreground']};
 }`
       + (themeConfig.darkmodeColors?.enableDarkMode ? `
 

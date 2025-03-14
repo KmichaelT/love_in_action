@@ -13,7 +13,7 @@ export const allStatDesignVersions = [
   // 'STAT5',
   // 'STAT6',
   // 'STAT7',
-  // 'STAT8',
+  'STAT8',
 ] as const
 
 export type StatDesignVersion = (typeof allStatDesignVersions)[number]

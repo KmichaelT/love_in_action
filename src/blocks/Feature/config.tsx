@@ -117,6 +117,7 @@ export const allFeatureDesignVersions = [
   // 'FEATURE109',
   'FEATURE117',
   'FEATURE126',
+  'FEATURE170',
 ] as const
 
 export type FeatureDesignVersion = (typeof allFeatureDesignVersions)[number]
@@ -166,7 +167,7 @@ export const FeatureBlock: Block = {
       localized: true,
       admin: {
         condition: (_, { designVersion = "" } = {}) =>
-          ['FEATURE99', 'FEATURE103', 'FEATURE25'].includes(designVersion),
+          ['FEATURE99', 'FEATURE103',  'FEATURE25'].includes(designVersion),
       },
     },
     icon({
@@ -180,7 +181,7 @@ export const FeatureBlock: Block = {
             'FEATURE24',
             'FEATURE38',
             'FEATURE6',
-            'FEATURE7',
+            'FEATURE7', 
           ].includes(designVersion),
       },
     }),
@@ -343,6 +344,7 @@ export const FeatureBlock: Block = {
                 'FEATURE107',
                 'FEATURE108',
                 'FEATURE117',
+                'FEATURE170',
               ].includes(designVersion)
             },
           },
@@ -404,7 +406,7 @@ export const FeatureBlock: Block = {
                 )
               )
 
-              return currentFeatureBlock && ['FEATURE19', 'FEATURE22', 'FEATURE25', 'FEATURE91'].includes(currentFeatureBlock.designVersion)
+              return currentFeatureBlock && ['FEATURE19', 'FEATURE22', 'FEATURE25','FEATURE170' ,'FEATURE91'].includes(currentFeatureBlock.designVersion)
             },
           },
           fields: [

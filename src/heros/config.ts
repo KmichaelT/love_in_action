@@ -112,10 +112,10 @@ export const hero: Field = {
           label: 'HERO12',
           value: '12',
         },
-        // {
-        //   label: 'HERO13',
-        //   value: '13',
-        // },
+        {
+          label: 'HERO13',
+          value: '13',
+        },
         // {
         //   label: 'HERO14',
         //   value: '14',
@@ -242,14 +242,14 @@ export const hero: Field = {
       localized: true,
       admin: {
         condition: (_, { designVersion = "" } = {}) =>
-          ['1', '2', '3', '4', '5', '6', '12'].includes(designVersion),
+          ['1', '2', '3', '4', '5', '6', '12',  ].includes(designVersion),
       },
     },
     icon({
       name: 'badgeIcon',
       admin: {
         condition: (_, { designVersion = "" } = {}) =>
-          ['1', '2', '3', '4', '5', '6'].includes(designVersion),
+          ['1', '2', '3', '4', '5', '6',  ].includes(designVersion),
       }
     }),
     {
@@ -268,7 +268,34 @@ export const hero: Field = {
         name: 'badgeLink',
         admin: {
           condition: (_, { designVersion } = { designVersion: '' }) =>
-            ['26', '55', '21', '50'].includes(designVersion),
+            ['26', '55', '21', '50' ].includes(designVersion),
+        },
+      },
+    }),
+
+    link({
+      appearances: false,
+      disableLabel: false,
+      disableIcon: false,
+      overrides: {
+        name: 'videoLink',
+        admin: {
+          description: 'Video link for Hero13',
+          condition: (_, { designVersion } = { designVersion: '' }) =>
+            ['13'].includes(designVersion),
+        },
+      },
+    }),
+    link({
+      appearances: false,
+      disableLabel: false,
+      disableIcon: false,
+      overrides: {
+        name: 'primaryLink',
+        admin: {
+          description: 'Primary action link for Hero13',
+          condition: (_, { designVersion } = { designVersion: '' }) =>
+            ['13'].includes(designVersion),
         },
       },
     }),
@@ -278,7 +305,7 @@ export const hero: Field = {
       localized: true,
       admin: {
         condition: (_, { designVersion = "" } = {}) =>
-          ['1', '2', '3', '4', '5', '6', '12'].includes(designVersion),
+          ['1', '2', '3', '4', '5', '6', '12', '13'].includes(designVersion),
       },
       editor: lexicalEditor({
         features: ({ rootFeatures }) => {
@@ -297,7 +324,7 @@ export const hero: Field = {
         maxRows: 2,
         admin: {
           condition: (_, { designVersion = "" } = {}) =>
-            ['1', '2', '3', '4', '5', '6', '12'].includes(designVersion),
+            ['1', '2', '3', '4', '5', '6', '12', ].includes(designVersion),
         },
       },
     }),
@@ -306,11 +333,11 @@ export const hero: Field = {
       type: 'upload',
       admin: {
         condition: (_, { designVersion = "" } = {}) =>
-          ['1', '2', '3', '4', '5', '6', '12', '31', '37', '38', '18'].includes(designVersion),
+          ['1', '2', '3', '4', '5', '6', '12', '31', '37', '38', '18','13'].includes(designVersion),
       },
       relationTo: 'media',
       hasMany: true,
-      maxRows: 3,
+      maxRows: 1,
     },
     {
       name: 'icons',

@@ -1,14 +1,16 @@
-import { Book, Menu, Sunset, Trees, Zap } from 'lucide-react';
-import * as lucide from "lucide-react";
-import type { Header as HeaderType } from '@/payload-types'
+"use client";
 
+import { MenuIcon } from "lucide-react";
+
+import Link from 'next/link'
+import { Media } from '@/components/Media'
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion';
-import { Button, buttonVariants } from '@/components/ui/button';
+} from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -17,237 +19,229 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from '@/components/ui/navigation-menu';
+} from "@/components/ui/navigation-menu";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from '@/components/ui/sheet';
-import { cn } from '@/utilities/cn';
-import { Media } from '@/components/Media';
-import { CMSLink } from '@/components/Link';
-import { Icon } from '@/components/Icon';
-import { LanguageSwitcher, LanguageSwitcherMobile } from '@/components/LanguageSwitcher';
+} from "@/components/ui/sheet";
+import type { Header as HeaderType } from '@/payload-types'
+
 import { PublicContextProps } from '@/utilities/publicContextProps'
-
 export const Navbar1: React.FC<{ header: HeaderType, publicContext: PublicContextProps }> = ({ header, publicContext }) => {
-  return (
-    <section className="py-32 z-50">
-      <div className="container">
-        {/* Desktop Navigation */}
-        <nav className="hidden justify-between lg:flex z-50">
-          <div className="flex items-center gap-6 z-50">
-            <div className="flex items-center gap-2">
-              <Media resource={header.logo} priority />
-            </div>
-            <div className="flex items-center">
-              {/* Left Link Group */}
-              <NavigationMenu>
-                <NavigationMenuList>
-                  {header.items?.map((item) => {
-                    if (item.blockType === "link") {
-                      // Single Nav Link
-                      return (
-                        <CMSLink publicContext={publicContext} key={item.id} {...item.link}
-                          className={cn(
-                            'text-muted-foreground',
-                            navigationMenuTriggerStyle,
-                            buttonVariants({
-                              variant: 'ghost',
-                            }),
-                          )}
-                        />
-                      )
-                    } else if (item.blockType === "sub") {
-                      // Sub Nav Group
-                      return (
-                        <NavigationMenuItem key={item.id} className="text-muted-foreground">
-                          <NavigationMenuTrigger>
-                            {item.icon && <Icon className={"mr-2 h-6"} icon={item.icon} />}<span>{item.label}</span>
-                          </NavigationMenuTrigger>
-                          <NavigationMenuContent>
-                            <ul className="w-80 p-3">
-                              <NavigationMenuLink asChild>
-                                {item.subitems.map((subitem) => (
-                                  <li key={subitem.id}>
-                                    <CMSLink
-                                      publicContext={publicContext}
-                                      className={cn('flex select-none gap-4 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',)}
-                                      {...subitem.link}
-                                      label=""
-                                      iconBefore={undefined}
-                                      iconAfter={undefined}
-                                    >
-                                      {subitem.link.iconBefore && <Icon icon={subitem.link.iconBefore} />}
-                                      <div>
-                                        <div className="text-sm font-semibold">
-                                          {subitem.link.label}
-                                        </div>
-                                        <p className="text-sm leading-snug text-muted-foreground">
-                                          {subitem.Description}
-                                        </p>
-                                      </div>
-                                    </CMSLink>
-                                  </li>
-                                ))}
-                              </NavigationMenuLink>
-                            </ul>
-                          </NavigationMenuContent>
-                        </NavigationMenuItem>
-                      )
-                    }
-                  })}
-                </NavigationMenuList>
-              </NavigationMenu>
-            </div>
-          </div>
-          {/* Right Button Group */}
-          <div className="flex gap-2 z-50">
-            {header?.buttons?.map((btn) => <CMSLink publicContext={publicContext} key={btn.id} {...btn.link} />)}
-            <LanguageSwitcher publicContext={publicContext} />
-          </div>
-        </nav>
+  
+  // Transform header items into the format expected by the current navbar1 template
+  const navs = header?.items?.map(item => {
+    if (item.blockType === 'link') {
+      // For regular links
+      return {
+        title: item.link.label,
+        description: "", // Regular links don't have descriptions in the current data
+        href: item.link.reference ? 
+          `/${(item.link.reference.value as any).slug}` : 
+          item.link.url || "#",
+      };
+    } else if (item.blockType === 'sub') {
+      // For submenu items - we'll use the first subitem's description as a fallback
+      return {
+        title: item.label,
+        description: item.subitems?.[0]?.Description || "Submenu",
+        href: "#",
+        isSubmenu: true,
+        subitems: item.subitems?.map(subitem => ({
+          title: subitem.link.label,
+          description: subitem.Description || "",
+          href: subitem.link.reference ? 
+            `/${(subitem.link.reference.value as any).slug}` : 
+            subitem.link.url || "#",
+        }))
+      };
+    }
+    return null;
+  }).filter(Boolean) || [];
 
-        {/* Mobile Navigation */}
-        <div className="block lg:hidden" >
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Media resource={header.logo} />
-            </div>
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button variant={'outline'} size={'icon'}>
-                  <Menu className="size-4" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent className="overflow-y-auto">
-                <SheetHeader>
-                  <SheetTitle>
-                    <div className="flex items-center gap-2"><Media resource={header.logo} />
-                    </div>
-                  </SheetTitle>
-                </SheetHeader>
-                {/* Link Group */}
-                <div className="my-8 flex flex-col gap-4">
-                  <Accordion type="single" collapsible>
-                    <LanguageSwitcherMobile publicContext={publicContext} />
-                    {header.items?.map((item) => {
-                      if (item.blockType === "link") {
-                        // Single Nav Link
-                        return (
-                          <CMSLink publicContext={publicContext} key={item.id} {...item.link}
-                            className="font-semibold"
-                          />
-                        )
-                      } else if (item.blockType === "sub") {
-                        // Sub Nav Group
-                        return (
-                          <AccordionItem key={item.id} value={item.id || item.label} className="border-b-0">
-                            <AccordionTrigger className="mb-4 py-0 font-semibold hover:no-underline">
-                              <span className='inline-flex'>{item.icon && <Icon className={"mr-2 h-6"} icon={item.icon} />}{item.label}</span>
-                            </AccordionTrigger>
-                            <AccordionContent className="mt-2">
-                              {item.subitems.map((subitem) => (
-                                <CMSLink
-                                  publicContext={publicContext}
-                                  key={subitem.id}
-                                  className={cn('flex select-none gap-4 rounded-md p-3 leading-none outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',)}
-                                  {...subitem.link}
-                                  label=""
-                                  iconBefore={undefined}
-                                  iconAfter={undefined}
+  // Fallback to features if header data is not available
+  const features = [
+    {
+      title: "Dashboard",
+      description: "Overview of your activity",
+      href: "#",
+    },
+    {
+      title: "Analytics",
+      description: "Track your performance",
+      href: "#",
+    },
+    {
+      title: "Settings",
+      description: "Configure your preferences",
+      href: "#",
+    },
+    {
+      title: "Integrations",
+      description: "Connect with other tools",
+      href: "#",
+    },
+    {
+      title: "Storage",
+      description: "Manage your files",
+      href: "#",
+    },
+    {
+      title: "Support",
+      description: "Get help when needed",
+      href: "#",
+    },
+  ];
+
+  // Use navs if available, otherwise fall back to features
+  const navigationItems = navs.length > 0 ? navs : features;
+
+  return (
+    <section className="py-4">
+      <div className="container">
+        <nav className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+<Link href="/">
+              <Media resource={header.logo} priority className="h-16" imgClassName="h-full w-auto" />
+            </Link>
+          </div>
+          <NavigationMenu className="hidden lg:block">
+            <NavigationMenuList>
+              {navigationItems.map((item, index) => {
+                if (item.isSubmenu && item.subitems) {
+                  // Render submenu
+                  return (
+                    <NavigationMenuItem key={index}>
+                      <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
+                      <NavigationMenuContent>
+                        <div className="grid w-[600px] grid-cols-2 p-3">
+                          {item.subitems.map((subitem, subIndex) => (
+                            <NavigationMenuLink
+                              href={subitem.href}
+                              key={`${index}-${subIndex}`}
+                              className="rounded-md p-3 transition-colors hover:bg-muted/70"
+                            >
+                              <div>
+                                <p className="mb-1 font-semibold">{subitem.title}</p>
+                                <p className="text-sm text-muted-foreground">
+                                  {subitem.description}
+                                </p>
+                              </div>
+                            </NavigationMenuLink>
+                          ))}
+                        </div>
+                      </NavigationMenuContent>
+                    </NavigationMenuItem>
+                  );
+                } else {
+                  // Render regular link
+                  return (
+                    <NavigationMenuItem key={index}>
+                      <NavigationMenuLink
+                        href={item.href}
+                        className={navigationMenuTriggerStyle()}
+                      >
+                        {item.title}
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
+                  );
+                }
+              })}
+            </NavigationMenuList>
+          </NavigationMenu>
+          <div className="hidden items-center gap-4 lg:flex">
+            {header?.buttons?.map((btn, index) => (
+              <Button 
+                key={index} 
+                variant={index === 0 ? "outline" : "default"}
+              >
+                {btn.link.label}
+              </Button>
+            )) || (
+              <>
+                <Button variant="outline">Sign in</Button>
+                <Button>Start for free</Button>
+              </>
+            )}
+          </div>
+          <Sheet>
+            <SheetTrigger asChild className="lg:hidden">
+              <Button variant="outline" size="icon">
+                <MenuIcon className="h-4 w-4" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="top" className="max-h-screen overflow-scroll">
+              <SheetHeader>
+                <SheetTitle>
+                  <div className="flex items-center gap-4">
+                  <Link href="/">
+              <Media resource={header.logo} priority className="h-9" imgClassName="h-full w-auto" />
+            </Link>
+                  </div>
+                </SheetTitle>
+              </SheetHeader>
+              <div className="flex flex-col">
+                <Accordion type="single" collapsible className="mb-2 mt-4">
+                  {navigationItems.map((item, index) => {
+                    if (item.isSubmenu && item.subitems) {
+                      // Render submenu in accordion
+                      return (
+                        <AccordionItem key={index} value={`item-${index}`} className="border-none">
+                          <AccordionTrigger className="hover:no-underline">
+                            {item.title}
+                          </AccordionTrigger>
+                          <AccordionContent>
+                            <div className="grid md:grid-cols-2">
+                              {item.subitems.map((subitem, subIndex) => (
+                                <a
+                                  href={subitem.href}
+                                  key={`${index}-${subIndex}`}
+                                  className="rounded-md p-3 transition-colors hover:bg-muted/70"
                                 >
-                                  {subitem.link.iconBefore && <Icon icon={subitem.link.iconBefore} />}
                                   <div>
-                                    <div className="text-sm font-semibold">
-                                      {subitem.link.label}
-                                    </div>
-                                    <p className="text-sm leading-snug text-muted-foreground">
-                                      {subitem.Description}
+                                    <p className="mb-1 font-semibold">
+                                      {subitem.title}
+                                    </p>
+                                    <p className="text-sm text-muted-foreground">
+                                      {subitem.description}
                                     </p>
                                   </div>
-                                </CMSLink>
+                                </a>
                               ))}
-                            </AccordionContent>
-                          </AccordionItem>
-
-                          /* <NavigationMenuItem key={item.id} className="text-muted-foreground">
-                          <NavigationMenuTrigger>
-                            {item.icon && <Icon className={"mr-2 h-6"} icon={item.icon} />}<span>{item.label}</span>
-                          </NavigationMenuTrigger>
-                          <NavigationMenuContent>
-                            <ul className="w-80 p-3">
-                              <NavigationMenuLink>
-                                {item.subitems.map((subitem) => (
-                                  <li key={subitem.id}>
-                                    <CMSLink
-                                      className={cn('flex select-none gap-4 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',)}
-                                      {...subitem.link}
-                                      label=""
-                                      iconBefore={undefined}
-                                      iconAfter={undefined}
-                                    >
-                                      {subitem.link.iconBefore && <Icon icon={subitem.link.iconBefore} />}
-                                      <div>
-                                        <div className="text-sm font-semibold">
-                                          {subitem.link.label}
-                                        </div>
-                                        <p className="text-sm leading-snug text-muted-foreground">
-                                          {subitem.Description}
-                                        </p>
-                                      </div>
-                                    </CMSLink>
-                                  </li>
-                                ))}
-                              </NavigationMenuLink>
-                            </ul>
-                          </NavigationMenuContent>
-                        </NavigationMenuItem> */
-                        )
-                      }
-                    })}
-                  </Accordion>
-                </div>
-
-                {/* Button group */}
-                <div className="border-t pt-4">
-                  {/* Mobile only button grid - Not implemented yet via CMS */}
-                  {/* <div className="grid grid-cols-2 justify-start">
-                    <a
-                      className={cn(
-                        buttonVariants({
-                          variant: 'ghost',
-                        }),
-                        'justify-start text-muted-foreground',
-                      )}
-                      href="#"
+                            </div>
+                          </AccordionContent>
+                        </AccordionItem>
+                      );
+                    } else {
+                      // Render regular link
+                      return (
+                        <a key={index} href={item.href} className="font-medium py-3 block">
+                          {item.title}
+                        </a>
+                      );
+                    }
+                  })}
+                </Accordion>
+                <div className="mt-6 flex flex-col gap-4">
+                  {header?.buttons?.map((btn, index) => (
+                    <Button 
+                      key={index} 
+                      variant={index === 0 ? "outline" : "default"}
                     >
-                      Press
-                    </a>
-                    <a
-                      className={cn(
-                        buttonVariants({
-                          variant: 'ghost',
-                        }),
-                        'justify-start text-muted-foreground',
-                      )}
-                      href="#"
-                    >
-                      Contact
-                    </a>
-                    ...
-                  </div> */}
-                  <div className="mt-2 flex flex-col gap-3">
-                    {header?.buttons?.map((btn) => <CMSLink publicContext={publicContext} key={btn.id} {...btn.link} />)}
-                  </div>
+                      {btn.link.label}
+                    </Button>
+                  )) }
                 </div>
-              </SheetContent>
-            </Sheet>
-          </div>
-        </div>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </nav>
       </div>
-    </section >
+    </section>
   );
 };
+
+export default Navbar1

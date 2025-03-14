@@ -10,10 +10,10 @@ const Stat1: React.FC<StatBlock & { publicContext: PublicContextProps }> = ({ he
           content={headline}
           withWrapper={false}
           overrideStyle={{
-            h1: 'text-center text-4xl font-semibold lg:text-6xl',
-            h2: 'text-center text-3xl font-semibold lg:text-5xl',
-            h3: 'text-center text-2xl font-semibold lg:text-4xl',
-            h4: 'text-center text-1xl font-semibold lg:text-3xl',
+            h1: ' text-4xl font-semibold lg:text-6xl',
+            h2: '  text-3xl font-semibold lg:text-5xl',
+            h3: ' text-2xl font-semibold lg:text-4xl',
+            h4: ' text-1xl font-semibold lg:text-3xl',
           }}
         />}
         <div className="grid gap-10 pt-9 md:grid-cols-3 lg:gap-0 lg:pt-20">

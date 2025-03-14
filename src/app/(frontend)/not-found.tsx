@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 
-import { Geist_Mono, Geist } from 'next/font/google'
+// Replace Google Font imports with our custom fonts
+// import { Geist_Mono, Geist } from 'next/font/google'
+import { specifyBlack, specifyBold, specifyMedium } from '@/fonts'
 import React from 'react'
 import { cn } from 'src/utilities/cn'
 import { Footer } from '@/globals/Footer/Component'
@@ -18,8 +20,9 @@ import { Button } from '@/components/ui/button'
 
 // Change fonts by changing class Geist_Mono or Geist. 
 // No change in tailwind.config.mjs needed (Because it's already synced via --font-mono and --font-sans variables). Just make sure, that these variables stay.
-const mono = Geist_Mono({ subsets: ['latin'], variable: '--font-mono' })
-const sans = Geist({ subsets: ['latin'], variable: '--font-sans' })
+// Remove these lines:
+// const mono = Geist_Mono({ subsets: ['latin'], variable: '--font-mono' })
+// const sans = Geist({ subsets: ['latin'], variable: '--font-sans' })
 
 export default function NotFound() {
   const publicContext: PublicContextProps = {
@@ -28,7 +31,15 @@ export default function NotFound() {
     cleanSlugs: [],
   };
   return (
-    <html className={cn(mono.variable, sans.variable)} lang={localization.defaultLocale} suppressHydrationWarning>
+    <html 
+      lang="en" 
+      suppressHydrationWarning
+      className={cn(
+        specifyBlack.variable,
+        specifyBold.variable, 
+        specifyMedium.variable
+      )}
+    >
       <head>
         <ThemeConfig />
         <InitTheme />
