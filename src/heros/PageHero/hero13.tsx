@@ -32,7 +32,7 @@ export const Hero13: React.FC<Page['hero'] & { publicContext: PublicContextProps
   
   return (
     <>
-      <section className="shadow-[inset_0_-4px_10px_theme(colors.primary)] relative overflow-hidden border border-b pt-40 pb-40 font-sans before:absolute before:-top-[88%] before:left-1/2 before:block before:h-[200%] before:w-[200%] before:-translate-x-1/2 before:bg-[radial-gradient(theme(colors.indigo.200)_15%,_theme(colors.transparent)_20%,_theme(colors.orange.200)_30%,_theme(colors.transparent)_50%,_theme(colors.blue.200)_60%)] before:bg-cover before:bg-no-repeat before:opacity-55 before:content-['']">
+      <section className="shadow-[inset_0_-4px_10px_rgba(49,101,176,0.3)] relative overflow-hidden border border-b pt-40 pb-40 font-sans before:absolute before:-top-[88%] before:left-1/2 before:block before:h-[200%] before:w-[200%] before:-translate-x-1/2 before:bg-[radial-gradient(theme(colors.indigo.200)_15%,_theme(colors.transparent)_20%,_theme(colors.orange.200)_30%,_theme(colors.transparent)_50%,_theme(colors.blue.200)_60%)] before:bg-cover before:bg-no-repeat before:opacity-55 before:content-['']">
 
         <div className="container max-w-[87.5rem] relative z-20 ">
           <div className="grid grid-cols-1 gap-[5.625rem] lg:grid-cols-2">
@@ -119,6 +119,18 @@ export const Hero13: React.FC<Page['hero'] & { publicContext: PublicContextProps
                   )}
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="py-16">
+        <div className="container">
+          <div className="flex flex-col items-center gap-6 border-y py-14 text-center md:py-20">
+              <q className="block max-w-4xl text-2xl font-medium lg:text-3xl">
+                &ldquo;Dear children, let&apos;s not merely say that we <span className="font-extrabold text-primary bg-blue-100 px-1 rounded">love each other</span>; let us show the truth <span className="font-extrabold text-primary bg-blue-100 px-1 rounded">by our actions</span>.&rdquo;
+              </q>
+            <div className="flex flex-col items-center gap-2 sm:flex-row">
+              <p className="font-medium">1 John 3:18</p>
             </div>
           </div>
         </div>
